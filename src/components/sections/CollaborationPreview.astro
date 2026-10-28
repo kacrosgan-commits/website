@@ -1,0 +1,65 @@
+---
+import GradientButton from "../ui/GradientButton.astro";
+
+interface Scene {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+  role?: string;
+}
+
+interface Props {
+  id?: string;
+  heading?: string;
+  intro: string;
+  scenes: Scene[];
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const {
+  id = "together-heading",
+  heading = "Great Software Is Built Together.",
+  intro,
+  scenes,
+  ctaHref = "/team/gallery",
+  ctaLabel = "View All 27 Images",
+} = Astro.props;
+---
+
+<section class="section" aria-labelledby={id}>
+  <div class="container-page">
+    <h2 id={id} class="section-title">{heading}</h2>
+    <p class="mt-4 max-w-2xl text-muted">{intro}</p>
+    <div class:list={["together-grid mt-10", scenes.length > 3 && "together-grid-wide"]}>
+      {
+        scenes.map((scene) => (
+          <figure>
+            <img
+              src={scene.src}
+              alt={scene.alt}
+              width={scene.width}
+              height={scene.height}
+              class="work-photo"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="mt-3 text-sm text-muted">
+              {scene.role ? `${scene.role}. ` : ""}
+              {scene.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    {
+      ctaHref && (
+        <div class="mt-10">
+          <GradientButton href={ctaHref}>{ctaLabel}</GradientButton>
+        </div>
+      )
+    }
+  </div>
+</section>

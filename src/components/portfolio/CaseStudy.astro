@@ -1,0 +1,340 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectCard from "../cards/ProjectCard.astro";
+import CtaSection from "../sections/CtaSection.astro";
+import Breadcrumbs from "../ui/Breadcrumbs.astro";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { webpCopy } from "../../utils/images";
+import { isPublicProject } from "../../utils/portfolio";
+
+interface Props {
+  project: CollectionEntry<"caseStudies">;
+  related: CollectionEntry<"caseStudies">[];
+  reviewPeers: CollectionEntry<"caseStudies">[];
+}
+
+const { project, related, reviewPeers } = Astro.props;
+const data = project.data;
+const published = isPublicProject(data);
+const hero = data.screenshots[0];
+const heroWebp = hero ? webpCopy(hero.src) : undefined;
+const gallery = data.screenshots.map((shot) => ({ ...shot, webp: webpCopy(shot.src) }));
+const mobile = data.mediaLayout === "mobile";
+const statuses = ["Confirmed platform", "Publisher-described", "Observed", "Unverified"] as const;
+const requiredContribution = [
+  ["Engagement role", data.engagementRole],
+  ["Work dates", data.workDates],
+  ["Features and modules implemented", data.modulesDelivered],
+  ["Technologies used", data.technologiesUsed],
+  ["Evidence and publication permission", data.publicationPermission],
+] as const;
+const optionalContribution = [
+  ["Integrations developed", data.integrationsDeveloped],
+  ["QA or release contribution", data.qaContribution],
+] as const;
+const contributionFields = [
+  ...requiredContribution,
+  ...optionalContribution.filter(([, value]) => value.trim().length > 0),
+];
+const contributionReady =
+  published && data.contributionVerified && requiredContribution.every(([, value]) => value.trim().length > 0);
+const verifiedMetrics = data.metrics.filter((metric) => metric.verified);
+
+function mediaLabel(kind: string) {
+  const value = kind.toLowerCase();
+  if (value.includes("promotional")) return "Promotional artwork";
+  if (value.includes("illustration")) return "Marketing illustration";
+  return "Public page capture";
+}
+---
+
+<BaseLayout
+  title={data.seoTitle || data.title}
+  description={data.seoDescription || data.description}
+  fullTitle={Boolean(data.seoTitle)}
+  noindex={!published}
+  ogType="article"
+  image={hero?.src}
+>
+  <article class="case-study pt-28 pb-8 md:pt-32" data-tone={data.tone} data-review={published ? "false" : "true"}>
+    <div class="container-page">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Portfolio", href: "/portfolio" },
+          { label: data.title },
+        ]}
+      />
+
+      {
+        !published && (
+          <p class="review-banner mt-6">
+            <span class="badge">Internal review</span>
+            This page describes a public product. It is not a Vortex Digital client case study. Contribution, dates, and image permission are unconfirmed, so the production build omits this route.
+          </p>
+        )
+      }
+
+      <header class:list={["case-hero mt-8", mobile && "case-hero-mobile"]}>
+        <div>
+          <p class="case-kicker">{data.category}</p>
+          <h1 class="page-title mt-4">{data.title}</h1>
+          {data.subtitle && <p class="mt-4 text-lg font-medium text-lavender">{data.subtitle}</p>}
+          <p class="lede mt-5">{data.description}</p>
+          {
+            data.projectUrl && (
+              <p class="mt-6">
+                <a class="btn btn-primary" href={data.projectUrl} target="_blank" rel="noopener noreferrer">
+                  {data.projectUrlLabel}
+                </a>
+              </p>
+            )
+          }
+          <p class="mt-4 text-sm text-muted">Trademarks and page designs belong to their owners. A live link is not a client endorsement.</p>
+        </div>
+        {
+          hero && (
+            <figure class="shot-stage">
+              <a href={hero.src}>
+                <picture>
+                  {heroWebp && <source type="image/webp" srcset={heroWebp} />}
+                  <img
+                    src={hero.src}
+                    alt={hero.alt}
+                    width={hero.width}
+                    height={hero.height}
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    class:list={["case-hero-shot", mobile && "case-hero-shot-mobile"]}
+                  />
+                </picture>
+              </a>
+              <figcaption>
+                <span class="badge">{mediaLabel(hero.kind)}</span>
+                <span>{hero.caption}</span>
+              </figcaption>
+            </figure>
+          )
+        }
+      </header>
+
+      <section class="case-block" aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Product overview</h2>
+        <p>{data.overview}</p>
+      </section>
+
+      <section class="case-block" aria-labelledby="challenge-heading">
+        <h2 id="challenge-heading">{data.challengeHeading}</h2>
+        <p>{data.challenge}</p>
+      </section>
+
+      <section class="case-block" aria-labelledby="features-heading">
+        <h2 id="features-heading">{data.featuresHeading}</h2>
+        <ol class="feature-grid">
+          {
+            data.features.map((feature, index) => (
+              <li>
+                <span>0{index + 1}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="case-block" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading">{data.galleryHeading}</h2>
+        <p class="text-muted">Three source images for this product. Enlarge a frame, or open the file directly if scripts are unavailable.</p>
+        <div class:list={["shot-gallery mt-6", mobile ? "shot-gallery-mobile" : "shot-gallery-web"]}>
+          {
+            gallery.map((shot) => (
+              <figure>
+                <a
+                  class="shot-open"
+                  href={shot.src}
+                  data-shot
+                  data-full={shot.webp ?? shot.src}
+                  data-alt={shot.alt}
+                  data-caption={shot.caption}
+                >
+                  <picture>
+                    {shot.webp && <source type="image/webp" srcset={shot.webp} />}
+                    <img
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={shot.width}
+                      height={shot.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                  <span class="shot-open-label">Enlarge image</span>
+                </a>
+                <figcaption>
+                  <span class="badge">{mediaLabel(shot.kind)}</span>
+                  <span>{shot.caption}</span>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+        {data.evidenceNote && <p class="mt-6 text-sm text-muted">{data.evidenceNote}</p>}
+        <dialog class="shot-dialog" data-shot-dialog>
+          <form method="dialog">
+            <button type="submit" class="btn border border-line">Close</button>
+          </form>
+          <p data-shot-caption></p>
+        </dialog>
+      </section>
+
+      <section class="case-block" aria-labelledby="tech-heading">
+        <h2 id="tech-heading">{data.technologyHeading}</h2>
+        <p class="text-muted">
+          {
+            published
+              ? "Confirmed entries are the stack used on the published contribution. Other notes describe the public product and are not additional Vortex Digital deliverables."
+              : "Public observations are separated from publisher statements. None of these notes prove which parts Vortex Digital built."
+          }
+        </p>
+        <div class="tech-groups">
+          {
+            statuses.map((status) => {
+              const items = data.technology.filter((item) => item.status === status);
+              if (items.length === 0) return null;
+              return (
+                <article>
+                  <h3>{status}</h3>
+                  <ul>
+                    {items.map((item) => (
+                      <li>{item.text}</li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      {
+        contributionReady && (
+          <section class="case-block" aria-labelledby="contribution-heading">
+            <h2 id="contribution-heading">Our contribution</h2>
+            <dl class="contribution-list">
+              {contributionFields.map(([label, value]) => (
+                <div>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+
+      {
+        !published && (
+          <section class="case-block" aria-labelledby="contribution-heading">
+            <h2 id="contribution-heading">Our contribution</h2>
+            <p>
+              {site.name} has not confirmed a role on this product. The fields below are blank on purpose. They are not filled with a guessed scope, stack, or date.
+            </p>
+            <dl class="contribution-list">
+              {[...requiredContribution, ...optionalContribution].map(([label]) => (
+                <div>
+                  <dt>{label}</dt>
+                  <dd>Not confirmed</dd>
+                </div>
+              ))}
+            </dl>
+            {data.contributionPrompt && <p class="mt-4 text-sm text-muted">{data.contributionPrompt}</p>}
+          </section>
+        )
+      }
+
+      {
+        verifiedMetrics.length > 0 && (
+          <section class="case-block" aria-labelledby="outcomes-heading">
+            <h2 id="outcomes-heading">Outcomes</h2>
+            <dl class="feature-grid">
+              {verifiedMetrics.map((metric) => (
+                <div>
+                  <dt>{metric.label}</dt>
+                  <dd class="font-display text-3xl font-semibold">{metric.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+
+      {
+        related.length > 0 && (
+          <section class="case-block" aria-labelledby="related-heading">
+            <h2 id="related-heading">Related projects</h2>
+            <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {related.map((entry) => (
+                <ProjectCard project={entry} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        reviewPeers.length > 0 && (
+          <section class="case-block" aria-labelledby="review-peers-heading">
+            <h2 id="review-peers-heading">Also in this review</h2>
+            <p class="text-muted">Other unapproved products in the local review. They are not published client work.</p>
+            <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {reviewPeers.map((entry) => (
+                <ProjectCard project={entry} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </article>
+  <CtaSection
+    title={data.ctaTitle || "Have a Similar Product in Mind?"}
+    description={
+      data.ctaDescription ||
+      "Describe the product you want to build. This conversation does not publish a review page or assign authorship."
+    }
+    href="/contact"
+    label={data.ctaLabel || "Discuss Your Project"}
+  />
+</BaseLayout>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-shot-dialog]");
+  const caption = dialog?.querySelector<HTMLElement>("[data-shot-caption]");
+  // Created here rather than in markup so the closed dialog never requests an image.
+  const full = document.createElement("img");
+  full.decoding = "async";
+  caption?.before(full);
+  let lastTrigger: HTMLElement | null = null;
+
+  document.querySelectorAll<HTMLAnchorElement>("[data-shot]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (!dialog || !caption || typeof dialog.showModal !== "function") return;
+      event.preventDefault();
+      lastTrigger = link;
+      const thumb = link.querySelector("img");
+      full.width = Number(thumb?.getAttribute("width")) || 0;
+      full.height = Number(thumb?.getAttribute("height")) || 0;
+      full.src = link.dataset.full ?? link.href;
+      full.alt = link.dataset.alt ?? "";
+      caption.textContent = link.dataset.caption ?? "";
+      dialog.showModal();
+    });
+  });
+
+  dialog?.addEventListener("close", () => {
+    lastTrigger?.focus();
+  });
+</script>

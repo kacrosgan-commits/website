@@ -1,0 +1,290 @@
+---
+import { site } from "../../data/site";
+import { budgets, isConfiguredEndpoint, projectTypes, timelines } from "../../utils/inquiry";
+import GradientButton from "../ui/GradientButton.astro";
+
+const configured = isConfiguredEndpoint(site.formEndpoint);
+---
+
+<div class="surface-card relative p-6 md:p-8" data-contact-root>
+  {
+    !configured && (
+      <p class="mb-6 rounded-2xl border border-line bg-ink/60 p-4 text-sm text-lavender" data-delivery="unconfigured">
+        Online message delivery isn't configured yet. You can draft your inquiry here and copy it, but this site won't send it.
+      </p>
+    )
+  }
+  <noscript>
+    <p class="mb-6 rounded-2xl border border-line bg-ink/60 p-4 text-sm text-lavender">
+      Copying an inquiry needs JavaScript. With it turned off, this page still does not send the form.
+    </p>
+  </noscript>
+  <form
+    class="grid min-w-0 grid-cols-1 gap-5"
+    data-contact-form
+    data-endpoint={configured ? site.formEndpoint : ""}
+    method="post"
+    action={configured ? site.formEndpoint : undefined}
+    novalidate
+  >
+    <div class="hp" aria-hidden="true">
+      <label for="company_website">Company website</label>
+      <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2">
+      <div class="field">
+        <label for="full-name">Full name <span class="req">Required</span></label>
+        <input id="full-name" name="name" type="text" autocomplete="name" required />
+        <p id="full-name-error" class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="business-email">Email <span class="req">Required</span></label>
+        <input id="business-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+        <p id="business-email-error" class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="company-name">Company <span class="req">Required</span></label>
+        <input id="company-name" name="company" type="text" autocomplete="organization" required />
+        <p id="company-name-error" class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="project-type">Project type <span class="req">Required</span></label>
+        <select id="project-type" name="service" required>
+          <option value="">Select a project type</option>
+          {projectTypes.map((type) => <option value={type}>{type}</option>)}
+        </select>
+        <p id="project-type-error" class="field-error" hidden></p>
+      </div>
+    </div>
+    <div class="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2">
+      <div class="field">
+        <label for="estimated-budget">Estimated budget <span class="req">Optional</span></label>
+        <select id="estimated-budget" name="budget">
+          <option value="">No budget yet</option>
+          {budgets.map((budget) => <option value={budget}>{budget}</option>)}
+        </select>
+        <p id="estimated-budget-error" class="field-error" hidden></p>
+      </div>
+      <div class="field">
+        <label for="expected-timeline">Expected timeline <span class="req">Optional</span></label>
+        <select id="expected-timeline" name="timeline">
+          <option value="">No timeline yet</option>
+          {timelines.map((timeline) => <option value={timeline}>{timeline}</option>)}
+        </select>
+        <p id="expected-timeline-error" class="field-error" hidden></p>
+      </div>
+    </div>
+    <div class="field">
+      <label for="project-description">Project description <span class="req">Required</span></label>
+      <textarea id="project-description" name="message" required aria-describedby="project-description-help"></textarea>
+      <p id="project-description-help" class="text-sm text-muted">A short description is enough. Say what the product should do.</p>
+      <p id="project-description-error" class="field-error" hidden></p>
+    </div>
+    <div>
+      <label class="consent" for="privacy-consent">
+        <input id="privacy-consent" name="privacy" type="checkbox" value="yes" required />
+        <span>
+          I agree to the processing of this inquiry as described in the <a class="text-lavender underline" href="/privacy">Privacy Policy</a>.
+          <span class="req">Required</span>
+        </span>
+      </label>
+      <p id="privacy-consent-error" class="field-error mt-2" hidden></p>
+    </div>
+    {
+      configured && <input type="hidden" name="_subject" value={`New project inquiry — ${site.name}`} />
+    }
+    <div class="flex flex-wrap items-center gap-4">
+      <GradientButton type={configured ? "submit" : "button"} arrow={false}>
+        <span data-submit-label>{configured ? "Send message" : "Copy inquiry"}</span>
+      </GradientButton>
+      <p class="text-sm text-muted" data-form-status role="status" aria-live="polite"></p>
+    </div>
+    <div data-copy-fallback hidden>
+      <label class="font-semibold" for="inquiry-draft">Inquiry draft</label>
+      <textarea id="inquiry-draft" class="inquiry-draft mt-2" readonly></textarea>
+    </div>
+  </form>
+  <div data-success hidden class="rounded-2xl border border-line bg-ink/50 p-6">
+    <h2 class="font-display text-2xl font-semibold">Message submitted</h2>
+    <p class="mt-3 text-muted">The form provider confirmed delivery. Please watch your inbox for a reply. This page does not create a contract.</p>
+  </div>
+</div>
+
+<script>
+  import { composeInquiry, inquiryProblems, planDelivery, providerOutcome, resolveServicePrefill } from "../../utils/inquiry";
+
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  if (form) {
+    const endpoint = form.dataset.endpoint ?? "";
+    const status = form.querySelector<HTMLElement>("[data-form-status]");
+    const label = form.querySelector<HTMLElement>("[data-submit-label]");
+    const success = document.querySelector<HTMLElement>("[data-success]");
+    const fallback = form.querySelector<HTMLElement>("[data-copy-fallback]");
+    const draft = form.querySelector<HTMLTextAreaElement>("#inquiry-draft");
+    const submit = form.querySelector<HTMLButtonElement>("[data-submit-label]")?.closest("button");
+    const mounted = Date.now();
+    let attempted = false;
+    let sending = false;
+
+    const serviceField = form.querySelector<HTMLSelectElement>("#project-type");
+    const requested = new URLSearchParams(window.location.search).get("service");
+    if (requested && serviceField) {
+      const match = resolveServicePrefill(requested, [...serviceField.options].map((option) => option.value));
+      if (match) serviceField.value = match;
+    }
+
+    const fieldIds = [
+      "full-name",
+      "business-email",
+      "company-name",
+      "project-type",
+      "estimated-budget",
+      "expected-timeline",
+      "project-description",
+      "privacy-consent",
+    ];
+
+    const setError = (id: string, message: string) => {
+      const field = document.getElementById(id);
+      const error = document.getElementById(`${id}-error`);
+      const help = document.getElementById(`${id}-help`);
+      field?.setAttribute("aria-invalid", message ? "true" : "false");
+      const described = [help ? `${id}-help` : "", message ? `${id}-error` : ""].filter(Boolean).join(" ");
+      if (described) field?.setAttribute("aria-describedby", described);
+      else field?.removeAttribute("aria-describedby");
+      if (error) {
+        error.textContent = message;
+        error.hidden = !message;
+      }
+    };
+
+    const readInquiry = () => ({
+      name: (document.getElementById("full-name") as HTMLInputElement | null)?.value ?? "",
+      email: (document.getElementById("business-email") as HTMLInputElement | null)?.value ?? "",
+      company: (document.getElementById("company-name") as HTMLInputElement | null)?.value ?? "",
+      service: (document.getElementById("project-type") as HTMLSelectElement | null)?.value ?? "",
+      budget: (document.getElementById("estimated-budget") as HTMLSelectElement | null)?.value ?? "",
+      timeline: (document.getElementById("expected-timeline") as HTMLSelectElement | null)?.value ?? "",
+      message: (document.getElementById("project-description") as HTMLTextAreaElement | null)?.value ?? "",
+      consent: Boolean((document.getElementById("privacy-consent") as HTMLInputElement | null)?.checked),
+    });
+
+    const validate = () => {
+      const problems = inquiryProblems(readInquiry());
+      const byId = new Map(problems.map((problem) => [problem.id, problem.message]));
+      fieldIds.forEach((id) => setError(id, byId.get(id) ?? ""));
+      return problems;
+    };
+
+    const showFallback = (text: string) => {
+      if (draft) draft.value = text;
+      if (fallback) fallback.hidden = false;
+    };
+
+    const hideFallback = () => {
+      if (fallback) fallback.hidden = true;
+      if (draft) draft.value = "";
+    };
+
+    const copyInquiry = async () => {
+      attempted = true;
+      if (status) status.textContent = "";
+      const problems = validate();
+      if (problems.length > 0) {
+        if (status) status.textContent = "Check the highlighted fields and try again.";
+        document.getElementById(problems[0].id)?.focus();
+        return;
+      }
+
+      const honeypot = form.querySelector<HTMLInputElement>("#company_website")?.value ?? "";
+      const plan = planDelivery(endpoint, honeypot, Date.now() - mounted);
+      if (plan.mode === "blocked") {
+        if (status) status.textContent = plan.reason;
+        return;
+      }
+      if (plan.mode !== "unconfigured") return;
+
+      const text = composeInquiry(readInquiry());
+      if (submit) submit.disabled = true;
+      try {
+        await navigator.clipboard.writeText(text);
+        hideFallback();
+        if (status) status.textContent = "Inquiry copied. No message has been sent.";
+      } catch {
+        showFallback(text);
+        if (status) status.textContent = "Copy wasn't available in this browser; select and copy the text manually.";
+      } finally {
+        if (submit) submit.disabled = false;
+      }
+    };
+
+    const sendInquiry = async () => {
+      if (sending) return;
+      attempted = true;
+      if (status) status.textContent = "";
+      const problems = validate();
+      if (problems.length > 0) {
+        if (status) status.textContent = "Check the highlighted fields and try again.";
+        document.getElementById(problems[0].id)?.focus();
+        return;
+      }
+
+      const honeypot = form.querySelector<HTMLInputElement>("#company_website")?.value ?? "";
+      const plan = planDelivery(endpoint, honeypot, Date.now() - mounted);
+      if (plan.mode === "blocked") {
+        if (status) status.textContent = plan.reason;
+        return;
+      }
+      if (plan.mode !== "provider") {
+        await copyInquiry();
+        return;
+      }
+
+      const data = new FormData(form);
+      data.delete("company_website");
+      sending = true;
+      if (submit) submit.disabled = true;
+      if (label) label.textContent = "Sending…";
+      form.setAttribute("aria-busy", "true");
+
+      try {
+        const response = await fetch(plan.endpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: data,
+        });
+        const payload = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+        const outcome = providerOutcome({ ok: response.ok, status: response.status, payloadOk: payload.ok });
+        if (outcome !== "confirmed-success") throw new Error(payload.error || "Request failed");
+        form.hidden = true;
+        if (success) success.hidden = false;
+      } catch {
+        if (status) status.textContent = "We could not confirm delivery. Your answers are still in the form. No message was sent.";
+        if (label) label.textContent = "Send message";
+      } finally {
+        sending = false;
+        if (submit) submit.disabled = false;
+        form.removeAttribute("aria-busy");
+      }
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (endpoint) void sendInquiry();
+      else void copyInquiry();
+    });
+
+    submit?.addEventListener("click", () => {
+      if (endpoint) return;
+      void copyInquiry();
+    });
+
+    form.addEventListener("input", () => {
+      if (!attempted) return;
+      validate();
+      if (inquiryProblems(readInquiry()).length === 0 && status?.textContent === "Check the highlighted fields and try again.") {
+        status.textContent = "";
+      }
+    });
+  }
+</script>

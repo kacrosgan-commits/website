@@ -1,0 +1,102 @@
+---
+import type { VisualVariant } from "../../data/services";
+
+interface Props {
+  variant?: VisualVariant;
+  label?: string;
+  embed?: boolean;
+}
+
+const { variant = "prism", label = "Abstract brand visual", embed = false } = Astro.props;
+const uid = `v${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class:list={["relative overflow-hidden bg-ink-soft", embed ? "h-full min-h-56" : "aspect-[5/4] rounded-[20px] border border-line"]}>
+  <svg viewBox="0 0 640 520" class="h-full w-full" role={label ? "img" : "presentation"} aria-label={label || undefined} aria-hidden={label ? undefined : "true"}>
+    <defs>
+      <linearGradient id={`${uid}-g`} x1="80" y1="40" x2="560" y2="480" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#6D28D9"></stop>
+        <stop offset="0.55" stop-color="#8B5CF6"></stop>
+        <stop offset="1" stop-color="#C084FC"></stop>
+      </linearGradient>
+      <radialGradient id={`${uid}-r`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 160) scale(220)">
+        <stop stop-color="#C084FC" stop-opacity="0.45"></stop>
+        <stop offset="1" stop-color="#C084FC" stop-opacity="0"></stop>
+      </radialGradient>
+    </defs>
+    <rect width="640" height="520" fill="#120E22"></rect>
+    <circle cx="460" cy="150" r="180" fill={`url(#${uid}-r)`}></circle>
+    {
+      variant === "prism" && (
+        <g>
+          <path d="M320 70 520 260 320 450 120 260 320 70Z" stroke="#DDD6FE" stroke-opacity="0.55" />
+          <path d="M320 140 450 260 320 380 190 260 320 140Z" fill={`url(#${uid}-g)`} />
+          <path d="M250 260h140M320 190v140" stroke="#F8F7FF" stroke-opacity="0.7" />
+        </g>
+      )
+    }
+    {
+      variant === "orbit" && (
+        <g>
+          <ellipse cx="320" cy="260" rx="210" ry="90" stroke="#DDD6FE" stroke-opacity="0.5" transform="rotate(-20 320 260)" />
+          <ellipse cx="320" cy="260" rx="150" ry="150" stroke="#8B5CF6" stroke-opacity="0.7" />
+          <circle cx="320" cy="260" r="54" fill={`url(#${uid}-g)`} />
+          <circle cx="470" cy="180" r="8" fill="#DDD6FE" />
+          <circle cx="180" cy="340" r="6" fill="#C084FC" />
+        </g>
+      )
+    }
+    {
+      variant === "grid" && (
+        <g>
+          {Array.from({ length: 6 }).map((_, row) =>
+            Array.from({ length: 8 }).map((__, col) => (
+              <rect
+                x={70 + col * 64}
+                y={60 + row * 64}
+                width="36"
+                height="36"
+                rx="8"
+                fill={(row + col) % 3 === 0 ? `url(#${uid}-g)` : "transparent"}
+                stroke="#C084FC"
+                stroke-opacity={(row + col) % 3 === 0 ? "0" : "0.35"}
+              />
+            )),
+          )}
+        </g>
+      )
+    }
+    {
+      variant === "wave" && (
+        <g fill="none" stroke={`url(#${uid}-g)`} stroke-width="2">
+          <path d="M40 180c80-70 140-70 220 0s140 70 220 0 140-70 180 0" />
+          <path d="M40 250c80-70 140-70 220 0s140 70 220 0 140-70 180 0" stroke-opacity="0.7" />
+          <path d="M40 320c80-70 140-70 220 0s140 70 220 0 140-70 180 0" stroke-opacity="0.45" />
+          <circle cx="150" cy="180" r="7" fill="#DDD6FE" stroke="none" />
+          <circle cx="480" cy="250" r="7" fill="#F8F7FF" stroke="none" />
+        </g>
+      )
+    }
+    {
+      variant === "signal" && (
+        <g>
+          <circle cx="320" cy="260" r="28" fill={`url(#${uid}-g)`} />
+          <circle cx="320" cy="260" r="70" stroke="#DDD6FE" stroke-opacity="0.7" />
+          <circle cx="320" cy="260" r="120" stroke="#C084FC" stroke-opacity="0.45" />
+          <circle cx="320" cy="260" r="175" stroke="#8B5CF6" stroke-opacity="0.3" />
+          <path d="M320 80v40M320 400v40M140 260h40M460 260h40" stroke="#DDD6FE" />
+        </g>
+      )
+    }
+    {
+      variant === "layers" && (
+        <g>
+          <path d="M120 180 320 100l200 80-200 80-200-80Z" fill={`url(#${uid}-g)`} fill-opacity="0.95" />
+          <path d="M120 250 320 170l200 80-200 80-200-80Z" stroke="#DDD6FE" stroke-opacity="0.7" />
+          <path d="M120 320 320 240l200 80-200 80-200-80Z" stroke="#C084FC" stroke-opacity="0.55" />
+        </g>
+      )
+    }
+  </svg>
+  <span class="absolute bottom-3 left-3 badge">Placeholder visual</span>
+</div>

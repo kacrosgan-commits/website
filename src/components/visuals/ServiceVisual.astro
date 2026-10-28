@@ -1,0 +1,216 @@
+---
+interface Node {
+  id: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  label: string;
+  detail: string;
+}
+
+interface Diagram {
+  label: string;
+  caption: string;
+  nodes: Node[];
+  edges: [string, string][];
+}
+
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const diagrams: Record<string, Diagram> = {
+  "web-application-development": {
+    label: "Conceptual diagram of a web application: browser interface, application API, and database.",
+    caption: "A conceptual split between the interface, the API, and the data. Not a screenshot of a product.",
+    nodes: [
+      { id: "ui", x: 36, y: 168, w: 150, h: 96, label: "Browser UI", detail: "Tasks and states" },
+      { id: "api", x: 246, y: 168, w: 150, h: 96, label: "Application API", detail: "Rules and auth" },
+      { id: "db", x: 456, y: 168, w: 150, h: 96, label: "Database", detail: "Records" },
+    ],
+    edges: [
+      ["ui", "api"],
+      ["api", "db"],
+    ],
+  },
+  "mobile-app-development": {
+    label: "Conceptual diagram of a mobile app: iOS and Android clients sharing application logic and an API.",
+    caption: "Clients can be native or shared. The API stays the source of product rules.",
+    nodes: [
+      { id: "ios", x: 48, y: 56, w: 150, h: 84, label: "iOS client", detail: "Platform UI" },
+      { id: "android", x: 246, y: 56, w: 170, h: 84, label: "Android client", detail: "Platform UI" },
+      { id: "logic", x: 140, y: 196, w: 190, h: 88, label: "App behavior", detail: "Shared tasks" },
+      { id: "api", x: 400, y: 196, w: 170, h: 88, label: "API and accounts", detail: "Server" },
+    ],
+    edges: [
+      ["ios", "logic"],
+      ["android", "logic"],
+      ["logic", "api"],
+    ],
+  },
+  "ai-intelligent-automation": {
+    label: "Conceptual diagram of an AI feature: request, retrieval, model, human review, then the product.",
+    caption: "A person reviews the result. The diagram is not a claim of accuracy.",
+    nodes: [
+      { id: "ask", x: 28, y: 180, w: 108, h: 80, label: "Request", detail: "A real task" },
+      { id: "find", x: 164, y: 180, w: 112, h: 80, label: "Retrieval", detail: "Your sources" },
+      { id: "model", x: 304, y: 180, w: 108, h: 80, label: "Model", detail: "A vendor API" },
+      { id: "review", x: 440, y: 72, w: 160, h: 80, label: "Human review", detail: "Confirm or reject" },
+      { id: "product", x: 440, y: 280, w: 160, h: 80, label: "Product record", detail: "Only if accepted" },
+    ],
+    edges: [
+      ["ask", "find"],
+      ["find", "model"],
+      ["model", "review"],
+      ["review", "product"],
+    ],
+  },
+  "saas-platform-development": {
+    label: "Conceptual SaaS diagram: users, access control, the application, billing, and tenant data.",
+    caption: "Tenancy and billing are architecture options for a proposal, not a finished platform.",
+    nodes: [
+      { id: "users", x: 24, y: 168, w: 112, h: 84, label: "Users", detail: "Accounts" },
+      { id: "access", x: 168, y: 168, w: 120, h: 84, label: "Access", detail: "Roles" },
+      { id: "app", x: 328, y: 48, w: 140, h: 84, label: "Application", detail: "Core tasks" },
+      { id: "bill", x: 328, y: 292, w: 140, h: 84, label: "Billing", detail: "When in scope" },
+      { id: "data", x: 496, y: 168, w: 120, h: 84, label: "Tenant data", detail: "Isolated" },
+    ],
+    edges: [
+      ["users", "access"],
+      ["access", "app"],
+      ["access", "bill"],
+      ["app", "data"],
+    ],
+  },
+  "backend-api-engineering": {
+    label: "Conceptual API diagram: client, request routing, domain service, data store, and a background job.",
+    caption: "Requests are validated at the boundary. Slow work can move to a job.",
+    nodes: [
+      { id: "client", x: 28, y: 176, w: 110, h: 80, label: "Client", detail: "Web or mobile" },
+      { id: "route", x: 176, y: 176, w: 130, h: 80, label: "API route", detail: "Validate input" },
+      { id: "service", x: 344, y: 176, w: 130, h: 80, label: "Domain service", detail: "Rules" },
+      { id: "data", x: 508, y: 72, w: 108, h: 80, label: "Data store", detail: "Records" },
+      { id: "job", x: 508, y: 280, w: 108, h: 80, label: "Background job", detail: "Retries" },
+    ],
+    edges: [
+      ["client", "route"],
+      ["route", "service"],
+      ["service", "data"],
+      ["service", "job"],
+    ],
+  },
+  "cloud-devops": {
+    label: "Conceptual delivery diagram: commit, continuous integration, deployment, environment, and monitoring.",
+    caption: "A repeatable release path. It is not an uptime guarantee or a 24/7 support contract.",
+    nodes: [
+      { id: "commit", x: 24, y: 180, w: 100, h: 76, label: "Commit", detail: "Repository" },
+      { id: "ci", x: 150, y: 180, w: 100, h: 76, label: "CI", detail: "Build and test" },
+      { id: "deploy", x: 276, y: 180, w: 120, h: 76, label: "Deploy", detail: "Automation" },
+      { id: "env", x: 424, y: 72, w: 180, h: 76, label: "Environment", detail: "Config and secrets" },
+      { id: "watch", x: 424, y: 280, w: 180, h: 76, label: "Logs and alerts", detail: "A short list" },
+    ],
+    edges: [
+      ["commit", "ci"],
+      ["ci", "deploy"],
+      ["deploy", "env"],
+      ["deploy", "watch"],
+    ],
+  },
+  "ui-ux-product-design": {
+    label: "Conceptual design process: research, journeys, wireframes, interface components, and engineering handoff.",
+    caption: "The sequence is about the task and the handoff, not a decorative mockup.",
+    nodes: [
+      { id: "research", x: 28, y: 168, w: 108, h: 88, label: "Research", detail: "The task" },
+      { id: "flows", x: 164, y: 168, w: 108, h: 88, label: "Journeys", detail: "Structure" },
+      { id: "wire", x: 300, y: 168, w: 120, h: 88, label: "Wireframes", detail: "Priority" },
+      { id: "ui", x: 448, y: 56, w: 160, h: 88, label: "Interface", detail: "States included" },
+      { id: "hand", x: 448, y: 268, w: 160, h: 88, label: "Handoff", detail: "For engineering" },
+    ],
+    edges: [
+      ["research", "flows"],
+      ["flows", "wire"],
+      ["wire", "ui"],
+      ["wire", "hand"],
+    ],
+  },
+  "qa-software-testing": {
+    label: "Conceptual test flow: scope, functional checks, automation, a defect report, and release validation.",
+    caption: "A test record describes what was checked. It does not mean the product has zero defects.",
+    nodes: [
+      { id: "scope", x: 24, y: 180, w: 100, h: 76, label: "Scope", detail: "What is in" },
+      { id: "func", x: 148, y: 72, w: 140, h: 76, label: "Functional", detail: "Tasks and failures" },
+      { id: "auto", x: 148, y: 280, w: 140, h: 76, label: "Automation", detail: "Repeated checks" },
+      { id: "report", x: 324, y: 180, w: 130, h: 76, label: "Defect report", detail: "Steps to repeat" },
+      { id: "release", x: 486, y: 180, w: 130, h: 76, label: "Release note", detail: "What was validated" },
+    ],
+    edges: [
+      ["scope", "func"],
+      ["scope", "auto"],
+      ["func", "report"],
+      ["auto", "report"],
+      ["report", "release"],
+    ],
+  },
+};
+
+const { slug, title } = Astro.props;
+const diagram = diagrams[slug];
+if (!diagram) {
+  throw new Error(`Missing service diagram: ${slug}`);
+}
+
+const byId = new Map(diagram.nodes.map((node) => [node.id, node]));
+
+function edgePath(fromId: string, toId: string): string {
+  const from = byId.get(fromId);
+  const to = byId.get(toId);
+  if (!from || !to) return "";
+  const y1 = from.y + from.h / 2;
+  const y2 = to.y + to.h / 2;
+  const x1 = from.x + from.w;
+  const x2 = to.x;
+  if (x2 > x1 + 12) {
+    const mid = x1 + Math.min(28, (x2 - x1) / 2);
+    if (Math.abs(y1 - y2) < 20) return `M ${x1} ${y1} H ${x2}`;
+    return `M ${x1} ${y1} H ${mid} V ${y2} H ${x2}`;
+  }
+  const xMid = from.x + from.w / 2;
+  const startY = y2 > y1 ? from.y + from.h : from.y;
+  const endY = y2 > y1 ? to.y : to.y + to.h;
+  return `M ${xMid} ${startY} V ${(startY + endY) / 2} H ${to.x + to.w / 2} V ${endY}`;
+}
+---
+
+<figure class="service-diagram">
+  <svg viewBox="0 0 640 440" role="img" aria-label={`${title}. ${diagram.label}`}>
+    <rect width="640" height="440" rx="24" fill="#120e22"></rect>
+    <g fill="none" stroke="#C084FC" stroke-width="1.5" opacity="0.85">
+      {
+        diagram.edges.map(([from, to]) => (
+          <path d={edgePath(from, to)} marker-end={`url(#arrow-${slug})`} />
+        ))
+      }
+    </g>
+    {
+      diagram.nodes.map((node) => (
+        <g>
+          <rect x={node.x} y={node.y} width={node.w} height={node.h} rx="16" fill="#1C1533" stroke="rgba(192,132,252,0.45)" />
+          <text x={node.x + 16} y={node.y + 36} fill="#F8F7FF" font-size="15" font-family="Space Grotesk, Inter, sans-serif">
+            {node.label}
+          </text>
+          <text x={node.x + 16} y={node.y + 60} fill="#A7A0BD" font-size="12" font-family="Inter, sans-serif">
+            {node.detail}
+          </text>
+        </g>
+      ))
+    }
+    <defs>
+      <marker id={`arrow-${slug}`} markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0 0 L6 3 L0 6" fill="#C084FC"></path>
+      </marker>
+    </defs>
+  </svg>
+  <figcaption>{diagram.caption}</figcaption>
+</figure>

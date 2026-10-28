@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate, readingTime } from "../../utils/format";
+import { isPublicInsight } from "../../utils/insights";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  featured?: boolean;
+  review?: boolean;
+}
+
+const { post, featured = false, review = false } = Astro.props;
+const minutes = readingTime(post.body ?? post.data.description);
+const published = isPublicInsight(post.data);
+const publishedAt = post.data.publishedAt;
+---
+
+<article class:list={["surface-card flex h-full flex-col p-6", featured && "md:p-8"]} data-category={post.data.category}>
+  <div class="flex flex-wrap items-center gap-2">
+    {review && <span class="badge">Awaiting owner approval</span>}
+    <span class="text-sm text-muted">{post.data.category}</span>
+  </div>
+  <h3 class:list={["mt-4 font-display font-semibold tracking-[-0.03em]", featured ? "text-3xl" : "text-2xl"]}>
+    <a href={`/insights/${post.id}`} class="hover:text-lavender">{post.data.title}</a>
+  </h3>
+  <p class="mt-3 flex-1 text-muted">{post.data.description}</p>
+  <p class="mt-6 text-sm text-muted">
+    {
+      published && publishedAt && (
+        <>
+          <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+          <span aria-hidden="true"> · </span>
+        </>
+      )
+    }
+    <span>{minutes} min read</span>
+  </p>
+</article>

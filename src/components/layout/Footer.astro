@@ -1,0 +1,94 @@
+---
+import { assets } from "../../data/assets";
+import { activeSocialLinks, footerNavigation, site } from "../../data/site";
+import { services } from "../../data/services";
+import Logo from "../ui/Logo.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
+import { getCollection } from "astro:content";
+import { isPublicInsight } from "../../utils/insights";
+
+const publishedInsights = (await getCollection("blog")).filter((post) => isPublicInsight(post.data)).length;
+const showInsights = publishedInsights > 0 || import.meta.env.DEV;
+const footerLinks = footerNavigation.filter((item) => item.href !== "/insights" || showInsights);
+---
+
+<footer class="site-footer border-t border-line bg-ink-soft">
+  <img class="footer-art" src={assets.backgrounds.footerRibbons} alt="" width="1920" height="800" />
+  <div class="container-page grid min-w-0 gap-[min(3rem,5vw)] py-16 md:grid-cols-2 lg:grid-cols-12">
+    <div class="min-w-0 lg:col-span-4">
+      <a href="/" aria-label={`${site.name} home`} class="inline-flex rounded-lg">
+        <Logo />
+      </a>
+      <p class="mt-4 max-w-sm text-muted">{site.summary}</p>
+      {activeSocialLinks.length > 0 && <SocialLinks class="mt-6" />}
+    </div>
+    <div class="min-w-0 lg:col-span-2">
+      <h2 class="text-sm font-semibold tracking-[0.14em] text-lavender uppercase">Explore</h2>
+      <ul class="mt-4 grid gap-2">
+        {
+          footerLinks.map((item) => (
+            <li>
+              <a href={item.href} class="text-muted hover:text-paper">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="min-w-0 lg:col-span-3">
+      <h2 class="text-sm font-semibold tracking-[0.14em] text-lavender uppercase">Services</h2>
+      <ul class="mt-4 grid gap-2">
+        {
+          services.map((service) => (
+            <li>
+              <a href={`/services/${service.slug}`} class="text-muted hover:text-paper">
+                {service.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="min-w-0 lg:col-span-3">
+      <h2 class="text-sm font-semibold tracking-[0.14em] text-lavender uppercase">Contact</h2>
+      <ul class="mt-4 grid gap-3 text-muted">
+        <li>
+          {
+            site.emailIsPlaceholder ? (
+              <span>A public email address is not set yet.</span>
+            ) : (
+              <a href={`mailto:${site.email}`} class="text-paper hover:text-lavender">{site.email}</a>
+            )
+          }
+        </li>
+        {
+          site.location && (
+            <li>
+              <span>{site.location}</span>
+            </li>
+          )
+        }
+        <li>
+          <a href="/contact" class="hover:text-paper">Start a project</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-line">
+    <div class="container-page flex flex-col gap-3 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© {site.copyrightYear} {site.legalName || site.name}. All rights reserved.</p>
+      <span class="flex flex-wrap gap-x-4">
+        <a href="/privacy" class="inline-flex min-h-6 items-center hover:text-paper">Privacy Policy</a>
+        <a href="/terms" class="inline-flex min-h-6 items-center hover:text-paper">Terms</a>
+      </span>
+    </div>
+    {
+      site.nameIsPlaceholder && (
+        <p class="container-page pb-8 text-sm text-muted">
+          {site.name} is a working name in the site configuration. Replace the name, domain, email, and team profiles before launch.
+        </p>
+      )
+    }
+  </div>
+</footer>

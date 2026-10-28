@@ -1,0 +1,209 @@
+---
+import TeamCard from "../components/cards/TeamCard.astro";
+import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
+import CtaSection from "../components/sections/CtaSection.astro";
+import MediaFrame from "../components/ui/MediaFrame.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import Icon from "../components/ui/Icon.astro";
+import OutlineButton from "../components/ui/OutlineButton.astro";
+import { assets } from "../data/assets";
+import { about, buildServices } from "../data/about";
+import { processSteps } from "../data/process";
+import { site } from "../data/site";
+import { team, workScene } from "../data/team";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+if (team.length !== 9) {
+  throw new Error(`Expected 9 team roles, found ${team.length}`);
+}
+if (buildServices.length !== 8) {
+  throw new Error(`Expected 8 services, found ${buildServices.length}`);
+}
+
+const studio = workScene("uiux-product-designer", 0);
+const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
+  .map((slug) => team.find((member) => member.slug === slug))
+  .filter((member) => member !== undefined);
+---
+
+<BaseLayout
+  title={`About ${site.name} | Software Development for Startups`}
+  description={`Meet ${site.name}, a software development agency focused on web applications, mobile apps, AI solutions, SaaS platforms, and engineering services for startups.`}
+  fullTitle
+>
+  <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
+    <img class="scene-wash" src={assets.backgrounds.aboutOrbit} alt="" width="1920" height="800" />
+    <div class="container-page relative z-[1]">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
+      <div class="about-hero">
+        <div>
+          <p class="eyebrow">{about.heroEyebrow}</p>
+          <h1 class="page-title mt-5 max-w-xl">
+            We Build Software for <span class="text-gradient">What's Next.</span>
+          </h1>
+          <p class="lede mt-6 max-w-xl">{about.heroDescription}</p>
+          <p class="mt-6 max-w-xl text-sm font-medium tracking-wide text-lavender">{site.tagline}</p>
+        </div>
+        <MediaFrame
+          src={assets.aboutPhoto}
+          alt="A dark engineering workspace in violet light"
+          width={1448}
+          height={1086}
+          class="aspect-[4/3]"
+          position="center"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal pt-0" aria-labelledby="who-heading">
+    <div class="container-page grid items-center gap-x-[min(3rem,5vw)] gap-y-12 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 id="who-heading" class="section-title">{about.whoHeading}</h2>
+        <div class="mt-6 grid gap-4">
+          {about.who.map((paragraph) => <p class="text-lg text-paper/90">{paragraph}</p>)}
+        </div>
+      </div>
+      <figure class="lg:col-span-5">
+        <img
+          src={studio.src}
+          alt={studio.alt}
+          width={studio.width}
+          height={studio.height}
+          class="work-photo"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mt-3 text-sm text-muted">{studio.role}. {studio.caption}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section reveal bg-ink-soft/40" aria-labelledby="audience-heading">
+    <div class="container-page">
+      <div class="max-w-3xl">
+        <h2 id="audience-heading" class="section-title">{about.audienceHeading}</h2>
+        <p class="lede mt-5">{about.audienceNote}</p>
+      </div>
+      <ol class="audience-list mt-12">
+        {
+          about.audiences.map((item, index) => (
+            <li class="surface-card audience-item">
+              <p class="font-display text-3xl font-semibold tracking-[-0.04em] text-lilac">0{index + 1}</p>
+              <div>
+                <h3 class="font-display text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
+                <p class="mt-3 text-muted">{item.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section reveal" aria-labelledby="build-heading">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <h2 id="build-heading" class="section-title">{about.buildHeading}</h2>
+          <p class="lede mt-5">{about.buildIntro}</p>
+        </div>
+        <OutlineButton href="/services">All services</OutlineButton>
+      </div>
+      <ul class="build-list mt-12">
+        {
+          buildServices.map(({ label, service }) => (
+            <li>
+              <a href={`/services/${service.slug}`} class="surface-card build-link">
+                <span class="icon-tile">
+                  <Icon name={service.icon} size={22} />
+                </span>
+                <span>
+                  <span class="block font-display text-xl font-semibold tracking-[-0.03em]">{label}</span>
+                  <span class="mt-2 block text-muted">{service.summary}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section reveal bg-ink-soft/40" aria-labelledby="mission-heading">
+    <div class="container-page grid gap-6 lg:grid-cols-12">
+      <article class="surface-card mission-panel lg:col-span-7">
+        <p class="eyebrow">Mission</p>
+        <h2 id="mission-heading" class="mt-4 font-display text-[clamp(2rem,3.4vw,3rem)] font-semibold tracking-[-0.04em]">{about.missionHeading}</h2>
+        <p class="mt-6 text-2xl leading-snug text-paper">{about.mission}</p>
+        <p class="mt-6 text-muted">{about.missionSupport}</p>
+      </article>
+      <article class="surface-card flex flex-col justify-center p-8 md:p-10 lg:col-span-5">
+        <p class="eyebrow">Vision</p>
+        <h2 class="mt-4 font-display text-3xl font-semibold tracking-[-0.03em]">{about.visionHeading}</h2>
+        <p class="mt-5 text-lg text-paper/90">{about.vision}</p>
+        <p class="mt-4 text-muted">{about.visionSupport}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal" aria-labelledby="philosophy-heading">
+    <div class="container-page">
+      <h2 id="philosophy-heading" class="section-title max-w-3xl">{about.philosophyHeading}</h2>
+      <div class="philosophy-grid mt-12">
+        {
+          about.philosophy.map((item) => (
+            <article class="surface-card p-7">
+              <div class="icon-tile">
+                <Icon name={item.icon} />
+              </div>
+              <h3 class="mt-5 font-display text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
+              <p class="mt-3 text-muted">{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal bg-ink-soft/40" aria-labelledby="process-heading">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <h2 id="process-heading" class="section-title">{about.processHeading}</h2>
+          <p class="lede mt-5">{about.processIntro}</p>
+        </div>
+        <OutlineButton href="/process">See the full process</OutlineButton>
+      </div>
+      <div class="mt-12">
+        <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" aria-labelledby="team-heading">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-3xl">
+          <h2 id="team-heading" class="section-title">{about.teamHeading}</h2>
+          <p class="lede mt-5">{about.teamIntro}</p>
+        </div>
+        <OutlineButton href="/team">Meet all nine</OutlineButton>
+      </div>
+      <div class="mt-12 grid gap-5 sm:grid-cols-2">
+        {leaders.map((member) => <TeamCard member={member} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title={about.ctaTitle}
+    description={about.ctaDescription}
+    href="/contact"
+    label="Discuss Your Project"
+    secondaryHref="/services"
+    secondaryLabel="Explore Our Services"
+  />
+</BaseLayout>

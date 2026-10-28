@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#090713"/>
+  <circle cx="980" cy="120" r="280" fill="#6D28D9" opacity="0.45"/>
+  <circle cx="180" cy="560" r="240" fill="#8B5CF6" opacity="0.28"/>
+  <circle cx="1040" cy="520" r="180" fill="#C084FC" opacity="0.18"/>
+  <path d="M860 130 1040 315 860 500 680 315 860 130Z" stroke="#DDD6FE" stroke-width="2" opacity="0.7"/>
+  <path d="M860 210 980 315 860 420 740 315 860 210Z" fill="url(#og)"/>
+  <text x="88" y="250" fill="#F8F7FF" font-family="Space Grotesk, Inter, sans-serif" font-size="68" font-weight="600">Vortex Digital</text>
+  <text x="88" y="340" fill="#DDD6FE" font-family="Inter, sans-serif" font-size="32">Software engineering for ambitious startups</text>
+  <text x="88" y="520" fill="#A7A0BD" font-family="Inter, sans-serif" font-size="22">Web, mobile, AI, and SaaS products.</text>
+  <defs>
+    <linearGradient id="og" x1="740" y1="210" x2="980" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D28D9"/>
+      <stop offset="0.55" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#C084FC"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,153 @@
+---
+import { isActivePath, navigation, site } from "../../data/site";
+import GradientButton from "../ui/GradientButton.astro";
+import Icon from "../ui/Icon.astro";
+import Logo from "../ui/Logo.astro";
+import { getCollection } from "astro:content";
+import { isPublicInsight } from "../../utils/insights";
+
+const pathname = Astro.url.pathname;
+const publishedInsights = (await getCollection("blog")).filter((post) => isPublicInsight(post.data)).length;
+const showInsights = publishedInsights > 0 || import.meta.env.DEV;
+const headerNav = navigation.filter((item) => item.href !== "/insights" || showInsights);
+---
+
+<header class="site-header" data-header>
+  <div class="container-page flex min-h-[4.5rem] min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-2">
+    <a href="/" aria-label={`${site.name} home`} class="rounded-lg">
+      <Logo />
+    </a>
+    <nav class="hidden min-w-0 flex-1 flex-wrap items-center justify-center lg:flex" aria-label="Primary">
+      {
+        headerNav.map((item) => (
+          <a
+            href={item.href}
+            class="nav-link"
+            aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="hidden shrink-0 lg:block">
+      <GradientButton href="/contact">Let's Talk</GradientButton>
+    </div>
+    <button
+      type="button"
+      class="menu-button inline-flex lg:hidden"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span data-icon-open><Icon name="menu" /></span>
+      <span data-icon-close class="hidden"><Icon name="x" /></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="mobile-menu lg:hidden" data-mobile-menu inert>
+    <div class="mobile-menu-inner">
+      <nav class="container-page flex flex-col gap-1 py-4" aria-label="Mobile">
+        {
+          headerNav.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-xl px-3 py-3 text-lg font-medium text-paper"
+              aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <div class="pt-3 pb-2">
+          <GradientButton href="/contact" class="w-full">Let's Talk</GradientButton>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const bar = header?.firstElementChild as HTMLElement | null;
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const iconOpen = toggle?.querySelector<HTMLElement>("[data-icon-open]");
+  const iconClose = toggle?.querySelector<HTMLElement>("[data-icon-close]");
+
+  const onScroll = () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+
+  // The page is scroll-locked while the menu is open, so the panel itself must scroll when it is taller than the space left.
+  const fitPanel = () => {
+    if (!panel || !bar) return;
+    const space = Math.max(window.innerHeight - Math.max(bar.getBoundingClientRect().bottom, 0), window.innerHeight * 0.5);
+    panel.style.setProperty("--menu-max", `${Math.floor(space)}px`);
+  };
+
+  const setOpen = (open: boolean) => {
+    if (!toggle || !panel) return;
+    if (open) fitPanel();
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    panel.classList.toggle("is-open", open);
+    panel.inert = !open;
+    document.body.classList.toggle("menu-open", open);
+    iconOpen?.classList.toggle("hidden", open);
+    iconClose?.classList.toggle("hidden", !open);
+    if (open) {
+      panel.querySelector<HTMLElement>("a")?.focus();
+    } else if (document.activeElement !== toggle) {
+      toggle.focus();
+    }
+  };
+
+  // A sticky bar taller than a quarter of the viewport (large text, short screens) would hide focused content.
+  const fitHeader = () => {
+    header?.classList.toggle("is-static", (bar?.offsetHeight ?? 0) > window.innerHeight * 0.25);
+  };
+
+  onScroll();
+  fitHeader();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      fitHeader();
+      if (panel?.classList.contains("is-open")) fitPanel();
+    },
+    { passive: true },
+  );
+  if (bar && "ResizeObserver" in window) new ResizeObserver(fitHeader).observe(bar);
+
+  toggle?.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  panel?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && panel?.classList.contains("is-open")) {
+      setOpen(false);
+      return;
+    }
+    if (event.key !== "Tab" || !panel?.classList.contains("is-open")) return;
+    const focusable = [...panel.querySelectorAll<HTMLElement>("a, button")].filter(
+      (element) => !element.hasAttribute("disabled"),
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  });
+
+</script>

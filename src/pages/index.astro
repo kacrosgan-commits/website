@@ -1,0 +1,290 @@
+---
+import BlogCard from "../components/cards/BlogCard.astro";
+import ProjectCard from "../components/cards/ProjectCard.astro";
+import ServiceCard from "../components/cards/ServiceCard.astro";
+import CollaborationPreview from "../components/sections/CollaborationPreview.astro";
+import TeamShowcase from "../components/sections/TeamShowcase.astro";
+import CtaSection from "../components/sections/CtaSection.astro";
+import FaqAccordion from "../components/sections/FaqAccordion.astro";
+import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Stats from "../components/sections/Stats.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import GradientButton from "../components/ui/GradientButton.astro";
+import OutlineButton from "../components/ui/OutlineButton.astro";
+import { assets } from "../data/assets";
+import { homeIntro, reasons } from "../data/about";
+import { faqs } from "../data/faq";
+import { processSteps } from "../data/process";
+import { featuredServices } from "../data/services";
+import { technologyGroups } from "../data/technologies";
+import { site } from "../data/site";
+import { publicName, team, workScene } from "../data/team";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { homepageProjects } from "../utils/portfolio";
+import { comparePublicInsights, isPublicInsight } from "../utils/insights";
+import { getCollection } from "astro:content";
+import Icon from "../components/ui/Icon.astro";
+
+const projects = homepageProjects(await getCollection("caseStudies"));
+const posts = (await getCollection("blog"))
+  .filter((post) => isPublicInsight(post.data))
+  .sort((a, b) => comparePublicInsights({ ...a.data, id: a.id }, { ...b.data, id: b.id }))
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={`${site.name} — Software Development Agency`}
+  description={site.description}
+  fullTitle
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.url,
+    description: site.description,
+  }}
+>
+  <section class="relative overflow-hidden pt-28 pb-10 md:pt-32 md:pb-16">
+    <div class="ambient" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grid-fade"></div>
+    </div>
+    <div class="container-page relative">
+      <div class="photo-hero">
+          <img
+            class="photo-hero-img"
+            src={assets.aboutPhoto}
+            alt="A dark conference room with a laptop on the table, purple lighting, and a city skyline"
+            width="1448"
+            height="1086"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        <img class="photo-hero-glow" src={assets.dashboard.glow} alt="" width="800" height="800" />
+        <img class="photo-hero-atmo" src={assets.dashboard.atmosphere} alt="" width="1200" height="800" />
+        <div class="photo-hero-copy">
+          <p class="eyebrow hero-in">Software engineering for startups</p>
+          <h1 class="photo-hero-title hero-in hero-in-2 mt-5">
+            We Build Software That Moves Business <span class="text-gradient">Forward.</span>
+          </h1>
+          <p class="lede hero-in hero-in-3 mt-6 max-w-xl">
+            {site.name} helps startups design, build, and improve digital products: web and mobile applications, AI-powered software, and SaaS platforms with a foundation the team can keep changing.
+          </p>
+          <div class="hero-in hero-in-4 mt-8 flex flex-wrap gap-3">
+            <GradientButton href="/contact">Start Your Project</GradientButton>
+            <OutlineButton href="/services">Explore Our Services</OutlineButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TeamShowcase />
+
+  <section class="section reveal" aria-labelledby="intro-heading">
+    <div class="container-page grid items-end gap-x-[min(2.5rem,4vw)] gap-y-10 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <p class="eyebrow">{homeIntro.eyebrow}</p>
+        <h2 id="intro-heading" class="section-title mt-4">{homeIntro.title}</h2>
+      </div>
+      <div class="lg:col-span-6">
+        <p class="text-lg text-paper/90">{homeIntro.lead} {homeIntro.body}</p>
+        <p class="mt-4 text-muted">{homeIntro.support}</p>
+        <a href="/about" class="mt-6 inline-flex items-center gap-2 font-semibold text-lavender">
+          Learn About Us
+          <Icon name="arrow-right" size={16} class="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal bg-ink-soft/40" aria-labelledby="services-heading">
+    <div class="container-page">
+      <SectionHeading eyebrow="Services" description="Web development, mobile apps, AI, SaaS, backend and APIs, cloud and DevOps, UI/UX, and QA. Each card opens the page for that work.">
+        <span id="services-heading">Eight specialties for a startup product.</span>
+      </SectionHeading>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {featuredServices.map((service) => <ServiceCard service={service} />)}
+      </div>
+      <div class="mt-8">
+        <a href="/services" class="inline-flex items-center gap-2 font-semibold text-lavender">
+          Explore our services
+          <Icon name="arrow-right" size={16} class="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" aria-labelledby="reasons-heading">
+    <div class="container-page">
+      <SectionHeading eyebrow="Why teams stay" description="A way of working, not a list of trophies. Figures appear here only after they are verified.">
+        <span id="reasons-heading">How the work is run.</span>
+      </SectionHeading>
+      <div class="mt-12 grid gap-4 md:grid-cols-2">
+        {
+          reasons.map((reason, index) => (
+            <article class="surface-card p-7">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div class="icon-tile">
+                  <Icon name={reason.icon} />
+                </div>
+                <span class="font-display text-sm tracking-[0.16em] text-lilac">0{index + 1}</span>
+              </div>
+              <h3 class="mt-6 font-display text-2xl font-semibold tracking-[-0.03em]">{reason.title}</h3>
+              <p class="mt-3 text-muted">{reason.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Stats />
+
+  <section class="section reveal" aria-labelledby="stack-heading">
+    <div class="container-page">
+      <SectionHeading eyebrow="Stack" description="A working catalog aligned with the roles on the team. It is not a certification list.">
+        <span id="stack-heading">Technology That Fits Your Product.</span>
+      </SectionHeading>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          technologyGroups.map((group) => (
+            <article class="surface-card p-6">
+              <h3 class="font-display text-xl font-semibold">{group.label}</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <li class="rounded-full border border-line px-3 py-1 text-sm text-lavender">{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    projects.length > 0 ? (
+      <section class="section reveal" aria-labelledby="work-heading">
+        <div class="container-page">
+          <div class="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading eyebrow="Selected work" description="Published after the contribution and permission to show it are confirmed.">
+              <span id="work-heading">Approved client work.</span>
+            </SectionHeading>
+            <OutlineButton href="/portfolio">View our work</OutlineButton>
+          </div>
+          <div class:list={["mt-12 grid gap-5", projects.length === 5 ? "card-grid-five" : projects.length === 2 || projects.length === 4 ? "md:grid-cols-2" : "md:grid-cols-2 xl:grid-cols-3"]}>
+            {projects.map((project) => <ProjectCard project={project} />)}
+          </div>
+        </div>
+      </section>
+    ) : (
+      <section class="section reveal" aria-labelledby="work-heading">
+        <div class="container-page">
+          <h2 id="work-heading" class="sr-only">Approved client work</h2>
+          <p class="max-w-2xl text-lg text-paper/90">No client engagements are approved for public display yet.</p>
+          <p class="mt-3 max-w-2xl text-muted">
+            The <a class="text-lavender underline" href="/services">services</a> and <a class="text-lavender underline" href="/process">process</a> pages describe the work. They are not a record of past results.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <Testimonials />
+
+  <section class="section reveal bg-ink-soft/40" aria-labelledby="process-heading">
+    <div class="container-page">
+      <SectionHeading eyebrow="Process" description="Six stages from the full engagement. The details live on the process page.">
+        <span id="process-heading">From Concept to Launch.</span>
+      </SectionHeading>
+      <div class="mt-12">
+        <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
+      </div>
+      <div class="mt-8">
+        <a href="/process" class="inline-flex items-center gap-2 font-semibold text-lavender">
+          See the full process
+          <Icon name="arrow-right" size={16} class="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CollaborationPreview
+    id="home-together-heading"
+    intro="Planning, design, and engineering happen in the same room. These scenes are illustrative previews, not photographs of this company's meetings."
+    scenes={[workScene("founder-ceo", 0), workScene("senior-fullstack-developer", 0), workScene("qa-devops-engineer", 1)]}
+  />
+
+  <section class="section" aria-labelledby="team-heading">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading eyebrow="People" description="Nine named profiles, from leadership through engineering, design, delivery, and quality. Collaboration scenes on this page are illustrations.">
+          <span id="team-heading">The People Behind the Code.</span>
+        </SectionHeading>
+        <OutlineButton href="/team">Meet the team</OutlineButton>
+      </div>
+      <ul class="role-strip mt-10">
+        {
+          team.map((member) => (
+            <li>
+              <a href={`/team/${member.slug}`}>
+                <img
+                  src={member.portrait.thumb}
+                  alt=""
+                  width="384"
+                  height="384"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>
+                  <span class="block">{publicName(member) ?? member.role}</span>
+                  {publicName(member) && <span class="block text-sm font-medium text-muted">{member.role}</span>}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="section reveal bg-ink-soft/40" aria-labelledby="insights-heading">
+        <div class="container-page">
+          <SectionHeading eyebrow="Insights" description="Approved notes on building software. Drafts stay off this page.">
+            <span id="insights-heading">Notes from the engineering team.</span>
+          </SectionHeading>
+          <div class="mt-12 grid gap-4 md:grid-cols-3">
+            {posts.map((post) => (
+              <BlogCard post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section reveal" aria-labelledby="faq-heading">
+    <div class="container-page">
+      <SectionHeading eyebrow="Questions">
+        <span id="faq-heading">Before we begin.</span>
+      </SectionHeading>
+      <div class="mt-8">
+        <FaqAccordion items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title="Have an Idea? Let's Build It."
+    description="Tell us what you're working on. We'll help you explore the right technical approach for your next product."
+    label="Discuss Your Project"
+    secondaryHref="/services"
+    secondaryLabel="View Our Services"
+  />
+</BaseLayout>

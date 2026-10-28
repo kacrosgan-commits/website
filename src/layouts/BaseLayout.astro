@@ -1,0 +1,113 @@
+---
+import "../styles/global.css";
+import Footer from "../components/layout/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import { site } from "../data/site";
+import { absoluteUrl, jsonLd } from "../utils/format";
+
+interface Props {
+  title: string;
+  description: string;
+  fullTitle?: boolean;
+  noindex?: boolean;
+  /** Set to false on pages served for other URLs, such as the 404 page. */
+  hasCanonical?: boolean;
+  ogType?: "website" | "article";
+  image?: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  fullTitle = false,
+  noindex = false,
+  hasCanonical = true,
+  ogType = "website",
+  image = "/og.png",
+  schema,
+} = Astro.props;
+
+const pageTitle = fullTitle ? title : `${title} · ${site.name}`;
+const canonical = absoluteUrl(Astro.url.pathname, site.url);
+const imageUrl = absoluteUrl(image, site.url);
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  ...(site.emailIsPlaceholder ? {} : { email: site.email }),
+  areaServed: "Worldwide",
+};
+const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])];
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {hasCanonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    {hasCanonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="theme-color" content="#090713" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json" set:html={jsonLd(graph.length === 1 ? graph[0] : graph)} />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var nodes = document.querySelectorAll(".reveal");
+        var reveal = function (node) { node.classList.add("is-in"); };
+        if (!("IntersectionObserver" in window)) {
+          nodes.forEach(reveal);
+          return;
+        }
+        var observer;
+        try {
+          observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              reveal(entry.target);
+              observer.unobserve(entry.target);
+            });
+          }, { threshold: 0, rootMargin: "0px" });
+        } catch (error) {
+          nodes.forEach(reveal);
+          return;
+        }
+        nodes.forEach(function (node) {
+          var rect = node.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) reveal(node);
+          else {
+            node.classList.add("await-reveal");
+            observer.observe(node);
+          }
+        });
+        document.documentElement.classList.add("can-reveal");
+      })();
+    </script>
+  </body>
+</html>

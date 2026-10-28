@@ -1,0 +1,42 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: "eager" | "lazy";
+  fetchpriority?: "high" | "low" | "auto";
+  fit?: "cover" | "contain";
+  position?: string;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = "",
+  loading = "lazy",
+  fetchpriority,
+  fit = "cover",
+  position = "center",
+  sizes,
+} = Astro.props;
+---
+
+<div class:list={["art-frame", className]}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+    sizes={sizes}
+    class:list={[fit === "contain" ? "object-contain" : "object-cover", "h-full w-full"]}
+    style={`object-position: ${position}`}
+  />
+</div>

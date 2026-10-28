@@ -1,0 +1,267 @@
+{
+  "agency": "Vortex Digital",
+  "date": "2026-10-27",
+  "summary": "Six project candidates and 18 source-provenance-marked images. Team contributions and image-use rights are not confirmed.",
+  "projectCount": 6,
+  "imageCount": 18,
+  "projects": [
+    {
+      "slug": "born-to-rock",
+      "name": "Born To Rock",
+      "category": "Mobile Game",
+      "live_url": "https://apps.apple.com/us/app/born-to-rock-rhythm-game/id6789210953",
+      "media_layout": "mobile",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "rock-1.png",
+          "public_url": "/assets/portfolio/born-to-rock/rock-1.png",
+          "width": 600,
+          "height": 1299,
+          "caption": "Game presentation and stage experience",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "b7002ce7c4d414fa3c0be5df0cba5e7e9927cc266fd2834a7b422c4a44fcdb60",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "rock-2.png",
+          "public_url": "/assets/portfolio/born-to-rock/rock-2.png",
+          "width": 600,
+          "height": 1299,
+          "caption": "Note lanes, score and rhythm gameplay",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "24c09d7d0252bbc30d04d57430d9ac924a88de8b78354652ccbee2373ebf8746",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "rock-3.png",
+          "public_url": "/assets/portfolio/born-to-rock/rock-3.png",
+          "width": 600,
+          "height": 1299,
+          "caption": "Competitive leaderboard",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "fa03aa8d66fbbcce16a67e4c35e07f24e22db46f143ed81f5ab4056721cd811e",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    },
+    {
+      "slug": "medastare",
+      "name": "MedaStaré",
+      "category": "Mobile App / AI",
+      "live_url": "https://apps.apple.com/us/app/medastar%C3%A9/id6813994639",
+      "media_layout": "mobile",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "meda-1.png",
+          "public_url": "/assets/portfolio/medastare/meda-1.png",
+          "width": 600,
+          "height": 1299,
+          "caption": "MedArena style challenge experience",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "b57b9eba64daa5a6d2b16bc4f71017dbf4b453a8e6a77d93084a19a4ece9f636",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "meda-2.png",
+          "public_url": "/assets/portfolio/medastare/meda-2.png",
+          "width": 600,
+          "height": 1299,
+          "caption": "StarDay creator content feed",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "19c26ac04d661685dd8f0ab72e1ec1919d0e59db3c44768057c566f12250252a",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "meda-3-wardrobe.png",
+          "public_url": "/assets/portfolio/medastare/meda-3-wardrobe.png",
+          "width": 432,
+          "height": 936,
+          "caption": "Closeté digital wardrobe",
+          "kind": "App Store publisher promotional screenshot",
+          "sha256": "8d14fef1cccc005b5e29a3dc5cc40fd0d8701b1744ad0133748914e43f1b0dad",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    },
+    {
+      "slug": "scaleup-systems",
+      "name": "ScaleUp Systems",
+      "category": "AI SaaS / CRM",
+      "live_url": "https://scaleupsystems.ai/",
+      "media_layout": "web",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "scaleup-01-home.jpg",
+          "public_url": "/assets/portfolio/scaleup-systems/scaleup-01-home.jpg",
+          "width": 1353,
+          "height": 929,
+          "caption": "Homepage and product positioning",
+          "kind": "Public website capture",
+          "sha256": "9b4a8308e6aa967151da3e0fca1222e80d9ae4c9c2aefe267d15e106ef928a52",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "scaleup-02-analytics.jpg",
+          "public_url": "/assets/portfolio/scaleup-systems/scaleup-02-analytics.jpg",
+          "width": 1353,
+          "height": 929,
+          "caption": "Analytics feature presentation",
+          "kind": "Public marketing illustration (not authenticated dashboard)",
+          "sha256": "be1cc318eaee3e69b6d071501007c2e4a55892435b849d70689e5e46776c5d58",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "scaleup-03-pricing.jpg",
+          "public_url": "/assets/portfolio/scaleup-systems/scaleup-03-pricing.jpg",
+          "width": 1353,
+          "height": 929,
+          "caption": "Subscription plan comparison",
+          "kind": "Public website capture",
+          "sha256": "5f91982369a8e361583cc54e9e9d0f1625f07374ec5a9069699285560c1f93fc",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    },
+    {
+      "slug": "gain-energy-upstrima",
+      "name": "Gain Energy / Upstrima",
+      "category": "AI SaaS / Energy Engineering",
+      "live_url": "https://www.gain.energy/",
+      "media_layout": "web",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "gain-01-home.jpg",
+          "public_url": "/assets/portfolio/gain-energy-upstrima/gain-01-home.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Gain Energy and Upstrima product introduction",
+          "kind": "Public website capture",
+          "sha256": "209e3d49c50a184cbb077a5e41703d286f231e6abcf6790de649bab6b259b6e7",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "gain-02-features.jpg",
+          "public_url": "/assets/portfolio/gain-energy-upstrima/gain-02-features.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "AI agent marketplace feature presentation",
+          "kind": "Public marketing page and product illustration",
+          "sha256": "e210db5c72f39dc1bc5cd8ac2dcf778b44db5b04a7644a50f9f19cdecd57479c",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "gain-03-cases.jpg",
+          "public_url": "/assets/portfolio/gain-energy-upstrima/gain-03-cases.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Engineering AI agent use cases",
+          "kind": "Public website capture",
+          "sha256": "71426b4267c9377b44add359db1321450cf5bbb60768d52ff1da67e635334659",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    },
+    {
+      "slug": "gowabi",
+      "name": "GoWabi",
+      "category": "Marketplace / Booking",
+      "live_url": "https://www.gowabi.com/",
+      "media_layout": "web",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "gowabi-01-home.jpg",
+          "public_url": "/assets/portfolio/gowabi/gowabi-01-home.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Marketplace homepage and service search",
+          "kind": "Public website capture",
+          "sha256": "0ab82abc1eaf32f52bbc71a880b1d7bc67b835b7fcae6d19570799e48d0b35c0",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "gowabi-02-listings.jpg",
+          "public_url": "/assets/portfolio/gowabi/gowabi-02-listings.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Spa and massage category with filtering",
+          "kind": "Public website capture",
+          "sha256": "cbdda286e69d96e4b7562022e16ab4ad085b4b2eb10053d87aa01a910470d162",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "gowabi-03-venue.jpg",
+          "public_url": "/assets/portfolio/gowabi/gowabi-03-venue.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Venue profile, gallery, ratings and location",
+          "kind": "Public website capture",
+          "sha256": "38d539ceb23346d03bb75d45d3f4563dd3b405153694a87dc400bf02c29dd948",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    },
+    {
+      "slug": "daniela-diamonds",
+      "name": "Daniela Diamonds",
+      "category": "Ecommerce / Shopify",
+      "live_url": "https://danieladiamonds.com/",
+      "media_layout": "web",
+      "status": "review",
+      "contributionVerified": false,
+      "assetUsePermissionConfirmed": false,
+      "publicationApproved": false,
+      "media": [
+        {
+          "filename": "daniela-01-home.jpg",
+          "public_url": "/assets/portfolio/daniela-diamonds/daniela-01-home.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Luxury storefront homepage",
+          "kind": "Public website capture",
+          "sha256": "5a542ede53b1ffb7b0625236e0e4c110660760fbc233d82601580e90b07daee9",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "daniela-02-ring-builder.jpg",
+          "public_url": "/assets/portfolio/daniela-diamonds/daniela-02-ring-builder.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Ring catalog and visual filters",
+          "kind": "Public website capture",
+          "sha256": "aec5d999ce8dc63ce6ad96bed2fbe311c14e48cd5860f36b7f12ea757343b753",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        },
+        {
+          "filename": "daniela-03-product.jpg",
+          "public_url": "/assets/portfolio/daniela-diamonds/daniela-03-product.jpg",
+          "width": 1348,
+          "height": 926,
+          "caption": "Product gallery and ring configuration",
+          "kind": "Public website capture",
+          "sha256": "e80599a272cd3eb8aeee91cb1f7e60199ffe65764874913ce292fe60e6c77106",
+          "source": "Provided research pack (public website capture or publisher promotional screenshot)"
+        }
+      ]
+    }
+  ]
+}

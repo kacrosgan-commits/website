@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none" aria-hidden="true">
+  <defs>
+    <radialGradient id="atmo-a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(860 280) rotate(90) scale(420 520)">
+      <stop stop-color="#8B5CF6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="atmo-b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1040 520) rotate(90) scale(280 360)">
+      <stop stop-color="#C084FC" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#6D28D9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="atmo-line" x1="120" y1="620" x2="1100" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C084FC" stop-opacity="0"/>
+      <stop offset="0.4" stop-color="#C084FC" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#atmo-a)"/>
+  <rect width="1200" height="800" fill="url(#atmo-b)"/>
+  <path d="M80 640C280 560 420 520 620 500C860 476 980 300 1160 180" stroke="url(#atmo-line)" stroke-width="1.5"/>
+  <path d="M140 700C340 620 500 590 700 560C900 530 1020 390 1180 280" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

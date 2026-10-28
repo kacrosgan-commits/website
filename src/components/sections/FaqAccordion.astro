@@ -1,0 +1,26 @@
+---
+import type { FaqItem } from "../../data/faq";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="mx-auto max-w-3xl">
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary>
+          <span>{item.question}</span>
+          <Icon name="chevron-down" class="chevron" />
+        </summary>
+        <div class="faq-panel">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>

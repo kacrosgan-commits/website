@@ -1,0 +1,54 @@
+---
+import ServiceDetail from "../../components/sections/ServiceDetail.astro";
+import CtaSection from "../../components/sections/CtaSection.astro";
+import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
+import { getService, services } from "../../data/services";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = getService(slug ?? "");
+if (!service) {
+  throw new Error("Unknown service");
+}
+const index = services.findIndex((item) => item.slug === service.slug);
+---
+
+<BaseLayout
+  title={`${service.title} for Startups | ${site.name}`}
+  description={service.metaDescription}
+  fullTitle
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.hero,
+    url: new URL(`/services/${service.slug}`, site.url).href,
+    provider: { "@type": "Organization", name: site.name, url: site.url },
+  }}
+>
+  <section class="pt-28 pb-16 md:pt-32 md:pb-20">
+    <div class="container-page">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: service.title },
+        ]}
+      />
+      <ServiceDetail service={service} index={index} />
+    </div>
+  </section>
+  <CtaSection
+    title="Tell us what you are building."
+    description="Share the product, what already exists, and what the next release has to do. The contact page lets you prepare that inquiry. It does not send it until delivery is configured."
+    href={`/contact?service=${encodeURIComponent(service.slug)}`}
+    label={service.cta}
+    secondaryHref="/services"
+    secondaryLabel="All services"
+  />
+</BaseLayout>

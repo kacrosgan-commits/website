@@ -1,0 +1,114 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { portfolioArt } from "../../data/assets";
+import { formatDate } from "../../utils/format";
+import { cardCopy } from "../../utils/images";
+import { isPublicProject } from "../../utils/portfolio";
+import MediaFrame from "../ui/MediaFrame.astro";
+
+interface Props {
+  project: CollectionEntry<"caseStudies">;
+}
+
+const { project } = Astro.props;
+const shot = project.data.screenshots[0];
+const shotCard = shot ? cardCopy(shot.src) : undefined;
+const art = shot ? undefined : portfolioArt(project.id);
+const published = isPublicProject(project.data);
+const mobile = project.data.mediaLayout === "mobile";
+---
+
+<article
+  class="surface-card portfolio-card flex h-full flex-col overflow-hidden"
+  data-category={project.data.category}
+  data-filters={project.data.filters.join("|")}
+>
+  {
+    shot && (
+      <a href={`/portfolio/${project.id}`} class:list={["shot-frame", mobile ? "shot-frame-mobile" : "shot-frame-web"]}>
+        <picture>
+          {shotCard && <source type="image/webp" srcset={shotCard} />}
+          <img
+            src={shot.src}
+            alt={shot.alt}
+            width={shot.width}
+            height={shot.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </a>
+    )
+  }
+  {
+    art && (
+      <MediaFrame
+        src={art}
+        alt={`Demonstration illustration for ${project.data.title}. Not a client result.`}
+        width={1200}
+        height={760}
+        fit="contain"
+        class="aspect-[1200/760] rounded-none border-0"
+      />
+    )
+  }
+  <div class="flex flex-1 flex-col p-6">
+    <div class="flex flex-wrap items-center gap-2">
+      {project.data.sample && <span class="badge">Sample project</span>}
+      {!published && project.data.review && <span class="badge">Internal review</span>}
+      <span class="text-sm text-muted">{project.data.category}</span>
+    </div>
+    <h3 class="mt-3 font-display text-2xl font-semibold tracking-[-0.03em]">
+      <a href={`/portfolio/${project.id}`} class="hover:text-lavender">{project.data.cardTitle || project.data.title}</a>
+    </h3>
+    <p class="mt-3 text-muted">{project.data.cardSummary || project.data.description}</p>
+    {
+      published && (
+        <p class="mt-4 text-sm text-lavender">{project.data.industry}</p>
+      )
+    }
+    {
+      project.data.publicPlatform.length > 0 && (
+        <div class="mt-4">
+          <p class="text-xs tracking-[0.14em] text-muted uppercase">Public platform</p>
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {project.data.publicPlatform.map((item) => (
+              <li class="rounded-full border border-line px-2.5 py-1 text-xs text-lavender">{item}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+    {
+      published && project.data.technologies.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {project.data.technologies.map((item) => (
+            <li class="rounded-full border border-line px-2.5 py-1 text-xs text-lavender">{item}</li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      project.data.sample && project.data.technologies.length > 0 && (
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {project.data.technologies.map((item) => (
+            <li class="rounded-full border border-line px-2.5 py-1 text-xs text-lavender">{item}</li>
+          ))}
+        </ul>
+      )
+    }
+    {project.data.sample && project.data.technologies.length > 0 && (
+      <p class="mt-3 text-xs text-muted">Illustrative stack for this sample. Not a delivered project.</p>
+    )}
+    <div class="mt-6 flex items-center justify-between gap-3 text-sm">
+      {
+        published ? (
+          <time datetime={project.data.date.toISOString()}>{formatDate(project.data.date)}</time>
+        ) : (
+          <span class="text-muted">Contribution not confirmed</span>
+        )
+      }
+      <a href={`/portfolio/${project.id}`} class="inline-flex min-h-6 items-center font-semibold text-lavender">View Case Study</a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,27 @@
+---
+import { verifiedTestimonials } from "../../data/testimonials";
+import Icon from "../ui/Icon.astro";
+---
+
+{
+  verifiedTestimonials.length > 0 && (
+    <section class="section" aria-labelledby="testimonials-heading">
+      <div class="container-page">
+        <h2 id="testimonials-heading" class="section-title">
+          Client notes
+        </h2>
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+          {verifiedTestimonials.map((item) => (
+            <figure class="surface-card p-6">
+              <Icon name="quote" class="text-lilac" />
+              <blockquote class="mt-4 text-lg">{item.quote}</blockquote>
+              <figcaption class="mt-5 text-sm text-muted">
+                {item.name}, {item.role}, {item.company}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

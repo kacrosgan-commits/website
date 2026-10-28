@@ -1,0 +1,364 @@
+{
+  "project": "Software Development Agency \u2014 collaboration imagery",
+  "description": "Nine existing portraits and 18 newly generated, separate photographs of team collaboration",
+  "memberCount": 9,
+  "portraitCount": 9,
+  "collaborativeWorkSceneCount": 18,
+  "totalImages": 27,
+  "imageFormat": "WebP",
+  "imageAuthenticityNotice": "Collaboration images are AI-generated illustrative scenes. They are not photographs of named employees or documented meetings. Portraits are owner-assigned photographs approved for publication with the named profiles. That assignment is not an independent identification from the pixels, and it does not make the collaboration scenes documentary.",
+  "approvedForFactualEmployeeClaims": false,
+  "members": [
+    {
+      "order": 1,
+      "slug": "founder-ceo",
+      "role": "Founder & CEO",
+      "portrait": {
+        "path": "/assets/team/founder-ceo/portrait.webp",
+        "width": 768,
+        "height": 768,
+        "identityVerified": true,
+        "source": "owner-confirmed existing portrait; file preserved in step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/founder-ceo/work-01.webp",
+          "sceneDescription": "Leadership strategy meeting",
+          "roleContext": "Founder & CEO",
+          "source": "a_modern_tech_office_meeting_working_scene_wide.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during leadership strategy meeting"
+        },
+        {
+          "path": "/assets/team/founder-ceo/work-02.webp",
+          "sceneDescription": "Product direction and executive collaboration",
+          "roleContext": "Founder & CEO",
+          "source": "a_wide_modern_office_meeting_scene_with_a_realist.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during product direction and executive collaboration"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 2,
+      "slug": "cofounder-cto",
+      "role": "Co-Founder & CTO",
+      "portrait": {
+        "path": "/assets/team/cofounder-cto/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/cofounder-cto/work-01.webp",
+          "sceneDescription": "Architecture discussion",
+          "roleContext": "Co-Founder & CTO",
+          "source": "a_wide_realistic_high_resolution_office_tech_wor.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during architecture discussion"
+        },
+        {
+          "path": "/assets/team/cofounder-cto/work-02.webp",
+          "sceneDescription": "System design review",
+          "roleContext": "Co-Founder & CTO",
+          "source": "a_realistic_modern_office_meeting_scene_in_a_tech.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during system design review"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 3,
+      "slug": "cfo",
+      "role": "CFO",
+      "portrait": {
+        "path": "/assets/team/cfo/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/cfo/work-01.webp",
+          "sceneDescription": "Resource and business planning",
+          "roleContext": "CFO",
+          "source": "a_modern_tech_office_meeting_scene_wide_angle_rea.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during resource and business planning"
+        },
+        {
+          "path": "/assets/team/cfo/work-02.webp",
+          "sceneDescription": "Operational planning discussion",
+          "roleContext": "CFO",
+          "source": "wide_indoor_office_tech_workspace_scene_a_modern.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during operational planning discussion"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 4,
+      "slug": "project-manager",
+      "role": "Project Manager",
+      "portrait": {
+        "path": "/assets/team/project-manager/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/project-manager/work-01.webp",
+          "sceneDescription": "Sprint planning meeting",
+          "roleContext": "Project Manager",
+          "source": "a_realistic_modern_office_meeting_working_scene_in.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during sprint planning meeting"
+        },
+        {
+          "path": "/assets/team/project-manager/work-02.webp",
+          "sceneDescription": "Roadmap and delivery review",
+          "roleContext": "Project Manager",
+          "source": "a_modern_office_team_meeting_scene_shot_in_realist.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during roadmap and delivery review"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 5,
+      "slug": "senior-fullstack-developer",
+      "role": "Senior Full-Stack Developer",
+      "portrait": {
+        "path": "/assets/team/senior-fullstack-developer/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/senior-fullstack-developer/work-01.webp",
+          "sceneDescription": "Pair programming and code review",
+          "roleContext": "Senior Full-Stack Developer",
+          "source": "a_modern_office_team_collaboration_scene_a_group.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during pair programming and code review"
+        },
+        {
+          "path": "/assets/team/senior-fullstack-developer/work-02.webp",
+          "sceneDescription": "Cross-functional engineering review",
+          "roleContext": "Senior Full-Stack Developer",
+          "source": "a_modern_office_meeting_room_scene_a_realistic_ph.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during cross-functional engineering review"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 6,
+      "slug": "ai-engineer",
+      "role": "AI Engineer",
+      "portrait": {
+        "path": "/assets/team/ai-engineer/portrait.webp",
+        "width": 1448,
+        "height": 1086,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/ai-engineer/work-01.webp",
+          "sceneDescription": "AI product workflow evaluation",
+          "roleContext": "AI Engineer",
+          "source": "a_realistic_modern_office_meeting_scene_with_a_gro.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during ai product workflow evaluation"
+        },
+        {
+          "path": "/assets/team/ai-engineer/work-02.webp",
+          "sceneDescription": "AI assistant integration review",
+          "roleContext": "AI Engineer",
+          "source": "a_modern_office_tech_workspace_scene_showing_a_gro.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during ai assistant integration review"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 7,
+      "slug": "mobile-app-developer",
+      "role": "Mobile App Developer",
+      "portrait": {
+        "path": "/assets/team/mobile-app-developer/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/mobile-app-developer/work-01.webp",
+          "sceneDescription": "Mobile experience review",
+          "roleContext": "Mobile App Developer",
+          "source": "a_modern_office_meeting_brainstorming_scene_shot.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during mobile experience review"
+        },
+        {
+          "path": "/assets/team/mobile-app-developer/work-02.webp",
+          "sceneDescription": "Mobile application team critique",
+          "roleContext": "Mobile App Developer",
+          "source": "a_realistic_modern_office_teamwork_scene_a_group.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during mobile application team critique"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 8,
+      "slug": "uiux-product-designer",
+      "role": "UI/UX & Product Designer",
+      "portrait": {
+        "path": "/assets/team/uiux-product-designer/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b; distinct from the mobile app developer portrait"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/uiux-product-designer/work-01.webp",
+          "sceneDescription": "Interface and product design workshop",
+          "roleContext": "UI/UX & Product Designer",
+          "source": "a_modern_office_meeting_scene_with_a_realistic_ci.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during interface and product design workshop"
+        },
+        {
+          "path": "/assets/team/uiux-product-designer/work-02.webp",
+          "sceneDescription": "UX review with engineering team",
+          "roleContext": "UI/UX & Product Designer",
+          "source": "a_modern_office_teamwork_meeting_scene_shot_in_a.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during ux review with engineering team"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    },
+    {
+      "order": 9,
+      "slug": "qa-devops-engineer",
+      "role": "QA & DevOps Engineer",
+      "portrait": {
+        "path": "/assets/team/qa-devops-engineer/portrait.webp",
+        "width": 1254,
+        "height": 1254,
+        "identityVerified": true,
+        "source": "owner-supplied replacement portrait, step 9b"
+      },
+      "workImages": [
+        {
+          "path": "/assets/team/qa-devops-engineer/work-01.webp",
+          "sceneDescription": "Release readiness collaboration",
+          "roleContext": "QA & DevOps Engineer",
+          "source": "a_modern_office_meeting_working_scene_in_a_tech_st.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during release readiness collaboration"
+        },
+        {
+          "path": "/assets/team/qa-devops-engineer/work-02.webp",
+          "sceneDescription": "Architecture and deployment verification",
+          "roleContext": "QA & DevOps Engineer",
+          "source": "a_wide_realistic_modern_office_tech_workspace_sc.png",
+          "sourceType": "AI-generated staged collaborative scene",
+          "identityVerified": false,
+          "peopleAreRealEmployees": false,
+          "width": 1672,
+          "height": 941,
+          "alt": "Illustrative scene of colleagues collaborating during architecture and deployment verification"
+        }
+      ],
+      "profileStatus": "draft\u2014approval required"
+    }
+  ]
+}

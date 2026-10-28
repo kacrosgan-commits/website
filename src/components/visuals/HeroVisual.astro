@@ -1,0 +1,37 @@
+<div class="hero-stage float-slow p-4 sm:p-6">
+  <svg viewBox="0 0 560 620" class="h-auto w-full" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="hv-core" x1="180" y1="150" x2="390" y2="430" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#6D28D9"></stop>
+        <stop offset="0.55" stop-color="#8B5CF6"></stop>
+        <stop offset="1" stop-color="#C084FC"></stop>
+      </linearGradient>
+      <radialGradient id="hv-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 280) scale(180)">
+        <stop stop-color="#C084FC" stop-opacity="0.45"></stop>
+        <stop offset="1" stop-color="#C084FC" stop-opacity="0"></stop>
+      </radialGradient>
+    </defs>
+    <circle cx="280" cy="280" r="210" fill="url(#hv-glow)"></circle>
+    <g class="spin-slow" opacity="0.85">
+      <ellipse cx="280" cy="280" rx="188" ry="78" stroke="#DDD6FE" stroke-opacity="0.45" transform="rotate(-18 280 280)"></ellipse>
+      <ellipse cx="280" cy="280" rx="150" ry="150" stroke="#8B5CF6" stroke-opacity="0.35"></ellipse>
+      <circle cx="430" cy="210" r="5" fill="#DDD6FE"></circle>
+      <circle cx="150" cy="360" r="4" fill="#C084FC"></circle>
+    </g>
+    <path d="M280 132 430 280 280 428 130 280 280 132Z" stroke="#DDD6FE" stroke-opacity="0.55"></path>
+    <path d="M280 176 392 280 280 384 168 280 280 176Z" fill="url(#hv-core)" fill-opacity="0.92"></path>
+    <path d="M280 214 348 280 280 346 212 280 280 214Z" stroke="#F8F7FF" stroke-opacity="0.7"></path>
+    <path d="M248 280h64M280 248v64" stroke="#F8F7FF" stroke-opacity="0.8"></path>
+    <g opacity="0.55">
+      <path d="M78 92h70M78 92v70" stroke="#C084FC"></path>
+      <path d="M482 92h-70M482 92v70" stroke="#C084FC"></path>
+      <path d="M78 470h70M78 540v-70" stroke="#C084FC"></path>
+      <path d="M482 470h-70M482 540v-70" stroke="#C084FC"></path>
+    </g>
+  </svg>
+  <div class="grid grid-cols-3 gap-2 px-2 pb-2 text-center text-[0.72rem] font-medium tracking-[0.14em] text-lavender uppercase sm:px-4 sm:pb-3">
+    <span class="rounded-xl border border-line bg-ink/50 px-2 py-3">Strategy</span>
+    <span class="rounded-xl border border-line bg-ink/50 px-2 py-3">Creative</span>
+    <span class="rounded-xl border border-line bg-ink/50 px-2 py-3">Measure</span>
+  </div>
+</div>

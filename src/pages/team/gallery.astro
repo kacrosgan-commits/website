@@ -1,0 +1,87 @@
+---
+import PageHero from "../../components/ui/PageHero.astro";
+import { publicName, team, teamAssetCount } from "../../data/team";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+if (teamAssetCount !== 27) {
+  throw new Error(`Gallery counter requires 27 images. Found ${teamAssetCount}.`);
+}
+
+const rendered = team.reduce((total, member) => total + 1 + member.workImages.length, 0);
+---
+
+<BaseLayout
+  title="Team & Collaboration Gallery"
+  description="Nine owner-assigned portraits and eighteen illustrative collaboration scenes. The scenes are not photographs of these people working together."
+  noindex={true}
+>
+  <PageHero
+    eyebrow="Image preview"
+    description="Approved portraits are named. The collaboration scenes beside them are illustrations, not a record of these people working together."
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Team", href: "/team" },
+      { label: "Gallery" },
+    ]}
+  >
+    Team & Collaboration Gallery
+  </PageHero>
+  <section class="section pt-0" aria-labelledby="gallery-count">
+    <div class="container-page">
+      <p id="gallery-count" class="gallery-count">{rendered} Team & Collaboration Images</p>
+      <p class="mt-6 max-w-3xl text-muted">
+        Nine groups. Each group shows one approved portrait and two collaboration scenes. The scenes are conceptual illustrations. They do not show these named people, and they are not a group photograph of the team.
+      </p>
+      <div class="mt-14 grid gap-16">
+        {
+          team.map((member, memberIndex) => (
+            <section aria-labelledby={`gallery-${member.slug}`}>
+              <div class="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p class="text-sm font-semibold tracking-[0.14em] text-lilac uppercase">0{memberIndex + 1}</p>
+                  <h2 id={`gallery-${member.slug}`} class="mt-2 font-display text-3xl font-semibold tracking-[-0.03em]">
+                    <a href={`/team/${member.slug}`} class="hover:text-lavender">{publicName(member) ?? member.role}</a>
+                  </h2>
+                  {publicName(member) && <p class="mt-1 text-sm text-lavender">{member.role}</p>}
+                </div>
+                <p class="max-w-md text-sm text-muted">Approved portrait for this person. The scenes are illustrative and are not photographs of them.</p>
+              </div>
+              <div class="member-gallery mt-6">
+                <figure>
+                  <img
+                    src={member.portrait.src}
+                    alt={member.portrait.alt}
+                    width={member.portrait.width}
+                    height={member.portrait.height}
+                    class="gallery-portrait"
+                    loading={memberIndex === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                  <figcaption class="mt-3 text-sm text-muted">
+                    Approved portrait of {publicName(member) ?? member.role}. Owner-assigned for publication, not an identification made from the image alone.
+                  </figcaption>
+                </figure>
+                {
+                  member.workImages.map((image) => (
+                    <figure>
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        class="work-photo"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <figcaption class="mt-3 text-sm text-muted">{image.caption}</figcaption>
+                    </figure>
+                  ))
+                }
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

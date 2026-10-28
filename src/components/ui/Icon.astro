@@ -1,0 +1,80 @@
+---
+import ArrowRight from "@lucide/astro/icons/arrow-right";
+import Blocks from "@lucide/astro/icons/blocks";
+import Bot from "@lucide/astro/icons/bot";
+import Cloud from "@lucide/astro/icons/cloud";
+import Code from "@lucide/astro/icons/code";
+import ArrowUpRight from "@lucide/astro/icons/arrow-up-right";
+import CalendarDays from "@lucide/astro/icons/calendar-days";
+import ChartColumn from "@lucide/astro/icons/chart-column";
+import ChevronDown from "@lucide/astro/icons/chevron-down";
+import Compass from "@lucide/astro/icons/compass";
+import Handshake from "@lucide/astro/icons/handshake";
+import Layers from "@lucide/astro/icons/layers";
+import Mail from "@lucide/astro/icons/mail";
+import MapPin from "@lucide/astro/icons/map-pin";
+import Megaphone from "@lucide/astro/icons/megaphone";
+import Menu from "@lucide/astro/icons/menu";
+import MessagesSquare from "@lucide/astro/icons/messages-square";
+import MousePointerClick from "@lucide/astro/icons/mouse-pointer-click";
+import Palette from "@lucide/astro/icons/palette";
+import PenLine from "@lucide/astro/icons/pen-line";
+import Quote from "@lucide/astro/icons/quote";
+import Search from "@lucide/astro/icons/search";
+import Server from "@lucide/astro/icons/server";
+import Smartphone from "@lucide/astro/icons/smartphone";
+import Share2 from "@lucide/astro/icons/share-2";
+import ShieldCheck from "@lucide/astro/icons/shield-check";
+import Sparkles from "@lucide/astro/icons/sparkles";
+import Target from "@lucide/astro/icons/target";
+import Users from "@lucide/astro/icons/users";
+import Workflow from "@lucide/astro/icons/workflow";
+import X from "@lucide/astro/icons/x";
+import type { IconName } from "../../data/icons";
+
+interface Props {
+  name: IconName;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 22, class: className } = Astro.props;
+
+const registry = {
+  "arrow-right": ArrowRight,
+  "arrow-up-right": ArrowUpRight,
+  search: Search,
+  "share-2": Share2,
+  "mouse-pointer-click": MousePointerClick,
+  megaphone: Megaphone,
+  palette: Palette,
+  "pen-line": PenLine,
+  mail: Mail,
+  target: Target,
+  workflow: Workflow,
+  "chart-column": ChartColumn,
+  sparkles: Sparkles,
+  users: Users,
+  compass: Compass,
+  handshake: Handshake,
+  layers: Layers,
+  "shield-check": ShieldCheck,
+  code: Code,
+  smartphone: Smartphone,
+  bot: Bot,
+  blocks: Blocks,
+  server: Server,
+  cloud: Cloud,
+  "messages-square": MessagesSquare,
+  "calendar-days": CalendarDays,
+  menu: Menu,
+  x: X,
+  "chevron-down": ChevronDown,
+  "map-pin": MapPin,
+  quote: Quote,
+};
+
+const Glyph = registry[name];
+---
+
+<Glyph size={size} class={className} stroke-width={1.6} aria-hidden="true" />

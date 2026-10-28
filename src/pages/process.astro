@@ -1,0 +1,33 @@
+---
+import CtaSection from "../components/sections/CtaSection.astro";
+import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import { assets } from "../data/assets";
+import { processSteps } from "../data/process";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Our Process"
+  description={`How ${site.name} moves from discovery to deployment: requirements, architecture, design, development, testing, and support.`}
+>
+  <PageHero
+    eyebrow="Our process"
+    description="Six engineering stages. Scope and timing are agreed in a proposal, not assumed from this page."
+    scene={assets.backgrounds.processOrbit}
+    crumbs={[{ label: "Home", href: "/" }, { label: "Our Process" }]}
+  >
+    From concept <span class="text-gradient">to launch.</span>
+  </PageHero>
+  <section class="section relative pt-0" aria-labelledby="stages-heading">
+    <div class="ambient" aria-hidden="true">
+      <div class="grid-fade"></div>
+    </div>
+    <div class="container-page relative">
+      <h2 id="stages-heading" class="sr-only">Engagement stages</h2>
+      <ProcessTimeline steps={processSteps} />
+    </div>
+  </section>
+  <CtaSection title="Start with discovery." description="Tell us what you are building. We will suggest where the engineering process should begin." />
+</BaseLayout>

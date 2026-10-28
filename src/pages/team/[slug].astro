@@ -1,0 +1,22 @@
+---
+import TeamProfile from "../../components/team/TeamProfile.astro";
+import { publicName, team } from "../../data/team";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return team.map((member) => ({ params: { slug: member.slug }, props: { member } }));
+}
+
+const { member } = Astro.props;
+const name = publicName(member);
+---
+
+<BaseLayout
+  title={name ? `${name} — ${member.role}` : member.role}
+  description={name ? `${name}, ${member.role} at ${site.name}. ${member.intro}` : `${member.role} at ${site.name}. ${member.intro}`}
+  noindex={!member.isPublished}
+  image={member.portrait.src}
+>
+  <TeamProfile member={member} />
+</BaseLayout>

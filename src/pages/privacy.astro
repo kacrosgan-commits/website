@@ -1,0 +1,84 @@
+---
+import PageHero from "../components/ui/PageHero.astro";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`Privacy policy template for ${site.name}. This document requires legal review before it is treated as a binding policy.`}
+  noindex
+>
+  <PageHero
+    eyebrow="Privacy"
+    description="This is a working template for a software company website. It is not legal advice and should be reviewed by qualified counsel before launch."
+    crumbs={[{ label: "Home", href: "/" }, { label: "Privacy" }]}
+  >
+    Privacy <span class="text-gradient">Policy.</span>
+  </PageHero>
+  <section class="section pt-0">
+    <div class="container-page">
+      <p class="badge">Template — requires legal review</p>
+      <div class="prose mt-8 max-w-3xl">
+        <p>Last updated: 9 October 2026. Replace this date when the reviewed policy is published.</p>
+        <h2>Who this notice is for</h2>
+        <p>
+          This notice describes how {site.name} (“we”) handles personal information collected through this website. {site.name} is the public brand. A registered legal entity and address are not published here yet. Update those details, with counsel, before you rely on this page.
+        </p>
+        <h2>Information we collect</h2>
+        <p>If you use the contact form, we ask for:</p>
+        <ul>
+          <li>Your name</li>
+          <li>Business email address</li>
+          <li>Company name</li>
+          <li>The type of software project you are considering</li>
+          <li>An estimated budget range</li>
+          <li>An expected timeline</li>
+          <li>A description of the project</li>
+          <li>Your confirmation that you have read this notice</li>
+        </ul>
+        <p>
+          A hidden field is included to reduce automated spam. Do not fill it in. We do not ask you to create an account, and this website does not run optional advertising cookies.
+        </p>
+        <p>
+          The hosting provider may process technical data such as IP address, browser type, and the pages requested in order to deliver and secure the site. That processing is described in the host’s own documentation.
+        </p>
+        <h2>How we use information</h2>
+        <p>Contact details are used to read your enquiry, reply to it, and prepare a proposal if you ask for one. We do not sell personal information. We do not use the form to build an advertising audience.</p>
+        <h2>Form delivery</h2>
+        <p>
+          When a form endpoint is configured, messages are sent to Formspree or a similar provider named in the site configuration. Until that endpoint is set, the form can open a draft in your email application and the website does not receive the message itself. Review the provider’s terms and data-processing terms before you connect it.
+        </p>
+        <h2>How long information is kept</h2>
+        <p>
+          Keep enquiries only as long as needed to respond, to maintain a record of the conversation, or to meet a legal duty. Set a specific retention period with your counsel and replace this sentence.
+        </p>
+        <h2>Sharing</h2>
+        <p>
+          We share information with service providers who host the site or deliver the form, and with professional advisers when that is required. We may also disclose information if the law requires it.
+        </p>
+        <h2>International visitors</h2>
+        <p>
+          The company is prepared to work with international clients. If you contact us from outside the country where the site is hosted, your information may be processed in that hosting location and by the form provider. The lawful basis for that processing depends on your location and must be confirmed in the reviewed policy.
+        </p>
+        <h2>Your choices</h2>
+        <p>
+          Depending on where you live, you may have rights to access, correct, delete, or restrict personal information, or to object to certain processing. {site.emailIsPlaceholder ? "Use the contact page to make a request. A public inbox is not configured yet." : `Contact ${site.email} to make a request.`} We may need to confirm your identity before we act on it. This notice does not list every local right.
+        </p>
+        <h2>Children</h2>
+        <p>This website is intended for businesses and is not directed at children.</p>
+        <h2>Changes</h2>
+        <p>When the policy changes, update the date at the top of this page. If a change is significant, say so in the notice you publish.</p>
+        <h2>Contact</h2>
+        <p>
+          {
+            site.emailIsPlaceholder
+              ? "Privacy questions can be sent through the contact page. A public inbox is not configured yet."
+              : <span>Privacy questions can be sent to <a href={`mailto:${site.email}`}>{site.email}</a>.</span>
+          }
+          {site.location ? ` Location: ${site.location}.` : " A public postal address has not been added yet."}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

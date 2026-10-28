@@ -1,0 +1,42 @@
+---
+import Breadcrumbs from "./Breadcrumbs.astro";
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  eyebrow: string;
+  description: string;
+  crumbs?: Crumb[];
+  scene?: string;
+}
+
+const { eyebrow, description, crumbs = [], scene } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
+  {
+    scene ? (
+      <img class="scene-wash" src={scene} alt="" width="1920" height="800" />
+    ) : (
+      <div class="ambient" aria-hidden="true">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="grid-fade"></div>
+      </div>
+    )
+  }
+  <div class="container-page relative z-[1]">
+    {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="page-title mt-5 max-w-3xl">
+      <slot />
+    </h1>
+    <p class="lede mt-6 max-w-2xl">{description}</p>
+    <div class="mt-8">
+      <slot name="actions" />
+    </div>
+  </div>
+</section>

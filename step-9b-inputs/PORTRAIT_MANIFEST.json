@@ -1,0 +1,114 @@
+{
+  "scope": "Vortex Digital Step 9B - team profiles",
+  "images": {
+    "founder-ceo": {
+      "person": "Don Tran",
+      "status": "Keep existing Founder & CEO portrait in the Cursor project. User confirmed its likeness and authorized publication; not included as a new file."
+    },
+    "cofounder-cto": {
+      "person": "Joshua Mendoza",
+      "source_filename": "Serene Blazer Portrait at Sunset(4).png",
+      "source_sha256": "f6fda01fa4c58870c733c89816ba0a2da1d39ffb16381a41cffad74de3745f3a",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/cofounder-cto/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/cofounder-cto/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/cofounder-cto/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "cfo": {
+      "person": "Lin Jiayi",
+      "source_filename": "Confident Finance Executive at Work(1).png",
+      "source_sha256": "71f41594cf6e02bb4a6808061943208bbd93fca4517bb4fde781f052ab0dc8f0",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/cfo/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/cfo/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/cfo/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "project-manager": {
+      "person": "Pongsak Rattanakul",
+      "source_filename": "e44740a0-806b-470d-9343-bf6d057e5c4c(1).png",
+      "source_sha256": "cd0657f032066802e8d138ad53ec43e11d1ac5b2a9664cb42febd13ab620fe7a",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/project-manager/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/project-manager/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/project-manager/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "senior-fullstack-developer": {
+      "person": "Dmytro Melnyk",
+      "source_filename": "Golden-Hour Viewpoint Portrait(1).png",
+      "source_sha256": "3628b662395ab68f9d683e164d13dfac9122e8df00d5b2217206231496b4decd",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/senior-fullstack-developer/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/senior-fullstack-developer/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/senior-fullstack-developer/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "ai-engineer": {
+      "person": "Carlo Garcia",
+      "source_filename": "ChatGPT Image Aug 17, 2026, 03_16_27 PM (1)(4).png",
+      "source_sha256": "0a39f5600c04019de9e6d94627eedc0a20e4fef25b36bf9c2f4f8ea797fb6106",
+      "source_dimensions": [
+        1448,
+        1086
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/ai-engineer/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/ai-engineer/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/ai-engineer/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "mobile-app-developer": {
+      "person": "Matheus Pereira",
+      "source_filename": "Thoughtful Developer at Work(2).png",
+      "source_sha256": "1150a588de7c5079494d06cb54078d07f4b3448ba1b6b05a3a2eac962c77cdd6",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/mobile-app-developer/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/mobile-app-developer/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/mobile-app-developer/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "uiux-product-designer": {
+      "person": "Adrian Cruz",
+      "source_filename": "Focused UI_UX Designer at Work(1).png",
+      "source_sha256": "43c6138bbe49f774bc615e1d9156d9eaacdef694c415e1c87a4432e8f6690864",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/uiux-product-designer/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/uiux-product-designer/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/uiux-product-designer/portrait-thumb.webp",
+      "publication_authorized": true
+    },
+    "qa-devops-engineer": {
+      "person": "Sofia Vasylivna Melnyk",
+      "source_filename": "DevOps Engineer at a Modern Workstation(1).png",
+      "source_sha256": "985fa025fe2e79c5365fe4c16cacc0d61f7b463972e09b7d452be083c655fca2",
+      "source_dimensions": [
+        1254,
+        1254
+      ],
+      "supplied_asset": "step-9b-inputs/portraits/qa-devops-engineer/portrait-original.png",
+      "ready_webp": "step-9b-inputs/portraits/qa-devops-engineer/portrait.webp",
+      "ready_thumb": "step-9b-inputs/portraits/qa-devops-engineer/portrait-thumb.webp",
+      "publication_authorized": true
+    }
+  },
+  "provenance": "User assigned each portrait to the corresponding team member and confirmed permission to publish; image contents alone do not independently establish identity."
+}

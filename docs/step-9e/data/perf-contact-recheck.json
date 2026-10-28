@@ -1,0 +1,113 @@
+{
+  "base": "http://127.0.0.1:4321",
+  "chrome": "155.0.8059.39",
+  "runs": 5,
+  "profiles": [
+    {
+      "name": "desktop-unthrottled",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "name": "mobile-unthrottled",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "isMobile": true,
+      "deviceScaleFactor": 2
+    },
+    {
+      "name": "mobile-slow-network",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "isMobile": true,
+      "deviceScaleFactor": 2,
+      "network": {
+        "offline": false,
+        "latency": 150,
+        "downloadThroughput": 209715.2,
+        "uploadThroughput": 96000
+      },
+      "cpu": 4
+    }
+  ],
+  "results": [
+    {
+      "profile": "desktop-unthrottled",
+      "route": "/contact/",
+      "runs": 5,
+      "fcpMs": 1600,
+      "lcpMs": 1600,
+      "lcpElement": "H1.page-title mt-5 max-w-3xl",
+      "lcpUrl": "",
+      "loadMs": 1220,
+      "clsBeforeScroll": 0.0009,
+      "clsAfterScroll": 0.0009,
+      "initialRequests": 10,
+      "initialKB": 108,
+      "scrolledRequests": 0,
+      "scrolledKB": 0,
+      "typesKB": {
+        "Stylesheet": 11,
+        "Image": 2,
+        "Script": 3,
+        "Document": 6,
+        "Font": 85,
+        "Other": 1
+      }
+    },
+    {
+      "profile": "mobile-unthrottled",
+      "route": "/contact/",
+      "runs": 5,
+      "fcpMs": 1440,
+      "lcpMs": 1440,
+      "lcpElement": "IMG.scene-wash",
+      "lcpUrl": "/assets/backgrounds/contact-globe.svg",
+      "loadMs": 1336,
+      "clsBeforeScroll": 0,
+      "clsAfterScroll": 0,
+      "initialRequests": 10,
+      "initialKB": 108,
+      "scrolledRequests": 0,
+      "scrolledKB": 0,
+      "typesKB": {
+        "Document": 6,
+        "Stylesheet": 11,
+        "Image": 2,
+        "Font": 85,
+        "Script": 3,
+        "Other": 1
+      }
+    },
+    {
+      "profile": "mobile-slow-network",
+      "route": "/contact/",
+      "runs": 5,
+      "fcpMs": 2432,
+      "lcpMs": 2432,
+      "lcpElement": "IMG.scene-wash",
+      "lcpUrl": "/assets/backgrounds/contact-globe.svg",
+      "loadMs": 2154,
+      "clsBeforeScroll": 0,
+      "clsAfterScroll": 0,
+      "initialRequests": 10,
+      "initialKB": 108,
+      "scrolledRequests": 0,
+      "scrolledKB": 0,
+      "typesKB": {
+        "Document": 6,
+        "Image": 2,
+        "Stylesheet": 11,
+        "Script": 3,
+        "Font": 85,
+        "Other": 1
+      }
+    }
+  ]
+}

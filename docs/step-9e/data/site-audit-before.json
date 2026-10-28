@@ -1,0 +1,5347 @@
+{
+  "summary": {
+    "base": "http://127.0.0.1:4321",
+    "routes": 35,
+    "checks": 315,
+    "overflow": 75,
+    "problems": 115,
+    "consoleErrors": [],
+    "failed": []
+  },
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 443,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H1: We Build Software That Moves Business Fo",
+        "H2: Eight specialties for a startup product.",
+        "H2: Technology That Fits Your Product.",
+        "H2: From Concept to Launch.",
+        "H2: Great Software Is Built Together.",
+        "H2: Have an Idea? Let's Build It."
+      ],
+      "overflowing": [
+        "SPAN.text-gradient: Forward.",
+        "DIV.lg:col-span-6: The companyYour Startup Idea D",
+        "P.eyebrow: The company"
+      ],
+      "small": []
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 443,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H1: We Build Software That Moves Business Fo",
+        "H2: Eight specialties for a startup product.",
+        "H2: Technology That Fits Your Product."
+      ],
+      "overflowing": [
+        "SPAN.text-gradient: Forward.",
+        "DIV.lg:col-span-6: The companyYour Startup Idea D",
+        "H2.section-title mt-4: Your Startup Idea Deserves Gre"
+      ],
+      "small": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/404",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/404",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/404",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/404",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/404",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/404",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/404",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/404",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/404",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/about/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/about/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/about/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/about/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 549,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Built for Startup Challenges.",
+        "H2: How We Think About Building Software.",
+        "H2: Building a Startup Product?"
+      ],
+      "overflowing": [
+        "DIV.: About Vortex DigitalWe Build S",
+        "P.eyebrow: About Vortex Digital",
+        "H1.page-title mt-5 max-w-xl: We Build Software for What's N"
+      ],
+      "small": []
+    },
+    {
+      "route": "/about/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 549,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Built for Startup Challenges.",
+        "H2: How We Think About Building Software.",
+        "H2: Building a Startup Product?"
+      ],
+      "overflowing": [
+        "DIV.: About Vortex DigitalWe Build S",
+        "P.eyebrow: About Vortex Digital",
+        "H1.page-title mt-5 max-w-xl: We Build Software for What's N"
+      ],
+      "small": []
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 977,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [
+        "LI.: Mobile AppsiOS, Android, and c",
+        "A.surface-card build-link: Mobile AppsiOS, Android, and c",
+        "SPAN.: Mobile AppsiOS, Android, and c"
+      ],
+      "small": []
+    },
+    {
+      "route": "/about/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1136,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [
+        "FIGURE.lg:col-span-5: UI/UX & Product Designer. Inte",
+        "IMG.work-photo: ",
+        "FIGCAPTION.mt-3 text-sm text-muted: UI/UX & Product Designer. Inte"
+      ],
+      "small": []
+    },
+    {
+      "route": "/contact/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/contact/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/contact/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 100x19 Privacy Policy",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/contact/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 100x19 Privacy Policy",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/contact/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/contact/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/contact/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/contact/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/insights/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/insights/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/insights/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/insights/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/insights/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/insights/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 334,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: No articles are published yet.",
+        "H2: Have an Idea? Let's Build It."
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/insights/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: No articles are published yet."
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/insights/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/insights/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Have a Similar Product in Mind?"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Have a Similar Product in Mind?"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 427,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Game development focus",
+        "H2: Confirmed game systems",
+        "H2: Screenshot gallery",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Have a Game Idea Worth Playing?"
+      ],
+      "overflowing": [
+        "DIV.: Mobile Game DevelopmentBorn To",
+        "P.case-kicker: Mobile Game Development",
+        "H1.page-title mt-4: Born To Rock — Mobile Rhythm G"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 427,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Game development focus",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Have a Game Idea Worth Playing?"
+      ],
+      "overflowing": [
+        "LI.: 01Core rhythm gameplayVortex D",
+        "LI.: 02Player inputVortex Digital d",
+        "LI.: 03Audio synchronizationVortex "
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/born-to-rock/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 444,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Storefront presentation",
+        "H2: Public storefront content",
+        "H2: Screenshot gallery",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Building a Storefront for Your Brand?"
+      ],
+      "overflowing": [
+        "DIV.: E-commerce / Frontend Developm",
+        "P.case-kicker: E-commerce / Frontend Developm",
+        "H1.page-title mt-4: Daniela Diamonds — Jewelry E-c"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 444,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Storefront presentation",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Building a Storefront for Your Brand?"
+      ],
+      "overflowing": [
+        "DIV.: E-commerce / Frontend Developm",
+        "P.case-kicker: E-commerce / Frontend Developm",
+        "H1.page-title mt-4: Daniela Diamonds — Jewelry E-c"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/daniela-diamonds/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 402,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Product features presented",
+        "H2: Screenshot gallery",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Building a Website for Your SaaS Product"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / Energy Techn",
+        "P.case-kicker: Web Development / Energy Techn",
+        "H1.page-title mt-4: Gain Energy / Upstrima — Websi"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 402,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Building a Website for Your SaaS Product"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / Energy Techn",
+        "P.case-kicker: Web Development / Energy Techn",
+        "H1.page-title mt-4: Gain Energy / Upstrima — Websi"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gain-energy-upstrima/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 429,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Website features presented",
+        "H2: Screenshot gallery",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Need a Website That Represents Your Bran"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / Beauty & Wel",
+        "P.case-kicker: Web Development / Beauty & Wel",
+        "H1.page-title mt-4: GoWabi — Beauty & Wellness Mar"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 429,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Need a Website That Represents Your Bran"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / Beauty & Wel",
+        "P.case-kicker: Web Development / Beauty & Wel",
+        "H1.page-title mt-4: GoWabi — Beauty & Wellness Mar"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/gowabi/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 460,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Screenshot gallery",
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Have a Mobile App Idea?"
+      ],
+      "overflowing": [
+        "DIV.: Mobile Application / AI Fashio",
+        "P.case-kicker: Mobile Application / AI Fashio",
+        "H1.page-title mt-4: MedaStaré — AI Fashion & Lifes"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 460,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Technology stack",
+        "H2: Our contribution",
+        "H2: Have a Mobile App Idea?"
+      ],
+      "overflowing": [
+        "DIV.: Mobile Application / AI Fashio",
+        "P.case-kicker: Mobile Application / AI Fashio",
+        "H1.page-title mt-4: MedaStaré — AI Fashion & Lifes"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 788,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [
+        "ARTICLE.: UnverifiedBackend language, da"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/medastare/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 55x20 Portfolio",
+        "A 115x20 View Case Study",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 429,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Product challenge",
+        "H2: Technical context",
+        "H2: Our contribution",
+        "H2: Have a Similar Product in Mind?"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / SaaS Marketi",
+        "P.case-kicker: Web Development / SaaS Marketi",
+        "H1.page-title mt-4: ScaleUp Systems — Marketing We"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 429,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Our contribution",
+        "H2: Have a Similar Product in Mind?"
+      ],
+      "overflowing": [
+        "DIV.: Web Development / SaaS Marketi",
+        "P.case-kicker: Web Development / SaaS Marketi",
+        "H1.page-title mt-4: ScaleUp Systems — Marketing We"
+      ],
+      "small": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/portfolio/scaleup-systems/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/privacy/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/privacy/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/privacy/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 338,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Information we collect",
+        "H2: How we use information",
+        "H2: How long information is kept",
+        "H2: International visitors"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: International visitors"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/privacy/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/process/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/process/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/process/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/process/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/process/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/process/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 586,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Start with discovery."
+      ],
+      "overflowing": [
+        "LI.timeline-step: 01Discovery & RequirementsWe l",
+        "ARTICLE.surface-card p-6 md:p-8: Discovery & RequirementsWe lea",
+        "H2.font-display text-2xl font-semibold trac: Discovery & Requirements"
+      ],
+      "small": []
+    },
+    {
+      "route": "/process/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 586,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Start with discovery."
+      ],
+      "overflowing": [
+        "LI.timeline-step: 01Discovery & RequirementsWe l",
+        "ARTICLE.surface-card p-6 md:p-8: Discovery & RequirementsWe lea",
+        "H2.font-display text-2xl font-semibold trac: Discovery & Requirements"
+      ],
+      "small": []
+    },
+    {
+      "route": "/process/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/process/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 453,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Eight ways a product gets built.",
+        "H2: Startup development needs.",
+        "H2: Let's Talk About Your Product."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card flex h-full flex-col p-6: Web DevelopmentCustom web appl",
+        "H3.mt-5 font-display text-xl font-semibold : Web Development",
+        "P.mt-3 text-muted: Custom web applications with a"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 453,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Startup development needs.",
+        "H2: Let's Talk About Your Product."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card flex h-full flex-col p-6: Web DevelopmentCustom web appl",
+        "ARTICLE.surface-card flex h-full flex-col p-6: Mobile AppsiOS, Android, and c",
+        "ARTICLE.surface-card flex h-full flex-col p-6: AI SolutionsAI features inside"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsAI SolutionsAn AI ",
+        "P.eyebrow: For startups",
+        "H1.page-title mt-4: AI Solutions"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsAI SolutionsAn AI ",
+        "H1.page-title mt-4: AI Solutions",
+        "P.lede mt-6: An AI feature is useful when i"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 815,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/ai-intelligent-automation/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsBackend & APIsThe ",
+        "P.eyebrow: For startups",
+        "H1.page-title mt-4: Backend & APIs"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: REST API designResources and a",
+        "H3.mt-4 font-display text-xl font-semibold: REST API design",
+        "P.mt-3 text-muted: Resources and actions a client"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 815,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/backend-api-engineering/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsCloud & DevOpsShip",
+        "P.eyebrow: For startups",
+        "H1.page-title mt-4: Cloud & DevOps"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: Cloud environmentsSeparate pla",
+        "ARTICLE.surface-card p-6: Delivery pipelinesA build that",
+        "ARTICLE.surface-card p-6: Deployment automationA release"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 815,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/cloud-devops/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: iOS and Android applicationsNa",
+        "H3.font-display text-xl font-semibold: iOS and Android applications",
+        "P.mt-3 text-muted: Native builds when the product"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: iOS and Android applicationsNa",
+        "ARTICLE.surface-card p-6: Cross-platform applicationsOne",
+        "ARTICLE.surface-card p-6: Account-backed mobile clientsS"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/mobile-app-development/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: Functional testingThe tasks us",
+        "ARTICLE.surface-card p-6: Regression passesThe paths tha",
+        "ARTICLE.surface-card p-6: API testingContracts, auth fai"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "LI.surface-card p-6: 01ScopeList the flows, platfor",
+        "LI.surface-card p-6: 02Functional checksExecute the",
+        "LI.surface-card p-6: 03AutomationAutomate the check"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/qa-software-testing/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 546,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsSaaS DevelopmentA ",
+        "P.eyebrow: For startups",
+        "H1.page-title mt-4: SaaS Development"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 546,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsSaaS DevelopmentA ",
+        "H1.page-title mt-4: SaaS Development",
+        "P.lede mt-6: A SaaS product is a system tha"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 789,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/saas-platform-development/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "ARTICLE.surface-card p-6: Product discoveryEnough resear",
+        "ARTICLE.surface-card p-6: Journeys and structureThe path",
+        "ARTICLE.surface-card p-6: Wireframes and prototypesLow-f"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 454,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "LI.surface-card audience-item: 01Screens without a taskVisual",
+        "LI.surface-card audience-item: 02A prototype that ignores the",
+        "LI.surface-card audience-item: 03Engineering has to interpret"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 815,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/ui-ux-product-design/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 57x20 Services",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 546,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Related services",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsWeb DevelopmentA s",
+        "P.eyebrow: For startups",
+        "H1.page-title mt-4: Web Development"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 546,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Challenges we address",
+        "H2: Our technical approach",
+        "H2: Service capabilities",
+        "H2: Typical deliverables",
+        "H2: Technologies and tools",
+        "H2: Questions founders ask",
+        "H2: Tell us what you are building."
+      ],
+      "overflowing": [
+        "DIV.: For startupsWeb DevelopmentA s",
+        "H1.page-title mt-4: Web Development",
+        "P.lede mt-6: A startup web product is the a"
+      ],
+      "small": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 789,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/services/web-application-development/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 372,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: How We Work Together",
+        "H2: Need This Mix of Disciplines on a Produc"
+      ],
+      "overflowing": [
+        "A.hover:text-lavender: Pongsak Rattanakul",
+        "P.eyebrow: Collaboration",
+        "FIGURE.: Product discussions. Leadershi"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Need This Mix of Disciplines on a Produc"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Carlo Garcia previously worked"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Carlo Garcia previously worked"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 792,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/ai-engineer/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Lin Jiayi joined Vortex Digita"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Lin Jiayi joined Vortex Digita"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 792,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/cfo/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Co-Founder & CTOJoshua Mendoza"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Co-Founder & CTOJoshua Mendoza"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 780,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/cofounder-cto/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Don Tran leads Vortex Digital."
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Don Tran leads Vortex Digital."
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 810,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/founder-ceo/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 36x20 Team",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 36x20 Team",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 36x20 Team",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 36x20 Team",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 36x20 Team",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 331,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [],
+      "overflowing": [
+        "SECTION.: 01Don TranFounder & CEOApprove",
+        "DIV.flex flex-wrap items-end justify-between: 01Don TranFounder & CEOApprove",
+        "P.max-w-md text-sm text-muted: Approved portrait for this per"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/gallery/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Mobile App DeveloperMatheus Pe"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "DIV.: Mobile App DeveloperMatheus Pe",
+        "P.eyebrow mt-6: Mobile App Developer"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 780,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/mobile-app-developer/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Project ManagerPongsak Rattana"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Project ManagerPongsak Rattana"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 841,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/project-manager/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: QA & DevOps EngineerSofia Vasy"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: QA & DevOps EngineerSofia Vasy"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 828,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [
+        "LI.: 02Automation suitesBuild Playw",
+        "LI.: 04Docker environmentsManage Do"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/qa-devops-engineer/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "FIGURE.profile-portrait-frame: ",
+        "IMG.profile-portrait: ",
+        "DIV.: Senior Full-Stack DeveloperDmy"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Dmytro Melnyk specializes in M"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 836,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [
+        "LI.: 02Commerce implementationsLead",
+        "H3.: Commerce implementations",
+        "P.: Lead Magento and headless comm"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/senior-fullstack-developer/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Expertise",
+        "H2: Working Together",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Adrian Cruz conducts user rese"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 512,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [
+        "H2: Current responsibilities",
+        "H2: Related disciplines"
+      ],
+      "overflowing": [
+        "DIV.lg:col-span-4: Background",
+        "H2.section-title text-[clamp(2rem,3vw,2.8re: Background",
+        "DIV.grid gap-4 lg:col-span-8: Adrian Cruz conducts user rese"
+      ],
+      "small": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/team/uiux-product-designer/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Background",
+        "H2: Previous and external experience",
+        "H2: How this role supports startups",
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/terms/",
+      "width": 320,
+      "zoom": 1,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/terms/",
+      "width": 375,
+      "zoom": 1,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/terms/",
+      "width": 768,
+      "zoom": 1,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 74,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/terms/",
+      "width": 1024,
+      "zoom": 1,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ]
+    },
+    {
+      "route": "/terms/",
+      "width": 1440,
+      "zoom": 1,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "h1": 1,
+      "headerHeight": 73,
+      "clipped": [],
+      "overflowing": [],
+      "small": [
+        "A 39x20 Home",
+        "A 93x20 Privacy Policy",
+        "A 41x20 Terms"
+      ],
+      "brokenImages": [],
+      "pendingImages": []
+    },
+    {
+      "route": "/terms/",
+      "width": 320,
+      "zoom": 2,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "h1": 1,
+      "headerHeight": 180,
+      "clipped": [
+        "H2: Intellectual property"
+      ],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/terms/",
+      "width": 375,
+      "zoom": 2,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/terms/",
+      "width": 768,
+      "zoom": 2,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "h1": 1,
+      "headerHeight": 146,
+      "clipped": [],
+      "overflowing": [],
+      "small": []
+    },
+    {
+      "route": "/terms/",
+      "width": 1024,
+      "zoom": 2,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "h1": 1,
+      "headerHeight": 277,
+      "clipped": [
+        "H2: Explore"
+      ],
+      "overflowing": [],
+      "small": []
+    }
+  ]
+}

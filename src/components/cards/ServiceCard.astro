@@ -1,0 +1,35 @@
+---
+import type { Service } from "../../data/services";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  service: Service;
+  detailed?: boolean;
+}
+
+const { service, detailed = false } = Astro.props;
+---
+
+<article class="surface-card flex h-full flex-col p-6">
+  <div class="icon-tile">
+    <Icon name={service.icon} size={22} />
+  </div>
+  <h3 class="mt-5 font-display text-xl font-semibold tracking-[-0.03em]">{service.title}</h3>
+  <p class:list={["mt-3 text-muted", !detailed && "flex-1"]}>{service.summary}</p>
+  {
+    detailed && (
+      <ul class="mt-4 grid flex-1 gap-2 text-sm text-paper/90">
+        {service.capabilities.slice(0, 3).map((item) => (
+          <li class="flex gap-2">
+            <span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-lilac" aria-hidden="true" />
+            <span>{item.title}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <a href={`/services/${service.slug}`} class="mt-6 inline-flex items-center gap-2 font-semibold text-lavender">
+    {detailed ? "View service" : "Learn more"}
+    <Icon name="arrow-right" size={16} class="arrow" />
+  </a>
+</article>

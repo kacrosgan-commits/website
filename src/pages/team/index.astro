@@ -1,0 +1,42 @@
+---
+import TeamCard from "../../components/cards/TeamCard.astro";
+import CtaSection from "../../components/sections/CtaSection.astro";
+import WorkTogether from "../../components/team/WorkTogether.astro";
+import PageHero from "../../components/ui/PageHero.astro";
+import { assets } from "../../data/assets";
+import { site } from "../../data/site";
+import { team } from "../../data/team";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Team"
+  description={`Meet the nine people behind ${site.name}: leadership, engineering, design, delivery, and quality for startup products.`}
+>
+  <PageHero
+    eyebrow="Our team"
+    description="Leadership, software engineering, design, delivery, and quality assurance work as one team. A startup gets a direction for the product, people who can build it, and a way to tell whether the release is ready."
+    scene={assets.backgrounds.aboutOrbit}
+    crumbs={[{ label: "Home", href: "/" }, { label: "Team" }]}
+  >
+    The People and Disciplines Behind <span class="text-gradient">Vortex Digital.</span>
+  </PageHero>
+  <section class="section pt-0" aria-labelledby="roster-heading">
+    <div class="container-page">
+      <h2 id="roster-heading" class="sr-only">Team roster</h2>
+      <p class="mb-8 max-w-3xl text-muted">
+        Nine named profiles, in role order. Portraits were assigned by the agency owner. Collaboration scenes further down are illustrations, not photographs of these people at work, and no profile is tied to a client case study.
+      </p>
+      <div class="team-roster">
+        {team.map((member) => <TeamCard member={member} />)}
+      </div>
+    </div>
+  </section>
+  <WorkTogether />
+  <CtaSection
+    title="Need This Mix of Disciplines on a Product?"
+    description="Tell us what you are building. We can talk through which of these roles the work actually needs."
+    href="/contact"
+    label="Discuss Your Project"
+  />
+</BaseLayout>

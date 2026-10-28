@@ -1,0 +1,47 @@
+---
+import { assets } from "../../data/assets";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  href?: string;
+  label?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  title = "Have an Idea? Let's Build It.",
+  description = "Tell us what you're working on. We'll help you explore the right technical approach for your next product.",
+  href = "/contact",
+  label = "Discuss Your Project",
+  secondaryHref = "",
+  secondaryLabel = "",
+} = Astro.props;
+---
+
+<section class="section pt-0">
+  <div class="container-page">
+    <div class="cta-panel px-6 py-14 sm:px-12 md:py-20">
+      <img class="cta-art" src={assets.backgrounds.ctaWaves} alt="" width="1920" height="800" />
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="section-title text-paper">{title}</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg text-paper">{description}</p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href={href} class="btn bg-ink text-paper shadow-[0_12px_30px_rgba(9,7,19,0.28)] hover:bg-ink-soft">
+            {label}
+            <Icon name="arrow-right" size={18} class="arrow" />
+          </a>
+          {
+            secondaryHref && secondaryLabel && (
+              <a href={secondaryHref} class="btn border border-paper/30 text-paper hover:bg-paper/10">
+                {secondaryLabel}
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

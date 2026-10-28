@@ -1,0 +1,166 @@
+---
+import FaqAccordion from "./FaqAccordion.astro";
+import ServiceVisual from "../visuals/ServiceVisual.astro";
+import GradientButton from "../ui/GradientButton.astro";
+import Icon from "../ui/Icon.astro";
+import { relatedServices, serviceTechnologies, type Service } from "../../data/services";
+
+interface Props {
+  service: Service;
+  index: number;
+}
+
+const { service, index } = Astro.props;
+const related = relatedServices(service);
+const technologies = serviceTechnologies(service);
+const variant = index % 3;
+---
+
+<article class="service-page" data-variant={variant}>
+  <header class="service-hero">
+    <div>
+      <p class="eyebrow">For startups</p>
+      <h1 class="page-title mt-4">{service.title}</h1>
+      <p class="lede mt-6">{service.hero}</p>
+      <ul class="mt-6 flex flex-wrap gap-2" aria-label="Capability areas">
+        {service.tags.map((tag) => <li class="tech-chip">{tag}</li>)}
+      </ul>
+      <div class="mt-8">
+        <GradientButton href={`/contact?service=${encodeURIComponent(service.slug)}`}>{service.cta}</GradientButton>
+      </div>
+    </div>
+    <ServiceVisual slug={service.slug} title={service.title} />
+  </header>
+
+  <section class="mt-20" aria-labelledby="build-heading">
+    <h2 id="build-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">What we build</h2>
+    <p class="lede mt-4 max-w-3xl">{service.applicationsIntro}</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {
+        service.applications.map((item) => (
+          <article class="surface-card p-6">
+            <h3 class="font-display text-xl font-semibold">{item.title}</h3>
+            <p class="mt-3 text-muted">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="challenges-heading">
+    <h2 id="challenges-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Challenges we address</h2>
+    <p class="lede mt-4 max-w-3xl">{service.challengesIntro}</p>
+    <ol class="audience-list mt-8">
+      {
+        service.challenges.map((item, itemIndex) => (
+          <li class="surface-card audience-item">
+            <p class="font-display text-2xl font-semibold text-lilac">0{itemIndex + 1}</p>
+            <div>
+              <h3 class="font-display text-xl font-semibold">{item.title}</h3>
+              <p class="mt-2 text-muted">{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mt-20" aria-labelledby="approach-heading">
+    <h2 id="approach-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Our technical approach</h2>
+    <p class="lede mt-4 max-w-3xl">{service.approachIntro}</p>
+    <ol class:list={["mt-8 grid gap-4", variant === 1 ? "md:grid-cols-2" : ""]}>
+      {
+        service.approach.map((item, itemIndex) => (
+          <li class="surface-card p-6">
+            <p class="text-sm font-semibold tracking-[0.14em] text-lilac">{String(itemIndex + 1).padStart(2, "0")}</p>
+            <h3 class="mt-2 font-display text-xl font-semibold">{item.title}</h3>
+            <p class="mt-2 text-muted">{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mt-20" aria-labelledby="capabilities-heading">
+    <h2 id="capabilities-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Service capabilities</h2>
+    <div class:list={["mt-8 grid gap-4", variant === 2 ? "lg:grid-cols-12" : "md:grid-cols-2"]}>
+      {
+        service.capabilities.map((item, itemIndex) => (
+          <article class:list={["surface-card p-6", variant === 2 && (itemIndex % 3 === 0 ? "lg:col-span-12" : "lg:col-span-6")]}>
+            <div class="icon-tile">
+              <Icon name={service.icon} size={20} />
+            </div>
+            <h3 class="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+            <p class="mt-3 text-muted">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="deliverables-heading">
+    <div class="surface-card p-8 md:p-10">
+      <h2 id="deliverables-heading" class="font-display text-3xl font-semibold">Typical deliverables</h2>
+      <p class="mt-4 max-w-3xl text-muted">
+        These are examples of what a proposal can include. Scope decides which ones you receive. None of them is an automatic part of every inquiry.
+      </p>
+      <ul class="mt-6 grid gap-3 md:grid-cols-2">
+        {
+          service.deliverables.map((item) => (
+            <li class="flex gap-3 text-paper/90">
+              <span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-lilac" aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="technology-heading">
+    <h2 id="technology-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Technologies and tools</h2>
+    <p class="lede mt-4 max-w-3xl">{service.technologyNote}</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {
+        technologies.map((group) => (
+          <article class="surface-card p-6">
+            <h3 class="font-display text-xl font-semibold">{group.label}</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li class="tech-chip">{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="faq-heading">
+    <h2 id="faq-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Questions founders ask</h2>
+    <div class="mt-8">
+      <FaqAccordion items={service.faqs} />
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="related-heading">
+    <h2 id="related-heading" class="section-title text-[clamp(2rem,3vw,3rem)]">Related services</h2>
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      {
+        related.map((item) => (
+          <a href={`/services/${item.slug}`} class="surface-card block p-6">
+            <div class="icon-tile">
+              <Icon name={item.icon} size={20} />
+            </div>
+            <h3 class="mt-4 font-display text-xl font-semibold">{item.title}</h3>
+            <p class="mt-3 text-muted">{item.summary}</p>
+            <span class="mt-5 inline-flex items-center gap-2 font-semibold text-lavender">
+              View service
+              <Icon name="arrow-right" size={16} class="arrow" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</article>

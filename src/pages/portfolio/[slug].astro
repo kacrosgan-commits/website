@@ -1,0 +1,28 @@
+---
+import CaseStudy from "../../components/portfolio/CaseStudy.astro";
+import { isPublicProject, isReviewProject } from "../../utils/portfolio";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("caseStudies");
+  const dev = import.meta.env.DEV;
+  return projects
+    .filter((project) => isPublicProject(project.data) || isReviewProject(project.data, dev))
+    .map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const dev = import.meta.env.DEV;
+const projects = await getCollection("caseStudies");
+const related = projects
+  .filter((entry) => entry.id !== project.id && isPublicProject(entry.data))
+  .sort((a, b) => a.data.homeRank - b.data.homeRank);
+const reviewPeers =
+  project.data.review && !project.data.publicationApproved
+    ? projects
+        .filter((entry) => entry.id !== project.id && isReviewProject(entry.data, dev))
+        .sort((a, b) => a.data.homeRank - b.data.homeRank)
+    : [];
+---
+
+<CaseStudy project={project} related={related} reviewPeers={reviewPeers} />

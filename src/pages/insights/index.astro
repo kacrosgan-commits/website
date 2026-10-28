@@ -1,0 +1,122 @@
+---
+import BlogCard from "../../components/cards/BlogCard.astro";
+import CtaSection from "../../components/sections/CtaSection.astro";
+import OutlineButton from "../../components/ui/OutlineButton.astro";
+import PageHero from "../../components/ui/PageHero.astro";
+import { assets } from "../../data/assets";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { comparePublicInsights, isPublicInsight } from "../../utils/insights";
+import { getCollection } from "astro:content";
+
+const dev = import.meta.env.DEV;
+const entries = await getCollection("blog");
+const posts = entries
+  .filter((post) => isPublicInsight(post.data))
+  .sort((a, b) => comparePublicInsights({ ...a.data, id: a.id }, { ...b.data, id: b.id }));
+const reviewPosts = dev
+  ? entries
+      .filter((post) => !isPublicInsight(post.data) && post.data.editorialReview)
+      .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  : [];
+const featured = posts.find((post) => post.data.featured) ?? posts[0];
+const rest = posts.filter((post) => post.id !== featured?.id);
+const categories = [...new Set(posts.map((post) => post.data.category))].sort((a, b) => a.localeCompare(b));
+const ready = posts.length > 0;
+---
+
+<BaseLayout
+  title="Insights"
+  description={
+    ready
+      ? `Notes from ${site.name} on software design, engineering, and release decisions for startup teams.`
+      : `Insights from ${site.name} are being prepared. No articles are published until the owner approves them.`
+  }
+>
+  <PageHero
+    eyebrow="Insights"
+    description={
+      ready
+        ? "Approved notes for founders and product teams. Drafts are not listed here."
+        : "Articles appear here only after the owner approves them. The services and portfolio pages describe the work until then."
+    }
+    scene={assets.backgrounds.blogPanels}
+    crumbs={[{ label: "Home", href: "/" }, { label: "Insights" }]}
+  >
+    {ready ? "Notes on building software." : "Insights are being prepared."}
+  </PageHero>
+
+  <section class="section pt-0">
+    <div class="container-page">
+      {
+        reviewPosts.length > 0 && (
+          <div>
+            <h2 class="font-display text-2xl font-semibold">Drafts on this machine</h2>
+            <p class="mt-4 max-w-2xl text-muted">
+              These drafts are visible only while the local development server is running. Saving a Markdown file updates this page. The production build, the sitemap, and the public site still omit them until each one is approved.
+            </p>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              {reviewPosts.map((post) => <BlogCard post={post} review />)}
+            </div>
+          </div>
+        )
+      }
+      {
+        !ready && reviewPosts.length === 0 && (
+          <div class="surface-card p-8" data-insights-empty>
+            <h2 class="font-display text-2xl font-semibold">No articles are published yet.</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Drafts stay in review. This page will list an article after it is approved for publication. Until then, the public description of the work is on the services and portfolio pages.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <OutlineButton href="/services">View services</OutlineButton>
+              <OutlineButton href="/portfolio">View portfolio</OutlineButton>
+            </div>
+          </div>
+        )
+      }
+      {featured && <div data-featured class="mt-8"><BlogCard post={featured} featured /></div>}
+      {
+        categories.length > 1 && (
+          <div class="mt-8 flex flex-wrap gap-2" data-filters>
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+            {categories.map((category) => (
+              <button type="button" class="filter-btn" data-filter={category} aria-pressed="false">
+                {category}
+              </button>
+            ))}
+          </div>
+        )
+      }
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {rest.map((post) => <BlogCard post={post} />)}
+      </div>
+      <p class="mt-8 text-muted" data-filter-empty hidden>No articles in this category yet.</p>
+    </div>
+  </section>
+  <CtaSection />
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filters] [data-filter]");
+  const cards = document.querySelectorAll<HTMLElement>("[data-category]");
+  const featured = document.querySelector<HTMLElement>("[data-featured]");
+  const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter ?? "all";
+      buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      let visible = 0;
+      cards.forEach((card) => {
+        const inFeatured = Boolean(card.closest("[data-featured]"));
+        const show = filter === "all" || card.dataset.category === filter;
+        if (inFeatured && featured) featured.hidden = !show;
+        else card.hidden = !show;
+        if (show && !inFeatured) visible += 1;
+        if (show && inFeatured) visible += 1;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    });
+  });
+</script>

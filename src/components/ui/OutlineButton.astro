@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  href?: string;
+  type?: "button" | "submit";
+  class?: string;
+  arrow?: boolean;
+}
+
+const { href, type = "button", class: className = "", arrow = false } = Astro.props;
+const classes = ["btn", "btn-outline", className];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes}>
+      <slot />
+      {arrow && <Icon name="arrow-right" size={18} class="arrow" />}
+    </a>
+  ) : (
+    <button type={type} class:list={classes}>
+      <slot />
+      {arrow && <Icon name="arrow-right" size={18} class="arrow" />}
+    </button>
+  )
+}

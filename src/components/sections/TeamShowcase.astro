@@ -1,0 +1,57 @@
+---
+import Icon from "../ui/Icon.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="section reveal pt-0" aria-labelledby="team-film-heading">
+  <div class="container-page">
+    <SectionHeading
+      eyebrow="The people behind the build"
+      description="A short visual interpretation of the conversations, design reviews, and engineering work that shape digital products."
+    >
+      <span id="team-film-heading">A look at collaboration, from idea to launch</span>
+    </SectionHeading>
+    <figure class="team-showcase">
+      <div class="team-showcase-frame">
+        <video
+          class="team-showcase-video"
+          autoplay
+          muted
+          loop
+          controls
+          playsinline
+          preload="auto"
+          poster="/videos/vortex-team-poster.webp"
+          width="1280"
+          height="720"
+          aria-label="Silent illustration of people collaborating on design and engineering. Not a recording of a Vortex Digital event."
+        >
+          <source src="/videos/vortex-team-showcase.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <figcaption class="mt-4 text-sm text-muted">
+        Illustrative team scenes, not footage of an actual company event.
+      </figcaption>
+    </figure>
+    <p class="mt-6">
+      <a href="/team" class="inline-flex min-h-6 items-center gap-2 font-semibold text-lavender">
+        Meet our team
+        <Icon name="arrow-right" size={16} class="arrow" />
+      </a>
+    </p>
+  </div>
+</section>
+
+<script>
+  const video = document.querySelector<HTMLVideoElement>(".team-showcase-video");
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const sync = () => {
+    if (!video) return;
+    if (motion.matches) video.pause();
+    else video.play().catch(() => {});
+  };
+
+  sync();
+  motion.addEventListener("change", sync);
+</script>

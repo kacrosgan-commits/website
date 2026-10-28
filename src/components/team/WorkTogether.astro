@@ -1,0 +1,81 @@
+---
+import GradientButton from "../ui/GradientButton.astro";
+import { workScene } from "../../data/team";
+
+const feature = { ...workScene("founder-ceo", 0), label: "Product discussions" };
+const pair = [
+  { ...workScene("cofounder-cto", 0), label: "Software architecture reviews" },
+  { ...workScene("project-manager", 0), label: "Team planning" },
+];
+const band = [
+  { ...workScene("senior-fullstack-developer", 0), label: "Collaborative engineering" },
+  { ...workScene("ai-engineer", 1), label: "Technical problem solving" },
+  { ...workScene("uiux-product-designer", 1), label: "Design reviews" },
+];
+const close = { ...workScene("qa-devops-engineer", 0), label: "Testing and delivery" };
+---
+
+<section class="section" aria-labelledby="together-heading">
+  <div class="container-page">
+    <p class="eyebrow">Collaboration</p>
+    <h2 id="together-heading" class="section-title mt-4">How We Work Together</h2>
+    <p class="lede mt-5 max-w-3xl">
+      Leadership, engineering, design, delivery, and quality meet on the same product. The scenes below are conceptual illustrations of that work. They are not photographs of Vortex Digital employees or real meetings.
+    </p>
+
+    <article class="work-feature mt-12">
+      <figure>
+        <img src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} class="work-photo" loading="lazy" decoding="async" />
+        <figcaption>{feature.label}. {feature.caption}</figcaption>
+      </figure>
+      <div>
+        <h3>A product conversation before the build</h3>
+        <p>
+          Direction, scope, and the first release get settled where leadership and delivery can hear the same explanation. The illustration stands in for that kind of discussion.
+        </p>
+      </div>
+    </article>
+
+    <div class="work-pair mt-8">
+      {
+        pair.map((scene) => (
+          <figure>
+            <img src={scene.src} alt={scene.alt} width={scene.width} height={scene.height} class="work-photo" loading="lazy" decoding="async" />
+            <figcaption>
+              <strong>{scene.label}</strong>
+              <span>{scene.caption}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="work-trio mt-8">
+      {
+        band.map((scene) => (
+          <figure>
+            <img src={scene.src} alt={scene.alt} width={scene.width} height={scene.height} class="work-photo" loading="lazy" decoding="async" />
+            <figcaption>
+              <strong>{scene.label}</strong>
+              <span>{scene.caption}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <article class="work-close mt-8">
+      <figure>
+        <img src={close.src} alt={close.alt} width={close.width} height={close.height} class="work-photo" loading="lazy" decoding="async" />
+      </figure>
+      <div>
+        <h3>{close.label}</h3>
+        <p>{close.caption} Quality and release sit in the same plan as the feature work, so a launch is a step the team can repeat.</p>
+      </div>
+    </article>
+
+    <div class="mt-10">
+      <GradientButton href="/team/gallery">View All 27 Images</GradientButton>
+    </div>
+  </div>
+</section>
