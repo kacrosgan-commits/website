@@ -35,7 +35,7 @@ const rendered = team.reduce((total, member) => total + 1 + member.workImages.le
       <div class="mt-14 grid gap-16">
         {
           team.map((member, memberIndex) => (
-            <section aria-labelledby={`gallery-${member.slug}`}>
+            <section class="reveal-up" aria-labelledby={`gallery-${member.slug}`}>
               <div class="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p class="text-sm font-semibold tracking-[0.14em] text-lilac uppercase">0{memberIndex + 1}</p>
@@ -46,8 +46,8 @@ const rendered = team.reduce((total, member) => total + 1 + member.workImages.le
                 </div>
                 <p class="max-w-md text-sm text-muted">Approved portrait for this person. The scenes are illustrative and are not photographs of them.</p>
               </div>
-              <div class="member-gallery mt-6">
-                <figure>
+              <div class="member-gallery stagger-children mt-6">
+                <figure class="motion-item">
                   <img
                     src={member.portrait.src}
                     alt={member.portrait.alt}
@@ -63,7 +63,7 @@ const rendered = team.reduce((total, member) => total + 1 + member.workImages.le
                 </figure>
                 {
                   member.workImages.map((image) => (
-                    <figure>
+                    <figure class="motion-item">
                       <img
                         src={image.src}
                         alt={image.alt}

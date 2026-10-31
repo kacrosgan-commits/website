@@ -19,7 +19,7 @@ const { eyebrow, description, crumbs = [], scene } = Astro.props;
 <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
   {
     scene ? (
-      <img class="scene-wash" src={scene} alt="" width="1920" height="800" />
+      <img class="scene-wash media-settle" src={scene} alt="" width="1920" height="800" />
     ) : (
       <div class="ambient" aria-hidden="true">
         <div class="orb orb-a"></div>
@@ -30,12 +30,12 @@ const { eyebrow, description, crumbs = [], scene } = Astro.props;
   }
   <div class="container-page relative z-[1]">
     {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
-    <p class="eyebrow">{eyebrow}</p>
-    <h1 class="page-title mt-5 max-w-3xl">
+    <p class="eyebrow hero-in">{eyebrow}</p>
+    <h1 class="page-title hero-in hero-in-2 mt-5 max-w-3xl">
       <slot />
     </h1>
-    <p class="lede mt-6 max-w-2xl">{description}</p>
-    <div class="mt-8">
+    <p class="lede hero-in hero-in-3 mt-6 max-w-2xl">{description}</p>
+    <div class="hero-in hero-in-4 mt-8">
       <slot name="actions" />
     </div>
   </div>

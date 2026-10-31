@@ -38,7 +38,7 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
   fullTitle
 >
   <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
-    <img class="scene-wash" src={assets.backgrounds.aboutOrbit} alt="" width="1920" height="800" />
+    <img class="scene-wash media-settle" src={assets.backgrounds.aboutOrbit} alt="" width="1920" height="800" />
     <div class="container-page relative z-[1]">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
       {
@@ -56,11 +56,11 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
       }
       <div class="about-hero">
         <div>
-          <p class="eyebrow">{about.heroEyebrow}</p>
-          <h1 class="page-title mt-5 max-w-xl">
+          <p class="eyebrow hero-in">{about.heroEyebrow}</p>
+          <h1 class="page-title hero-in hero-in-2 mt-5 max-w-xl">
             We Build Software for <span class="text-gradient">What's Next.</span>
           </h1>
-          <p class="lede mt-6 max-w-xl">{about.heroDescription}</p>
+          <p class="lede hero-in hero-in-3 mt-6 max-w-xl">{about.heroDescription}</p>
           <p class="mt-6 max-w-xl text-sm font-medium tracking-wide text-lavender">{site.tagline}</p>
         </div>
         <MediaFrame
@@ -68,7 +68,7 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
           alt="A dark engineering workspace in violet light"
           width={1448}
           height={1086}
-          class="aspect-[4/3]"
+          class="media-settle aspect-[4/3]"
           position="center"
           loading="eager"
           fetchpriority="high"
@@ -211,7 +211,7 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
         </div>
         <OutlineButton href="/team">Meet all nine</OutlineButton>
       </div>
-      <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      <div class="stagger-children mt-12 grid gap-5 sm:grid-cols-2">
         {leaders.map((member) => <TeamCard member={member} />)}
       </div>
     </div>

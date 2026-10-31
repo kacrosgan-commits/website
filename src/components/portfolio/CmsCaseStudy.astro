@@ -34,9 +34,9 @@ const mobile = project.mediaLayout === "mobile";
         ]}
       />
       <header class="mt-10 max-w-3xl">
-        <p class="eyebrow">{project.client} · {project.industry}</p>
-        <h1 class="page-title mt-4">{project.title}</h1>
-        <p class="lede mt-6">{project.description}</p>
+        <p class="eyebrow hero-in">{project.client} · {project.industry}</p>
+        <h1 class="page-title hero-in hero-in-2 mt-4">{project.title}</h1>
+        <p class="lede hero-in hero-in-3 mt-6">{project.description}</p>
         {
           project.projectUrl ? (
             <p class="mt-4">
@@ -50,7 +50,7 @@ const mobile = project.mediaLayout === "mobile";
 
       {
         hero?.src ? (
-          <figure class={`mt-12 overflow-hidden rounded-xl ${mobile ? "max-w-sm mx-auto" : ""}`}>
+          <figure class={`media-settle mt-12 overflow-hidden rounded-xl ${mobile ? "max-w-sm mx-auto" : ""}`}>
             <img
               src={hero.src}
               alt={hero.alt}
@@ -65,7 +65,7 @@ const mobile = project.mediaLayout === "mobile";
         ) : null
       }
 
-      <section class="mt-14 grid gap-8 md:grid-cols-2">
+      <section class="reveal-up mt-14 grid gap-8 md:grid-cols-2">
         <div>
           <h2 class="section-title text-2xl">Services</h2>
           <ul class="mt-4 flex flex-wrap gap-2">
@@ -86,14 +86,14 @@ const mobile = project.mediaLayout === "mobile";
 
       {
         project.screenshots.length > 1 ? (
-          <section class="mt-16" aria-labelledby="gallery-heading">
+          <section class="reveal-up mt-16" aria-labelledby="gallery-heading">
             <h2 id="gallery-heading" class="section-title text-2xl">
               Screenshots
             </h2>
-            <div class={`mt-8 grid gap-6 ${mobile ? "md:grid-cols-3 max-w-4xl" : "md:grid-cols-2"}`}>
+            <div class={`stagger-children mt-8 grid gap-6 ${mobile ? "md:grid-cols-3 max-w-4xl" : "md:grid-cols-2"}`}>
               {project.screenshots.slice(1).map((shot) =>
                 shot.src ? (
-                  <figure>
+                  <figure class="motion-item">
                     <img
                       src={shot.src}
                       alt={shot.alt}
@@ -114,13 +114,13 @@ const mobile = project.mediaLayout === "mobile";
 
       {
         related.length ? (
-          <section class="mt-20" aria-labelledby="related-heading">
+          <section class="reveal-up mt-20" aria-labelledby="related-heading">
             <h2 id="related-heading" class="section-title text-2xl">
               More work
             </h2>
-            <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div class="stagger-children mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {related.slice(0, 3).map((item) => (
-                <a href={`/portfolio/${item.slug}/`} class="block rounded-xl border border-white/10 p-5 hover:border-lavender/40">
+                <a href={`/portfolio/${item.slug}/`} class="interactive-lift motion-item block rounded-xl border border-white/10 p-5 hover:border-lavender/40">
                   <p class="text-sm text-muted">{item.client}</p>
                   <h3 class="mt-2 text-lg text-paper">{item.cardTitle || item.title}</h3>
                   <p class="mt-2 text-sm text-muted">{item.cardSummary || item.description}</p>

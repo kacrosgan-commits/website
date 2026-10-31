@@ -87,12 +87,19 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <script is:inline>
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        var nodes = document.querySelectorAll(".reveal");
-        var reveal = function (node) { node.classList.add("is-in"); };
-        if (!("IntersectionObserver" in window)) {
-          nodes.forEach(reveal);
-          return;
-        }
+        var selector = ".reveal, .reveal-up, .reveal-fade, .reveal-scale, .stagger-children";
+        var reveal = function (node) {
+          node.classList.add("is-in");
+          node.classList.remove("await-reveal");
+        };
+        var revealChain = function (node) {
+          var current = node;
+          while (current && current !== document.body) {
+            if (current.matches && current.matches(selector)) reveal(current);
+            current = current.parentElement;
+          }
+        };
+        if (!("IntersectionObserver" in window)) return;
         var observer;
         try {
           observer = new IntersectionObserver(function (entries) {
@@ -101,20 +108,53 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
               reveal(entry.target);
               observer.unobserve(entry.target);
             });
-          }, { threshold: 0, rootMargin: "0px" });
+          }, { threshold: 0, rootMargin: "0px 0px 12% 0px" });
         } catch (error) {
-          nodes.forEach(reveal);
           return;
         }
-        nodes.forEach(function (node) {
+        var arm = function (node) {
+          if (node.classList.contains("is-in")) return;
           var rect = node.getBoundingClientRect();
+          if (rect.height < 1) return;
           if (rect.bottom > 0 && rect.top < window.innerHeight) reveal(node);
           else {
             node.classList.add("await-reveal");
             observer.observe(node);
           }
-        });
+        };
+        var exposeHash = function () {
+          if (!location.hash) return;
+          var id = "";
+          try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+          var target = document.getElementById(id);
+          if (target) revealChain(target);
+        };
+        document.querySelectorAll(selector).forEach(arm);
+        exposeHash();
         document.documentElement.classList.add("can-reveal");
+        var scan = function () {
+          document.querySelectorAll(selector).forEach(function (node) {
+            if (!node.classList.contains("await-reveal") || node.classList.contains("is-in")) return;
+            var rect = node.getBoundingClientRect();
+            if (rect.height < 1) return;
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+              reveal(node);
+              observer.unobserve(node);
+            }
+          });
+        };
+        document.addEventListener("focusin", function (event) {
+          if (event.target && event.target.closest) revealChain(event.target);
+        });
+        window.addEventListener("scroll", scan, { passive: true });
+        window.addEventListener("hashchange", exposeHash);
+        window.addEventListener("pageshow", function (event) {
+          if (!event.persisted) return;
+          document.querySelectorAll(selector).forEach(function (node) {
+            var rect = node.getBoundingClientRect();
+            if (rect.bottom > 0 && rect.top < window.innerHeight) reveal(node);
+          });
+        });
       })();
     </script>
   </body>

@@ -6,7 +6,7 @@ import GradientButton from "../ui/GradientButton.astro";
 const configured = isConfiguredEndpoint(site.formEndpoint);
 ---
 
-<div class="surface-card relative p-6 md:p-8" data-contact-root>
+<div class="surface-card reveal-up relative p-6 md:p-8" data-contact-root>
   {
     !configured && (
       <p class="mb-6 rounded-2xl border border-line bg-ink/60 p-4 text-sm text-lavender" data-delivery="unconfigured">

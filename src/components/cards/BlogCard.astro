@@ -15,7 +15,7 @@ const published = isPublicInsight(post.data);
 const publishedAt = post.data.publishedAt;
 ---
 
-<article class:list={["surface-card flex h-full flex-col p-6", featured && "md:p-8"]} data-category={post.data.category}>
+<article class:list={["surface-card motion-item flex h-full flex-col p-6", featured && "md:p-8"]} data-category={post.data.category}>
   <div class="flex flex-wrap items-center gap-2">
     {review && <span class="badge">Awaiting owner approval</span>}
     <span class="text-sm text-muted">{post.data.category}</span>

@@ -143,7 +143,7 @@ const featuredServices = cms
       <SectionHeading eyebrow="Services" description="Web development, mobile apps, AI, SaaS, backend and APIs, cloud and DevOps, UI/UX, and QA. Each card opens the page for that work.">
         <span id="services-heading">Eight specialties for a startup product.</span>
       </SectionHeading>
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div class="stagger-children mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {featuredServices.map((service) => <ServiceCard service={service} />)}
       </div>
       <div class="mt-8">
@@ -160,10 +160,10 @@ const featuredServices = cms
       <SectionHeading eyebrow="Why teams stay" description="A way of working, not a list of trophies. Figures appear here only after they are verified.">
         <span id="reasons-heading">How the work is run.</span>
       </SectionHeading>
-      <div class="mt-12 grid gap-4 md:grid-cols-2">
+      <div class="stagger-children mt-12 grid gap-4 md:grid-cols-2">
         {
           reasons.map((reason, index) => (
-            <article class="surface-card p-7">
+            <article class="surface-card motion-item p-7">
               <div class="flex flex-wrap items-start justify-between gap-4">
                 <div class="icon-tile">
                   <Icon name={reason.icon} />
@@ -186,10 +186,10 @@ const featuredServices = cms
       <SectionHeading eyebrow="Stack" description="A working catalog aligned with the roles on the team. It is not a certification list.">
         <span id="stack-heading">Technology That Fits Your Product.</span>
       </SectionHeading>
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="stagger-children mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           technologyGroups.map((group) => (
-            <article class="surface-card p-6">
+            <article class="surface-card motion-item p-6">
               <h3 class="font-display text-xl font-semibold">{group.label}</h3>
               <ul class="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
@@ -214,9 +214,9 @@ const featuredServices = cms
             <OutlineButton href="/portfolio">View our work</OutlineButton>
           </div>
           {cms ? (
-            <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div class="stagger-children mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {cmsProjects.map((project) => (
-                <article class="surface-card overflow-hidden p-6">
+                <article class="surface-card motion-item overflow-hidden p-6">
                   <p class="text-sm text-muted">{project.client}</p>
                   <h3 class="mt-2 font-display text-2xl">
                     <a class="hover:text-lavender" href={`/portfolio/${project.slug}/`}>
@@ -228,7 +228,7 @@ const featuredServices = cms
               ))}
             </div>
           ) : (
-            <div class:list={["mt-12 grid gap-5", localProjects.length === 5 ? "card-grid-five" : localProjects.length === 2 || localProjects.length === 4 ? "md:grid-cols-2" : "md:grid-cols-2 xl:grid-cols-3"]}>
+            <div class:list={["stagger-children mt-12 grid gap-5", localProjects.length === 5 ? "card-grid-five" : localProjects.length === 2 || localProjects.length === 4 ? "md:grid-cols-2" : "md:grid-cols-2 xl:grid-cols-3"]}>
               {localProjects.map((project) => <ProjectCard project={project} />)}
             </div>
           )}
@@ -272,7 +272,7 @@ const featuredServices = cms
     scenes={[workScene("founder-ceo", 0), workScene("senior-fullstack-developer", 0), workScene("qa-devops-engineer", 1)]}
   />
 
-  <section class="section" aria-labelledby="team-heading">
+  <section class="section reveal" aria-labelledby="team-heading">
     <div class="container-page">
       <div class="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading eyebrow="People" description="Nine named profiles, from leadership through engineering, design, delivery, and quality. Collaboration scenes on this page are illustrations.">
@@ -280,11 +280,11 @@ const featuredServices = cms
         </SectionHeading>
         <OutlineButton href="/team">Meet the team</OutlineButton>
       </div>
-      <ul class="role-strip mt-10">
+      <ul class="role-strip stagger-children mt-10">
         {
           team.map((member) => (
-            <li>
-              <a href={`/team/${member.slug}`}>
+            <li class="motion-item">
+              <a class="interactive-lift" href={`/team/${member.slug}`}>
                 <img
                   src={member.portrait.thumb}
                   alt=""
@@ -313,9 +313,9 @@ const featuredServices = cms
             <span id="insights-heading">Notes from the engineering team.</span>
           </SectionHeading>
           {cms ? (
-            <div class="mt-12 grid gap-4 md:grid-cols-3">
+            <div class="stagger-children mt-12 grid gap-4 md:grid-cols-3">
               {cmsPosts.map((post) => (
-                <article class="surface-card p-6">
+                <article class="surface-card motion-item p-6">
                   <p class="text-sm text-muted">{post.category || "Insights"}</p>
                   <h3 class="mt-3 font-display text-2xl font-semibold">
                     <a class="hover:text-lavender" href={`/insights/${post.slug}/`}>
@@ -327,7 +327,7 @@ const featuredServices = cms
               ))}
             </div>
           ) : (
-            <div class="mt-12 grid gap-4 md:grid-cols-3">
+            <div class="stagger-children mt-12 grid gap-4 md:grid-cols-3">
               {localPosts.map((post) => (
                 <BlogCard post={post} />
               ))}

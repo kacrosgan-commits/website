@@ -78,10 +78,10 @@ function mediaLabel(kind: string) {
 
       <header class:list={["case-hero mt-8", mobile && "case-hero-mobile"]}>
         <div>
-          <p class="case-kicker">{data.category}</p>
-          <h1 class="page-title mt-4">{data.title}</h1>
+          <p class="case-kicker hero-in">{data.category}</p>
+          <h1 class="page-title hero-in hero-in-2 mt-4">{data.title}</h1>
           {data.subtitle && <p class="mt-4 text-lg font-medium text-lavender">{data.subtitle}</p>}
-          <p class="lede mt-5">{data.description}</p>
+          <p class="lede hero-in hero-in-3 mt-5">{data.description}</p>
           {
             data.projectUrl && (
               <p class="mt-6">
@@ -95,7 +95,7 @@ function mediaLabel(kind: string) {
         </div>
         {
           hero && (
-            <figure class="shot-stage">
+            <figure class="shot-stage media-settle">
               <a href={hero.src}>
                 <picture>
                   {heroWebp && <source type="image/webp" srcset={heroWebp} />}
@@ -120,22 +120,22 @@ function mediaLabel(kind: string) {
         }
       </header>
 
-      <section class="case-block" aria-labelledby="overview-heading">
+      <section class="case-block reveal-up" aria-labelledby="overview-heading">
         <h2 id="overview-heading">Product overview</h2>
         <p>{data.overview}</p>
       </section>
 
-      <section class="case-block" aria-labelledby="challenge-heading">
+      <section class="case-block reveal-up" aria-labelledby="challenge-heading">
         <h2 id="challenge-heading">{data.challengeHeading}</h2>
         <p>{data.challenge}</p>
       </section>
 
-      <section class="case-block" aria-labelledby="features-heading">
+      <section class="case-block reveal-up" aria-labelledby="features-heading">
         <h2 id="features-heading">{data.featuresHeading}</h2>
-        <ol class="feature-grid">
+        <ol class="feature-grid stagger-children">
           {
             data.features.map((feature, index) => (
-              <li>
+              <li class="motion-item">
                 <span>0{index + 1}</span>
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
@@ -145,13 +145,13 @@ function mediaLabel(kind: string) {
         </ol>
       </section>
 
-      <section class="case-block" aria-labelledby="gallery-heading">
+      <section class="case-block reveal-up" aria-labelledby="gallery-heading">
         <h2 id="gallery-heading">{data.galleryHeading}</h2>
         <p class="text-muted">Three source images for this product. Enlarge a frame, or open the file directly if scripts are unavailable.</p>
-        <div class:list={["shot-gallery mt-6", mobile ? "shot-gallery-mobile" : "shot-gallery-web"]}>
+        <div class:list={["shot-gallery stagger-children mt-6", mobile ? "shot-gallery-mobile" : "shot-gallery-web"]}>
           {
             gallery.map((shot) => (
-              <figure>
+              <figure class="motion-item">
                 <a
                   class="shot-open"
                   href={shot.src}
@@ -190,7 +190,7 @@ function mediaLabel(kind: string) {
         </dialog>
       </section>
 
-      <section class="case-block" aria-labelledby="tech-heading">
+      <section class="case-block reveal-up" aria-labelledby="tech-heading">
         <h2 id="tech-heading">{data.technologyHeading}</h2>
         <p class="text-muted">
           {
@@ -221,7 +221,7 @@ function mediaLabel(kind: string) {
 
       {
         contributionReady && (
-          <section class="case-block" aria-labelledby="contribution-heading">
+          <section class="case-block reveal-up" aria-labelledby="contribution-heading">
             <h2 id="contribution-heading">Our contribution</h2>
             <dl class="contribution-list">
               {contributionFields.map(([label, value]) => (
@@ -237,7 +237,7 @@ function mediaLabel(kind: string) {
 
       {
         !published && (
-          <section class="case-block" aria-labelledby="contribution-heading">
+          <section class="case-block reveal-up" aria-labelledby="contribution-heading">
             <h2 id="contribution-heading">Our contribution</h2>
             <p>
               {site.name} has not confirmed a role on this product. The fields below are blank on purpose. They are not filled with a guessed scope, stack, or date.
@@ -257,7 +257,7 @@ function mediaLabel(kind: string) {
 
       {
         verifiedMetrics.length > 0 && (
-          <section class="case-block" aria-labelledby="outcomes-heading">
+          <section class="case-block reveal-up" aria-labelledby="outcomes-heading">
             <h2 id="outcomes-heading">Outcomes</h2>
             <dl class="feature-grid">
               {verifiedMetrics.map((metric) => (
@@ -273,7 +273,7 @@ function mediaLabel(kind: string) {
 
       {
         related.length > 0 && (
-          <section class="case-block" aria-labelledby="related-heading">
+          <section class="case-block reveal-up" aria-labelledby="related-heading">
             <h2 id="related-heading">Related projects</h2>
             <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {related.map((entry) => (
@@ -286,7 +286,7 @@ function mediaLabel(kind: string) {
 
       {
         reviewPeers.length > 0 && (
-          <section class="case-block" aria-labelledby="review-peers-heading">
+          <section class="case-block reveal-up" aria-labelledby="review-peers-heading">
             <h2 id="review-peers-heading">Also in this review</h2>
             <p class="text-muted">Other unapproved products in the local review. They are not published client work.</p>
             <div class="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

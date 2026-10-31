@@ -109,11 +109,11 @@ const projectCount = cms ? cmsProjects.length : projectsLocal.length;
       }
       {
         cms ? (
-          <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="stagger-children mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {cmsProjects.map((project) => {
               const shot = project.screenshots[0];
               return (
-                <article class="surface-card overflow-hidden">
+                <article class="surface-card motion-item overflow-hidden">
                   {shot?.src ? (
                     <a href={`/portfolio/${project.slug}/`}>
                       <img
@@ -141,7 +141,7 @@ const projectCount = cms ? cmsProjects.length : projectsLocal.length;
             })}
           </div>
         ) : (
-          <div class:list={["portfolio-grid mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid>
+          <div class:list={["portfolio-grid stagger-children mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid>
             {projectsLocal.map((project) => <ProjectCard project={project} />)}
           </div>
         )

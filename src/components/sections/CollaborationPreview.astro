@@ -29,14 +29,14 @@ const {
 } = Astro.props;
 ---
 
-<section class="section" aria-labelledby={id}>
+<section class="section reveal" aria-labelledby={id}>
   <div class="container-page">
     <h2 id={id} class="section-title">{heading}</h2>
     <p class="mt-4 max-w-2xl text-muted">{intro}</p>
-    <div class:list={["together-grid mt-10", scenes.length > 3 && "together-grid-wide"]}>
+    <div class:list={["together-grid stagger-children mt-10", scenes.length > 3 && "together-grid-wide"]}>
       {
         scenes.map((scene) => (
-          <figure>
+          <figure class="motion-item">
             <img
               src={scene.src}
               alt={scene.alt}

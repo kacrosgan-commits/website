@@ -34,7 +34,7 @@ const cms = isCmsRenderMode();
             : "Nine named profiles, in role order. Portraits were assigned by the agency owner. Collaboration scenes further down are illustrations, not photographs of these people at work, and no profile is tied to a client case study."
         }
       </p>
-      <div class="team-roster">
+      <div class="team-roster stagger-children">
         {team.map((member) => <TeamCard member={member} />)}
       </div>
     </div>

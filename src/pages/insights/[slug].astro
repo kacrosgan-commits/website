@@ -83,11 +83,11 @@ const showContents = contents.length >= 4;
               { label: props.article.title },
             ]}
           />
-          <p class="eyebrow mt-8">{props.article.category || "Insights"}</p>
-          <h1 class="page-title mt-4">{props.article.title}</h1>
+          <p class="eyebrow hero-in mt-8">{props.article.category || "Insights"}</p>
+          <h1 class="page-title hero-in hero-in-2 mt-4">{props.article.title}</h1>
           <p class="mt-4 text-muted">By {props.article.author}</p>
           <p class="lede mt-6">{props.article.excerpt}</p>
-          <div class="prose mt-10 whitespace-pre-wrap text-paper/90">{props.article.body}</div>
+          <div class="prose reveal-fade mt-10 whitespace-pre-wrap text-paper/90">{props.article.body}</div>
           <p class="mt-10">
             <a href="/insights" class="text-lavender underline">
               Back to Insights
@@ -115,9 +115,9 @@ const showContents = contents.length >= 4;
           />
           <header class="max-w-3xl">
             {!published && <p class="badge">Editorial review — not published</p>}
-            <p class="eyebrow mt-6">{post.data.category}</p>
-            <h1 class="page-title mt-4">{post.data.title}</h1>
-            <p class="lede mt-5">{post.data.description}</p>
+            <p class="eyebrow hero-in mt-6">{post.data.category}</p>
+            <h1 class="page-title hero-in hero-in-2 mt-4">{post.data.title}</h1>
+            <p class="lede hero-in hero-in-3 mt-5">{post.data.description}</p>
             <p class="mt-6 text-sm text-muted">
               {published && publishedAt && (
                 <>
@@ -142,7 +142,7 @@ const showContents = contents.length >= 4;
               </ol>
             </nav>
           )}
-          <div class="prose mt-10 max-w-3xl">
+          <div class="prose reveal-fade mt-10 max-w-3xl">
             <Content />
           </div>
           <p class="mt-10">

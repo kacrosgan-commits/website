@@ -4,14 +4,14 @@ import { verifiedStats } from "../../data/stats";
 
 {
   verifiedStats.length > 0 && (
-    <section class="section" aria-labelledby="stats-heading">
+    <section class="section reveal" aria-labelledby="stats-heading">
       <div class="container-page">
         <h2 id="stats-heading" class="sr-only">
           Verified figures
         </h2>
-        <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <dl class="stagger-children grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {verifiedStats.map((stat) => (
-            <div class="surface-card p-6">
+            <div class="surface-card motion-item p-6">
               <dt class="text-muted">{stat.label}</dt>
               <dd class="mt-2 font-display text-4xl font-semibold tracking-[-0.04em]">{stat.value}</dd>
             </div>
