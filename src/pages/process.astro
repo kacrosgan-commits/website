@@ -6,6 +6,11 @@ import { assets } from "../data/assets";
 import { processSteps } from "../data/process";
 import { site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getContentSource } from "../lib/content/source";
+import { getPageSectionsForRender } from "../lib/content/site-content";
+
+const cms = getContentSource() === "cms";
+const cmsProcessSections = cms ? getPageSectionsForRender("process") : [];
 ---
 
 <BaseLayout
@@ -13,12 +18,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description={`How ${site.name} moves from discovery to deployment: requirements, architecture, design, development, testing, and support.`}
 >
   <PageHero
-    eyebrow="Our process"
-    description="Six engineering stages. Scope and timing are agreed in a proposal, not assumed from this page."
+    eyebrow={cmsProcessSections[0]?.eyebrow || "Our process"}
+    description={cmsProcessSections[0]?.body || "Six engineering stages. Scope and timing are agreed in a proposal, not assumed from this page."}
     scene={assets.backgrounds.processOrbit}
     crumbs={[{ label: "Home", href: "/" }, { label: "Our Process" }]}
   >
-    From concept <span class="text-gradient">to launch.</span>
+    {cmsProcessSections[0]?.title || (
+      <>
+        From concept <span class="text-gradient">to launch.</span>
+      </>
+    )}
   </PageHero>
   <section class="section relative pt-0" aria-labelledby="stages-heading">
     <div class="ambient" aria-hidden="true">

@@ -11,3 +11,30 @@ dist/
 playwright-report/
 test-results/
 blob-report/
+
+# Step 10A Directus local runtime (secrets, DB dumps, uploads)
+cms/.env
+cms/.env.*
+!cms/.env.example
+cms/uploads/*
+!cms/uploads/.gitkeep
+cms/extensions/*
+!cms/extensions/.gitkeep
+cms/data/
+cms/*.sql
+cms/*.dump
+cms/.tmp/
+cms/.cache/
+
+
+# Step 10B private backups
+cms/backups/
+
+# Step 10C private audit / media staging
+.tmp/
+cms-media-staging/
+
+# Step 10D immutable releases (ACTIVE pointer + snapshots are local/private)
+cms/releases/*
+!cms/releases/.gitkeep
+cms/.tmp/

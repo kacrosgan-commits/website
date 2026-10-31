@@ -289,6 +289,9 @@ picture {
   top: 0;
   z-index: 40;
   border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
@@ -300,9 +303,10 @@ picture {
 }
 
 .site-header.is-scrolled {
-  border-bottom-color: rgba(167, 139, 250, 0.16);
-  background: rgba(9, 7, 19, 0.78);
-  backdrop-filter: blur(16px);
+  border-bottom-color: rgba(167, 139, 250, 0.12);
+  background: rgba(9, 7, 19, 0.42);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
 }
 
 .nav-link {
@@ -509,21 +513,47 @@ picture {
   opacity: 0.38;
 }
 
-.photo-hero {
+/* Full-bleed homepage hero — hall image fills the viewport edge to edge */
+.photo-hero-bleed {
   position: relative;
   isolation: isolate;
+  width: 100%;
+  min-height: 100svh;
   overflow: hidden;
-  min-height: clamp(40.5rem, 72vh, 50rem);
-  border: 1px solid rgba(192, 132, 252, 0.22);
-  border-radius: 28px;
   background: #090713;
-  box-shadow: 0 30px 80px rgba(76, 29, 149, 0.28);
+}
+
+.photo-hero-aura {
+  position: absolute;
+  inset: -8% -6%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 58% 52% at 66% 38%, rgba(167, 139, 250, 0.42), transparent 72%),
+    radial-gradient(ellipse 48% 56% at 22% 80%, rgba(109, 40, 217, 0.28), transparent 74%),
+    radial-gradient(ellipse 40% 38% at 82% 14%, rgba(192, 132, 252, 0.24), transparent 76%);
+  opacity: 0.35;
+  pointer-events: none;
+  filter: blur(2px);
+  transform: translateZ(0);
+  will-change: opacity, transform;
+}
+
+.photo-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100svh;
+  background: #090713;
 }
 
 .photo-hero picture,
 .photo-hero-img,
 .photo-hero-glow,
-.photo-hero-atmo {
+.photo-hero-atmo,
+.photo-hero-exposure,
+.photo-hero-specular {
   position: absolute;
   pointer-events: none;
 }
@@ -537,7 +567,9 @@ picture {
 
 .photo-hero-img {
   object-fit: cover;
-  object-position: 62% center;
+  object-position: center center;
+  transform: translateZ(0);
+  will-change: filter;
 }
 
 .photo-hero-glow {
@@ -546,7 +578,8 @@ picture {
   z-index: 1;
   width: min(42rem, 58%);
   height: auto;
-  opacity: 0.45;
+  opacity: 0.28;
+  will-change: opacity;
 }
 
 .photo-hero-atmo {
@@ -557,27 +590,77 @@ picture {
   height: 100%;
   object-fit: cover;
   object-position: right center;
-  opacity: 0.42;
+  opacity: 0.28;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
+/* Left-weighted dark wash for copy; right stays open so the hall remains visible */
 .photo-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(90deg, #090713 0%, rgba(9, 7, 19, 0.9) 30%, rgba(9, 7, 19, 0.42) 54%, rgba(9, 7, 19, 0.08) 74%);
+  z-index: 2;
+  background:
+    linear-gradient(
+      90deg,
+      #090713 0%,
+      rgba(9, 7, 19, 0.94) 24%,
+      rgba(18, 10, 36, 0.72) 42%,
+      rgba(76, 29, 149, 0.24) 60%,
+      rgba(9, 7, 19, 0.1) 78%,
+      rgba(9, 7, 19, 0.04) 100%
+    ),
+    radial-gradient(ellipse 55% 70% at 18% 50%, rgba(9, 7, 19, 0.5), transparent 70%);
   pointer-events: none;
+}
+
+.photo-hero-exposure {
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(ellipse 78% 70% at 78% 38%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.28) 36%, transparent 68%),
+    linear-gradient(112deg, transparent 34%, rgba(255, 255, 255, 0.12) 52%, rgba(255, 255, 255, 0.38) 72%, transparent 92%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(90deg, transparent 0%, transparent 30%, #000 52%, #000 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 30%, #000 52%, #000 100%);
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.photo-hero-specular {
+  top: -16%;
+  right: -8%;
+  z-index: 3;
+  width: min(42rem, 62%);
+  height: min(34rem, 78%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.72), rgba(237, 233, 254, 0.22) 38%, transparent 70%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: translateZ(0);
+  will-change: opacity, transform;
+}
+
+.photo-hero-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
 }
 
 .photo-hero-copy {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: flex;
+  width: 100%;
   max-width: 40rem;
-  min-height: clamp(40.5rem, 72vh, 50rem);
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.75rem, 4vw, 4.25rem);
+  padding-block: clamp(6.5rem, 12vh, 8rem) clamp(2rem, 5vh, 3.5rem);
+  padding-inline: 0;
 }
 
 .photo-hero-title {
@@ -1393,50 +1476,68 @@ html.can-reveal .timeline::before {
   }
 
   .photo-hero-img {
-    object-position: 68% center;
+    object-position: 62% center;
   }
 
   .photo-hero::after {
-    background: linear-gradient(90deg, #090713 0%, rgba(9, 7, 19, 0.94) 42%, rgba(9, 7, 19, 0.45) 64%, rgba(9, 7, 19, 0.05) 86%);
+    background:
+      linear-gradient(
+        90deg,
+        #090713 0%,
+        rgba(9, 7, 19, 0.96) 34%,
+        rgba(18, 10, 36, 0.8) 52%,
+        rgba(76, 29, 149, 0.26) 70%,
+        rgba(9, 7, 19, 0.08) 90%
+      ),
+      radial-gradient(ellipse 60% 75% at 16% 48%, rgba(9, 7, 19, 0.5), transparent 72%);
   }
 }
 
 @media (width < 64rem) {
-  .photo-hero {
-    display: flex;
-    min-height: 0;
-    flex-direction: column;
-  }
-
-  .photo-hero picture,
-  .photo-hero-img {
-    position: relative;
-    inset: auto;
-    order: 2;
-    width: 100%;
-    height: 22rem;
+  .photo-hero-bleed,
+  .photo-hero-content {
+    min-height: 100svh;
   }
 
   .photo-hero-img {
-    object-position: center 42%;
-  }
-
-  .photo-hero picture {
-    mask-image: linear-gradient(180deg, transparent, #000 14%);
+    object-position: 55% center;
   }
 
   .photo-hero-glow,
   .photo-hero-atmo,
-  .photo-hero::after {
+  .photo-hero-exposure,
+  .photo-hero-specular {
     display: none;
   }
 
+  .photo-hero::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(9, 7, 19, 0.72) 0%,
+        rgba(9, 7, 19, 0.55) 38%,
+        rgba(18, 10, 36, 0.42) 68%,
+        rgba(9, 7, 19, 0.55) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(9, 7, 19, 0.82) 0%,
+        rgba(9, 7, 19, 0.45) 55%,
+        rgba(9, 7, 19, 0.2) 100%
+      );
+  }
+
+  .photo-hero-aura {
+    opacity: 0.22;
+  }
+
+  .photo-hero-content {
+    align-items: flex-end;
+  }
+
   .photo-hero-copy {
-    order: 1;
     max-width: none;
-    min-height: 0;
-    justify-content: flex-start;
-    padding-bottom: 0.25rem;
+    padding-block: 5.5rem 2.25rem;
   }
 
   .hero-art img {

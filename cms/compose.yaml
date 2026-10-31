@@ -1,0 +1,79 @@
+# Vortex Digital — Step 10A local Directus + PostgreSQL stack.
+# Bind Directus to loopback only. Do not expose Postgres on the host.
+# Secrets come from cms/.env (gitignored). Never commit live values.
+
+name: vortex-cms
+
+services:
+  database:
+    image: postgres:16.10-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - vortex_cms_pgdata:/var/lib/postgresql/data
+    networks:
+      - cms_internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --host=localhost --username=$$POSTGRES_USER --dbname=$$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+  directus:
+    image: directus/directus:12.6.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8055:8055"
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    networks:
+      - cms_internal
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:8055/server/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+    environment:
+      SECRET: ${SECRET}
+      PUBLIC_URL: ${PUBLIC_URL}
+
+      DB_CLIENT: pg
+      DB_HOST: database
+      DB_PORT: "5432"
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+
+      # Local file storage only in Step 10A. No public anonymous file reads.
+      STORAGE_LOCATIONS: local
+      STORAGE_LOCAL_DRIVER: local
+      STORAGE_LOCAL_ROOT: ./uploads
+      FILES_MAX_UPLOAD_SIZE: 25mb
+      # Allow images and the later homepage MP4 without opening arbitrary binaries.
+      FILES_MIME_TYPE_ALLOW_LIST: image/*,video/mp4,application/pdf,text/plain,text/markdown
+
+      CORS_ENABLED: "false"
+      WEBSOCKETS_ENABLED: "false"
+      TELEMETRY: "false"
+      EMAIL_VERIFY_SETUP: "false"
+
+networks:
+  cms_internal:
+    driver: bridge
+
+volumes:
+  vortex_cms_pgdata:
+    name: vortex_cms_pgdata

@@ -2,19 +2,20 @@
 import ServiceDetail from "../../components/sections/ServiceDetail.astro";
 import CtaSection from "../../components/sections/CtaSection.astro";
 import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
-import { getService, services } from "../../data/services";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getServiceForRender, getServicesForRender } from "../../lib/content/site-content";
 
 export function getStaticPaths() {
-  return services.map((service) => ({ params: { slug: service.slug } }));
+  return getServicesForRender().map((service) => ({ params: { slug: service.slug } }));
 }
 
 const { slug } = Astro.params;
-const service = getService(slug ?? "");
+const service = getServiceForRender(slug ?? "");
 if (!service) {
   throw new Error("Unknown service");
 }
+const services = getServicesForRender();
 const index = services.findIndex((item) => item.slug === service.slug);
 ---
 

@@ -3,20 +3,35 @@ import ProjectCard from "../../components/cards/ProjectCard.astro";
 import CtaSection from "../../components/sections/CtaSection.astro";
 import PageHero from "../../components/ui/PageHero.astro";
 import { assets } from "../../data/assets";
-import { services } from "../../data/services";
+import { services as localServices } from "../../data/services";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { filtersInUse, isVisibleProject } from "../../utils/portfolio";
 import { getCollection } from "astro:content";
+import { getContentSource } from "../../lib/content/source";
+import { getProjectsForRender, getServicesForRender } from "../../lib/content/site-content";
 
-const dev = import.meta.env.DEV;
-const projects = (await getCollection("caseStudies"))
-  .filter((project) => isVisibleProject(project.data, dev))
-  .sort((a, b) => a.data.homeRank - b.data.homeRank || a.data.title.localeCompare(b.data.title));
-const filters = filtersInUse(projects.map((project) => project.data));
-const reviewing = projects.some((project) => project.data.review && !project.data.publicationApproved);
-const classificationReady = projects.length > 0 && projects.every((project) => project.data.filters.length > 0);
-const showFilters = classificationReady && filters.length > 0;
+const cms = getContentSource() === "cms";
+const services = cms ? getServicesForRender() : localServices;
+
+const cmsProjects = cms ? getProjectsForRender() : [];
+let filters: string[] = [];
+let reviewing = false;
+let showFilters = false;
+const projectsLocal = cms
+  ? []
+  : (await getCollection("caseStudies"))
+      .filter((project) => isVisibleProject(project.data, import.meta.env.DEV))
+      .sort((a, b) => a.data.homeRank - b.data.homeRank || a.data.title.localeCompare(b.data.title));
+
+if (!cms) {
+  filters = filtersInUse(projectsLocal.map((project) => project.data));
+  reviewing = projectsLocal.some((project) => project.data.review && !project.data.publicationApproved);
+  const classificationReady = projectsLocal.length > 0 && projectsLocal.every((project) => project.data.filters.length > 0);
+  showFilters = classificationReady && filters.length > 0;
+}
+
+const projectCount = cms ? cmsProjects.length : projectsLocal.length;
 ---
 
 <BaseLayout
@@ -31,7 +46,7 @@ const showFilters = classificationReady && filters.length > 0;
   <PageHero
     eyebrow="Portfolio"
     description={
-      projects.length > 0
+      projectCount > 0
         ? "Digital Products Across Industries."
         : "Case studies appear here after the work and the right to publish it are confirmed. Until then, the services below describe what the studio takes on."
     }
@@ -45,7 +60,7 @@ const showFilters = classificationReady && filters.length > 0;
     <div class="container-page">
       <h2 id="projects-heading" class="sr-only">Projects</h2>
       {
-        reviewing && (
+        !cms && reviewing && (
           <div class="surface-card mb-8 p-6 md:p-8">
             <p class="badge">Internal review</p>
             <p class="mt-4 max-w-3xl text-lg text-paper/90">
@@ -55,7 +70,7 @@ const showFilters = classificationReady && filters.length > 0;
         )
       }
       {
-        projects.length === 0 && (
+        projectCount === 0 && (
           <div>
             <div class="surface-card p-8">
               <p class="max-w-2xl text-lg text-paper/90">No client case studies are approved for publication.</p>
@@ -79,7 +94,7 @@ const showFilters = classificationReady && filters.length > 0;
         )
       }
       {
-        showFilters && (
+        !cms && showFilters && (
           <div class="flex flex-wrap gap-2" data-filters>
             <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">
               All
@@ -92,9 +107,45 @@ const showFilters = classificationReady && filters.length > 0;
           </div>
         )
       }
-      <div class:list={["portfolio-grid mt-8", projects.length === 2 && "portfolio-grid-pair", projects.length === 4 && "portfolio-grid-quad", projects.length === 5 && "card-grid-five"]} data-project-grid>
-        {projects.map((project) => <ProjectCard project={project} />)}
-      </div>
+      {
+        cms ? (
+          <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {cmsProjects.map((project) => {
+              const shot = project.screenshots[0];
+              return (
+                <article class="surface-card overflow-hidden">
+                  {shot?.src ? (
+                    <a href={`/portfolio/${project.slug}/`}>
+                      <img
+                        src={shot.src}
+                        alt={shot.alt}
+                        width={shot.width || 1200}
+                        height={shot.height || 800}
+                        class="w-full h-auto"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  ) : null}
+                  <div class="p-6">
+                    <p class="text-sm text-muted">{project.client}</p>
+                    <h3 class="mt-2 font-display text-2xl">
+                      <a class="hover:text-lavender" href={`/portfolio/${project.slug}/`}>
+                        {project.cardTitle || project.title}
+                      </a>
+                    </h3>
+                    <p class="mt-3 text-muted">{project.cardSummary || project.description}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div class:list={["portfolio-grid mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid>
+            {projectsLocal.map((project) => <ProjectCard project={project} />)}
+          </div>
+        )
+      }
       <p class="mt-8 text-muted" data-filter-empty hidden>
         No projects in this category.
       </p>
@@ -108,23 +159,27 @@ const showFilters = classificationReady && filters.length > 0;
   />
 </BaseLayout>
 
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
-  const cards = document.querySelectorAll<HTMLElement>("[data-project-grid] [data-filters]");
-  const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
+{
+  !cms ? (
+    <script>
+      const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+      const cards = document.querySelectorAll<HTMLElement>("[data-project-grid] [data-filters]");
+      const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const filter = button.dataset.filter ?? "all";
-      buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      let visible = 0;
-      cards.forEach((card) => {
-        const tags = (card.dataset.filters ?? "").split("|").filter(Boolean);
-        const show = filter === "all" || tags.includes(filter);
-        card.hidden = !show;
-        if (show) visible += 1;
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter ?? "all";
+          buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+          let visible = 0;
+          cards.forEach((card) => {
+            const tags = (card.dataset.filters ?? "").split("|").filter(Boolean);
+            const show = filter === "all" || tags.includes(filter);
+            card.hidden = !show;
+            if (show) visible += 1;
+          });
+          if (empty) empty.hidden = visible !== 0;
+        });
       });
-      if (empty) empty.hidden = visible !== 0;
-    });
-  });
-</script>
+    </script>
+  ) : null
+}

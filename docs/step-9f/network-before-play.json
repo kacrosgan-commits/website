@@ -10,9 +10,5 @@
   {
     "name": "http://127.0.0.1:4321/videos/vortex-team-showcase.mp4",
     "transfer": 13032456
-  },
-  {
-    "name": "http://127.0.0.1:4321/assets/about/office-visual.webp",
-    "transfer": 300
   }
 ]

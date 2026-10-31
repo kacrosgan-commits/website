@@ -1,0 +1,421 @@
+{
+  "generated_at": "2026-10-29T12:12:00.000Z",
+  "step": "10B",
+  "cms_url": "http://127.0.0.1:8055",
+  "classification_hint": "PASSED — content migrated; owner-accepted 30s homepage MP4 imported as 29th Directus file; Astro public path and layout unchanged",
+  "source_counts": {
+    "team": 9,
+    "projects": 6,
+    "screenshots": 18,
+    "services": 8,
+    "insights": 12,
+    "page_sections": 8,
+    "files_uploaded": 29
+  },
+  "cms_counts": {
+    "team_members": 9,
+    "portfolio_projects": 6,
+    "portfolio_screenshots": 18,
+    "services": 8,
+    "insights_articles": 12
+  },
+  "excluded_sample_projects": [
+    "sample-brand-platform",
+    "sample-launch-campaign",
+    "sample-lead-journey",
+    "sample-lifecycle-notes",
+    "sample-search-program",
+    "sample-social-system"
+  ],
+  "team": [
+    {
+      "slug": "founder-ceo",
+      "name": "Don Tran",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "cofounder-cto",
+      "name": "Joshua Mendoza",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "cfo",
+      "name": "Lin Jiayi",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "project-manager",
+      "name": "Pongsak Rattanakul",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "senior-fullstack-developer",
+      "name": "Dmytro Melnyk",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "ai-engineer",
+      "name": "Carlo Garcia",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "mobile-app-developer",
+      "name": "Matheus Pereira",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "uiux-product-designer",
+      "name": "Adrian Cruz",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    },
+    {
+      "slug": "qa-devops-engineer",
+      "name": "Sofia Vasylivna Melnyk",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "has_portrait": true
+    }
+  ],
+  "projects": [
+    {
+      "slug": "born-to-rock",
+      "title": "Born To Rock — Mobile Rhythm Game",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/born-to-rock/rock-1.png",
+          "bytes": 1850803,
+          "sha256": "b7002ce7c4d414fa3c0be5df0cba5e7e9927cc266fd2834a7b422c4a44fcdb60"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/born-to-rock/rock-2.png",
+          "bytes": 957248,
+          "sha256": "24c09d7d0252bbc30d04d57430d9ac924a88de8b78354652ccbee2373ebf8746"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/born-to-rock/rock-3.png",
+          "bytes": 970142,
+          "sha256": "fa03aa8d66fbbcce16a67e4c35e07f24e22db46f143ed81f5ab4056721cd811e"
+        }
+      ]
+    },
+    {
+      "slug": "daniela-diamonds",
+      "title": "Daniela Diamonds — Jewelry E-commerce Storefront UI",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/daniela-diamonds/daniela-01-home.jpg",
+          "bytes": 193050,
+          "sha256": "5a542ede53b1ffb7b0625236e0e4c110660760fbc233d82601580e90b07daee9"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/daniela-diamonds/daniela-02-ring-builder.jpg",
+          "bytes": 103156,
+          "sha256": "aec5d999ce8dc63ce6ad96bed2fbe311c14e48cd5860f36b7f12ea757343b753"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/daniela-diamonds/daniela-03-product.jpg",
+          "bytes": 91335,
+          "sha256": "e80599a272cd3eb8aeee91cb1f7e60199ffe65764874913ce292fe60e6c77106"
+        }
+      ]
+    },
+    {
+      "slug": "gain-energy-upstrima",
+      "title": "Gain Energy / Upstrima — Website for an AI-Powered Energy Platform",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/gain-energy-upstrima/gain-01-home.jpg",
+          "bytes": 133960,
+          "sha256": "209e3d49c50a184cbb077a5e41703d286f231e6abcf6790de649bab6b259b6e7"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/gain-energy-upstrima/gain-02-features.jpg",
+          "bytes": 98744,
+          "sha256": "e210db5c72f39dc1bc5cd8ac2dcf778b44db5b04a7644a50f9f19cdecd57479c"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/gain-energy-upstrima/gain-03-cases.jpg",
+          "bytes": 86990,
+          "sha256": "71426b4267c9377b44add359db1321450cf5bbb60768d52ff1da67e635334659"
+        }
+      ]
+    },
+    {
+      "slug": "gowabi",
+      "title": "GoWabi — Beauty & Wellness Marketing Website",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/gowabi/gowabi-01-home.jpg",
+          "bytes": 106170,
+          "sha256": "0ab82abc1eaf32f52bbc71a880b1d7bc67b835b7fcae6d19570799e48d0b35c0"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/gowabi/gowabi-02-listings.jpg",
+          "bytes": 128128,
+          "sha256": "cbdda286e69d96e4b7562022e16ab4ad085b4b2eb10053d87aa01a910470d162"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/gowabi/gowabi-03-venue.jpg",
+          "bytes": 145038,
+          "sha256": "38d539ceb23346d03bb75d45d3f4563dd3b405153694a87dc400bf02c29dd948"
+        }
+      ]
+    },
+    {
+      "slug": "medastare",
+      "title": "MedaStaré — AI Fashion & Lifestyle Mobile App",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/medastare/meda-1.png",
+          "bytes": 870302,
+          "sha256": "b57b9eba64daa5a6d2b16bc4f71017dbf4b453a8e6a77d93084a19a4ece9f636"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/medastare/meda-2.png",
+          "bytes": 691980,
+          "sha256": "19c26ac04d661685dd8f0ab72e1ec1919d0e59db3c44768057c566f12250252a"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/medastare/meda-3-wardrobe.png",
+          "bytes": 502888,
+          "sha256": "8d14fef1cccc005b5e29a3dc5cc40fd0d8701b1744ad0133748914e43f1b0dad"
+        }
+      ]
+    },
+    {
+      "slug": "scaleup-systems",
+      "title": "ScaleUp Systems — Marketing Website for an AI Sales Platform",
+      "source_publicationApproved": true,
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "screenshots": [
+        {
+          "sort": 1,
+          "src": "/assets/portfolio/scaleup-systems/scaleup-01-home.jpg",
+          "bytes": 100681,
+          "sha256": "9b4a8308e6aa967151da3e0fca1222e80d9ae4c9c2aefe267d15e106ef928a52"
+        },
+        {
+          "sort": 2,
+          "src": "/assets/portfolio/scaleup-systems/scaleup-02-analytics.jpg",
+          "bytes": 89817,
+          "sha256": "be1cc318eaee3e69b6d071501007c2e4a55892435b849d70689e5e46776c5d58"
+        },
+        {
+          "sort": 3,
+          "src": "/assets/portfolio/scaleup-systems/scaleup-03-pricing.jpg",
+          "bytes": 116149,
+          "sha256": "5f91982369a8e361583cc54e9e9d0f1625f07374ec5a9069699285560c1f93fc"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "slug": "web-application-development",
+      "title": "Web Development",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "mobile-app-development",
+      "title": "Mobile Apps",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "ai-intelligent-automation",
+      "title": "AI Solutions",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "saas-platform-development",
+      "title": "SaaS Development",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "backend-api-engineering",
+      "title": "Backend & APIs",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "cloud-devops",
+      "title": "Cloud & DevOps",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "ui-ux-product-design",
+      "title": "UI/UX Design",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    },
+    {
+      "slug": "qa-software-testing",
+      "title": "QA & Testing",
+      "cms_status": "draft",
+      "cms_publication_approved": false
+    }
+  ],
+  "insights": [
+    {
+      "slug": "deploying-applications-with-confidence",
+      "title": "A Lean Release Setup for a Startup",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "api-habits-for-a-small-product-team",
+      "title": "API Habits for a Small Product Team",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "what-startups-should-know-about-ai-integration",
+      "title": "What Startups Should Know About AI Integration",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "how-to-plan-a-custom-software-project",
+      "title": "How to Plan a Custom Software Project",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "building-scalable-web-applications",
+      "title": "Building Scalable Web Applications",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "ux-and-qa-before-a-product-launch",
+      "title": "UX and QA Checks Before a Product Launch",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "choosing-architecture-for-a-saas-product",
+      "title": "Architecture for an Early-Stage SaaS Product",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "improving-mobile-application-performance",
+      "title": "Improving Mobile Application Performance",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "building-maintainable-saas-applications",
+      "title": "Building Maintainable SaaS Applications",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "native-vs-cross-platform-apps",
+      "title": "Choosing Between Native and Cross-Platform Apps",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "integrating-ai-into-existing-applications",
+      "title": "Integrating AI Into Existing Applications",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    },
+    {
+      "slug": "planning-an-mvp-for-a-startup",
+      "title": "Planning an MVP for a Startup",
+      "cms_status": "draft",
+      "cms_publication_approved": false,
+      "published_at": null
+    }
+  ],
+  "homepage_video": {
+    "path": "/videos/vortex-team-showcase.mp4",
+    "working_tree_bytes": 13032156,
+    "working_tree_sha256": "f0bff0fb6c5d87361e1c0327e14cfb2ec353e03ad7a917a28ed18954c0ccf91c",
+    "working_tree_duration_sec_approx": 30,
+    "step9f_historical_optimized_bytes": 4718893,
+    "imported_to_cms": true,
+    "cms_file_id_redacted": true,
+    "reason": "Owner confirmed the current 30-second working-tree MP4 is the chosen homepage film. Imported into Directus as additive 29th file and linked on homepage_content.team_film_video. Astro public path and homepage layout unchanged. Step 9F 4,718,893-byte optimized copy was not restored (absent from git)."
+  },
+  "homepage_poster": {
+    "path": "/videos/vortex-team-poster.webp",
+    "bytes": 95264,
+    "sha256": "f5fcd3f8069cbc418b18e5b8700eab4c4b109063ec86ecebac5e9448fd4cd393",
+    "imported_to_cms": true
+  },
+  "privacy": {
+    "anonymous_custom_collections": 403,
+    "anonymous_files": 403,
+    "anonymous_assets": 403
+  },
+  "notes": [
+    "All CMS editorial records staged as draft + publication_approved=false",
+    "Source Astro publicationApproved flags unchanged",
+    "Private IDs live in cms/.tmp/step-10b-private-manifest.json (gitignored)"
+  ]
+}

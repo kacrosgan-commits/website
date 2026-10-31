@@ -4,6 +4,14 @@ import Footer from "../components/layout/Footer.astro";
 import Header from "../components/layout/Header.astro";
 import { site } from "../data/site";
 import { absoluteUrl, jsonLd } from "../utils/format";
+import { ensureContentMode, getContentSource } from "../lib/content";
+
+// Default remains local. cms-shadow is audited via scripts (no draft leak into HTML).
+// cms mode fails closed here until owner-approved baseline exists.
+const contentSource = getContentSource();
+if (contentSource === "cms") {
+  await ensureContentMode();
+}
 
 interface Props {
   title: string;

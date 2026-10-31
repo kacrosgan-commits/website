@@ -1,6 +1,7 @@
 ---
 import { adjacentMembers, getMember, publicName, type TeamMember } from "../../data/team";
 import OutlineButton from "../ui/OutlineButton.astro";
+import { getTeamForRender, getTeamMemberForRender, isCmsRenderMode } from "../../lib/content/site-content";
 
 interface Props {
   member: TeamMember;
@@ -8,7 +9,16 @@ interface Props {
 
 const { member } = Astro.props;
 const name = publicName(member);
-const { previous, next } = adjacentMembers(member.slug);
+const { previous, next } = isCmsRenderMode()
+  ? (() => {
+      const roster = getTeamForRender();
+      const index = roster.findIndex((item) => item.slug === member.slug);
+      return {
+        previous: roster[(index - 1 + roster.length) % roster.length],
+        next: roster[(index + 1) % roster.length],
+      };
+    })()
+  : adjacentMembers(member.slug);
 const badge = member.isPublished
   ? ""
   : member.portrait.source === "supplied"
@@ -180,7 +190,7 @@ const links = [
       <ul class="mt-10 grid gap-4 md:grid-cols-3">
         {
           member.related.map((item) => {
-            const person = getMember(item.slug);
+            const person = isCmsRenderMode() ? getTeamMemberForRender(item.slug) : getMember(item.slug);
             if (!person) return null;
             return (
               <li>

@@ -15,7 +15,19 @@
     "lint": "astro check",
     "typecheck": "astro check",
     "test": "node --test tests/unit/*.test.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "cms:setup-identities": "node scripts/cms-setup-identities-10c.mjs",
+    "cms:shadow": "node scripts/cms-shadow-audit.mjs",
+    "cms:readiness": "node scripts/cms-published-readiness.mjs",
+    "cms:media": "node scripts/cms-build-media.mjs",
+    "cms:rollback-check": "node scripts/cms-rollback-check.mjs",
+    "cms:release:plan": "node scripts/cms-release-plan.mjs",
+    "cms:release:verify": "node scripts/cms-release-verify.mjs",
+    "cms:release:activate": "node scripts/cms-release-activate.mjs",
+    "cms:release:rollback": "node scripts/cms-release-rollback.mjs",
+    "cms:fixture:seed": "node scripts/cms-fixture-release.mjs",
+    "cms:fixture:rehearsal": "node scripts/cms-fixture-rehearsal.mjs",
+    "cms:build-local": "node scripts/cms-build-local.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.3",

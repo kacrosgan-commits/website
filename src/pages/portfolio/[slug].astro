@@ -1,28 +1,69 @@
 ---
 import CaseStudy from "../../components/portfolio/CaseStudy.astro";
+import CmsCaseStudy from "../../components/portfolio/CmsCaseStudy.astro";
 import { isPublicProject, isReviewProject } from "../../utils/portfolio";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { getContentSource } from "../../lib/content/source";
+import { getProjectsForRender } from "../../lib/content/site-content";
+import type { NormalizedProject } from "../../lib/content/types";
 
 export async function getStaticPaths() {
+  if (getContentSource() === "cms") {
+    return getProjectsForRender().map((project) => ({
+      params: { slug: project.slug },
+      props: { mode: "cms" as const, cmsProject: project },
+    }));
+  }
+
   const projects = await getCollection("caseStudies");
   const dev = import.meta.env.DEV;
   return projects
     .filter((project) => isPublicProject(project.data) || isReviewProject(project.data, dev))
-    .map((project) => ({ params: { slug: project.id }, props: { project } }));
+    .map((project) => ({
+      params: { slug: project.id },
+      props: { mode: "local" as const, project },
+    }));
 }
 
-const { project } = Astro.props;
-const dev = import.meta.env.DEV;
-const projects = await getCollection("caseStudies");
-const related = projects
-  .filter((entry) => entry.id !== project.id && isPublicProject(entry.data))
-  .sort((a, b) => a.data.homeRank - b.data.homeRank);
-const reviewPeers =
-  project.data.review && !project.data.publicationApproved
-    ? projects
-        .filter((entry) => entry.id !== project.id && isReviewProject(entry.data, dev))
-        .sort((a, b) => a.data.homeRank - b.data.homeRank)
-    : [];
+interface CmsProps {
+  mode: "cms";
+  cmsProject: NormalizedProject;
+}
+
+interface LocalProps {
+  mode: "local";
+  project: CollectionEntry<"caseStudies">;
+}
+
+type Props = CmsProps | LocalProps;
+const props = Astro.props as Props;
+
+let relatedLocal: CollectionEntry<"caseStudies">[] = [];
+let reviewPeers: CollectionEntry<"caseStudies">[] = [];
+let relatedCms: NormalizedProject[] = [];
+
+if (props.mode === "cms") {
+  relatedCms = getProjectsForRender().filter((entry) => entry.slug !== props.cmsProject.slug);
+} else {
+  const project = props.project;
+  const dev = import.meta.env.DEV;
+  const projects = await getCollection("caseStudies");
+  relatedLocal = projects
+    .filter((entry) => entry.id !== project.id && isPublicProject(entry.data))
+    .sort((a, b) => a.data.homeRank - b.data.homeRank);
+  reviewPeers =
+    project.data.review && !project.data.publicationApproved
+      ? projects
+          .filter((entry) => entry.id !== project.id && isReviewProject(entry.data, dev))
+          .sort((a, b) => a.data.homeRank - b.data.homeRank)
+      : [];
+}
 ---
 
-<CaseStudy project={project} related={related} reviewPeers={reviewPeers} />
+{
+  props.mode === "cms" ? (
+    <CmsCaseStudy project={props.cmsProject} related={relatedCms} />
+  ) : (
+    <CaseStudy project={props.project} related={relatedLocal} reviewPeers={reviewPeers} />
+  )
+}

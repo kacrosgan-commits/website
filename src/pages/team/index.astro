@@ -5,13 +5,16 @@ import WorkTogether from "../../components/team/WorkTogether.astro";
 import PageHero from "../../components/ui/PageHero.astro";
 import { assets } from "../../data/assets";
 import { site } from "../../data/site";
-import { team } from "../../data/team";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTeamForRender, isCmsRenderMode } from "../../lib/content/site-content";
+
+const team = getTeamForRender();
+const cms = isCmsRenderMode();
 ---
 
 <BaseLayout
   title="Team"
-  description={`Meet the nine people behind ${site.name}: leadership, engineering, design, delivery, and quality for startup products.`}
+  description={`Meet the ${team.length} people behind ${site.name}: leadership, engineering, design, delivery, and quality for startup products.`}
 >
   <PageHero
     eyebrow="Our team"
@@ -25,7 +28,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="container-page">
       <h2 id="roster-heading" class="sr-only">Team roster</h2>
       <p class="mb-8 max-w-3xl text-muted">
-        Nine named profiles, in role order. Portraits were assigned by the agency owner. Collaboration scenes further down are illustrations, not photographs of these people at work, and no profile is tied to a client case study.
+        {
+          cms
+            ? `${team.length} profiles from the active CMS release, in role order.`
+            : "Nine named profiles, in role order. Portraits were assigned by the agency owner. Collaboration scenes further down are illustrations, not photographs of these people at work, and no profile is tied to a client case study."
+        }
       </p>
       <div class="team-roster">
         {team.map((member) => <TeamCard member={member} />)}

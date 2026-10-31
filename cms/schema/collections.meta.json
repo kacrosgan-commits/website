@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-29T10:05:06.423Z",
+  "directus_public_url": "http://127.0.0.1:8055",
+  "custom_collections": [
+    "homepage_content",
+    "insights_articles",
+    "page_sections",
+    "portfolio_projects",
+    "portfolio_screenshots",
+    "services",
+    "site_settings",
+    "team_members"
+  ],
+  "collection_count": 8,
+  "core_tier_limit": 25,
+  "note": "Collections created via REST. Re-run apply-schema.mjs is safe. No live content imported."
+}

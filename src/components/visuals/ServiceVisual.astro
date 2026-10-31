@@ -156,10 +156,17 @@ const diagrams: Record<string, Diagram> = {
 };
 
 const { slug, title } = Astro.props;
-const diagram = diagrams[slug];
-if (!diagram) {
-  throw new Error(`Missing service diagram: ${slug}`);
-}
+const diagram =
+  diagrams[slug] ??
+  ({
+    label: `Conceptual diagram placeholder for ${title}.`,
+    caption: "Diagram for this service slug is code-owned and not yet defined. CMS supplies title and summary only.",
+    nodes: [
+      { id: "scope", x: 140, y: 160, w: 180, h: 96, label: "Scope", detail: title },
+      { id: "build", x: 360, y: 160, w: 180, h: 96, label: "Build", detail: "Delivery" },
+    ],
+    edges: [["scope", "build"]],
+  } satisfies Diagram);
 
 const byId = new Map(diagram.nodes.map((node) => [node.id, node]));
 

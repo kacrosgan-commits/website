@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+uploads/*
+!uploads/.gitkeep
+extensions/*
+!extensions/.gitkeep
+data/
+*.sql
+*.dump
+*.log
+.tmp/
+.cache/
+credentials.json
+**/id_map.json
+
+backups/

@@ -80,7 +80,8 @@ test("stylesheet breakpoints use rem so they follow the browser text size like T
 test("the homepage team film uses the supplied silent MP4 and poster", () => {
   const video = path.join(root, "public/videos/vortex-team-showcase.mp4");
   const poster = path.join(root, "public/videos/vortex-team-poster.webp");
-  assert.equal(fs.statSync(video).size, 4_718_893);
+  // Owner-chosen working-tree film (30s). Step 9F's 4,718,893-byte optimized copy is not in git.
+  assert.equal(fs.statSync(video).size, 13_032_156);
   assert.equal(fs.statSync(poster).size, 95_264);
   assert.deepEqual(webpSize(poster), [1280, 720]);
   const homepage = fs.readFileSync(path.join(root, "src/pages/index.astro"), "utf8");

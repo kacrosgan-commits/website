@@ -16,21 +16,56 @@ import { assets } from "../data/assets";
 import { homeIntro, reasons } from "../data/about";
 import { faqs } from "../data/faq";
 import { processSteps } from "../data/process";
-import { featuredServices } from "../data/services";
+import { featuredServices as localFeaturedServices } from "../data/services";
 import { technologyGroups } from "../data/technologies";
 import { site } from "../data/site";
-import { publicName, team, workScene } from "../data/team";
+import { publicName, workScene } from "../data/team";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { homepageProjects } from "../utils/portfolio";
 import { comparePublicInsights, isPublicInsight } from "../utils/insights";
 import { getCollection } from "astro:content";
 import Icon from "../components/ui/Icon.astro";
+import { getContentSource } from "../lib/content/source";
+import {
+  getHomepageForRender,
+  getInsightsForRender,
+  getProjectsForRender,
+  getServicesForRender,
+  getTeamForRender,
+} from "../lib/content/site-content";
 
-const projects = homepageProjects(await getCollection("caseStudies"));
-const posts = (await getCollection("blog"))
-  .filter((post) => isPublicInsight(post.data))
-  .sort((a, b) => comparePublicInsights({ ...a.data, id: a.id }, { ...b.data, id: b.id }))
-  .slice(0, 3);
+const cms = getContentSource() === "cms";
+const team = getTeamForRender();
+const homepageCms = cms ? getHomepageForRender() : null;
+const localProjects = cms ? [] : homepageProjects(await getCollection("caseStudies"));
+const cmsProjects = cms
+  ? getProjectsForRender()
+      .filter((project) => project.featured || (homepageCms?.featuredProjectSlugs || []).includes(project.slug))
+      .sort((a, b) => a.homeRank - b.homeRank)
+      .slice(0, 3)
+  : [];
+const projectCount = cms ? cmsProjects.length : localProjects.length;
+const localPosts = cms
+  ? []
+  : (await getCollection("blog"))
+      .filter((post) => isPublicInsight(post.data))
+      .sort((a, b) => comparePublicInsights({ ...a.data, id: a.id }, { ...b.data, id: b.id }))
+      .slice(0, 3);
+const cmsPosts = cms ? getInsightsForRender().slice(0, 3) : [];
+const heroEyebrow = homepageCms?.heroEyebrow || "Software engineering for startups";
+const heroTitle = homepageCms?.heroTitle || "We Build Software That Moves Business Forward.";
+const heroLede =
+  homepageCms?.heroLede ||
+  `${site.name} helps startups design, build, and improve digital products: web and mobile applications, AI-powered software, and SaaS platforms with a foundation the team can keep changing.`;
+const primaryCta = homepageCms?.primaryCtaLabel || "Start Your Project";
+const primaryHref = homepageCms?.primaryCtaHref || "/contact";
+const secondaryCta = homepageCms?.secondaryCtaLabel || "Explore Our Services";
+const secondaryHref = homepageCms?.secondaryCtaHref || "/services";
+const featuredServices = cms
+  ? getServicesForRender()
+      .filter((service) => service.featured)
+      .slice(0, 8)
+  : localFeaturedServices;
 ---
 
 <BaseLayout
@@ -45,38 +80,40 @@ const posts = (await getCollection("blog"))
     description: site.description,
   }}
 >
-  <section class="relative overflow-hidden pt-28 pb-10 md:pt-32 md:pb-16">
-    <div class="ambient" aria-hidden="true">
-      <div class="orb orb-a"></div>
-      <div class="orb orb-b"></div>
-      <div class="grid-fade"></div>
+  <section class="photo-hero-bleed" aria-label="Introduction">
+    <div class="photo-hero">
+      <img
+        class="photo-hero-img"
+        src="/images/vortex-digital-hall.png"
+        alt="Vortex Digital company hall with reception desk, lounge, and branded signage"
+        width="1813"
+        height="868"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <img class="photo-hero-glow" src={assets.dashboard.glow} alt="" width="800" height="800" aria-hidden="true" />
+      <img class="photo-hero-atmo" src={assets.dashboard.atmosphere} alt="" width="1200" height="800" aria-hidden="true" />
+      <div class="photo-hero-exposure" aria-hidden="true"></div>
+      <div class="photo-hero-specular" aria-hidden="true"></div>
     </div>
-    <div class="container-page relative">
-      <div class="photo-hero">
-          <img
-            class="photo-hero-img"
-            src={assets.aboutPhoto}
-            alt="A dark conference room with a laptop on the table, purple lighting, and a city skyline"
-            width="1448"
-            height="1086"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        <img class="photo-hero-glow" src={assets.dashboard.glow} alt="" width="800" height="800" />
-        <img class="photo-hero-atmo" src={assets.dashboard.atmosphere} alt="" width="1200" height="800" />
-        <div class="photo-hero-copy">
-          <p class="eyebrow hero-in">Software engineering for startups</p>
-          <h1 class="photo-hero-title hero-in hero-in-2 mt-5">
-            We Build Software That Moves Business <span class="text-gradient">Forward.</span>
-          </h1>
-          <p class="lede hero-in hero-in-3 mt-6 max-w-xl">
-            {site.name} helps startups design, build, and improve digital products: web and mobile applications, AI-powered software, and SaaS platforms with a foundation the team can keep changing.
-          </p>
-          <div class="hero-in hero-in-4 mt-8 flex flex-wrap gap-3">
-            <GradientButton href="/contact">Start Your Project</GradientButton>
-            <OutlineButton href="/services">Explore Our Services</OutlineButton>
-          </div>
+    <div class="photo-hero-aura" aria-hidden="true"></div>
+    <div class="container-page photo-hero-content">
+      <div class="photo-hero-copy">
+        <p class="eyebrow hero-in">{heroEyebrow}</p>
+        <h1 class="photo-hero-title hero-in hero-in-2 mt-5">
+          {heroTitle.includes("Forward") ? (
+            <>
+              {heroTitle.replace(/\s*Forward\.?$/, "")} <span class="text-gradient">Forward.</span>
+            </>
+          ) : (
+            heroTitle
+          )}
+        </h1>
+        <p class="lede hero-in hero-in-3 mt-6 max-w-xl">{heroLede}</p>
+        <div class="hero-in hero-in-4 mt-8 flex flex-wrap gap-3">
+          <GradientButton href={primaryHref}>{primaryCta}</GradientButton>
+          <OutlineButton href={secondaryHref}>{secondaryCta}</OutlineButton>
         </div>
       </div>
     </div>
@@ -167,7 +204,7 @@ const posts = (await getCollection("blog"))
   </section>
 
   {
-    projects.length > 0 ? (
+    projectCount > 0 ? (
       <section class="section reveal" aria-labelledby="work-heading">
         <div class="container-page">
           <div class="flex flex-wrap items-end justify-between gap-6">
@@ -176,9 +213,25 @@ const posts = (await getCollection("blog"))
             </SectionHeading>
             <OutlineButton href="/portfolio">View our work</OutlineButton>
           </div>
-          <div class:list={["mt-12 grid gap-5", projects.length === 5 ? "card-grid-five" : projects.length === 2 || projects.length === 4 ? "md:grid-cols-2" : "md:grid-cols-2 xl:grid-cols-3"]}>
-            {projects.map((project) => <ProjectCard project={project} />)}
-          </div>
+          {cms ? (
+            <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {cmsProjects.map((project) => (
+                <article class="surface-card overflow-hidden p-6">
+                  <p class="text-sm text-muted">{project.client}</p>
+                  <h3 class="mt-2 font-display text-2xl">
+                    <a class="hover:text-lavender" href={`/portfolio/${project.slug}/`}>
+                      {project.cardTitle || project.title}
+                    </a>
+                  </h3>
+                  <p class="mt-3 text-muted">{project.cardSummary || project.description}</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class:list={["mt-12 grid gap-5", localProjects.length === 5 ? "card-grid-five" : localProjects.length === 2 || localProjects.length === 4 ? "md:grid-cols-2" : "md:grid-cols-2 xl:grid-cols-3"]}>
+              {localProjects.map((project) => <ProjectCard project={project} />)}
+            </div>
+          )}
         </div>
       </section>
     ) : (
@@ -253,17 +306,33 @@ const posts = (await getCollection("blog"))
   </section>
 
   {
-    posts.length > 0 && (
+    (cms ? cmsPosts.length > 0 : localPosts.length > 0) && (
       <section class="section reveal bg-ink-soft/40" aria-labelledby="insights-heading">
         <div class="container-page">
           <SectionHeading eyebrow="Insights" description="Approved notes on building software. Drafts stay off this page.">
             <span id="insights-heading">Notes from the engineering team.</span>
           </SectionHeading>
-          <div class="mt-12 grid gap-4 md:grid-cols-3">
-            {posts.map((post) => (
-              <BlogCard post={post} />
-            ))}
-          </div>
+          {cms ? (
+            <div class="mt-12 grid gap-4 md:grid-cols-3">
+              {cmsPosts.map((post) => (
+                <article class="surface-card p-6">
+                  <p class="text-sm text-muted">{post.category || "Insights"}</p>
+                  <h3 class="mt-3 font-display text-2xl font-semibold">
+                    <a class="hover:text-lavender" href={`/insights/${post.slug}/`}>
+                      {post.title}
+                    </a>
+                  </h3>
+                  <p class="mt-3 text-muted">{post.excerpt}</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="mt-12 grid gap-4 md:grid-cols-3">
+              {localPosts.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     )
