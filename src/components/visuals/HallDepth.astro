@@ -1,0 +1,59 @@
+---
+/** Architectural light over the hall photograph. CSS only, so the homepage does not load WebGL. */
+---
+
+<div class="hall-depth" data-hall-parallax aria-hidden="true">
+  <div class="hall-rig">
+    <span class="hall-fin hall-fin-a"></span>
+    <span class="hall-fin hall-fin-b"></span>
+    <span class="hall-fin hall-fin-c"></span>
+    <span class="hall-sill"></span>
+  </div>
+</div>
+
+<script>
+  const rig = document.querySelector("[data-hall-parallax]");
+  if (rig && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const hero = rig.closest(".photo-hero");
+    const host = rig.closest(".photo-hero-bleed");
+    const image = hero?.querySelector(".photo-hero-img");
+    if (host && image instanceof HTMLElement && rig instanceof HTMLElement) {
+      let tx = 0;
+      let ty = 0;
+      let cx = 0;
+      let cy = 0;
+      let frame = 0;
+      let stopped = false;
+      const apply = () => {
+        frame = 0;
+        if (stopped || document.hidden) return;
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        const fine = host.clientWidth >= 1024;
+        const shift = fine ? 8 : 4;
+        image.style.transform = `translate3d(${(cx * shift).toFixed(2)}px, ${(cy * shift * 0.5).toFixed(2)}px, 0) scale(1.025)`;
+        rig.style.transform = `translate3d(${(cx * -14).toFixed(2)}px, ${(cy * -8).toFixed(2)}px, 0)`;
+        if (Math.abs(tx - cx) > 0.004 || Math.abs(ty - cy) > 0.004) frame = requestAnimationFrame(apply);
+      };
+      const onMove = (event: Event) => {
+        if (stopped || !(event instanceof PointerEvent)) return;
+        const rect = host.getBoundingClientRect();
+        tx = (event.clientX - rect.left) / rect.width - 0.5;
+        ty = (event.clientY - rect.top) / rect.height - 0.5;
+        if (!frame) frame = requestAnimationFrame(apply);
+      };
+      const stop = () => {
+        stopped = true;
+        if (frame) cancelAnimationFrame(frame);
+        host.removeEventListener("pointermove", onMove);
+      };
+      host.addEventListener("pointermove", onMove, { passive: true });
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden || !frame) return;
+        cancelAnimationFrame(frame);
+        frame = 0;
+      });
+      window.addEventListener("pagehide", stop, { once: true });
+    }
+  }
+</script>

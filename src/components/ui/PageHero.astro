@@ -1,5 +1,7 @@
 ---
 import Breadcrumbs from "./Breadcrumbs.astro";
+import HeroStage from "../visuals/HeroStage.astro";
+import type { HeroScene } from "../../data/hero-scenes";
 
 interface Crumb {
   label: string;
@@ -10,24 +12,18 @@ interface Props {
   eyebrow: string;
   description: string;
   crumbs?: Crumb[];
-  scene?: string;
+  visual?: HeroScene;
+  labels?: string[];
+  plates?: string[];
+  /** When false, the hero stays on the CSS scene and does not load WebGL. */
+  live?: boolean;
 }
 
-const { eyebrow, description, crumbs = [], scene } = Astro.props;
+const { eyebrow, description, crumbs = [], visual = "editorial", labels, plates, live = true } = Astro.props;
 ---
 
 <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
-  {
-    scene ? (
-      <img class="scene-wash media-settle" src={scene} alt="" width="1920" height="800" />
-    ) : (
-      <div class="ambient" aria-hidden="true">
-        <div class="orb orb-a"></div>
-        <div class="orb orb-b"></div>
-        <div class="grid-fade"></div>
-      </div>
-    )
-  }
+  <HeroStage scene={visual} labels={labels} plates={plates} engine={live ? "webgl" : "css"} />
   <div class="container-page relative z-[1]">
     {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
     <p class="eyebrow hero-in">{eyebrow}</p>

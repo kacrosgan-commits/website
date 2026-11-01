@@ -12,7 +12,7 @@ import Stats from "../components/sections/Stats.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
 import GradientButton from "../components/ui/GradientButton.astro";
 import OutlineButton from "../components/ui/OutlineButton.astro";
-import { assets } from "../data/assets";
+import HallDepth from "../components/visuals/HallDepth.astro";
 import { homeIntro, reasons } from "../data/about";
 import { faqs } from "../data/faq";
 import { processSteps } from "../data/process";
@@ -92,8 +92,7 @@ const featuredServices = cms
         fetchpriority="high"
         decoding="async"
       />
-      <img class="photo-hero-glow" src={assets.dashboard.glow} alt="" width="800" height="800" aria-hidden="true" />
-      <img class="photo-hero-atmo" src={assets.dashboard.atmosphere} alt="" width="1200" height="800" aria-hidden="true" />
+      <HallDepth />
       <div class="photo-hero-exposure" aria-hidden="true"></div>
       <div class="photo-hero-specular" aria-hidden="true"></div>
     </div>

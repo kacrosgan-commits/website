@@ -1,4 +1,5 @@
 ---
+import HeroStage from "../visuals/HeroStage.astro";
 import { adjacentMembers, getMember, publicName, type TeamMember } from "../../data/team";
 import OutlineButton from "../ui/OutlineButton.astro";
 import { getTeamForRender, getTeamMemberForRender, isCmsRenderMode } from "../../lib/content/site-content";
@@ -31,8 +32,9 @@ const links = [
 ].filter((link) => link !== null);
 ---
 
-<article class="pt-28 pb-8 md:pt-32">
-  <div class="container-page">
+<article class="relative isolate pt-28 pb-8 md:pt-32">
+  <HeroStage scene="profile" band quiet />
+  <div class="container-page relative z-[1]">
     <p class="text-sm">
       <a href="/team" class="text-lavender hover:text-paper">Back to Team</a>
     </p>

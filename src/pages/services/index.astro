@@ -5,7 +5,7 @@ import CtaSection from "../../components/sections/CtaSection.astro";
 import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
 import { getService, serviceFlow, serviceNeeds } from "../../data/services";
 import { processSteps } from "../../data/process";
-import { assets } from "../../data/assets";
+import HeroStage from "../../components/visuals/HeroStage.astro";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getServiceForRender, getServicesForRender, isCmsRenderMode } from "../../lib/content/site-content";
@@ -30,7 +30,7 @@ const linkedNeeds = cms
   fullTitle
 >
   <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-32">
-    <img class="scene-wash media-settle" src={assets.backgrounds.servicesSpheres} alt="" width="1920" height="800" />
+    <HeroStage scene="architecture" />
     <div class="container-page relative z-[1]">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services" }]} />
       <p class="eyebrow hero-in">Our expertise</p>

@@ -2,7 +2,6 @@
 import ProjectCard from "../../components/cards/ProjectCard.astro";
 import CtaSection from "../../components/sections/CtaSection.astro";
 import PageHero from "../../components/ui/PageHero.astro";
-import { assets } from "../../data/assets";
 import { services as localServices } from "../../data/services";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -32,6 +31,9 @@ if (!cms) {
 }
 
 const projectCount = cms ? cmsProjects.length : projectsLocal.length;
+const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0]?.src) : projectsLocal.map((project) => project.data.screenshots[0]?.src))
+  .filter((src): src is string => Boolean(src))
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -50,7 +52,8 @@ const projectCount = cms ? cmsProjects.length : projectsLocal.length;
         ? "Digital Products Across Industries."
         : "Case studies appear here after the work and the right to publish it are confirmed. Until then, the services below describe what the studio takes on."
     }
-    scene={assets.backgrounds.portfolioPortal}
+    visual="showcase"
+    plates={showcasePlates}
     crumbs={[{ label: "Home", href: "/" }, { label: "Selected Work" }]}
   >
     Selected Work

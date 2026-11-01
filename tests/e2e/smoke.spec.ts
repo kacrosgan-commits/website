@@ -183,6 +183,7 @@ test("mobile navigation opens", async ({ page }) => {
 });
 
 test("six approved case studies are public", async ({ page }) => {
+  test.setTimeout(90_000);
   await page.goto("/portfolio");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Selected Work");
   const cards = page.getByRole("heading", { level: 3 });

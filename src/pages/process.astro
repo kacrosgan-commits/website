@@ -2,7 +2,6 @@
 import CtaSection from "../components/sections/CtaSection.astro";
 import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
 import PageHero from "../components/ui/PageHero.astro";
-import { assets } from "../data/assets";
 import { processSteps } from "../data/process";
 import { site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -20,7 +19,8 @@ const cmsProcessSections = cms ? getPageSectionsForRender("process") : [];
   <PageHero
     eyebrow={cmsProcessSections[0]?.eyebrow || "Our process"}
     description={cmsProcessSections[0]?.body || "Six engineering stages. Scope and timing are agreed in a proposal, not assumed from this page."}
-    scene={assets.backgrounds.processOrbit}
+    visual="pipeline"
+    labels={processSteps.map((step) => step.homeTitle || step.title)}
     crumbs={[{ label: "Home", href: "/" }, { label: "Our Process" }]}
   >
     {cmsProcessSections[0]?.title || (

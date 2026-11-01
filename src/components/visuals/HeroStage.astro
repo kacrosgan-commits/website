@@ -1,0 +1,88 @@
+---
+import { defaultHeroLabels, type HeroScene } from "../../data/hero-scenes";
+
+interface Props {
+  scene: HeroScene;
+  labels?: string[];
+  plates?: string[];
+  /** CSS perspective only. WebGL is skipped. */
+  engine?: "webgl" | "css";
+  /** Softer scrim when a diagram, portrait, or screenshot already occupies the hero. */
+  quiet?: boolean;
+  /** Limit the scene to the top of a long article. */
+  band?: boolean;
+}
+
+const { scene, labels, plates = [], engine = "webgl", quiet = false, band = false } = Astro.props;
+const cards = (labels?.length ? labels : defaultHeroLabels[scene]).slice(0, 6);
+const shots = plates.filter(Boolean).slice(0, 3);
+---
+
+<div
+  class:list={["hero-stage-3d", quiet && "is-quiet", band && "is-band"]}
+  data-hero-stage={scene}
+  data-engine={engine}
+  data-labels={cards.join("|")}
+  data-plates={shots.join("|")}
+  data-quiet={quiet ? "true" : "false"}
+  aria-hidden="true"
+>
+  <div class:list={["stage-world", `scene-${scene}`]}>
+    {
+      scene === "workspace" ? (
+        <div class="room">
+          <div class="room-wall room-wall-back"></div>
+          <div class="room-wall room-wall-side"></div>
+          <div class="room-floor"></div>
+          <div class="room-desk"></div>
+          <div class="room-screen"><i></i><i></i><i></i></div>
+        </div>
+      ) : scene === "showcase" || scene === "study" ? (
+        shots.length > 0 ? (
+          shots.map((src, index) => (
+            <figure class={`plate plate-${index + 1}`}>
+              <img src={src} alt="" width="640" height="400" loading="lazy" decoding="async" />
+            </figure>
+          ))
+        ) : (
+          cards.slice(0, 3).map((label, index) => (
+            <div class={`mod mod-${index + 1}`}>
+              <b>{label}</b>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+          ))
+        )
+      ) : (
+        cards.map((label, index) => (
+          <div class={`mod mod-${index + 1}`}>
+            <b>{label}</b>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        ))
+      )
+    }
+  </div>
+  <div class="hero-stage-scrim"></div>
+  {engine === "webgl" && <canvas class="hero-stage-canvas"></canvas>}
+</div>
+
+<script>
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stages = document.querySelectorAll("[data-hero-stage]");
+  if (!reduced && stages.length) {
+    import("../../scripts/hero-parallax.ts").then((mod) => mod.mountHeroParallax());
+    const needsWebgl = [...stages].some((stage) => stage.getAttribute("data-engine") !== "css");
+    if (needsWebgl) {
+      const start = () => {
+        import("../../scripts/hero-stage.ts")
+          .then((mod) => mod.mountHeroStages())
+          .catch(() => {});
+      };
+      window.requestIdleCallback(start, { timeout: 1600 });
+    }
+  }
+</script>

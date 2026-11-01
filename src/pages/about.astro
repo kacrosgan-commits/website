@@ -2,11 +2,10 @@
 import TeamCard from "../components/cards/TeamCard.astro";
 import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
 import CtaSection from "../components/sections/CtaSection.astro";
-import MediaFrame from "../components/ui/MediaFrame.astro";
 import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import Icon from "../components/ui/Icon.astro";
 import OutlineButton from "../components/ui/OutlineButton.astro";
-import { assets } from "../data/assets";
+import HeroStage from "../components/visuals/HeroStage.astro";
 import { about, buildServices } from "../data/about";
 import { processSteps } from "../data/process";
 import { site } from "../data/site";
@@ -38,7 +37,7 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
   fullTitle
 >
   <section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
-    <img class="scene-wash media-settle" src={assets.backgrounds.aboutOrbit} alt="" width="1920" height="800" />
+    <HeroStage scene="workspace" />
     <div class="container-page relative z-[1]">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About Us" }]} />
       {
@@ -63,16 +62,6 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
           <p class="lede hero-in hero-in-3 mt-6 max-w-xl">{about.heroDescription}</p>
           <p class="mt-6 max-w-xl text-sm font-medium tracking-wide text-lavender">{site.tagline}</p>
         </div>
-        <MediaFrame
-          src={assets.aboutPhoto}
-          alt="A dark engineering workspace in violet light"
-          width={1448}
-          height={1086}
-          class="media-settle aspect-[4/3]"
-          position="center"
-          loading="eager"
-          fetchpriority="high"
-        />
       </div>
     </div>
   </section>
