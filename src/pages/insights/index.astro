@@ -46,7 +46,7 @@ const ready = cms ? cmsArticles.length > 0 : posts.length > 0;
         ? "Approved notes for founders and product teams. Drafts are not listed here."
         : "Articles appear here only after the owner approves them. The services and portfolio pages describe the work until then."
     }
-    scene={assets.backgrounds.blogPanels}
+    visual="editorial"
     crumbs={[{ label: "Home", href: "/" }, { label: "Insights" }]}
   >
     {ready ? "Notes on building software." : "Insights are being prepared."}
