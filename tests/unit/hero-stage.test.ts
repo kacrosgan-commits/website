@@ -37,9 +37,9 @@ test("decorative hero svgs are gone and the protected content is still in place"
   }
   assert.match(read("src/pages/about.astro"), /HeroStage scene="workspace"/);
   assert.doesNotMatch(read("src/pages/about.astro"), /A dark engineering workspace in violet light/);
-  assert.match(read("src/pages/index.astro"), /vortex-digital-hall\.png/);
-  assert.match(read("src/pages/index.astro"), /HallDepth/);
-  assert.doesNotMatch(read("src/pages/index.astro"), /purple-glow|purple-atmosphere/);
+  assert.match(read("src/pages/index.astro"), /HomeProductHero/);
+  assert.match(read("src/pages/index.astro"), /View Our Work/);
+  assert.doesNotMatch(read("src/pages/index.astro"), /vortex-digital-hall\.png|HallDepth|purple-glow|purple-atmosphere/);
   const form = read("src/components/forms/ContactForm.astro");
   assert.match(form, /this site won't send it/);
   const film = read("src/components/sections/TeamShowcase.astro");

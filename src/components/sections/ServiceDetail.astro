@@ -20,6 +20,7 @@ const variant = index % 3;
 
 <article class="service-page" data-variant={variant}>
   <header class="service-hero">
+    <HeroStage scene="service" labels={serviceHeroLabels[service.slug] ?? service.tags.slice(0, 3)} quiet />
     <div>
       <p class="eyebrow hero-in">For startups</p>
       <h1 class="page-title hero-in hero-in-2 mt-4">{service.title}</h1>

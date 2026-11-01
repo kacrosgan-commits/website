@@ -43,7 +43,7 @@ test("main heroes mount a live scene without page errors", async ({ page }) => {
     await page.goto(path, { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     if (path === "/") {
-      await expect(page.locator("[data-hall-parallax]")).toHaveCount(1);
+      await expect(page.locator("[data-home-showcase]")).toHaveCount(1);
       await expect(page.locator(".hero-stage-3d")).toHaveCount(0);
     } else {
       await expect(page.locator("[data-hero-stage]")).toHaveCount(1);

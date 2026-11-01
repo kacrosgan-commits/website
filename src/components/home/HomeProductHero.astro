@@ -1,0 +1,238 @@
+---
+import GradientButton from "../ui/GradientButton.astro";
+import OutlineButton from "../ui/OutlineButton.astro";
+import { cardCopy } from "../../utils/images";
+
+export interface HeroShowcaseItem {
+  slug: string;
+  title: string;
+  href: string;
+  summary: string;
+  category: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  layout: "web" | "mobile";
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
+  showcase: HeroShowcaseItem[];
+  proof?: { label: string; value: string }[];
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  showcase,
+  proof = [],
+} = Astro.props;
+
+const titleParts = title.includes("Forward")
+  ? { lead: title.replace(/\s*Forward\.?$/, ""), accent: "Forward." }
+  : null;
+
+const panels = showcase.slice(0, 3).map((item) => ({
+  ...item,
+  card: cardCopy(item.src),
+  shortTitle: item.title.split(" — ")[0] || item.title,
+}));
+---
+
+<section class="home-hero" aria-label="Introduction">
+  <div class="home-hero-aura" aria-hidden="true"></div>
+  <div class="container-page home-hero-grid">
+    <div class="home-hero-copy">
+      <p class="eyebrow hero-in">{eyebrow}</p>
+      <h1 class="home-hero-title hero-in hero-in-2">
+        {
+          titleParts ? (
+            <>
+              {titleParts.lead} <span class="text-gradient">{titleParts.accent}</span>
+            </>
+          ) : (
+            title
+          )
+        }
+      </h1>
+      <p class="lede hero-in hero-in-3 mt-6 max-w-xl">{lede}</p>
+      <div class="hero-in hero-in-4 mt-8 flex flex-wrap gap-3">
+        <GradientButton href={primaryHref}>{primaryLabel}</GradientButton>
+        <OutlineButton href={secondaryHref}>{secondaryLabel}</OutlineButton>
+      </div>
+      {
+        proof.length > 0 && (
+          <ul class="home-proof hero-in hero-in-4" aria-label="Verified site facts">
+            {proof.map((item) => (
+              <li>
+                <span class="home-proof-value">{item.value}</span>
+                <span class="home-proof-label">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    {
+      panels.length > 0 && (
+        <div class="home-showcase" data-home-showcase>
+          <div class="home-showcase-stage" data-showcase-stage>
+            {
+              panels.map((item, index) => (
+                <a
+                  class:list={["home-showcase-panel", `is-${item.layout}`, index === 0 && "is-active"]}
+                  href={item.href}
+                  data-showcase-panel
+                  data-index={index}
+                  data-caption={`${item.shortTitle} · ${item.summary}`}
+                  aria-label={`${item.title}. View case study.`}
+                  tabindex={index === 0 ? 0 : -1}
+                >
+                  <span class="home-showcase-chrome" aria-hidden="true">
+                    {item.layout === "web" ? (
+                      <>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </>
+                    ) : (
+                      <i class="notch"></i>
+                    )}
+                  </span>
+                  <picture>
+                    {item.card && <source type="image/webp" srcset={item.card} />}
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      width={item.width}
+                      height={item.height}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
+                    />
+                  </picture>
+                </a>
+              ))
+            }
+          </div>
+          {
+            panels.length > 1 && (
+              <div class="home-showcase-switch" role="tablist" aria-label="Featured products">
+                {panels.map((item, index) => (
+                  <button
+                    type="button"
+                    class:list={["home-showcase-tab", index === 0 && "is-active"]}
+                    role="tab"
+                    aria-selected={index === 0 ? "true" : "false"}
+                    data-showcase-tab
+                    data-index={index}
+                  >
+                    <span class="home-showcase-tab-title">{item.shortTitle}</span>
+                    <span class="home-showcase-tab-meta">{item.category}</span>
+                  </button>
+                ))}
+              </div>
+            )
+          }
+          <p class="home-showcase-caption" data-showcase-caption>{panels[0]?.summary}</p>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+{
+  panels.length > 1 && (
+    <script>
+      const root = document.querySelector("[data-home-showcase]");
+      if (!root) {
+        // no showcase
+      } else {
+        const stage = root.querySelector("[data-showcase-stage]");
+        const panels = [...root.querySelectorAll("[data-showcase-panel]")];
+        const tabs = [...root.querySelectorAll("[data-showcase-tab]")];
+        const caption = root.querySelector("[data-showcase-caption]");
+        let active = 0;
+
+        const activate = (index: number) => {
+          active = index;
+          panels.forEach((panel, i) => {
+            const on = i === index;
+            panel.classList.toggle("is-active", on);
+            if (panel instanceof HTMLElement) panel.tabIndex = on ? 0 : -1;
+          });
+          tabs.forEach((tab, i) => {
+            const on = i === index;
+            tab.classList.toggle("is-active", on);
+            tab.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          if (caption) caption.textContent = panels[index]?.getAttribute("data-caption") || "";
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => activate(Number(tab.getAttribute("data-index") || 0)));
+          tab.addEventListener("keydown", (event) => {
+            if (!(event instanceof KeyboardEvent)) return;
+            if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+            event.preventDefault();
+            const next = event.key === "ArrowRight" ? (active + 1) % tabs.length : (active - 1 + tabs.length) % tabs.length;
+            activate(next);
+            (tabs[next] as HTMLButtonElement).focus();
+          });
+        });
+
+        if (
+          stage instanceof HTMLElement &&
+          window.matchMedia("(pointer: fine)").matches &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          let frame = 0;
+          let tx = 0;
+          let ty = 0;
+          let cx = 0;
+          let cy = 0;
+          const apply = () => {
+            frame = 0;
+            if (document.hidden) return;
+            cx += (tx - cx) * 0.08;
+            cy += (ty - cy) * 0.08;
+            stage.style.setProperty("--tilt-x", `${(cy * -4).toFixed(2)}deg`);
+            stage.style.setProperty("--tilt-y", `${(cx * 5).toFixed(2)}deg`);
+            stage.style.setProperty("--shift-x", `${(cx * 10).toFixed(2)}px`);
+            stage.style.setProperty("--shift-y", `${(cy * 8).toFixed(2)}px`);
+            if (Math.abs(tx - cx) > 0.004 || Math.abs(ty - cy) > 0.004) frame = requestAnimationFrame(apply);
+          };
+          stage.addEventListener(
+            "pointermove",
+            (event) => {
+              if (!(event instanceof PointerEvent)) return;
+              const rect = stage.getBoundingClientRect();
+              tx = (event.clientX - rect.left) / rect.width - 0.5;
+              ty = (event.clientY - rect.top) / rect.height - 0.5;
+              if (!frame) frame = requestAnimationFrame(apply);
+            },
+            { passive: true },
+          );
+          stage.addEventListener("pointerleave", () => {
+            tx = 0;
+            ty = 0;
+            if (!frame) frame = requestAnimationFrame(apply);
+          });
+        }
+      }
+    </script>
+  )
+}

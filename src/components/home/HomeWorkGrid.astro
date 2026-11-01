@@ -1,0 +1,150 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { NormalizedProject } from "../../lib/content/types";
+import OutlineButton from "../ui/OutlineButton.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { cardCopy } from "../../utils/images";
+import { formatDate } from "../../utils/format";
+
+interface LocalProps {
+  mode: "local";
+  projects: CollectionEntry<"caseStudies">[];
+}
+
+interface CmsProps {
+  mode: "cms";
+  projects: NormalizedProject[];
+}
+
+type Props = LocalProps | CmsProps;
+
+const props = Astro.props;
+const count = props.projects.length;
+
+type Card = {
+  slug: string;
+  href: string;
+  title: string;
+  summary: string;
+  category: string;
+  industry?: string;
+  technologies: string[];
+  dateLabel?: string;
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  card?: string;
+  layout: "web" | "mobile";
+  featured: boolean;
+};
+
+const cards: Card[] =
+  props.mode === "local"
+    ? props.projects.map((project, index) => {
+        const shot = project.data.screenshots[0];
+        return {
+          slug: project.id,
+          href: `/portfolio/${project.id}`,
+          title: project.data.cardTitle || project.data.title,
+          summary: project.data.cardSummary || project.data.description,
+          category: project.data.category,
+          industry: project.data.industry,
+          technologies: project.data.technologies.slice(0, 3),
+          dateLabel: formatDate(project.data.date),
+          src: shot?.src,
+          alt: shot?.alt,
+          width: shot?.width,
+          height: shot?.height,
+          card: shot ? cardCopy(shot.src) : undefined,
+          layout: project.data.mediaLayout === "mobile" ? "mobile" : "web",
+          featured: index < 2,
+        };
+      })
+    : props.projects.map((project, index) => {
+        const shot = project.screenshots[0];
+        return {
+          slug: project.slug,
+          href: `/portfolio/${project.slug}/`,
+          title: project.cardTitle || project.title,
+          summary: project.cardSummary || project.description,
+          category: project.category,
+          industry: project.industry,
+          technologies: project.technologies.slice(0, 3),
+          src: shot?.src || undefined,
+          alt: shot?.alt,
+          width: shot?.width,
+          height: shot?.height,
+          card: shot?.src ? cardCopy(shot.src) : undefined,
+          layout: project.mediaLayout === "mobile" ? "mobile" : "web",
+          featured: index < 2,
+        };
+      });
+---
+
+<section class="section reveal home-work" aria-labelledby="work-heading">
+  <div class="container-page">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <SectionHeading eyebrow="Selected work" description="Published after the contribution and permission to show it are confirmed.">
+        <span id="work-heading">Approved client work.</span>
+      </SectionHeading>
+      <OutlineButton href="/portfolio">View our work</OutlineButton>
+    </div>
+
+    {
+      count === 0 ? (
+        <div class="mt-10 max-w-2xl">
+          <p class="text-lg text-paper/90">No client engagements are approved for public display yet.</p>
+          <p class="mt-3 text-muted">
+            The <a class="text-lavender underline" href="/services">services</a> and <a class="text-lavender underline" href="/process">process</a> pages describe the work. They are not a record of past results.
+          </p>
+        </div>
+      ) : (
+        <div class="home-work-grid stagger-children mt-12">
+          {cards.map((card) => (
+            <article class:list={["home-work-card motion-item", card.featured ? "is-featured" : "is-support", card.layout === "mobile" && "is-mobile"]}>
+              {
+                card.src && (
+                  <a class="home-work-media" href={card.href}>
+                    <picture>
+                      {card.card && <source type="image/webp" srcset={card.card} />}
+                      <img
+                        src={card.src}
+                        alt={card.alt || ""}
+                        width={card.width}
+                        height={card.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  </a>
+                )
+              }
+              <div class="home-work-body">
+                <p class="text-sm text-muted">{card.category}</p>
+                <h3 class="mt-2 font-display text-2xl font-semibold tracking-[-0.03em]">
+                  <a class="hover:text-lavender" href={card.href}>{card.title}</a>
+                </h3>
+                <p class="mt-3 text-muted">{card.summary}</p>
+                {card.industry && <p class="mt-3 text-sm text-lavender">{card.industry}</p>}
+                {
+                  card.technologies.length > 0 && (
+                    <ul class="mt-4 flex flex-wrap gap-2">
+                      {card.technologies.map((item) => (
+                        <li class="rounded-full border border-line px-2.5 py-1 text-xs text-lavender">{item}</li>
+                      ))}
+                    </ul>
+                  )
+                }
+                <div class="mt-5 flex items-center justify-between gap-3 text-sm">
+                  {card.dateLabel ? <time>{card.dateLabel}</time> : <span />}
+                  <a href={card.href} class="font-semibold text-lavender">View Case Study</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

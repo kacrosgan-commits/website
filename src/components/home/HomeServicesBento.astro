@@ -1,0 +1,86 @@
+---
+import type { Service } from "../../data/services";
+import Icon from "../ui/Icon.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+
+const groups = [
+  {
+    title: "Web & Mobile",
+    text: "Interfaces people finish a task in, on the browser or on a phone.",
+    slugs: ["web-application-development", "mobile-app-development"],
+  },
+  {
+    title: "AI & SaaS",
+    text: "Product features that use models carefully, and platforms with tenancy and billing when they belong.",
+    slugs: ["ai-intelligent-automation", "saas-platform-development"],
+  },
+  {
+    title: "Backend & Cloud",
+    text: "APIs, data, and a release path the team can repeat.",
+    slugs: ["backend-api-engineering", "cloud-devops"],
+  },
+  {
+    title: "Design & Quality",
+    text: "The flows users see, and the checks that decide whether a release is ready.",
+    slugs: ["ui-ux-product-design", "qa-software-testing"],
+  },
+] as const;
+
+const bySlug = new Map(services.map((service) => [service.slug, service]));
+const grouped = groups
+  .map((group) => ({
+    ...group,
+    items: group.slugs.map((slug) => bySlug.get(slug)).filter((service): service is Service => Boolean(service)),
+  }))
+  .filter((group) => group.items.length > 0);
+---
+
+<section class="section reveal home-services" aria-labelledby="services-heading">
+  <div class="container-page">
+    <SectionHeading eyebrow="Services" description="Eight specialties. Each link opens the page for that work. Nothing here is included automatically.">
+      <span id="services-heading">Eight specialties for a startup product.</span>
+    </SectionHeading>
+
+    <div class="home-services-bento stagger-children mt-12">
+      {
+        grouped.map((group) => (
+          <article class="home-service-group motion-item">
+            <div class="home-service-group-copy">
+              <h3 class="font-display text-2xl font-semibold tracking-[-0.03em]">{group.title}</h3>
+              <p class="mt-3 text-muted">{group.text}</p>
+            </div>
+            <ul class="home-service-list">
+              {group.items.map((service) => (
+                <li>
+                  <a class="home-service-link" href={`/services/${service.slug}`}>
+                    <span class="icon-tile" aria-hidden="true">
+                      <Icon name={service.icon} size={18} />
+                    </span>
+                    <span>
+                      <span class="block font-display text-lg font-semibold">{service.title}</span>
+                      <span class="mt-1 block text-sm text-muted">{service.summary}</span>
+                    </span>
+                    <Icon name="arrow-right" size={16} class="arrow" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-8">
+      <a href="/services" class="inline-flex items-center gap-2 font-semibold text-lavender">
+        Explore our services
+        <Icon name="arrow-right" size={16} class="arrow" />
+      </a>
+    </div>
+  </div>
+</section>

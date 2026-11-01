@@ -85,8 +85,9 @@ test("the homepage team film uses the supplied silent MP4 and poster", () => {
   assert.equal(fs.statSync(poster).size, 95_264);
   assert.deepEqual(webpSize(poster), [1280, 720]);
   const homepage = fs.readFileSync(path.join(root, "src/pages/index.astro"), "utf8");
-  const hero = homepage.indexOf('class="photo-hero"');
+  const hero = homepage.indexOf("<HomeProductHero");
+  const work = homepage.indexOf("<HomeWorkGrid");
   const film = homepage.indexOf("<TeamShowcase");
-  const intro = homepage.indexOf('id="intro-heading"');
-  assert.ok(hero >= 0 && film > hero && intro > film);
+  const team = homepage.indexOf('id="team-heading"');
+  assert.ok(hero >= 0 && work > hero && film > work && team > film);
 });
