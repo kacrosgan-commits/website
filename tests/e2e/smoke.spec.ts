@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const routes = ["/", "/about", "/services", "/portfolio", "/process", "/team", "/team/gallery", "/insights", "/contact", "/privacy", "/terms"];
+const routes = ["/", "/about", "/portfolio", "/process", "/team", "/contact", "/privacy", "/terms"];
 const profiles = [
   "founder-ceo",
   "cofounder-cto",
@@ -23,13 +23,13 @@ test("primary routes respond and the homepage states the offer", async ({ page }
   await expect(page.getByRole("link", { name: "Start Your Project" })).toHaveAttribute("href", "/contact");
 });
 
-test("team, gallery, and profiles render the supplied images", async ({ page }) => {
+test("team and profiles render the supplied portraits", async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto("/team");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("The People and Disciplines Behind");
-  await expect(page.getByRole("heading", { name: "How We Work Together" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How We Work Together" })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "View Profile" })).toHaveCount(9);
-  await expect(page.getByRole("link", { name: "View All 27 Images" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View All 27 Images" })).toHaveCount(0);
   await expect(page.getByText("Name pending")).toHaveCount(0);
   const people: [string, string][] = [
     ["founder-ceo", "Don Tran"],
@@ -47,31 +47,13 @@ test("team, gallery, and profiles render the supplied images", async ({ page }) 
   }
   await expect(page.getByText("Illustrative portrait")).toHaveCount(0);
 
-  await page.goto("/team/gallery");
-  const images = page.locator('img[src*="/assets/team/"]');
-  await expect(images).toHaveCount(27);
-  await page.evaluate(async () => {
-    const nodes = [...document.querySelectorAll<HTMLImageElement>('img[src*="/assets/team/"]')];
-    for (const img of nodes) {
-      img.scrollIntoView({ behavior: "instant", block: "center" });
-      await img.decode().catch(() => undefined);
-    }
-  });
-  const sizes = await images.evaluateAll((nodes) =>
-    nodes.map((node) => ({
-      src: node.getAttribute("src"),
-      width: (node as HTMLImageElement).naturalWidth,
-      alt: node.getAttribute("alt") ?? "",
-    })),
-  );
-  expect(new Set(sizes.map((item) => item.src)).size).toBe(27);
-  expect(sizes.every((item) => item.width > 0 && item.alt.length > 0)).toBeTruthy();
+  expect((await page.goto("/team/gallery"))?.status()).toBe(404);
 
   for (const [slug, name] of people) {
     await page.goto(`/team/${slug}`);
     const memberImages = page.locator(`img[src*="/assets/team/${slug}/"]`);
-    await expect(memberImages).toHaveCount(3);
-    await expect(page.getByRole("heading", { name: "Working Together" })).toBeVisible();
+    await expect(memberImages).toHaveCount(1);
+    await expect(page.getByRole("heading", { name: "Working Together" })).toHaveCount(0);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(name);
     await expect(page.getByText("Name pending")).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
@@ -157,13 +139,10 @@ test("contact form copies a draft and does not send it", async ({ page }) => {
   await page.goto("/contact?service=%3Cscript%3Ealert(1)%3C/script%3E");
   await expect(page.locator("#project-type")).toHaveValue("");
 
-  await page.goto("/services/web-application-development");
-  await page.getByRole("link", { name: "Discuss Your Web Application" }).first().click();
-  await expect(page).toHaveURL(/\/contact\/?\?service=web-application-development/);
+  await page.goto("/contact?service=web-application-development");
   await expect(page.locator("#project-type")).toHaveValue("Web Application");
 
-  await page.goto("/services/qa-software-testing");
-  await page.getByRole("link", { name: "Discuss Your Testing Plan" }).first().click();
+  await page.goto("/contact?service=qa-software-testing");
   await expect(page.locator("#project-type")).toHaveValue("QA & Testing");
 });
 
@@ -374,9 +353,7 @@ test("named profiles are indexed and the gallery stays out", async ({ page }) =>
   await page.goto("/team/founder-ceo");
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
   await expect(page).toHaveTitle(/Don Tran — Founder & CEO/);
-  await page.goto("/team/gallery");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
-  await expect(page.getByText("not a group photograph of the team")).toBeVisible();
+  expect((await page.goto("/team/gallery"))?.status()).toBe(404);
 
   const index = await page.request.get("/sitemap-index.xml");
   expect(index.ok()).toBeTruthy();
@@ -388,44 +365,40 @@ test("named profiles are indexed and the gallery stays out", async ({ page }) =>
   expect(xml).not.toContain("sample-brand-platform");
 });
 
-test("unapproved insights stay off the public site", async ({ page }) => {
-  await page.goto("/insights");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Insights are being prepared.");
-  await expect(page.getByRole("heading", { name: "No articles are published yet." })).toBeVisible();
-  await expect(page.getByRole("link", { name: "View services" })).toHaveAttribute("href", "/services");
-  await expect(page.getByRole("link", { name: "View portfolio" })).toHaveAttribute("href", "/portfolio");
-  for (const title of [
-    "Planning an MVP for a Startup",
-    "Architecture for an Early-Stage SaaS Product",
-    "API Habits for a Small Product Team",
-    "UX and QA Checks Before a Product Launch",
-  ]) {
-    await expect(page.getByText(title)).toHaveCount(0);
-  }
+test("the Insights page is removed from the public site", async ({ page }) => {
+  expect((await page.goto("/insights"))?.status()).toBe(404);
+  expect((await page.goto("/insights/planning-an-mvp-for-a-startup"))?.status()).toBe(404);
+
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
   await expect(page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Insights" })).toHaveCount(0);
+  await expect(page.getByText("Planning an MVP for a Startup")).toHaveCount(0);
 
   await page.setViewportSize({ width: 375, height: 800 });
   await page.getByRole("button", { name: "Open menu" }).click();
   const mobile = page.getByRole("navigation", { name: "Mobile" });
   await expect(mobile.getByRole("link", { name: "Insights" })).toHaveCount(0);
-  await expect(mobile.getByRole("link", { name: "Services" })).toBeVisible();
+  await expect(mobile.getByRole("link", { name: "Services" })).toHaveCount(0);
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("button", { name: "Open menu" })).toHaveAttribute("aria-expanded", "false");
-
-  expect((await page.goto("/insights/planning-an-mvp-for-a-startup"))?.status()).toBe(404);
-  expect((await page.goto("/insights/api-habits-for-a-small-product-team"))?.status()).toBe(404);
-
-  await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto("/");
-  await expect(page.getByText("Planning an MVP for a Startup")).toHaveCount(0);
-  await expect(page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Insights" })).toHaveCount(0);
 
   const index = await page.request.get("/sitemap-index.xml");
   expect(index.ok()).toBeTruthy();
   const children = [...(await index.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
   const xml = (await Promise.all(children.map((child) => page.request.get(child).then((response) => response.text())))).join("\n");
-  expect(xml).not.toContain("/insights/planning-an-mvp-for-a-startup");
-  expect(xml).not.toContain("/insights/api-habits-for-a-small-product-team");
-  expect(xml).not.toContain("/insights/ux-and-qa-before-a-product-launch");
-  expect(xml).toContain("/insights/");
+  expect(xml).not.toContain("/insights/");
+});
+
+test("the Services page is removed from the public site", async ({ page }) => {
+  expect((await page.goto("/services"))?.status()).toBe(404);
+  expect((await page.goto("/services/web-application-development"))?.status()).toBe(404);
+
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  await expect(page.getByRole("navigation", { name: "Primary" }).getByRole("link", { name: "Services" })).toHaveCount(0);
+
+  const index = await page.request.get("/sitemap-index.xml");
+  expect(index.ok()).toBeTruthy();
+  const children = [...(await index.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
+  const xml = (await Promise.all(children.map((child) => page.request.get(child).then((response) => response.text())))).join("\n");
+  expect(xml).not.toContain("/services");
 });

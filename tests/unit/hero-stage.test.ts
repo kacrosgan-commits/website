@@ -29,7 +29,7 @@ test("hero scenes share one stage and keep a visible fallback", () => {
 });
 
 test("decorative hero svgs are gone and the protected content is still in place", () => {
-  const pages = ["about", "services/index", "portfolio/index", "process", "team/index", "contact"].map((page) =>
+  const pages = ["about", "portfolio/index", "process", "team/index", "contact"].map((page) =>
     read(`src/pages/${page}.astro`),
   );
   for (const page of pages) {
@@ -37,9 +37,11 @@ test("decorative hero svgs are gone and the protected content is still in place"
   }
   assert.match(read("src/pages/about.astro"), /HeroStage scene="workspace"/);
   assert.doesNotMatch(read("src/pages/about.astro"), /A dark engineering workspace in violet light/);
-  assert.match(read("src/pages/index.astro"), /HomeProductHero/);
-  assert.match(read("src/pages/index.astro"), /View Our Work/);
-  assert.doesNotMatch(read("src/pages/index.astro"), /vortex-digital-hall\.png|HallDepth|purple-glow|purple-atmosphere/);
+  assert.match(read("src/pages/index.astro"), /photo-hero-bleed/);
+  assert.match(read("src/pages/index.astro"), /vortex-digital-hall\.png/);
+  assert.doesNotMatch(read("src/pages/index.astro"), /HallDepth|hall-fin/);
+  assert.doesNotMatch(read("src/pages/index.astro"), /insights-heading|BlogCard|\/insights\//);
+  assert.doesNotMatch(read("src/pages/index.astro"), /purple-glow|purple-atmosphere/);
   const form = read("src/components/forms/ContactForm.astro");
   assert.match(form, /this site won't send it/);
   const film = read("src/components/sections/TeamShowcase.astro");

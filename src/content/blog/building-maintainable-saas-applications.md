@@ -59,4 +59,4 @@ Multi-region hosting, a plugin system, and a custom workflow engine are response
 
 Maintainable SaaS is a product several customers can use without sharing data, and a codebase a new engineer can change without a tour of every screen. Tenant checks, one implementation of each rule, and a boring release do more for that than an early split into services.
 
-[SaaS development](/services/saas-platform-development) is this kind of product work: accounts, tenant data, and a release the team can keep operating.
+SaaS development is this kind of product work: accounts, tenant data, and a release the team can keep operating.

@@ -1,6 +1,5 @@
 ---
 import Icon from "../ui/Icon.astro";
-import SectionHeading from "../ui/SectionHeading.astro";
 
 interface Props {
   eyebrow?: string;
@@ -17,39 +16,36 @@ const {
 } = Astro.props;
 ---
 
-<section class="section reveal home-film" aria-labelledby="team-film-heading">
-  <div class="container-page home-film-layout">
+<section class="reveal home-film" aria-labelledby="team-film-heading">
+  <div class="home-film-stage">
+    <video
+      class="team-showcase-video"
+      autoplay
+      muted
+      loop
+      controls
+      playsinline
+      preload="auto"
+      poster="/videos/vortex-team-poster.webp"
+      width="1280"
+      height="720"
+      aria-label="Silent illustration of people collaborating on design and engineering. Not a recording of a Vortex Digital event."
+    >
+      <source src="/videos/vortex-team-showcase.mp4" type="video/mp4" />
+    </video>
+    <div class="home-film-scrim" aria-hidden="true"></div>
     <div class="home-film-copy">
-      <SectionHeading eyebrow={eyebrow} description={description}>
-        <span id="team-film-heading">{heading}</span>
-      </SectionHeading>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id="team-film-heading" class="home-film-title">{heading}</h2>
+      <p class="home-film-lede">{description}</p>
+      <p class="home-film-disclosure">{disclosure}</p>
+      <p class="home-film-cta">
+        <a href="/team" class="inline-flex min-h-6 items-center gap-2 font-semibold text-lavender">
+          Meet our team
+          <Icon name="arrow-right" size={16} class="arrow" />
+        </a>
+      </p>
     </div>
-    <figure class="team-showcase">
-      <div class="team-showcase-frame">
-        <video
-          class="team-showcase-video"
-          autoplay
-          muted
-          loop
-          controls
-          playsinline
-          preload="auto"
-          poster="/videos/vortex-team-poster.webp"
-          width="1280"
-          height="720"
-          aria-label="Silent illustration of people collaborating on design and engineering. Not a recording of a Vortex Digital event."
-        >
-          <source src="/videos/vortex-team-showcase.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <figcaption class="mt-4 text-sm text-muted">{disclosure}</figcaption>
-    </figure>
-    <p class="home-film-cta">
-      <a href="/team" class="inline-flex min-h-6 items-center gap-2 font-semibold text-lavender">
-        Meet our team
-        <Icon name="arrow-right" size={16} class="arrow" />
-      </a>
-    </p>
   </div>
 </section>
 

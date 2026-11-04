@@ -70,4 +70,4 @@ Reporting a lab result as if it were every customer’s phone. Say what you test
 
 Make a mobile app feel faster by fixing the wait a person hits in a real task, on a realistic network, and by checking the task again after the change. Pagination, smaller media, honest errors, and less work at startup solve more early products than a new framework.
 
-[Mobile app development](/services/mobile-app-development) includes that kind of care: the release people install, and the paths they can finish on the device they have.
+Mobile app development includes that kind of care: the release people install, and the paths they can finish on the device they have.

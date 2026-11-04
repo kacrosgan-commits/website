@@ -71,4 +71,4 @@ Commit to a region close to the people you serve, unless a written requirement s
 
 A lean release setup is a pipeline, two environments, backups you have restored, an alert a person receives, and a bill you can explain. It is smaller than a platform team’s toolkit, and it is enough until a real limit says otherwise.
 
-[Cloud and DevOps](/services/cloud-devops) work for a startup is this kind of setup: a path the team can run, and a product they can see when it fails.
+Cloud and DevOps work for a startup is this kind of setup: a path the team can run, and a product they can see when it fails.

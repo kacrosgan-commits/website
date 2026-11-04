@@ -6,7 +6,6 @@ const shotDir = "docs/hero-3d-qa/after";
 const heroes = [
   ["/", "home"],
   ["/about", "about"],
-  ["/services", "services"],
   ["/portfolio", "portfolio"],
   ["/process", "process"],
   ["/team", "team"],
@@ -43,7 +42,8 @@ test("main heroes mount a live scene without page errors", async ({ page }) => {
     await page.goto(path, { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     if (path === "/") {
-      await expect(page.locator("[data-home-showcase]")).toHaveCount(1);
+      await expect(page.locator(".photo-hero-bleed")).toHaveCount(1);
+      await expect(page.locator("[data-hall-parallax]")).toHaveCount(0);
       await expect(page.locator(".hero-stage-3d")).toHaveCount(0);
     } else {
       await expect(page.locator("[data-hero-stage]")).toHaveCount(1);
@@ -68,6 +68,6 @@ test("hero pages do not overflow at phone and desktop widths", async ({ page }) 
     }
   }
   await page.setViewportSize({ width: 375, height: 800 });
-  await page.goto("/services", { waitUntil: "domcontentloaded" });
-  await page.screenshot({ path: `${shotDir}/services-375.png` });
+  await page.goto("/about", { waitUntil: "domcontentloaded" });
+  await page.screenshot({ path: `${shotDir}/about-375.png` });
 });

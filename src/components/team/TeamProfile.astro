@@ -149,33 +149,6 @@ const links = [
     </div>
   </section>
 
-  <section class="section reveal-up" aria-labelledby="working-heading">
-    <div class="container-page">
-      <h2 id="working-heading" class="section-title">Working Together</h2>
-      <p class="mt-4 max-w-2xl text-muted">
-        Both scenes are generated illustrations of collaborative software work around this role. They are not photographs of Vortex Digital employees or documented meetings.
-      </p>
-      <div class="collab-gallery mt-10">
-        {
-          member.workImages.map((image, index) => (
-            <figure class:list={[index === 0 ? "collab-primary" : "collab-secondary"]}>
-              <img
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                class="work-photo"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption class="mt-3 text-sm text-muted">{image.caption}</figcaption>
-            </figure>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
   <section class="section reveal-up bg-ink-soft/40" aria-labelledby="startup-heading">
     <div class="container-page grid gap-8 lg:grid-cols-12">
       <div class="lg:col-span-4">

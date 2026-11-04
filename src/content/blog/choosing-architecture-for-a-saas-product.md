@@ -76,4 +76,4 @@ Building the admin “god view” without protecting it. A page that can open an
 
 Choose the smallest system that keeps customer data apart, stores the records the first task needs, and can be deployed again by someone who did not build it. Write down each extra piece when you add it. The architecture is early on purpose. It should be easy to explain, and easy to change when the second real constraint shows up.
 
-[SaaS development](/services/saas-platform-development) is the work of turning that first task into a product a small team can keep running.
+SaaS development is the work of turning that first task into a product a small team can keep running.

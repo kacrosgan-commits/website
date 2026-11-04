@@ -65,4 +65,4 @@ Caching HTML or JSON that includes one user’s private data under a shared key.
 
 A scalable web application, at the start, is one the team can change and one whose slow paths can be named. Keep rules in one place, measure a real task before you split the system, and treat caches and services as responses to a problem you have already seen.
 
-[Web development](/services/web-application-development) for a startup is this product: the screens, the rules behind them, and a structure that still makes sense after the first customers arrive.
+Web development for a startup is this product: the screens, the rules behind them, and a structure that still makes sense after the first customers arrive.

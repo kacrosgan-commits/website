@@ -3,13 +3,9 @@ import { isActivePath, navigation, site } from "../../data/site";
 import GradientButton from "../ui/GradientButton.astro";
 import Icon from "../ui/Icon.astro";
 import Logo from "../ui/Logo.astro";
-import { getCollection } from "astro:content";
-import { isPublicInsight } from "../../utils/insights";
 
 const pathname = Astro.url.pathname;
-const publishedInsights = (await getCollection("blog")).filter((post) => isPublicInsight(post.data)).length;
-const showInsights = publishedInsights > 0 || import.meta.env.DEV;
-const headerNav = navigation.filter((item) => item.href !== "/insights" || showInsights);
+const headerNav = navigation;
 const overlayHero = (pathname.replace(/\/$/, "") || "/") === "/";
 ---
 

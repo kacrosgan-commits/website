@@ -58,9 +58,8 @@ function mediaLabel(kind: string) {
   ogType="article"
   image={hero?.src}
 >
-  <article class="case-study relative isolate pt-28 pb-8 md:pt-32" data-tone={data.tone} data-review={published ? "false" : "true"}>
-    <HeroStage scene="study" plates={hero ? [hero.src] : []} band quiet />
-    <div class="container-page relative z-[1]">
+  <article class="case-study pt-28 pb-8 md:pt-32" data-tone={data.tone} data-review={published ? "false" : "true"}>
+    <div class="container-page">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },

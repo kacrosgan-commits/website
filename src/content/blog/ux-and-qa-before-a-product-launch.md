@@ -81,4 +81,4 @@ Vanity QA counts. “200 test cases” says nothing if they avoid the permission
 
 Before launch, watch a real task, fix what blocks it, test the ways data can leak or a save can fail, and ship the build you tested. Record what you did not cover. That record is more useful than a claim that the product is finished.
 
-[UI/UX design](/services/ui-ux-product-design) and [QA and testing](/services/qa-software-testing) meet on this pass: the interface a person can finish, and the checks that protect the record they just created.
+UI/UX design and QA and testing meet on this pass: the interface a person can finish, and the checks that protect the record they just created.

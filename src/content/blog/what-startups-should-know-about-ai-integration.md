@@ -60,4 +60,4 @@ One task, one provider, a human review step, a timeout, a kill switch, and a log
 
 Add a model when the task needs a draft, a classification, or a search over your own documents, and when a person or a schema can reject a bad result. Keep the data you send explicit, and keep a way to turn the feature off.
 
-[AI solutions](/services/ai-intelligent-automation) for a product team start from that task. They do not start from a demo that has no place in the existing workflow.
+AI solutions for a product team start from that task. They do not start from a demo that has no place in the existing workflow.

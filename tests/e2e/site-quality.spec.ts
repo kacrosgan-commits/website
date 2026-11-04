@@ -76,12 +76,13 @@ test("robots and sitemap list the approved public pages only", async ({ page }) 
   for (const slug of ["born-to-rock", "medastare", "scaleup-systems", "gain-energy-upstrima", "gowabi", "daniela-diamonds"]) {
     expect(paths).toContain(`/portfolio/${slug}/`);
   }
-  expect(paths.filter((item) => /^\/team\/[^/]+\/$/.test(item) && item !== "/team/gallery/")).toHaveLength(9);
+  expect(paths.filter((item) => /^\/team\/[^/]+\/$/.test(item))).toHaveLength(9);
   expect(paths).not.toContain("/team/gallery/");
   expect(paths).not.toContain("/privacy/");
   expect(paths).not.toContain("/terms/");
   expect(paths.filter((item) => item.includes("sample-"))).toEqual([]);
-  expect(paths.filter((item) => item.startsWith("/insights/") && item !== "/insights/")).toEqual([]);
+  expect(paths.filter((item) => item.includes("/insights"))).toEqual([]);
+  expect(paths.filter((item) => item.includes("/services"))).toEqual([]);
 });
 
 test("the 404 page is noindex and claims no canonical URL", async ({ page }) => {
@@ -94,7 +95,7 @@ test("the 404 page is noindex and claims no canonical URL", async ({ page }) => 
 
 test("key pages reflow without horizontal scrolling at 320 to 1440 px and with 200% text", async ({ page }) => {
   test.setTimeout(180_000);
-  const routes = ["/", "/about", "/services/web-application-development", "/portfolio/medastare", "/team/project-manager", "/process", "/contact"];
+  const routes = ["/", "/about", "/portfolio/medastare", "/team/project-manager", "/process", "/contact"];
   for (const route of routes) {
     for (const width of [320, 375, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -218,11 +219,9 @@ test("homepage team film plays on its own and stays in frame", async ({ page }) 
     ),
   );
 
-  const ratio = await video.evaluate((node) => {
-    const box = node.getBoundingClientRect();
-    return box.width / box.height;
-  });
-  expect(Math.abs(ratio - 16 / 9)).toBeLessThan(0.02);
+  const filmBox = await video.boundingBox();
+  expect(filmBox?.width ?? 0).toBeGreaterThanOrEqual(1430);
+  expect(filmBox?.height ?? 0).toBeGreaterThanOrEqual(890);
 
   await video.focus();
   await expect(video).toBeFocused();

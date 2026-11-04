@@ -7,16 +7,21 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
 
-test("homepage uses the product-first section order", () => {
+test("homepage uses the lobby photo hero and classic section order", () => {
   const home = read("src/pages/index.astro");
   const order = [
-    "HomeProductHero",
-    "HomeWorkGrid",
-    "HomeServicesBento",
-    "HomeProcessRibbon",
+    "photo-hero-bleed",
+    "vortex-digital-hall.png",
+    "intro-heading",
     "TeamShowcase",
+    "services-heading",
+    "reasons-heading",
+    "Stats",
+    "stack-heading",
+    "work-heading",
+    "Testimonials",
+    "process-heading",
     "team-heading",
-    "HomeTechStrip",
     "faq-heading",
     "CtaSection",
   ];
@@ -26,10 +31,11 @@ test("homepage uses the product-first section order", () => {
     assert.ok(next > cursor, `missing or out of order: ${token}`);
     cursor = next;
   }
-  assert.match(home, /secondaryHref=\{secondaryHref\}/);
   assert.match(home, /"View Our Work"/);
   assert.match(home, /"\/portfolio"/);
-  assert.doesNotMatch(home, /CollaborationPreview|homeIntro|reasons|Stats|Testimonials/);
+  assert.doesNotMatch(home, /HomeProductHero|HomeWorkGrid|HomeServicesBento|CollaborationPreview/);
+  assert.doesNotMatch(home, /insights-heading|BlogCard|\/insights\//);
+  assert.doesNotMatch(home, /href=["'`]\/services|secondaryHref=["'`]\/services/);
 });
 
 test("team film playback contract stays intact", () => {
@@ -45,16 +51,10 @@ test("team film playback contract stays intact", () => {
   assert.match(film, /Illustrative team scenes/);
 });
 
-test("homepage hero and work components stay progressive", () => {
-  const hero = read("src/components/home/HomeProductHero.astro");
-  const work = read("src/components/home/HomeWorkGrid.astro");
+test("lobby photo hero styles stay progressive", () => {
   const css = read("src/styles/global.css");
-  assert.match(hero, /role="tablist"/);
-  assert.match(hero, /prefers-reduced-motion: reduce/);
-  assert.match(work, /Approved client work\./);
-  assert.match(work, /View Case Study/);
-  assert.match(css, /\.home-hero/);
-  assert.match(css, /\.home-work-grid/);
-  assert.match(css, /\.home-services-bento/);
-  assert.match(css, /home-panel-drift/);
+  assert.match(css, /\.photo-hero/);
+  assert.match(css, /\.photo-hero-bleed/);
+  assert.match(css, /\.photo-hero-img/);
+  assert.doesNotMatch(read("src/pages/index.astro"), /HallDepth|hall-fin/);
 });

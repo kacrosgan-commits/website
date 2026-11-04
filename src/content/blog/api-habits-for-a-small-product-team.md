@@ -83,4 +83,4 @@ A single application behind one database answers a lot of product traffic. Add a
 
 Treat the API as the place where identity, permission, validation, and retries are decided. Keep the error vocabulary small, cap the expensive calls, and log an id you can trace. Add infrastructure when a real path is slow or unsafe, not when the diagram looks thin.
 
-[Backend and API engineering](/services/backend-api-engineering) is this contract: the rules behind the product, checked on every call, in a form a small team can operate.
+Backend and API engineering is this contract: the rules behind the product, checked on every call, in a form a small team can operate.

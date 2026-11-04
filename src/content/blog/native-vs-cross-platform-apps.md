@@ -64,4 +64,4 @@ Record the target operating systems, the device features in version one, whether
 
 Choose from the workflow, the device features, and the people who will maintain the app. A responsive site, a shared mobile codebase, and a native app are all legitimate. The expensive mistake is starting with a store app before the phone is actually the product.
 
-[Mobile app development](/services/mobile-app-development) covers that choice for a startup: web, cross-platform, or native, based on the product rather than a framework preference.
+Mobile app development covers that choice for a startup: web, cross-platform, or native, based on the product rather than a framework preference.

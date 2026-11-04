@@ -59,4 +59,4 @@ A useful brief has the decision, the user and the task, the out-of-scope list, t
 
 Plan the smallest release that can answer one decision. Leave the rest of the product for a later conversation, after that use has told you something.
 
-The same questions apply when a team is shaping a [SaaS product](/services/saas-platform-development): what the first version must do, what it will not do, and how you will know the release was used.
+The same questions apply when a team is shaping a SaaS product: what the first version must do, what it will not do, and how you will know the release was used.

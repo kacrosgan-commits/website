@@ -59,8 +59,8 @@ export function localHomepageDefaults(): NormalizedHomepage {
       "Vortex Digital helps startups design, build, and improve digital products: web and mobile applications, AI-powered software, and SaaS platforms with a foundation the team can keep changing.",
     primaryCtaLabel: "Start Your Project",
     primaryCtaHref: "/contact",
-    secondaryCtaLabel: "Explore Our Services",
-    secondaryCtaHref: "/services",
+    secondaryCtaLabel: "View Our Work",
+    secondaryCtaHref: "/portfolio",
     teamFilmEyebrow: "The people behind the build",
     teamFilmHeading: "A look at collaboration, from idea to launch",
     teamFilmDescription:

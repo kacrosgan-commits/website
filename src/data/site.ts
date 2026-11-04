@@ -46,11 +46,9 @@ export const site = {
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
   { label: "Our Work", href: "/portfolio" },
   { label: "Our Process", href: "/process" },
   { label: "Team", href: "/team" },
-  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -58,7 +58,7 @@ test("scroll reveal runs once and leaves headings readable", async ({ page }) =>
 test("key routes stay in frame at the requested widths", async ({ page }) => {
   test.setTimeout(120_000);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  const routes = ["/", "/about", "/services", "/portfolio", "/team", "/process", "/contact", "/insights"];
+  const routes = ["/", "/about", "/portfolio", "/team", "/process", "/contact"];
   for (const route of routes) {
     for (const width of [320, 375, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -80,7 +80,8 @@ test("key routes stay in frame at the requested widths", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
   await page.getByRole("button", { name: "Open menu" }).click();
-  await expect(page.getByRole("navigation", { name: "Mobile" }).getByRole("link", { name: "Services" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Mobile" }).getByRole("link", { name: "Our Work" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Mobile" }).getByRole("link", { name: "Services" })).toHaveCount(0);
   await page.screenshot({ path: `${shotDir}/home-375-menu.png` });
 });
 

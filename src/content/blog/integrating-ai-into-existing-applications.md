@@ -67,4 +67,4 @@ Forgetting to remove the provider’s branding and raw response from the custome
 
 Put the model on the screen where the work already happens, behind the permissions and the save path you already trust. Time-box the call, keep a manual path, and store the draft as a draft until a person commits it.
 
-[AI solutions](/services/ai-intelligent-automation) in an existing product are this placement work: one task, one call path, and a product that still runs when the suggestion does not.
+AI solutions in an existing product are this placement work: one task, one call path, and a product that still runs when the suggestion does not.

@@ -106,7 +106,7 @@ function homepage(overrides = {}) {
     primaryCtaLabel: "Contact",
     primaryCtaHref: "/contact",
     secondaryCtaLabel: "Services",
-    secondaryCtaHref: "/services",
+    secondaryCtaHref: "/portfolio",
     teamFilmEyebrow: "Team",
     teamFilmHeading: "Fixture film heading",
     teamFilmDescription: "Fixture film description",

@@ -84,11 +84,11 @@ test("public selectors share one approval rule and a stable order", () => {
   assert.equal(frontmatterIsPublicInsight("publicationApproved: true\nstatus: review\n"), false);
   assert.equal(frontmatterIsPublicInsight("publicationApproved: true\nstatus: published\ndraft: true\n"), false);
 
-  const config = fs.readFileSync(path.join(root, "astro.config.ts"), "utf8");
-  assert.match(config, /frontmatterIsPublicInsight/);
-  for (const file of ["src/pages/insights/index.astro", "src/pages/insights/[slug].astro", "src/pages/index.astro", "src/components/layout/Header.astro", "src/components/layout/Footer.astro"]) {
-    assert.match(fs.readFileSync(path.join(root, file), "utf8"), /isPublicInsight|relatedPublicInsights/);
-  }
+  assert.equal(fs.existsSync(path.join(root, "src/pages/insights")), false);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, "src/data/site.ts"), "utf8"), /href: "\/insights"/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, "src/components/layout/Header.astro"), "utf8"), /Insights|isPublicInsight/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, "src/components/layout/Footer.astro"), "utf8"), /Insights|isPublicInsight/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, "src/pages/index.astro"), "utf8"), /insights-heading|BlogCard|isPublicInsight/);
 });
 
 test("approved portfolio studies and named team profiles stay in place", () => {

@@ -10,8 +10,6 @@ const runs = Number(process.argv[4] ?? 3);
 const routes = process.env.PERF_ROUTES?.split(",") ?? [
   "/",
   "/about/",
-  "/services/",
-  "/services/web-application-development/",
   "/portfolio/",
   "/portfolio/scaleup-systems/",
   "/portfolio/medastare/",

@@ -328,7 +328,7 @@ async function buildSourceInventory() {
       primary_cta_label: "Start Your Project",
       primary_cta_href: "/contact",
       secondary_cta_label: "Explore Our Services",
-      secondary_cta_href: "/services",
+      secondary_cta_href: "/portfolio",
       team_film_eyebrow: "The people behind the build",
       team_film_heading: "A look at collaboration, from idea to launch",
       team_film_description:

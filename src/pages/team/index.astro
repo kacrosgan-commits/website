@@ -1,7 +1,6 @@
 ---
 import TeamCard from "../../components/cards/TeamCard.astro";
 import CtaSection from "../../components/sections/CtaSection.astro";
-import WorkTogether from "../../components/team/WorkTogether.astro";
 import PageHero from "../../components/ui/PageHero.astro";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -30,7 +29,7 @@ const cms = isCmsRenderMode();
         {
           cms
             ? `${team.length} profiles from the active CMS release, in role order.`
-            : "Nine named profiles, in role order. Portraits were assigned by the agency owner. Collaboration scenes further down are illustrations, not photographs of these people at work, and no profile is tied to a client case study."
+            : "Nine named profiles, in role order. Portraits were assigned by the agency owner. No profile is tied to a client case study."
         }
       </p>
       <div class="team-roster stagger-children">
@@ -38,7 +37,6 @@ const cms = isCmsRenderMode();
       </div>
     </div>
   </section>
-  <WorkTogether />
   <CtaSection
     title="Need This Mix of Disciplines on a Product?"
     description="Tell us what you are building. We can talk through which of these roles the work actually needs."

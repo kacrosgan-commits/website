@@ -13,9 +13,6 @@ The old hero art was an SVG wash (`about-orbit`, `services-spheres`, `portfolio-
 | `/process` | `pipeline` | WebGL | Labels are the six real stage names. |
 | `/team` | `collaboration` | WebGL | Discipline names, not portraits. |
 | `/team/*` (9) | `profile` | WebGL, quiet | Portrait and biography stay in front. |
-| `/team/gallery` | `editorial` | WebGL | Gallery images are unchanged. |
-| `/insights` | `editorial` | WebGL | |
-| `/insights/*` | `editorial` | CSS | Article text is not covered by a canvas. |
 | `/contact` | `communication` | WebGL | Form behavior is unchanged. |
 | `/privacy`, `/terms` | `editorial` | CSS | |
 | 404 | `editorial` | CSS | Orbs removed. |
