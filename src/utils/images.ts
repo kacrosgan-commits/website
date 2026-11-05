@@ -16,3 +16,12 @@ export function webpCopy(src: string): string | undefined {
 export function cardCopy(src: string): string | undefined {
   return /\.(png|jpe?g)$/i.test(src) ? existing(src.replace(/\.(png|jpe?g)$/i, ".card.webp")) : undefined;
 }
+
+/**
+ * 16:9 crop of a website capture for the browser-frame card, written by `scripts/make_card_frames.py`.
+ * The browser scrollbar and the partial content below a natural break are removed. Case-study pages
+ * keep the original screenshot.
+ */
+export function frameCopy(src: string): string | undefined {
+  return /\.(png|jpe?g)$/i.test(src) ? existing(src.replace(/\.(png|jpe?g)$/i, ".frame.webp")) : undefined;
+}

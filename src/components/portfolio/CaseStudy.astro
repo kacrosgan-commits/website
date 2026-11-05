@@ -109,6 +109,8 @@ function mediaLabel(kind: string) {
                     decoding="async"
                     fetchpriority="high"
                     class:list={["case-hero-shot", mobile && "case-hero-shot-mobile"]}
+                    data-vt-project={project.id}
+                    style={`view-transition-name: project-${project.id}; view-transition-class: project-shot`}
                   />
                 </picture>
               </a>

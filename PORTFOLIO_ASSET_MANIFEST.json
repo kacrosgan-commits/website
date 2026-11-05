@@ -132,7 +132,21 @@
           "sha256": "5f91982369a8e361583cc54e9e9d0f1625f07374ec5a9069699285560c1f93fc",
           "source": "Provided research pack (public website capture or publisher promotional screenshot)"
         }
-      ]
+      ],
+      "cardFrame": {
+        "public_url": "/assets/portfolio/scaleup-systems/scaleup-01-home.frame.webp",
+        "derivedFrom": "/assets/portfolio/scaleup-systems/scaleup-01-home.jpg",
+        "cropBox": [
+          17,
+          0,
+          1324,
+          735
+        ],
+        "width": 1307,
+        "height": 735,
+        "sha256": "0f86fa024b606274a62865eee4db47c4c75eca7a30b16e356f4ae01064ab94c6",
+        "use": "Homepage and portfolio card image inside the CSS browser frame. Case-study pages keep the original screenshots."
+      }
     },
     {
       "slug": "gain-energy-upstrima",
@@ -175,7 +189,21 @@
           "sha256": "71426b4267c9377b44add359db1321450cf5bbb60768d52ff1da67e635334659",
           "source": "Provided research pack (public website capture or publisher promotional screenshot)"
         }
-      ]
+      ],
+      "cardFrame": {
+        "public_url": "/assets/portfolio/gain-energy-upstrima/gain-01-home.frame.webp",
+        "derivedFrom": "/assets/portfolio/gain-energy-upstrima/gain-01-home.jpg",
+        "cropBox": [
+          0,
+          0,
+          1330,
+          748
+        ],
+        "width": 1330,
+        "height": 748,
+        "sha256": "d6ae1c59bce39f744da463fccdeb005763a20a662a537b6db6bf52b5da1c92f6",
+        "use": "Homepage and portfolio card image inside the CSS browser frame. Case-study pages keep the original screenshots."
+      }
     },
     {
       "slug": "gowabi",
@@ -218,7 +246,21 @@
           "sha256": "38d539ceb23346d03bb75d45d3f4563dd3b405153694a87dc400bf02c29dd948",
           "source": "Provided research pack (public website capture or publisher promotional screenshot)"
         }
-      ]
+      ],
+      "cardFrame": {
+        "public_url": "/assets/portfolio/gowabi/gowabi-01-home.frame.webp",
+        "derivedFrom": "/assets/portfolio/gowabi/gowabi-01-home.jpg",
+        "cropBox": [
+          7,
+          30,
+          1323,
+          770
+        ],
+        "width": 1316,
+        "height": 740,
+        "sha256": "ddcc5ee157ea7adbc31c0d85c4939c33bf513f973984599dba067181f6bc1c30",
+        "use": "Homepage and portfolio card image inside the CSS browser frame. Case-study pages keep the original screenshots."
+      }
     },
     {
       "slug": "daniela-diamonds",
@@ -261,7 +303,21 @@
           "sha256": "e80599a272cd3eb8aeee91cb1f7e60199ffe65764874913ce292fe60e6c77106",
           "source": "Provided research pack (public website capture or publisher promotional screenshot)"
         }
-      ]
+      ],
+      "cardFrame": {
+        "public_url": "/assets/portfolio/daniela-diamonds/daniela-01-home.frame.webp",
+        "derivedFrom": "/assets/portfolio/daniela-diamonds/daniela-01-home.jpg",
+        "cropBox": [
+          2,
+          30,
+          1328,
+          776
+        ],
+        "width": 1326,
+        "height": 746,
+        "sha256": "e845cdb3befa099085067a4252d0d11ba9f8d8b518eca0070a68f1cd8e9a026e",
+        "use": "Homepage and portfolio card image inside the CSS browser frame. Case-study pages keep the original screenshots."
+      }
     }
   ]
 }

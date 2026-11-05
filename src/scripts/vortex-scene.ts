@@ -22,6 +22,7 @@ import {
   ShaderMaterial,
   Texture,
   Vector2,
+  Vector3,
   Vector4,
   WebGLRenderer,
   type Material,
@@ -34,6 +35,20 @@ const SRC_H = 868;
 /* The bright LED band of the halo pendant, so the depth map can place it. */
 const HALO = { x: 1537, y: 249, a: 146, b: 30.5 };
 const HALO_DEPTH = 0.6;
+/**
+ * The hero's reception light (.photo-hero::before in global.css): a screen-blended radial pool in
+ * the hero's own box. The CSS layer fades out with the <img> once this scene is live, so the scene
+ * paints the same pool. Centre and radii are fractions of the hero box; stops are alpha at 0, 45%
+ * and 100% of the radius; colour is the gradient's sRGB colour.
+ */
+const HERO_LIGHT = {
+  center: [0.8, 0.4],
+  radius: [0.34, 0.58],
+  alpha: [0.3, 0.13],
+  color: [255 / 255, 214 / 255, 156 / 255],
+} as const;
+/* Matches .photo-hero-img on desktop, the only widths where the scene runs. */
+const DEFAULT_OBJECT_POSITION = [1, 0.42] as const;
 const FOCUS = 0.5;
 const MAX_DPR = 1.5;
 
@@ -58,8 +73,15 @@ export function mountVortexScene(): void {
 }
 
 async function start(hero: HTMLElement, frame: HTMLElement, photo: HTMLImageElement): Promise<void> {
+  /* The texture comes from an off-page copy of the same (cached) file. three.js sizes the mip chain
+     from image.width, which for a rendered <img> is its layout width: on desktop the photo's box is
+     wider than the source, so a chain built from it is one level too long and the texture is
+     rejected (it samples black). An image that is not rendered reports its natural size. */
+  const source = new Image();
+  source.decoding = "async";
+  source.src = photo.currentSrc || photo.src;
   try {
-    await photo.decode();
+    await Promise.all([photo.decode(), source.decode()]);
   } catch {
     return;
   }
@@ -100,7 +122,7 @@ async function start(hero: HTMLElement, frame: HTMLElement, photo: HTMLImageElem
 
   /* Kept as raw sRGB and written out unconverted, so it is filtered in the same space as the
      browser scales the <img>. Filtering in linear light would brighten fine detail by a few percent. */
-  const photoTexture = track(new Texture(photo));
+  const photoTexture = track(new Texture(source));
   photoTexture.colorSpace = NoColorSpace;
   photoTexture.minFilter = LinearMipmapLinearFilter;
   photoTexture.magFilter = LinearFilter;
@@ -116,7 +138,11 @@ async function start(hero: HTMLElement, frame: HTMLElement, photo: HTMLImageElem
     uDepth: { value: depthTexture },
     uImg: { value: new Vector4(0, 0, 1, 1) },
     uClip: { value: new Vector4(0, 0, 1, 1) },
-    uObj: { value: new Vector2(0.92, 0.5) },
+    uObj: { value: new Vector2(...DEFAULT_OBJECT_POSITION) },
+    uLightC: { value: new Vector2(...HERO_LIGHT.center) },
+    uLightR: { value: new Vector2(...HERO_LIGHT.radius) },
+    uLightA: { value: new Vector2(...HERO_LIGHT.alpha) },
+    uLightColor: { value: new Vector3(...HERO_LIGHT.color) },
     uSrc: { value: new Vector2(SRC_W, SRC_H) },
     uOff: { value: new Vector2(0, 0) },
     uFocus: { value: FOCUS },
@@ -142,7 +168,7 @@ async function start(hero: HTMLElement, frame: HTMLElement, photo: HTMLImageElem
   let liveAt = 0;
   let width = 1;
   let height = 1;
-  let objectPosition = new Vector2(0.92, 0.5);
+  let objectPosition = new Vector2(...DEFAULT_OBJECT_POSITION);
   const pointer = new Vector2(0, 0);
   const pointerSmooth = new Vector2(0, 0);
   let scrollSmooth = scrollProgress(hero);
@@ -155,7 +181,7 @@ async function start(hero: HTMLElement, frame: HTMLElement, photo: HTMLImageElem
     const buffer = renderer.getDrawingBufferSize(new Vector2());
     uniforms.uBufH.value = buffer.y;
     uniforms.uDpr.value = renderer.getPixelRatio();
-    const [x = "92%", y = "50%"] = getComputedStyle(photo).objectPosition.split(" ");
+    const [x = "100%", y = "42%"] = getComputedStyle(photo).objectPosition.split(" ");
     objectPosition = new Vector2(parseFloat(x) / 100, parseFloat(y) / 100);
   };
 
@@ -322,6 +348,10 @@ function photoMaterial(uniforms: Record<string, { value: unknown }>): ShaderMate
       uniform float uFocus;
       uniform float uDpr;
       uniform float uBufH;
+      uniform vec2 uLightC;
+      uniform vec2 uLightR;
+      uniform vec2 uLightA;
+      uniform vec3 uLightColor;
       void main() {
         vec2 css = vec2(gl_FragCoord.x, uBufH - gl_FragCoord.y) / uDpr;
         if (css.x < uClip.x || css.y < uClip.y || css.x > uClip.x + uClip.z || css.y > uClip.y + uClip.w) discard;
@@ -330,7 +360,12 @@ function photoMaterial(uniforms: Record<string, { value: unknown }>): ShaderMate
         vec2 uv = (css - uImg.xy - shift) / s / uSrc;
         float depth = texture2D(uDepth, vec2(uv.x, 1.0 - uv.y)).r;
         uv = clamp(uv + uOff * (depth - uFocus), vec2(0.0005), vec2(0.9995));
-        gl_FragColor = vec4(texture2D(uPhoto, vec2(uv.x, 1.0 - uv.y)).rgb, 1.0);
+        vec3 color = texture2D(uPhoto, vec2(uv.x, 1.0 - uv.y)).rgb;
+        /* Reception light: the CSS radial-gradient's stops, then a screen blend in sRGB. */
+        float t = length(((css - uClip.xy) / uClip.zw - uLightC) / uLightR);
+        float a = t < 0.45 ? mix(uLightA.x, uLightA.y, t / 0.45) : mix(uLightA.y, 0.0, clamp((t - 0.45) / 0.55, 0.0, 1.0));
+        color += a * uLightColor * (1.0 - color);
+        gl_FragColor = vec4(color, 1.0);
       }
     `,
   });

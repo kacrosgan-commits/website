@@ -48,6 +48,9 @@ const primaryCta = homepageCms?.primaryCtaLabel || "Start Your Project";
 const primaryHref = homepageCms?.primaryCtaHref || "/contact";
 const secondaryCta = homepageCms?.secondaryCtaLabel || "View Our Work";
 const secondaryHref = homepageCms?.secondaryCtaHref || "/portfolio";
+/* Two ticker rows from the same catalog: the first half of the groups, then the rest. */
+const tickerSplit = Math.ceil(technologyGroups.length / 2);
+const tickerRows = [technologyGroups.slice(0, tickerSplit), technologyGroups.slice(tickerSplit)];
 const featuredServices = cms
   ? getServicesForRender()
       .filter((service) => service.featured)
@@ -86,18 +89,21 @@ const featuredServices = cms
     <svg class="hero-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
     <script is:inline>
       // Start the opening ring exactly on the halo light in the photo, and wait for the photo so the first frame is never empty.
+      // The photo's box can be wider than the hero (desktop crops the wall logo out), so measure the box itself.
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         var hero = document.currentScript.parentElement;
         var img = hero.querySelector(".photo-hero-img");
-        var w = hero.clientWidth;
-        var h = hero.clientHeight;
+        var w = img.offsetWidth;
+        var h = img.offsetHeight;
         var scale = Math.max(w / 1813, h / 868);
         var position = getComputedStyle(img).objectPosition.split(" ");
-        var x = (w - 1813 * scale) * (parseFloat(position[0]) / 100) + 1537 * scale;
-        var y = (h - 868 * scale) * (parseFloat(position[1]) / 100) + 245 * scale;
+        var x = img.offsetLeft + (w - 1813 * scale) * (parseFloat(position[0]) / 100) + 1537 * scale;
+        var y = img.offsetTop + (h - 868 * scale) * (parseFloat(position[1]) / 100) + 245 * scale;
         hero.style.setProperty("--hx", x + "px");
         hero.style.setProperty("--hy", y + "px");
+        // The photo settles around the halo too, so the ring and the light stay together.
+        img.style.transformOrigin = x - img.offsetLeft + "px " + (y - img.offsetTop) + "px";
         if (img.complete) return;
         hero.setAttribute("data-iris", "wait");
         var go = function () {
@@ -131,8 +137,9 @@ const featuredServices = cms
     </div>
   </section>
 
+  <div class="home-flow">
   <section class="section reveal lux-intro" aria-labelledby="intro-heading">
-    <div class="container-page lux-intro-grid">
+    <div class="container-page lux-intro-grid tone-follow">
       <p class="eyebrow">{homeIntro.eyebrow}</p>
       <h2 id="intro-heading" class="section-title lux-intro-title">{homeIntro.title}</h2>
       <div class="lux-intro-body">
@@ -142,6 +149,65 @@ const featuredServices = cms
       </div>
     </div>
   </section>
+
+  {
+    projectCount > 0 ? (
+      <section class="lux-work" aria-labelledby="work-heading" data-work>
+        <div class="container-page reveal">
+          <div class="section-head-row">
+            <SectionHeading eyebrow="Selected work" description="Recent web and mobile products we helped build.">
+              <span id="work-heading">Recent work.</span>
+            </SectionHeading>
+            <OutlineButton href="/portfolio">View our work</OutlineButton>
+          </div>
+        </div>
+        {
+          cms ? (
+            <div class="container-page">
+              <div class="stagger-children mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {cmsProjects.map((project) => (
+                  <article class="surface-card motion-item overflow-hidden p-6">
+                    <p class="text-sm text-muted">{project.client}</p>
+                    <h3 class="mt-2 font-display text-2xl">
+                      <a class="hover:text-lavender" href={`/portfolio/${project.slug}/`}>
+                        {project.cardTitle || project.title}
+                      </a>
+                    </h3>
+                    <p class="mt-3 text-muted">{project.cardSummary || project.description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div class="work-rail" data-work-rail>
+              <div class="work-pin">
+                <div class="container-page work-viewport">
+                  <div class="work-gallery" data-work-track data-liquid>
+                    {localProjects.map((project) => <ProjectCard project={project} morph />)}
+                  </div>
+                </div>
+                <div class="container-page work-progress" aria-hidden="true">
+                  <span class="work-progress-bar"></span>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </section>
+    ) : (
+      <section class="lux-work" aria-labelledby="work-heading">
+        <div class="container-page">
+          <h2 id="work-heading" class="sr-only">Recent work</h2>
+          <p class="max-w-2xl text-lg">No client engagements are approved for public display yet.</p>
+          <p class="work-empty-note mt-3 max-w-2xl">
+            The <a class="underline" href="/process">process</a> page describes how the work runs. It is not a record of past results.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <Testimonials />
 
   <TeamShowcase
     eyebrow={homepageCms?.teamFilmEyebrow}
@@ -173,7 +239,7 @@ const featuredServices = cms
 
   <section class="section reveal lux-reasons" aria-labelledby="reasons-heading">
     <div class="container-page">
-      <SectionHeading eyebrow="Why teams stay" description="A way of working, not a list of trophies.">
+      <SectionHeading eyebrow="Our approach" description="What you can expect when we work together.">
         <span id="reasons-heading">How the work is run.</span>
       </SectionHeading>
       <ul class="reason-grid" data-spotlight>
@@ -192,11 +258,35 @@ const featuredServices = cms
 
   <Stats />
 
-  <section class="section reveal" aria-labelledby="stack-heading">
+  <section class="section reveal lux-stack" aria-labelledby="stack-heading">
     <div class="container-page">
-      <SectionHeading eyebrow="Stack" description="A working catalog aligned with the roles on the team.">
-        <span id="stack-heading">Technology That Fits Your Product.</span>
-      </SectionHeading>
+      <div class="section-head-row">
+        <SectionHeading eyebrow="Stack" description="The tools we use to build and ship.">
+          <span id="stack-heading">Technology That Fits Your Product.</span>
+        </SectionHeading>
+        <button type="button" class="ticker-toggle" data-ticker-toggle aria-pressed="false" hidden>Pause motion</button>
+      </div>
+      <!-- Moving rows, armed by luxe-motion.ts. Decorative: the list below carries the same content. -->
+      <div class="stack-ticker" aria-hidden="true" data-ticker>
+        {
+          tickerRows.map((groups, row) => (
+            <div class:list={["ticker-row", row === 1 && "ticker-row-reverse"]}>
+              <div class="ticker-track">
+                {[0, 1, 2, 3].map(() =>
+                  groups.map((group) => (
+                    <span class="ticker-group">
+                      <span class="ticker-cat">{group.label}</span>
+                      {group.items.map((item) => (
+                        <span class="ticker-item">{item}</span>
+                      ))}
+                    </span>
+                  )),
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
       <dl class="stack-sheet">
         {
           technologyGroups.map((group) => (
@@ -216,63 +306,15 @@ const featuredServices = cms
     </div>
   </section>
 
-  {
-    projectCount > 0 ? (
-      <section class="section reveal" aria-labelledby="work-heading">
-        <div class="container-page">
-          <div class="section-head-row">
-            <SectionHeading eyebrow="Selected work" description="Each project appears here once our contribution and the permission to show it are confirmed.">
-              <span id="work-heading">Approved client work.</span>
-            </SectionHeading>
-            <OutlineButton href="/portfolio">View our work</OutlineButton>
-          </div>
-          {
-            cms ? (
-              <div class="stagger-children mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {cmsProjects.map((project) => (
-                  <article class="surface-card motion-item overflow-hidden p-6">
-                    <p class="text-sm text-muted">{project.client}</p>
-                    <h3 class="mt-2 font-display text-2xl">
-                      <a class="hover:text-lavender" href={`/portfolio/${project.slug}/`}>
-                        {project.cardTitle || project.title}
-                      </a>
-                    </h3>
-                    <p class="mt-3 text-muted">{project.cardSummary || project.description}</p>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <div class="work-gallery">
-                {localProjects.map((project) => <ProjectCard project={project} />)}
-              </div>
-            )
-          }
-        </div>
-      </section>
-    ) : (
-      <section class="section reveal" aria-labelledby="work-heading">
-        <div class="container-page">
-          <h2 id="work-heading" class="sr-only">Approved client work</h2>
-          <p class="max-w-2xl text-lg text-paper/90">No client engagements are approved for public display yet.</p>
-          <p class="mt-3 max-w-2xl text-muted">
-            The <a class="text-lavender underline" href="/process">process</a> page describes how the work runs. It is not a record of past results.
-          </p>
-        </div>
-      </section>
-    )
-  }
-
-  <Testimonials />
-
   <section class="section reveal lux-process" aria-labelledby="process-heading">
     <div class="container-page">
       <div class="section-head-row">
-        <SectionHeading eyebrow="Process" description="Six stages from the full engagement. The details live on the process page.">
+        <SectionHeading eyebrow="Process" description="Six stages, from first conversation to launch and support.">
           <span id="process-heading">From Concept to Launch.</span>
         </SectionHeading>
         <a href="/process" class="lux-link">See the full process</a>
       </div>
-      <div class="mt-[clamp(2.5rem,5vw,4.5rem)]">
+      <div class="mt-[clamp(1.75rem,3.5vw,3rem)]">
         <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
       </div>
     </div>
@@ -281,7 +323,7 @@ const featuredServices = cms
   <section class="section reveal lux-people" aria-labelledby="team-heading">
     <div class="container-page">
       <div class="section-head-row">
-        <SectionHeading eyebrow="People" description="Nine named profiles, from leadership through engineering, design, delivery, and quality.">
+        <SectionHeading eyebrow="People" description="Leadership, engineering, design, delivery, and quality.">
           <span id="team-heading">The People Behind the Code.</span>
         </SectionHeading>
         <OutlineButton href="/team">Meet the team</OutlineButton>
@@ -341,6 +383,7 @@ const featuredServices = cms
     secondaryLabel="See Our Process"
     ring={false}
   />
+  </div>
 
   <script>
     // The WebGL scene is an enhancement. It loads only once the page is visible, loaded and idle,

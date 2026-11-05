@@ -77,6 +77,69 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script type="application/ld+json" set:html={jsonLd(graph.length === 1 ? graph[0] : graph)} />
+    <script is:inline>
+      // Project image morph (cross-document View Transitions). Cards on the homepage and the
+      // portfolio page, and each case study's main image, carry view-transition-name project-<slug>.
+      // Before the old page is captured and before the new one is shown, only the project being
+      // opened or returned from keeps its name, so the rest of the page crossfades. Browsers without
+      // these events navigate as usual.
+      (function () {
+        var slugOf = function (url) {
+          try {
+            var match = new URL(url, location.href).pathname.match(/^\/portfolio\/([^/]+)\/?$/);
+            return match ? match[1] : null;
+          } catch (error) {
+            return null;
+          }
+        };
+        // A style rule rather than per-element edits, so it also covers elements not parsed yet.
+        var keep = function (slug) {
+          var rule = document.getElementById("vt-keep");
+          if (!rule) {
+            rule = document.createElement("style");
+            rule.id = "vt-keep";
+            document.head.appendChild(rule);
+          }
+          var safe = slug && /^[a-z0-9-]+$/.test(slug) ? slug : "";
+          rule.textContent =
+            "[data-vt-project]" + (safe ? ':not([data-vt-project="' + safe + '"])' : "") + "{view-transition-name:none!important}";
+        };
+        var lastHref = null;
+        document.addEventListener(
+          "click",
+          function (event) {
+            var link = event.target && event.target.closest ? event.target.closest("a[href]") : null;
+            lastHref = link ? link.href : null;
+          },
+          true,
+        );
+        window.addEventListener("pageswap", function (event) {
+          if (!event.viewTransition) return;
+          var to = event.activation && event.activation.entry ? event.activation.entry.url : lastHref;
+          try {
+            sessionStorage.setItem("vt-from", location.href);
+          } catch (error) {}
+          keep(slugOf(to || "") || slugOf(location.href));
+          document.documentElement.classList.add("vt-leaving");
+        });
+        window.addEventListener("pagereveal", function (event) {
+          if (!event.viewTransition) return;
+          var from = null;
+          try {
+            from = navigation.activation && navigation.activation.from ? navigation.activation.from.url : null;
+          } catch (error) {}
+          if (!from) {
+            try {
+              from = sessionStorage.getItem("vt-from");
+            } catch (error) {}
+          }
+          keep(slugOf(from || "") || slugOf(location.href));
+        });
+        window.addEventListener("pageshow", function () {
+          document.documentElement.classList.remove("vt-leaving");
+        });
+      })();
+    </script>
   </head>
   <body>
     <div class="page-glow" aria-hidden="true"></div>
