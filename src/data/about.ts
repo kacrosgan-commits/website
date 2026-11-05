@@ -21,7 +21,7 @@ export const buildServices = specialties.map((item) => {
 
 export const about = {
   heroEyebrow: `About ${site.name}`,
-  heroTitle: "We Build Software for What's Next.",
+  heroTitle: "We Build Software for What's Next",
   heroDescription: `${site.name} brings software engineering, product design, and technical problem-solving together to help startups move from ideas to working digital products.`,
   whoHeading: "A Development Team Built Around Products.",
   who: [

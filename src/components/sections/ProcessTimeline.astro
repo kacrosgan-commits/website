@@ -21,22 +21,19 @@ const { steps, compact = false } = Astro.props;
       ))}
     </ol>
   ) : (
-    <ol class="timeline section-divider-motion stagger-children">
+    <ol class="stage-list stagger-children">
       {steps.map((step) => (
-        <li class="timeline-step motion-item">
-          <span class="timeline-index">{step.number}</span>
-          <article class="surface-card p-6 md:p-8">
-            <h2 class="font-display text-2xl font-semibold tracking-[-0.03em] md:text-3xl">{step.title}</h2>
-            <p class="mt-3 text-lg text-muted">{step.summary}</p>
-            <ul class="mt-5 grid gap-2 text-paper/90">
-              {step.details.map((detail) => (
-                <li class="flex gap-3">
-                  <span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-lilac" aria-hidden="true" />
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+        <li id={step.id} class="stage-row motion-item">
+          <p class="stage-num" aria-hidden="true">{step.number}</p>
+          <div class="stage-head">
+            <h2 class="stage-title">{step.title}</h2>
+            <p class="stage-summary">{step.summary}</p>
+          </div>
+          <ul class="stage-details">
+            {step.details.map((detail) => (
+              <li>{detail}</li>
+            ))}
+          </ul>
         </li>
       ))}
     </ol>

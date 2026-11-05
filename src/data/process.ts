@@ -1,4 +1,6 @@
 export interface ProcessStep {
+  /** Stable anchor for the stage's section on /process. Keep it when a title changes. */
+  id: string;
   number: string;
   title: string;
   summary: string;
@@ -9,6 +11,7 @@ export interface ProcessStep {
 
 export const processSteps: ProcessStep[] = [
   {
+    id: "discovery-requirements",
     number: "01",
     title: "Discovery & Requirements",
     homeTitle: "Discover",
@@ -21,6 +24,7 @@ export const processSteps: ProcessStep[] = [
     ],
   },
   {
+    id: "architecture-planning",
     number: "02",
     title: "Architecture & Planning",
     homeTitle: "Plan",
@@ -33,6 +37,7 @@ export const processSteps: ProcessStep[] = [
     ],
   },
   {
+    id: "ui-ux-prototyping",
     number: "03",
     title: "UI/UX & Prototyping",
     homeTitle: "Design",
@@ -45,6 +50,7 @@ export const processSteps: ProcessStep[] = [
     ],
   },
   {
+    id: "agile-development",
     number: "04",
     title: "Agile Development",
     homeTitle: "Develop",
@@ -57,6 +63,7 @@ export const processSteps: ProcessStep[] = [
     ],
   },
   {
+    id: "qa-validation",
     number: "05",
     title: "QA & Validation",
     homeTitle: "Test",
@@ -69,6 +76,7 @@ export const processSteps: ProcessStep[] = [
     ],
   },
   {
+    id: "deployment-support",
     number: "06",
     title: "Deployment & Support",
     homeTitle: "Improve",

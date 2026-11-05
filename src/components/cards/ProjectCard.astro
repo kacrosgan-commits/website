@@ -3,16 +3,20 @@ import type { CollectionEntry } from "astro:content";
 import { portfolioArt } from "../../data/assets";
 import { formatDate } from "../../utils/format";
 import { cardCopy, frameCopy } from "../../utils/images";
-import { isPublicProject } from "../../utils/portfolio";
+import { isPublicProject, type WorkSlot } from "../../utils/portfolio";
 import MediaFrame from "../ui/MediaFrame.astro";
 
 interface Props {
   project: CollectionEntry<"caseStudies">;
   /** Name the image for the card-to-case-study View Transition (homepage and portfolio page). */
   morph?: boolean;
+  /** Grid placement on the Work page. The homepage gallery does not pass one. */
+  place?: WorkSlot;
+  /** In the first view: load the image at once. */
+  eager?: boolean;
 }
 
-const { project, morph = false } = Astro.props;
+const { project, morph = false, place, eager = false } = Astro.props;
 const shot = project.data.screenshots[0];
 const mobile = project.data.mediaLayout === "mobile";
 /* Website captures use the 16:9 browser-frame crop; app artwork keeps its card copy. */
@@ -33,6 +37,8 @@ try {
   data-layout={project.data.mediaLayout}
   data-category={project.data.category}
   data-filters={project.data.filters.join("|")}
+  data-md={place?.md}
+  data-lg={place?.lg}
 >
   {
     shot && (
@@ -53,7 +59,8 @@ try {
               alt={shot.alt}
               width={shot.width}
               height={shot.height}
-              loading="lazy"
+              loading={eager ? "eager" : "lazy"}
+              fetchpriority={eager ? "high" : undefined}
               decoding="async"
               data-vt-project={morph ? project.id : undefined}
               style={morph ? `view-transition-name: project-${project.id}; view-transition-class: project-shot` : undefined}

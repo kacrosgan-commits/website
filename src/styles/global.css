@@ -343,52 +343,6 @@ picture {
   color: #f5f0e8;
 }
 
-.ambient {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.42), transparent 68%);
-}
-
-.orb-a {
-  top: -8rem;
-  left: -6rem;
-  width: min(42rem, 80vw);
-  height: min(42rem, 80vw);
-}
-
-.orb-b {
-  right: -8rem;
-  bottom: -10rem;
-  width: min(36rem, 70vw);
-  height: min(36rem, 70vw);
-  background: radial-gradient(circle, rgba(201, 163, 95, 0.22), transparent 70%);
-}
-
-.orb-c {
-  top: 20%;
-  right: 18%;
-  width: 18rem;
-  height: 18rem;
-  background: radial-gradient(circle, rgba(109, 40, 217, 0.35), transparent 70%);
-}
-
-.grid-fade {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(232, 220, 196, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 220, 196, 0.05) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at center, black, transparent 75%);
-}
-
 .hero-stage {
   position: relative;
   border: 1px solid rgba(232, 220, 196, 0.2);
@@ -600,11 +554,6 @@ picture {
   }
 }
 
-.team-roster {
-  display: grid;
-  gap: 1.25rem;
-}
-
 .responsibility-grid {
   display: grid;
   gap: 1rem;
@@ -682,7 +631,6 @@ picture {
 }
 
 @media (min-width: 48rem) {
-  .team-roster,
   .responsibility-grid,
   .work-pair {
     grid-template-columns: 1fr 1fr;
@@ -690,7 +638,6 @@ picture {
 }
 
 @media (min-width: 64rem) {
-  .team-roster,
   .responsibility-grid,
   .work-trio {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -829,65 +776,9 @@ picture {
   isolation: isolate;
 }
 
-.timeline {
-  position: relative;
-  display: grid;
-  gap: 1.25rem;
-  container-type: inline-size;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  left: 1.35rem;
-  width: 1px;
-  transform-origin: top;
-  background: linear-gradient(180deg, rgba(201, 163, 95, 0.1), #8b5cf6, rgba(201, 163, 95, 0.1));
-}
-
-.timeline.section-divider-motion::before {
-  transform-origin: top center;
-}
-
 @keyframes line-grow {
   from { transform: scaleY(0); }
   to { transform: scaleY(1); }
-}
-
-.timeline-step {
-  position: relative;
-  padding-left: 4.5rem;
-}
-
-.timeline-index {
-  position: absolute;
-  top: 1.35rem;
-  left: 0;
-  display: grid;
-  width: 2.75rem;
-  height: 2.75rem;
-  place-items: center;
-  border: 1px solid rgba(201, 163, 95, 0.4);
-  border-radius: 999px;
-  background: #110d1b;
-  color: #e8dcc4;
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-/* Only reached with enlarged text on narrow screens: put the step number above its card. */
-@container (max-width: 14rem) {
-  .timeline-step {
-    padding-top: 3.5rem;
-    padding-left: 0;
-  }
-
-  .timeline-index {
-    top: 0;
-  }
 }
 
 .field {
@@ -1206,14 +1097,6 @@ picture {
     transform: translateY(-3px);
   }
 
-  html.can-reveal .timeline.section-divider-motion.await-reveal:not(.is-in)::before {
-    transform: scaleY(0);
-  }
-
-  html.can-reveal .timeline.section-divider-motion.is-in::before {
-    animation: line-grow var(--motion-duration-emphasis) var(--motion-ease-out) both;
-  }
-
   .hero-in {
     animation: rise var(--motion-duration-emphasis) var(--motion-ease-out) both;
   }
@@ -1305,20 +1188,6 @@ picture {
   to { transform: rotate(360deg); }
 }
 
-@keyframes drift {
-  0%,
-  100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(2%, -2%, 0); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .orb-a,
-  .orb-b,
-  .orb-c {
-    animation: drift 18s ease-in-out infinite;
-  }
-}
-
 @media (min-width: 48rem) {
   .container-page {
     width: min(1280px, calc(100% - 4rem));
@@ -1372,10 +1241,6 @@ picture {
 }
 
 @media (width < 48rem) {
-  .orb-c {
-    display: none;
-  }
-
   .surface-card {
     backdrop-filter: none;
     background: #15111f;
@@ -1398,12 +1263,6 @@ picture {
   .hero-stage {
     border-radius: 10px;
   }
-}
-
-.about-hero {
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
 }
 
 .audience-list {
@@ -1456,74 +1315,12 @@ picture {
 }
 
 @media (min-width: 64rem) {
-  .about-hero {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 4rem;
-  }
-
   .philosophy-grid {
     grid-template-columns: 1.15fr 0.85fr;
   }
 
   .philosophy-grid article:nth-child(3n) {
     grid-column: 1 / -1;
-  }
-}
-
-.portfolio-grid {
-  display: grid;
-  gap: 1.25rem;
-}
-
-@media (min-width: 48rem) {
-  .portfolio-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 80rem) {
-  .portfolio-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .portfolio-grid.portfolio-grid-pair,
-  .portfolio-grid.portfolio-grid-quad {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .card-grid-five {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .card-grid-five > * {
-    grid-column: span 2;
-    width: auto;
-    justify-self: stretch;
-  }
-
-  .card-grid-five > :nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  .card-grid-five > :nth-child(5) {
-    grid-column: 4 / span 2;
-  }
-}
-
-@media (min-width: 48rem) and (width < 80rem) {
-  .card-grid-five {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .card-grid-five > * {
-    grid-column: auto;
-    width: auto;
-  }
-
-  .card-grid-five > :last-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc(50% - 0.625rem);
   }
 }
 
@@ -3621,12 +3418,6 @@ html.vx-live .photo-hero::before {
   box-shadow: none;
 }
 
-@media (min-width: 48rem) {
-  .portfolio-grid .shot-frame-mobile {
-    height: calc(100cqi * 9 / 16 + var(--bar-h));
-  }
-}
-
 @media (min-width: 64rem) {
   .work-gallery .shot-frame-mobile {
     height: calc(100cqi * 9 / 16 + var(--bar-h));
@@ -4688,6 +4479,688 @@ html.tone-armed :is(.lux-work, .tone-follow) {
     --btn-hover-fg 1ms steps(1, end) var(--tone-delay),
     --panel 0.7s var(--tone-ease),
     --frame-line 0.7s var(--tone-ease);
+}
+
+/* Inner pages: About, Work, Process, Team, Contact
+   The homepage's type, gold labels, thin rules, image framing and motion on the plain page
+   background. No 3D scene. Every effect is an entrance or a hover over content that is already
+   there, so nothing depends on JavaScript or on motion.
+   -------------------------------------------------------------------------- */
+.inner-hero {
+  /* The split hero (About, Process) fills about two thirds of the first view, header included. */
+  --split-h: calc(68svh - 4.5rem - 13vh);
+  padding-block: clamp(2.75rem, 7vh, 5rem) clamp(2.5rem, 6vh, 4rem);
+}
+
+.inner-hero-grid {
+  position: relative;
+  display: grid;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+.inner-hero-copy {
+  display: grid;
+  min-width: 0;
+}
+
+.inner-title {
+  margin-top: 1.1rem;
+  max-width: 14em;
+  color: var(--fg);
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  letter-spacing: -0.012em;
+  line-height: 1.04;
+}
+
+/* A word longer than the line (large text on a narrow phone) wraps inside its mask instead of
+   pushing the page sideways. */
+.inner-title .w,
+.inner-title .w > span {
+  max-width: 100%;
+}
+
+.inner-title .w > span {
+  overflow-wrap: anywhere;
+}
+
+.inner-hero-split .inner-title {
+  font-size: clamp(2.8rem, 5.6vw, 5.8rem);
+  line-height: 1.02;
+}
+
+.inner-hero-foot {
+  margin-top: clamp(1.25rem, 3vh, 1.75rem);
+}
+
+.inner-hero-foot .lede {
+  max-width: 36rem;
+}
+
+.inner-hero-actions {
+  margin-top: 1.75rem;
+}
+
+.inner-hero-note {
+  color: var(--color-lavender);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Compact: heading on the left, description on the right, closed by the homepage's gold rule. */
+.inner-hero-compact .inner-hero-grid {
+  padding-bottom: clamp(1.75rem, 4vh, 2.5rem);
+}
+
+.inner-hero-compact .inner-hero-grid::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-lilac), rgba(201, 163, 95, 0.18));
+  transform-origin: left;
+}
+
+@media (min-width: 64rem) {
+  .inner-hero-compact .inner-hero-copy {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    align-items: end;
+    column-gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .inner-hero-compact .inner-hero-foot {
+    margin-top: 0;
+  }
+
+  .inner-hero-split .inner-hero-grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    min-height: max(18rem, var(--split-h));
+  }
+
+  .inner-hero-aside {
+    justify-self: end;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 80rem) {
+  .inner-hero-compact .inner-hero-copy {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+  }
+}
+
+/* The gold label's decode overlay wraps with its label, so a label that wraps with large text on
+   a phone never sticks out past the screen edge while it decodes. */
+:is(.inner-hero, .contact-page) .decode-mask {
+  right: 0;
+  white-space: normal;
+}
+
+/* The section right after a hero starts close to it, so the content stays in the first view. */
+.section.inner-next {
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Framed photograph, as the homepage frames its project images. */
+.photo-frame {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: var(--shot-shadow);
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--frame-line);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-photo {
+  width: min(100%, 26rem);
+  aspect-ratio: 663 / 829;
+}
+
+@media (min-width: 64rem) {
+  .about-photo {
+    width: auto;
+    height: max(18rem, var(--split-h));
+    max-height: 46rem;
+  }
+}
+
+/* Process: the six stages as an index that jumps to each section below. */
+.stage-index {
+  width: min(100%, 30rem);
+}
+
+.stage-index ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.stage-index a {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-block: 0.8rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.stage-index-num {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.stage-index-name {
+  font-size: 1.02rem;
+  transition:
+    translate 0.7s var(--ease-lux),
+    color 0.4s var(--ease-lux);
+}
+
+.stage-index a:hover .stage-index-name,
+.stage-index a:focus-visible .stage-index-name {
+  color: var(--color-lavender);
+  translate: 0.4rem 0;
+}
+
+.stage-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.stage-row {
+  display: grid;
+  gap: 1rem 2rem;
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stage-num {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4vw, 4.2rem);
+  line-height: 1;
+}
+
+.stage-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.stage-summary {
+  margin-top: 0.9rem;
+  max-width: 34rem;
+  color: var(--fg-soft);
+  font-size: 1.125rem;
+}
+
+.stage-details {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--fg-soft);
+}
+
+.stage-details li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.stage-details li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--color-lilac);
+}
+
+@media (min-width: 64rem) {
+  .stage-row {
+    grid-template-columns: 7rem minmax(0, 5fr) minmax(0, 6fr);
+    align-items: start;
+  }
+
+  .stage-details {
+    padding-top: 0.6rem;
+  }
+}
+
+/* Work: the first project is a wide featured card, and the rest fill whole rows.
+   workLayout() in src/utils/portfolio.ts sets data-md (two columns) and data-lg (three). */
+.work-index {
+  display: grid;
+  gap: clamp(2.5rem, 4vw, 3.5rem) var(--col-gap);
+}
+
+@media (min-width: 48rem) {
+  .work-index {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .work-index > [data-md="half"] {
+    grid-column: span 3;
+  }
+
+  .work-index > [data-md="wide"] {
+    grid-column: 1 / -1;
+  }
+
+  /* App artwork panels match the browser frame's height from the card's own width. */
+  .work-index .shot-frame-mobile {
+    height: calc(100cqi * 9 / 16 + var(--bar-h));
+  }
+}
+
+@media (min-width: 80rem) {
+  .work-index > [data-lg="third"] {
+    grid-column: span 2;
+  }
+
+  .work-index > [data-lg="half"] {
+    grid-column: span 3;
+  }
+
+  .work-index > [data-lg="wide"] {
+    grid-column: 1 / -1;
+  }
+}
+
+/* A wide card sets its image beside its text from 1024 px. */
+@media (min-width: 64rem) and (width < 80rem) {
+  .work-index > [data-md="wide"] {
+    --wide-gap: clamp(2rem, 4vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    column-gap: var(--wide-gap);
+  }
+
+  .work-index > [data-md="wide"] .shot-frame-mobile {
+    height: calc((100cqi - var(--wide-gap)) * 7 / 12 * 9 / 16 + var(--bar-h));
+  }
+
+  .work-index > [data-md="wide"] .project-body {
+    padding-top: 0;
+  }
+
+  .work-index > [data-md="wide"] .project-title {
+    font-size: clamp(2rem, 3vw, 3.25rem);
+  }
+}
+
+@media (min-width: 80rem) {
+  .work-index > [data-lg="wide"] {
+    --wide-gap: clamp(2rem, 4vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    column-gap: var(--wide-gap);
+  }
+
+  .work-index > [data-lg="wide"] .shot-frame-mobile {
+    height: calc((100cqi - var(--wide-gap)) * 7 / 12 * 9 / 16 + var(--bar-h));
+  }
+
+  .work-index > [data-lg="wide"] .project-body {
+    padding-top: 0;
+  }
+
+  .work-index > [data-lg="wide"] .project-title {
+    font-size: clamp(2rem, 3vw, 3.25rem);
+  }
+}
+
+/* Team: a wall of all nine portraits. Names always show. With a mouse or trackpad the role
+   appears on hover and keyboard focus; on touch screens it always shows. */
+.team-wall {
+  --per: 2;
+  --wall-gap: clamp(0.85rem, 1.6vw, 1.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.75rem, 3vw, 2.5rem) var(--wall-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-wall > li {
+  flex: 0 0 calc((100% - (var(--per) - 1) * var(--wall-gap)) / var(--per));
+  min-width: 0;
+}
+
+@media (min-width: 40rem) {
+  .team-wall {
+    --per: 3;
+  }
+}
+
+@media (min-width: 80rem) {
+  .team-wall {
+    --per: 5;
+  }
+}
+
+.wall-tile {
+  display: block;
+  border-radius: 10px;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.wall-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: var(--shot-shadow);
+}
+
+.wall-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--frame-line);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.6s var(--ease-lux);
+}
+
+.wall-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 1.6s var(--ease-lux);
+}
+
+.wall-badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 1;
+}
+
+.wall-tile:hover .wall-photo img,
+.wall-tile:focus-visible .wall-photo img {
+  scale: 1.04;
+}
+
+.wall-tile:hover .wall-photo::after,
+.wall-tile:focus-visible .wall-photo::after {
+  border-color: var(--accent);
+}
+
+.wall-name {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.wall-role {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--fg-muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .wall-role {
+    opacity: 0;
+    translate: 0 -0.3rem;
+    transition:
+      opacity 0.5s var(--ease-lux),
+      translate 0.7s var(--ease-lux);
+  }
+
+  .wall-tile:hover .wall-role,
+  .wall-tile:focus-visible .wall-role {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+.team-roster-section {
+  padding-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.roster-note {
+  max-width: 44rem;
+  color: var(--fg-muted);
+}
+
+.roster-list {
+  display: grid;
+  column-gap: var(--col-gap);
+  margin: clamp(1.75rem, 3vw, 2.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.roster-row {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding-block: clamp(1.75rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 48rem) {
+  .roster-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .roster-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.roster-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.roster-name a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 0.8s var(--ease-lux);
+}
+
+.roster-name a:hover,
+.roster-name a:focus-visible {
+  background-size: 100% 1px;
+}
+
+.roster-role {
+  margin-top: 0.4rem;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.roster-intro {
+  margin-top: 0.9rem;
+  max-width: 34rem;
+  color: var(--fg-soft);
+}
+
+.roster-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roster-skills li {
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--link);
+  font-size: 0.8rem;
+}
+
+.roster-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: auto;
+  padding-top: 1.35rem;
+}
+
+.roster-social {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--link);
+  transition: border-color 0.4s var(--ease-lux);
+}
+
+.roster-social:hover,
+.roster-social:focus-visible {
+  border-color: var(--accent);
+}
+
+/* Contact: the heading and notes beside the form from 1024 px; on phones the form follows the
+   heading. */
+.contact-page {
+  padding-block: clamp(2.75rem, 7vh, 5rem) clamp(4.5rem, 8vw, 7.5rem);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-areas: "head" "form" "notes";
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+.contact-head {
+  grid-area: head;
+  min-width: 0;
+}
+
+.contact-form {
+  grid-area: form;
+}
+
+.contact-notes {
+  grid-area: notes;
+  border-top: 1px solid var(--rule);
+}
+
+.contact-head .inner-title {
+  font-size: clamp(2.6rem, 4.6vw, 4.8rem);
+}
+
+.contact-head .lede {
+  margin-top: 1.5rem;
+  max-width: 34rem;
+}
+
+.contact-note {
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.contact-note h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.contact-note p {
+  margin-top: 0.5rem;
+  color: var(--fg-muted);
+}
+
+.contact-note a,
+.contact-email {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.contact-note .contact-note-links {
+  margin-top: 0.85rem;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 64rem) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "head form" "notes form";
+    align-items: start;
+    column-gap: clamp(3rem, 5vw, 5.5rem);
+  }
+}
+
+/* Entrances: titles rise word by word, the rule draws, the photo settles. Once, on load. */
+@media (prefers-reduced-motion: no-preference) {
+  .inner-title .w > span {
+    animation: word-rise 1.15s var(--ease-lux) calc(0.12s + var(--i, 0) * 55ms) both;
+  }
+
+  .inner-hero-compact .inner-hero-grid::after {
+    animation: rule-draw 1.4s var(--ease-lux) 0.35s both;
+  }
+
+  .about-photo img {
+    animation: hero-settle 2.6s var(--ease-lux) 0.1s both;
+  }
 }
 
 @media print {

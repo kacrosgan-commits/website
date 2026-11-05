@@ -5,7 +5,7 @@ import PageHero from "../../components/ui/PageHero.astro";
 import { services as localServices } from "../../data/services";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { filtersInUse, isVisibleProject } from "../../utils/portfolio";
+import { filtersInUse, isVisibleProject, workLayout } from "../../utils/portfolio";
 import { getCollection } from "astro:content";
 import { getContentSource } from "../../lib/content/source";
 import { getProjectsForRender, getServicesForRender } from "../../lib/content/site-content";
@@ -31,9 +31,7 @@ if (!cms) {
 }
 
 const projectCount = cms ? cmsProjects.length : projectsLocal.length;
-const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0]?.src) : projectsLocal.map((project) => project.data.screenshots[0]?.src))
-  .filter((src): src is string => Boolean(src))
-  .slice(0, 3);
+const places = workLayout(projectsLocal.length);
 ---
 
 <BaseLayout
@@ -47,19 +45,16 @@ const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0
 >
   <PageHero
     eyebrow="Portfolio"
+    title="Selected Work"
     description={
       projectCount > 0
-        ? "Digital Products Across Industries."
+        ? "Web and mobile products we've helped build across industries."
         : "Case studies appear here after the work and the right to publish it are confirmed."
     }
-    visual="showcase"
-    plates={showcasePlates}
     crumbs={[{ label: "Home", href: "/" }, { label: "Selected Work" }]}
-  >
-    Selected Work
-  </PageHero>
+  />
 
-  <section class="section pt-0" aria-labelledby="projects-heading">
+  <section class="section inner-next" aria-labelledby="projects-heading">
     <div class="container-page">
       <h2 id="projects-heading" class="sr-only">Projects</h2>
       {
@@ -94,7 +89,7 @@ const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0
       }
       {
         !cms && showFilters && (
-          <div class="flex flex-wrap gap-2" data-filters>
+          <div class="mb-8 flex flex-wrap gap-2" data-filters>
             <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">
               All
             </button>
@@ -140,8 +135,10 @@ const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0
             })}
           </div>
         ) : (
-          <div class:list={["portfolio-grid stagger-children mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid data-liquid>
-            {projectsLocal.map((project) => <ProjectCard project={project} morph />)}
+          <div class="work-index" data-project-grid>
+            {projectsLocal.map((project, index) => (
+              <ProjectCard project={project} morph place={places[index]} eager={index === 0} />
+            ))}
           </div>
         )
       }
@@ -152,33 +149,35 @@ const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0
   </section>
   <CtaSection
     title="Have a Similar Product in Mind?"
-    description="Tell us what you want to build. Publishing a case study is a separate decision."
+    description="Tell us what you want to build, and we'll talk through the best approach."
     href="/contact"
     label="Discuss Your Project"
   />
 </BaseLayout>
 
-{
-  !cms ? (
-    <script>
-      const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
-      const cards = document.querySelectorAll<HTMLElement>("[data-project-grid] [data-filters]");
-      const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
+<script>
+  import { workLayout } from "../../utils/portfolio";
 
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const filter = button.dataset.filter ?? "all";
-          buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-          let visible = 0;
-          cards.forEach((card) => {
-            const tags = (card.dataset.filters ?? "").split("|").filter(Boolean);
-            const show = filter === "all" || tags.includes(filter);
-            card.hidden = !show;
-            if (show) visible += 1;
-          });
-          if (empty) empty.hidden = visible !== 0;
-        });
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const cards = [...document.querySelectorAll<HTMLElement>("[data-project-grid] [data-filters]")];
+  const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter ?? "all";
+      buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      const shown = cards.filter((card) => {
+        const tags = (card.dataset.filters ?? "").split("|").filter(Boolean);
+        const show = filter === "all" || tags.includes(filter);
+        card.hidden = !show;
+        return show;
       });
-    </script>
-  ) : null
-}
+      /* The first card shown becomes the wide one, and the rest fill whole rows. */
+      workLayout(shown.length).forEach((place, index) => {
+        shown[index]!.dataset.md = place.md;
+        shown[index]!.dataset.lg = place.lg;
+      });
+      if (empty) empty.hidden = shown.length !== 0;
+    });
+  });
+</script>

@@ -1,13 +1,21 @@
 ---
-import TeamCard from "../../components/cards/TeamCard.astro";
 import CtaSection from "../../components/sections/CtaSection.astro";
 import PageHero from "../../components/ui/PageHero.astro";
+import { publicName } from "../../data/team";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getTeamForRender, isCmsRenderMode } from "../../lib/content/site-content";
 
 const team = getTeamForRender();
 const cms = isCmsRenderMode();
+
+/* Same rule as TeamCard: unpublished, unconfirmed portraits say what kind of image they are. */
+const portraitNote = (member: (typeof team)[number]) =>
+  member.isPublished || member.portrait.identityVerified
+    ? ""
+    : member.portrait.source === "supplied"
+      ? "Supplied photo"
+      : "Illustrative portrait";
 ---
 
 <BaseLayout
@@ -16,27 +24,104 @@ const cms = isCmsRenderMode();
 >
   <PageHero
     eyebrow="Our team"
-    description="Leadership, software engineering, design, delivery, and quality assurance work as one team. A startup gets a direction for the product, people who can build it, and a way to tell whether the release is ready."
-    visual="collaboration"
+    title="The People Behind Vortex Digital"
+    description="Leadership, engineering, design, delivery, and quality working as one team on your product."
     crumbs={[{ label: "Home", href: "/" }, { label: "Team" }]}
-  >
-    The People and Disciplines Behind <span class="text-gradient">Vortex Digital.</span>
-  </PageHero>
-  <section class="section pt-0" aria-labelledby="roster-heading">
+  />
+
+  <section class="team-wall-section" aria-labelledby="wall-heading">
+    <div class="container-page">
+      <h2 id="wall-heading" class="sr-only">Portraits</h2>
+      <ul class="team-wall stagger-children">
+        {
+          team.map((member, index) => {
+            const name = publicName(member);
+            const note = portraitNote(member);
+            return (
+              <li class="motion-item">
+                <a class="wall-tile" href={`/team/${member.slug}`}>
+                  <span class="wall-photo">
+                    <img
+                      src={member.portrait.thumb}
+                      srcset={`${member.portrait.thumb} 384w, ${member.portrait.src} ${member.portrait.width}w`}
+                      sizes="(min-width: 80rem) 18vw, (min-width: 40rem) 30vw, 46vw"
+                      alt=""
+                      width={member.portrait.width}
+                      height={member.portrait.height}
+                      loading={index < 5 ? "eager" : "lazy"}
+                      decoding="async"
+                    />
+                    {note && <span class="badge wall-badge">{note}</span>}
+                  </span>
+                  <span class="wall-name">{name ?? member.role}</span>
+                  {name && (
+                    <span class="wall-role">
+                      <span class="sr-only">, </span>
+                      {member.role}
+                    </span>
+                  )}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section team-roster-section" aria-labelledby="roster-heading">
     <div class="container-page">
       <h2 id="roster-heading" class="sr-only">Team roster</h2>
-      <p class="mb-8 max-w-3xl text-muted">
+      <p class="roster-note">
         {
           cms
             ? `${team.length} profiles from the active CMS release, in role order.`
             : "Nine named profiles, in role order. Portraits were assigned by the agency owner. No profile is tied to a client case study."
         }
       </p>
-      <div class="team-roster stagger-children">
-        {team.map((member) => <TeamCard member={member} />)}
-      </div>
+      <ul class="roster-list">
+        {
+          team.map((member) => {
+            const name = publicName(member);
+            return (
+              <li class="roster-row reveal">
+                <h3 class="roster-name">
+                  <a href={`/team/${member.slug}`}>{name ?? member.role}</a>
+                </h3>
+                {name && <p class="roster-role">{member.role}</p>}
+                <p class="roster-intro">{member.intro}</p>
+                <ul class="roster-skills">
+                  {member.expertise.map((item) => (
+                    <li>{item.title}</li>
+                  ))}
+                </ul>
+                <div class="roster-links">
+                  <a href={`/team/${member.slug}`} class="lux-link">
+                    View Profile
+                  </a>
+                  {member.linkedin && (
+                    <a href={member.linkedin} class="roster-social" target="_blank" rel="noopener noreferrer" aria-label={`${name ?? member.role} on LinkedIn`}>
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                        <path d="M4.7 3.6h3.1v3.1H4.7V3.6zM4.7 9h3.1v11.4H4.7V9zm5.4 0h3v1.6h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5v6.5h-3.1v-5.8c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.9H10.1V9z" />
+                      </svg>
+                    </a>
+                  )}
+                  {member.github && (
+                    <a href={member.github} class="roster-social" target="_blank" rel="noopener noreferrer" aria-label={`${name ?? member.role} on GitHub`}>
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8a9.6 9.6 0 0 1 2.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2z" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   </section>
+
   <CtaSection
     title="Need This Mix of Disciplines on a Product?"
     description="Tell us what you are building. We can talk through which of these roles the work actually needs."

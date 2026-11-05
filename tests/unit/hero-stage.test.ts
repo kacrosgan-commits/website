@@ -35,7 +35,10 @@ test("decorative hero svgs are gone and the protected content is still in place"
   for (const page of pages) {
     assert.doesNotMatch(page, /scene-wash|about-orbit|services-spheres|portfolio-portal|process-orbit|contact-globe/);
   }
-  assert.match(read("src/pages/about.astro"), /HeroStage scene="workspace"/);
+  // The inner pages open on their real content: no 3D scene, and no stage behind the shared hero.
+  for (const page of pages) assert.doesNotMatch(page, /HeroStage|data-hero-stage|data-liquid/);
+  assert.doesNotMatch(read("src/components/ui/PageHero.astro"), /HeroStage/);
+  assert.match(read("src/pages/about.astro"), /vortex-hall-reception\.webp/);
   assert.doesNotMatch(read("src/pages/about.astro"), /A dark engineering workspace in violet light/);
   assert.match(read("src/pages/index.astro"), /photo-hero-bleed/);
   assert.match(read("src/pages/index.astro"), /vortex-digital-hall\.png/);
@@ -46,5 +49,5 @@ test("decorative hero svgs are gone and the protected content is still in place"
   assert.match(form, /this site won't send it/);
   const film = read("src/components/sections/TeamShowcase.astro");
   assert.match(film, /vortex-team-showcase\.mp4/);
-  assert.match(read("src/pages/portfolio/index.astro"), /showcasePlates/);
+  assert.match(read("src/pages/portfolio/index.astro"), /<ProjectCard project=\{project\} morph place=\{places\[index\]\}/);
 });
