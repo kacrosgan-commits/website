@@ -4384,23 +4384,6 @@ html.vx-live .photo-hero-img {
   opacity: 0;
 }
 
-/* The closing section's photo and overlay are drawn by the scene, so the ring can sit between them and the text. */
-html.vx-live .lux-cta .cta-art,
-html.vx-live .lux-cta::after {
-  opacity: 0;
-}
-
-/* The flat rings step aside once the 3D ring has arrived at their section. */
-.people-ring,
-.cta-ring {
-  transition: opacity 0.9s var(--ease-lux);
-}
-
-html.vx-live.vx-people .people-ring,
-html.vx-live.vx-cta .cta-ring {
-  opacity: 0;
-}
-
 /* Depth in the page (CSS 3D)
    Image containers and decorative layers move in real perspective; paragraphs and small text
    stay flat and sharp. Everything here waits for html.can-reveal, which is only set with
