@@ -36,15 +36,93 @@ function mountPeople() {
   });
 }
 
-/** A soft light that follows the pointer across a row of bays. */
+/**
+ * A soft light that glides after the pointer across a row of bays. It eases toward the pointer
+ * (about 90 ms to close most of the gap) instead of snapping to it, and only its transform moves.
+ * Entering a bay whose light has faded starts it at the pointer, so it never slides in from an
+ * old spot.
+ */
 function mountSpotlight() {
   if (!window.matchMedia("(hover: hover)").matches) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   document.querySelectorAll<HTMLElement>("[data-spotlight] > *").forEach((bay) => {
-    bay.addEventListener("pointermove", (event) => {
+    let x = 0;
+    let y = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let frame = 0;
+    let last = 0;
+    let leftAt = -Infinity;
+    const draw = () => {
+      bay.style.setProperty("--mx", `${x.toFixed(1)}px`);
+      bay.style.setProperty("--my", `${y.toFixed(1)}px`);
+    };
+    const step = (now: number) => {
+      const dt = Math.min(Math.max(now - last, 0), 64);
+      last = now;
+      const k = 1 - Math.exp(-dt / 90);
+      x += (targetX - x) * k;
+      y += (targetY - y) * k;
+      draw();
+      frame = Math.abs(targetX - x) + Math.abs(targetY - y) > 0.3 ? requestAnimationFrame(step) : 0;
+    };
+    const aim = (event: PointerEvent, entering: boolean) => {
       const rect = bay.getBoundingClientRect();
-      bay.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-      bay.style.setProperty("--my", `${event.clientY - rect.top}px`);
-    });
+      targetX = event.clientX - rect.left;
+      targetY = event.clientY - rect.top;
+      if (reduced.matches || (entering && performance.now() - leftAt > 700)) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        x = targetX;
+        y = targetY;
+        draw();
+        return;
+      }
+      if (!frame) {
+        last = performance.now();
+        frame = requestAnimationFrame(step);
+      }
+    };
+    bay.addEventListener("pointerenter", (event) => aim(event, true));
+    bay.addEventListener("pointermove", (event) => aim(event, false));
+    bay.addEventListener("pointerleave", () => (leftAt = performance.now()));
+  });
+}
+
+/**
+ * How the work is run: each column rises into place as it comes on screen, and columns that
+ * arrive together follow one another 90 ms apart. Columns already on screen are left alone.
+ */
+function mountReasonsArrival() {
+  const grid = document.querySelector<HTMLElement>(".reason-grid");
+  if (!grid) return;
+  const waiting = [...grid.children].filter(
+    (bay): bay is HTMLElement => bay instanceof HTMLElement && bay.getBoundingClientRect().top > window.innerHeight * 0.88,
+  );
+  if (!waiting.length) return;
+  const settle = (bay: HTMLElement) => {
+    bay.classList.remove("is-entering");
+    bay.style.removeProperty("--i");
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries
+        .filter((entry) => entry.isIntersecting)
+        .map((entry) => entry.target as HTMLElement)
+        .sort((a, b) => waiting.indexOf(a) - waiting.indexOf(b))
+        .forEach((bay, index) => {
+          observer.unobserve(bay);
+          bay.style.setProperty("--i", String(index));
+          bay.classList.add("is-entering");
+          bay.classList.remove("is-waiting");
+          window.setTimeout(() => settle(bay), 1200 + index * 90);
+        });
+    },
+    { rootMargin: "0px 0px -12% 0px" },
+  );
+  waiting.forEach((bay) => {
+    bay.classList.add("is-waiting");
+    observer.observe(bay);
   });
 }
 
@@ -626,5 +704,6 @@ mountMagnetic();
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
   splitTitles();
   mountScroll();
+  mountReasonsArrival();
   mountDecode();
 }
