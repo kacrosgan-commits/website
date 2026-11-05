@@ -9,7 +9,7 @@ import Stats from "../components/sections/Stats.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
 import GradientButton from "../components/ui/GradientButton.astro";
 import OutlineButton from "../components/ui/OutlineButton.astro";
-import { homeIntro, reasons } from "../data/about";
+import { homeIntro } from "../data/about";
 import { faqs } from "../data/faq";
 import { processSteps } from "../data/process";
 import { featuredServices as localFeaturedServices } from "../data/services";
@@ -225,25 +225,6 @@ const featuredServices = cms
               <Icon name={service.icon} size={22} class="spec-icon" />
               <h3 class="spec-title">{service.title}</h3>
               <p class="spec-text">{service.summary}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="section reveal lux-reasons" aria-labelledby="reasons-heading">
-    <div class="container-page">
-      <SectionHeading eyebrow="Our approach" description="What you can expect when we work together.">
-        <span id="reasons-heading">How the work is run.</span>
-      </SectionHeading>
-      <ul class="reason-grid" data-spotlight>
-        {
-          reasons.map((reason) => (
-            <li class="reason-bay">
-              <Icon name={reason.icon} size={26} class="reason-icon" />
-              <h3 class="reason-title">{reason.title}</h3>
-              <p class="reason-text">{reason.text}</p>
             </li>
           ))
         }
