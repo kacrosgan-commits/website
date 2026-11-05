@@ -2526,9 +2526,8 @@ picture {
 /* ==========================================================================
    Luxury redesign
    Materials come from the brand itself: the gold of the logo and the reception
-   light, the violet of the lobby artwork, and the ring of the halo pendant.
-   The ring is the one recurring motif: an aperture that opens the page, swaps
-   portraits, and closes the page.
+   light, and the violet of the lobby artwork. The page opens through a circular
+   aperture that starts at the halo pendant in the photo.
    ========================================================================== */
 
 /* Foundations
@@ -3014,7 +3013,7 @@ a:hover > .logo-lockup .logo-mark {
   line-height: 1.2;
 }
 
-/* Hero: the lobby opens through a ring that starts at its own halo light
+/* Hero: the lobby opens through a circle that starts at its own halo light
    -------------------------------------------------------------------------- */
 .photo-hero-bleed {
   --hx: 82%;
@@ -3090,7 +3089,7 @@ html.vx-live .photo-hero::before {
 /* Desktop: the photo's box is wider than the hero and anchored to its right edge, so at least the
    left 580 source pixels (the round wall logo ends at 525) are always outside the hero, at every
    ratio from 4:3 to 21:9. Height-bound ratios crop further left. The Vortex sign, the halo and
-   the reception desk stay in frame. The opening ring and the WebGL scene both measure this box. */
+   the reception desk stay in frame. The opening and the WebGL scene both measure this box. */
 @media (min-width: 64rem) {
   .photo-hero-img {
     left: auto;
@@ -3105,10 +3104,6 @@ html.vx-live .photo-hero::before {
       linear-gradient(0deg, var(--color-ink) 0%, rgba(9, 7, 19, 0.9) 20%, rgba(9, 7, 19, 0.56) 40%, rgba(9, 7, 19, 0.1) 60%, rgba(9, 7, 19, 0) 76%, rgba(9, 7, 19, 0.24) 100%),
       linear-gradient(90deg, rgba(9, 7, 19, 0.95) 0%, rgba(9, 7, 19, 0.86) 26%, rgba(9, 7, 19, 0.42) 44%, rgba(9, 7, 19, 0.08) 56%, transparent 66%);
   }
-}
-
-.hero-ring {
-  display: none;
 }
 
 .photo-hero-content {
@@ -3182,31 +3177,6 @@ html.vx-live .photo-hero::before {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-ring {
-    position: absolute;
-    top: var(--hy);
-    left: var(--hx);
-    z-index: 3;
-    display: block;
-    width: 300vmax;
-    max-width: none;
-    height: 300vmax;
-    overflow: visible;
-    pointer-events: none;
-    translate: -50% -50%;
-    fill: none;
-    stroke: #e6cf9f;
-    stroke-width: 1.5;
-    /* Same curve and timing as the iris, so the line stays on the edge of the opening photo. */
-    animation:
-      hero-ring-open 2.4s var(--ease-iris) 0.15s both,
-      hero-ring-fade 2.4s linear 0.15s both;
-  }
-
-  .hero-ring circle {
-    vector-effect: non-scaling-stroke;
-  }
-
   .photo-hero {
     animation: hero-iris 2.4s var(--ease-iris) 0.15s both;
   }
@@ -3248,18 +3218,6 @@ html.vx-live .photo-hero::before {
 @keyframes hero-iris {
   from { clip-path: circle(0 at var(--hx) var(--hy)); }
   to { clip-path: circle(150vmax at var(--hx) var(--hy)); }
-}
-
-@keyframes hero-ring-open {
-  from { scale: 0; }
-  to { scale: 1; }
-}
-
-@keyframes hero-ring-fade {
-  0% { opacity: 0; }
-  6% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { opacity: 0; }
 }
 
 @keyframes hero-settle {
@@ -4113,7 +4071,7 @@ html.vx-live .photo-hero::before {
   }
 }
 
-/* People: each name opens its portrait through the ring
+/* People: each name opens its portrait through a circle
    -------------------------------------------------------------------------- */
 .people-wall {
   display: grid;
@@ -4229,17 +4187,6 @@ html.vx-live .photo-hero::before {
   }
 }
 
-.people-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  fill: none;
-  stroke: var(--color-lilac);
-  stroke-width: 0.25;
-}
-
 .people-portrait {
   position: absolute;
   inset: 3.5%;
@@ -4255,18 +4202,6 @@ html.vx-live .photo-hero::before {
 .people-portrait.is-active {
   clip-path: circle(50% at 50% 50%);
   transition: clip-path 1s var(--ease-iris);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .people-ring circle {
-    transition: stroke-dashoffset 2.2s var(--ease-lux);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-  }
-
-  html.can-reveal .await-reveal:not(.is-in) .people-ring circle {
-    stroke-dashoffset: 1;
-  }
 }
 
 /* Questions
@@ -4355,7 +4290,7 @@ html.vx-live .photo-hero::before {
   color: #cfc8d3;
 }
 
-/* Closing scene: the page closes in the same ring it opened with
+/* Closing scene: the lobby floor and its reception light under the last call to action
    -------------------------------------------------------------------------- */
 .lux-cta {
   position: relative;
@@ -4408,36 +4343,6 @@ html.vx-live .photo-hero::before {
     linear-gradient(180deg, rgba(9, 7, 19, 0) 0%, rgba(9, 7, 19, 0.6) 26%, rgba(9, 7, 19, 0.12) 68%, rgba(9, 7, 19, 0.2) 100%);
 }
 
-.cta-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  width: max(44rem, min(92vmin, 62rem));
-  max-width: none;
-  height: max(44rem, min(92vmin, 62rem));
-  overflow: visible;
-  fill: none;
-  stroke: var(--color-lilac);
-  stroke-width: 0.3;
-  transform: translate(-50%, -50%);
-}
-
-.cta-ring-line {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-}
-
-.cta-ring-bead {
-  fill: #f3e8d2;
-  stroke: none;
-}
-
-.cta-ring-orbit {
-  transform-box: view-box;
-  transform-origin: 50% 50%;
-}
-
 @media (width < 48rem) {
   .cta-art {
     height: 62%;
@@ -4483,22 +4388,6 @@ html.vx-live .photo-hero::before {
     opacity: 0.35;
     transform: translateY(22%) scaleY(0.8);
   }
-
-  .cta-ring-line {
-    transition: stroke-dashoffset 2.6s var(--ease-iris);
-  }
-
-  html.can-reveal .await-reveal:not(.is-in) .cta-ring-line {
-    stroke-dashoffset: 1;
-  }
-
-  .cta-ring-orbit {
-    animation: ring-orbit 38s linear infinite;
-  }
-}
-
-@keyframes ring-orbit {
-  to { transform: rotate(360deg); }
 }
 
 /* Footer
@@ -4986,10 +4875,6 @@ html.tone-armed :is(.lux-work, .tone-follow) {
 
   html.vx-live .photo-hero-img {
     opacity: 1 !important;
-  }
-
-  .hero-ring {
-    display: none !important;
   }
 
   .photo-hero,

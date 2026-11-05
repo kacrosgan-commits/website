@@ -82,9 +82,8 @@ const featuredServices = cms
         />
       </picture>
     </div>
-    <svg class="hero-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
     <script is:inline>
-      // Start the opening ring exactly on the halo light in the photo, and wait for the photo so the first frame is never empty.
+      // Start the opening exactly on the halo light in the photo, and wait for the photo so the first frame is never empty.
       // The photo's box can be wider than the hero (desktop crops the wall logo out), so measure the box itself.
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -98,7 +97,7 @@ const featuredServices = cms
         var y = img.offsetTop + (h - 868 * scale) * (parseFloat(position[1]) / 100) + 245 * scale;
         hero.style.setProperty("--hx", x + "px");
         hero.style.setProperty("--hy", y + "px");
-        // The photo settles around the halo too, so the ring and the light stay together.
+        // The photo settles around the halo too, so the opening and the light stay together.
         img.style.transformOrigin = x - img.offsetLeft + "px " + (y - img.offsetTop) + "px";
         if (img.complete) return;
         hero.setAttribute("data-iris", "wait");
@@ -278,7 +277,6 @@ const featuredServices = cms
       </div>
       <div class="people-wall" data-people>
         <div class="people-stage" aria-hidden="true">
-          <svg class="people-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49.8" pathLength="1"></circle></svg>
           {
             team.map((member, index) => (
               <img
@@ -329,7 +327,6 @@ const featuredServices = cms
     label="Discuss Your Project"
     secondaryHref="/process"
     secondaryLabel="See Our Process"
-    ring={false}
   />
   </div>
 
