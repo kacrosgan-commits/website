@@ -7,19 +7,17 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
 
-test("homepage uses the lobby photo hero and classic section order", () => {
+test("homepage uses the lobby photo hero and the work-first section order", () => {
   const home = read("src/pages/index.astro");
   const order = [
     "photo-hero-bleed",
     "vortex-digital-hall.png",
     "intro-heading",
-    "TeamShowcase",
-    "services-heading",
-    "reasons-heading",
-    "Stats",
-    "stack-heading",
     "work-heading",
     "Testimonials",
+    "TeamShowcase",
+    "services-heading",
+    "Stats",
     "process-heading",
     "team-heading",
     "faq-heading",

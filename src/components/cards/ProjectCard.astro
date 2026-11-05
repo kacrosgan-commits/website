@@ -2,32 +2,50 @@
 import type { CollectionEntry } from "astro:content";
 import { portfolioArt } from "../../data/assets";
 import { formatDate } from "../../utils/format";
-import { cardCopy } from "../../utils/images";
+import { cardCopy, frameCopy } from "../../utils/images";
 import { isPublicProject } from "../../utils/portfolio";
 import MediaFrame from "../ui/MediaFrame.astro";
 
 interface Props {
   project: CollectionEntry<"caseStudies">;
+  /** Name the image for the card-to-case-study View Transition (homepage and portfolio page). */
+  morph?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, morph = false } = Astro.props;
 const shot = project.data.screenshots[0];
-const shotCard = shot ? cardCopy(shot.src) : undefined;
+const mobile = project.data.mediaLayout === "mobile";
+/* Website captures use the 16:9 browser-frame crop; app artwork keeps its card copy. */
+const shotCard = shot ? (mobile ? undefined : frameCopy(shot.src)) ?? cardCopy(shot.src) : undefined;
 const art = shot ? undefined : portfolioArt(project.id);
 const published = isPublicProject(project.data);
-const mobile = project.data.mediaLayout === "mobile";
+/* The address shown in the CSS browser bar: the project's own public URL, when it has one. */
+let host = "";
+try {
+  host = !mobile && project.data.projectUrl ? new URL(project.data.projectUrl).hostname.replace(/^www\./, "") : "";
+} catch {
+  host = "";
+}
 ---
 
 <article
   class="portfolio-card reveal-plate motion-item"
+  data-layout={project.data.mediaLayout}
   data-category={project.data.category}
   data-filters={project.data.filters.join("|")}
 >
   {
     shot && (
-      <div class="shot-stage" data-tilt>
-        <span class="shot-shadow" aria-hidden="true" />
-        <a href={`/portfolio/${project.id}`} class:list={["shot-frame", mobile ? "shot-frame-mobile" : "shot-frame-web"]}>
+      <a href={`/portfolio/${project.id}`} class:list={["shot-frame", mobile ? "shot-frame-mobile" : "shot-frame-web"]}>
+        {
+          !mobile && (
+            <span class="browser-bar" aria-hidden="true">
+              <span class="browser-dots"><i></i><i></i><i></i></span>
+              {host && <span class="browser-address">{host}</span>}
+            </span>
+          )
+        }
+        <span class="shot-screen">
           <picture>
             {shotCard && <source type="image/webp" srcset={shotCard} />}
             <img
@@ -37,10 +55,12 @@ const mobile = project.data.mediaLayout === "mobile";
               height={shot.height}
               loading="lazy"
               decoding="async"
+              data-vt-project={morph ? project.id : undefined}
+              style={morph ? `view-transition-name: project-${project.id}; view-transition-class: project-shot` : undefined}
             />
           </picture>
-        </a>
-      </div>
+        </span>
+      </a>
     )
   }
   {

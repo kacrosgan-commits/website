@@ -93,7 +93,7 @@ picture {
 }
 
 :focus-visible {
-  outline: 2px solid #c9a35f;
+  outline: 2px solid var(--focus, #c9a35f);
   outline-offset: 3px;
 }
 
@@ -1559,11 +1559,6 @@ picture {
   aspect-ratio: 1353 / 929;
 }
 
-.portfolio-card:hover .shot-frame img,
-.portfolio-card:focus-within .shot-frame img {
-  transform: none;
-}
-
 .review-banner {
   border: 1px solid rgba(201, 163, 95, 0.35);
   border-radius: 10px;
@@ -2531,15 +2526,76 @@ picture {
 /* ==========================================================================
    Luxury redesign
    Materials come from the brand itself: the gold of the logo and the reception
-   light, the violet of the lobby artwork, and the ring of the halo pendant.
-   The ring is the one recurring motif: an aperture that opens the page, swaps
-   portraits, and closes the page.
+   light, and the violet of the lobby artwork. The page opens through a circular
+   aperture that starts at the halo pendant in the photo.
    ========================================================================== */
 
 /* Foundations
    -------------------------------------------------------------------------- */
 html {
   interpolate-size: allow-keywords;
+}
+
+/* Section palette. Every section reads its text, accent, rule and button colors from these, so a
+   section can switch between the dark material and ivory paper by changing tokens only. They are
+   registered so the homepage's background blend can cross-fade them. */
+@property --fg { syntax: "<color>"; inherits: true; initial-value: #f5f0e8; }
+@property --fg-soft { syntax: "<color>"; inherits: true; initial-value: #cfc8d3; }
+@property --fg-muted { syntax: "<color>"; inherits: true; initial-value: #a9a1b5; }
+@property --fg-faint { syntax: "<color>"; inherits: true; initial-value: rgba(245, 240, 232, 0.3); }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #c9a35f; }
+@property --link { syntax: "<color>"; inherits: true; initial-value: #e8dcc4; }
+@property --rule { syntax: "<color>"; inherits: true; initial-value: rgba(232, 220, 196, 0.16); }
+@property --focus { syntax: "<color>"; inherits: true; initial-value: #c9a35f; }
+@property --btn-line { syntax: "<color>"; inherits: true; initial-value: rgba(232, 220, 196, 0.34); }
+@property --btn-bg { syntax: "<color>"; inherits: true; initial-value: rgba(9, 7, 19, 0.28); }
+@property --btn-fg { syntax: "<color>"; inherits: true; initial-value: #f5f0e8; }
+@property --btn-hover-bg { syntax: "<color>"; inherits: true; initial-value: #e8dcc4; }
+@property --btn-hover-fg { syntax: "<color>"; inherits: true; initial-value: #090713; }
+@property --panel { syntax: "<color>"; inherits: true; initial-value: #15111f; }
+@property --frame-line { syntax: "<color>"; inherits: true; initial-value: rgba(232, 220, 196, 0.14); }
+
+:root {
+  --fg: #f5f0e8;
+  --fg-soft: #cfc8d3;
+  --fg-muted: #a9a1b5;
+  --fg-faint: rgba(245, 240, 232, 0.3);
+  --accent: #c9a35f;
+  --link: #e8dcc4;
+  --rule: rgba(232, 220, 196, 0.16);
+  --focus: #c9a35f;
+  --btn-line: rgba(232, 220, 196, 0.34);
+  --btn-bg: rgba(9, 7, 19, 0.28);
+  --btn-fg: #f5f0e8;
+  --btn-hover-bg: #e8dcc4;
+  --btn-hover-fg: #090713;
+  --panel: #15111f;
+  --frame-line: rgba(232, 220, 196, 0.14);
+  --shot-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 30px 60px -30px rgba(0, 0, 0, 0.85);
+  /* Bronze for gold accents on ivory: 5.6:1 on --color-paper, 5.0:1 on the phone panel. */
+  --color-bronze: #7a5a22;
+}
+
+/* Ivory paper. Ink text 17.6:1, soft 9.9:1, muted 6.4:1, bronze 5.6:1 on --color-paper; button
+   and focus outlines are at least 5:1, above the 3:1 needed for controls. */
+.palette-paper,
+.lux-work {
+  --fg: #090713;
+  --fg-soft: #3f3846;
+  --fg-muted: #5c5463;
+  --fg-faint: rgba(9, 7, 19, 0.28);
+  --accent: var(--color-bronze);
+  --link: #090713;
+  --rule: rgba(9, 7, 19, 0.16);
+  --focus: var(--color-bronze);
+  --btn-line: #6b6372;
+  --btn-bg: rgba(245, 240, 232, 0);
+  --btn-fg: #090713;
+  --btn-hover-bg: #090713;
+  --btn-hover-fg: #f5f0e8;
+  --panel: #ebe3d4;
+  --frame-line: rgba(9, 7, 19, 0.1);
+  --shot-shadow: 0 1px 2px rgba(48, 36, 22, 0.1), 0 14px 30px -16px rgba(48, 36, 22, 0.38), 0 42px 70px -38px rgba(48, 36, 22, 0.42);
 }
 
 body {
@@ -2582,9 +2638,14 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(ellipse 60% 45% at 92% 0%, rgba(109, 40, 217, 0.13), transparent 70%),
-    var(--color-ink);
+  background-color: var(--color-ink);
+}
+
+.page-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 45% at 92% 0%, rgba(109, 40, 217, 0.13), transparent 70%);
 }
 
 /* Type
@@ -2623,7 +2684,7 @@ body {
 
 .eyebrow {
   gap: 0.65rem;
-  color: var(--color-lilac);
+  color: var(--accent);
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0;
@@ -2639,7 +2700,7 @@ body {
 }
 
 .lede {
-  color: #cfc8d3;
+  color: var(--fg-soft);
   font-size: clamp(1.05rem, 1.2vw, 1.2rem);
   line-height: 1.65;
 }
@@ -2679,7 +2740,7 @@ body {
   position: relative;
   display: inline-block;
   padding-block: 0.4rem;
-  color: var(--color-lavender);
+  color: var(--link);
   font-weight: 500;
   text-decoration: none;
 }
@@ -2721,7 +2782,8 @@ body {
     color 0.4s var(--ease-lux),
     border-color 0.4s var(--ease-lux),
     background-color 0.4s var(--ease-lux),
-    box-shadow 0.5s var(--ease-lux);
+    box-shadow 0.5s var(--ease-lux),
+    translate 0.45s var(--ease-lux);
 }
 
 .btn:has(.arrow) {
@@ -2791,18 +2853,18 @@ body {
 }
 
 .btn-outline {
-  border: 1px solid rgba(232, 220, 196, 0.34);
-  background: rgba(9, 7, 19, 0.28);
-  color: var(--color-paper);
+  border: 1px solid var(--btn-line);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
-  border-color: var(--color-lavender);
-  background: var(--color-lavender);
+  border-color: var(--btn-hover-bg);
+  background: var(--btn-hover-bg);
   box-shadow: none;
-  color: var(--color-ink);
+  color: var(--btn-hover-fg);
   transform: none;
 }
 
@@ -2951,7 +3013,7 @@ a:hover > .logo-lockup .logo-mark {
   line-height: 1.2;
 }
 
-/* Hero: the lobby opens through a ring that starts at its own halo light
+/* Hero: the lobby opens through a circle that starts at its own halo light
    -------------------------------------------------------------------------- */
 .photo-hero-bleed {
   --hx: 82%;
@@ -2993,14 +3055,55 @@ a:hover > .logo-lockup .logo-mark {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   background:
     linear-gradient(0deg, var(--color-ink) 0%, rgba(9, 7, 19, 0.9) 22%, rgba(9, 7, 19, 0.58) 44%, rgba(9, 7, 19, 0.12) 68%, rgba(9, 7, 19, 0.34) 100%),
     linear-gradient(90deg, rgba(9, 7, 19, 0.95) 0%, rgba(9, 7, 19, 0.86) 26%, rgba(9, 7, 19, 0.42) 44%, rgba(9, 7, 19, 0.1) 58%, transparent 70%);
   pointer-events: none;
 }
 
-.hero-ring {
-  display: none;
+/* Reception light: a warm screen-blended pool over the halo and the desk. It lives in the hero's
+   own box, so it stays put while the photo settles. vortex-scene.ts paints the same pool into the
+   WebGL copy (HERO_LIGHT there), so keep the two in step. */
+.photo-hero::before {
+  content: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse 34% 58% at 80% 40%, rgba(255, 214, 156, 0.3) 0%, rgba(255, 214, 156, 0.13) 45%, rgba(255, 214, 156, 0) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 1.2s var(--ease-lux);
+}
+
+html.vx-live .photo-hero::before {
+  opacity: 0;
+}
+
+@media (min-width: 48rem) {
+  .photo-hero::before {
+    content: "";
+  }
+}
+
+/* Desktop: the photo's box is wider than the hero and anchored to its right edge, so at least the
+   left 580 source pixels (the round wall logo ends at 525) are always outside the hero, at every
+   ratio from 4:3 to 21:9. Height-bound ratios crop further left. The Vortex sign, the halo and
+   the reception desk stay in frame. The opening and the WebGL scene both measure this box. */
+@media (min-width: 64rem) {
+  .photo-hero-img {
+    left: auto;
+    width: calc(100% * 1813 / 1233);
+    max-width: none;
+    object-position: 100% 42%;
+  }
+
+  /* Lighter on the reception side; the copy column and the headline's band stay as dark as before. */
+  .photo-hero::after {
+    background:
+      linear-gradient(0deg, var(--color-ink) 0%, rgba(9, 7, 19, 0.9) 20%, rgba(9, 7, 19, 0.56) 40%, rgba(9, 7, 19, 0.1) 60%, rgba(9, 7, 19, 0) 76%, rgba(9, 7, 19, 0.24) 100%),
+      linear-gradient(90deg, rgba(9, 7, 19, 0.95) 0%, rgba(9, 7, 19, 0.86) 26%, rgba(9, 7, 19, 0.42) 44%, rgba(9, 7, 19, 0.08) 56%, transparent 66%);
+  }
 }
 
 .photo-hero-content {
@@ -3074,31 +3177,6 @@ a:hover > .logo-lockup .logo-mark {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-ring {
-    position: absolute;
-    top: var(--hy);
-    left: var(--hx);
-    z-index: 3;
-    display: block;
-    width: 300vmax;
-    max-width: none;
-    height: 300vmax;
-    overflow: visible;
-    pointer-events: none;
-    translate: -50% -50%;
-    fill: none;
-    stroke: #e6cf9f;
-    stroke-width: 1.5;
-    /* Same curve and timing as the iris, so the line stays on the edge of the opening photo. */
-    animation:
-      hero-ring-open 2.4s var(--ease-iris) 0.15s both,
-      hero-ring-fade 2.4s linear 0.15s both;
-  }
-
-  .hero-ring circle {
-    vector-effect: non-scaling-stroke;
-  }
-
   .photo-hero {
     animation: hero-iris 2.4s var(--ease-iris) 0.15s both;
   }
@@ -3142,18 +3220,6 @@ a:hover > .logo-lockup .logo-mark {
   to { clip-path: circle(150vmax at var(--hx) var(--hy)); }
 }
 
-@keyframes hero-ring-open {
-  from { scale: 0; }
-  to { scale: 1; }
-}
-
-@keyframes hero-ring-fade {
-  0% { opacity: 0; }
-  6% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 @keyframes hero-settle {
   from { scale: 1.09; }
   to { scale: 1; }
@@ -3187,24 +3253,25 @@ a:hover > .logo-lockup .logo-mark {
 }
 
 .lux-lead {
-  color: var(--color-paper);
+  color: var(--fg);
   font-family: var(--font-display);
   font-size: clamp(1.45rem, 2vw, 2.05rem);
   line-height: 1.32;
 }
 
+/* Words light up by opacity, so their colour always follows the section palette without lag. */
 .lux-lead .sw {
-  transition: color 0.5s linear;
+  transition: opacity 0.5s linear;
 }
 
 .lux-lead.is-armed .sw:not(.is-lit) {
-  color: rgba(245, 240, 232, 0.3);
+  opacity: 0.3;
 }
 
 .lux-intro-body .support {
   max-width: 34rem;
   margin-top: 1.5rem;
-  color: var(--color-muted);
+  color: var(--fg-muted);
 }
 
 .lux-intro-body .lux-link {
@@ -3273,13 +3340,13 @@ a:hover > .logo-lockup .logo-mark {
 
 .home-film-lede {
   max-width: 38rem;
-  color: #cfc8d3;
+  color: var(--fg-soft);
 }
 
 .home-film-disclosure {
   max-width: 38rem;
   margin-top: 0.5rem;
-  color: var(--color-muted);
+  color: var(--fg-muted);
   font-size: 0.9rem;
 }
 
@@ -3412,175 +3479,7 @@ a:hover > .logo-lockup .logo-mark {
   }
 }
 
-/* How the work is run: one panel, five bays, a light that follows the pointer
-   -------------------------------------------------------------------------- */
-.lux-reasons {
-  position: relative;
-  background:
-    radial-gradient(ellipse 46% 42% at 84% 36%, rgba(109, 40, 217, 0.2), transparent 72%),
-    linear-gradient(180deg, var(--color-ink) 0%, var(--color-ink-soft) 16%, var(--color-ink-soft) 84%, var(--color-ink) 100%);
-}
-
-.reason-grid {
-  display: grid;
-  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid rgba(232, 220, 196, 0.16);
-}
-
-.reason-bay {
-  --mx: 50%;
-  --my: 0%;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 1.75rem 0 2.25rem;
-  border-bottom: 1px solid rgba(232, 220, 196, 0.16);
-}
-
-.reason-bay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(18rem circle at var(--mx) var(--my), rgba(201, 163, 95, 0.16), transparent 72%);
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-lux);
-}
-
-.reason-bay:hover::before {
-  opacity: 1;
-}
-
-.reason-icon {
-  color: var(--color-lilac);
-  transition: translate 0.8s var(--ease-lux);
-}
-
-.reason-bay:hover .reason-icon {
-  translate: 0 -3px;
-}
-
-.reason-title {
-  margin-top: 1.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 1.9vw, 1.95rem);
-  font-weight: 400;
-  line-height: 1.14;
-  text-wrap: balance;
-}
-
-.reason-text {
-  margin-top: 0.85rem;
-  max-width: 34rem;
-  color: var(--color-muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-@media (min-width: 48rem) {
-  .reason-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .reason-bay {
-    padding-inline: 1.75rem;
-    border-right: 1px solid rgba(232, 220, 196, 0.16);
-  }
-
-  .reason-bay:nth-child(2n) {
-    border-right: 0;
-  }
-
-  .reason-bay:nth-child(2n + 1) {
-    padding-left: 0;
-  }
-
-  .reason-bay:last-child {
-    grid-column: 1 / -1;
-    border-right: 0;
-  }
-}
-
-@media (min-width: 80rem) {
-  .reason-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    border-bottom: 1px solid rgba(232, 220, 196, 0.16);
-  }
-
-  .reason-bay,
-  .reason-bay:nth-child(2n),
-  .reason-bay:nth-child(2n + 1) {
-    min-height: 23rem;
-    padding: 2.25rem 1.75rem 2.5rem;
-    border-right: 1px solid rgba(232, 220, 196, 0.16);
-    border-bottom: 0;
-  }
-
-  .reason-bay:first-child {
-    padding-left: 0;
-  }
-
-  .reason-bay:last-child {
-    grid-column: auto;
-    padding-right: 0;
-    border-right: 0;
-  }
-}
-
-/* Stack: set like a specification sheet
-   -------------------------------------------------------------------------- */
-.stack-sheet {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.25rem 1.5rem;
-  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
-}
-
-.stack-sheet > div {
-  padding-top: 1rem;
-  border-top: 1px solid rgba(201, 163, 95, 0.5);
-}
-
-.stack-sheet dt {
-  color: var(--color-lilac);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.stack-sheet dd {
-  margin: 0.85rem 0 0;
-}
-
-.stack-sheet ul {
-  display: grid;
-  gap: 0.3rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.stack-sheet li {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 1.75vw, 1.75rem);
-  line-height: 1.25;
-}
-
-@media (min-width: 48rem) {
-  .stack-sheet {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 80rem) {
-  .stack-sheet {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 2rem;
-  }
-}
-
-/* Selected work: plates of different widths on a shared row height
+/* Selected work: ivory paper, browser frames for websites, a clean panel for app artwork
    -------------------------------------------------------------------------- */
 .section-head-row {
   display: flex;
@@ -3590,7 +3489,22 @@ a:hover > .logo-lockup .logo-mark {
   gap: 1.5rem 2rem;
 }
 
+/* Solid ivory without JavaScript. With the background blend armed (html.tone-armed) the section
+   lets the page colour show through and follows it. */
+.lux-work {
+  position: relative;
+  padding-block: clamp(3.85rem, 7vw, 7.35rem);
+  background-color: var(--color-paper);
+  color: var(--fg);
+}
+
+.work-empty-note {
+  color: var(--fg-muted);
+}
+
 .portfolio-card {
+  /* Phone panels match the browser frame's height from the card's own width. */
+  container-type: inline-size;
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -3601,30 +3515,87 @@ a:hover > .logo-lockup .logo-mark {
 }
 
 .shot-frame {
+  --bar-h: 2.1rem;
   position: relative;
-  display: grid;
-  height: var(--plate-h, clamp(21rem, 26vw, 28rem));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  place-items: stretch;
   min-height: 0;
-  place-items: center;
   overflow: hidden;
-  border-radius: 6px;
-  background:
-    radial-gradient(ellipse 80% 70% at 50% 100%, rgba(109, 40, 217, 0.26), transparent 72%),
-    var(--color-surface);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shot-shadow);
 }
 
 .shot-frame::after {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(232, 220, 196, 0.12);
+  border: 1px solid var(--frame-line);
   border-radius: inherit;
   pointer-events: none;
   transition: border-color 0.6s var(--ease-lux);
 }
 
+/* Browser frame, drawn in CSS. The address is the project's public domain. */
+.browser-bar {
+  display: grid;
+  flex: none;
+  grid-template-columns: 3.25rem minmax(0, 17rem) 3.25rem;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--bar-h);
+  padding-inline: 0.85rem;
+  border-bottom: 1px solid rgba(9, 7, 19, 0.08);
+  background: #eee9e1;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.browser-dots i {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #d5ccbd;
+}
+
+.browser-address {
+  grid-column: 2;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.05rem 0.85rem;
+  background: #fff;
+  color: #5c5463;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shot-screen {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
 .shot-frame img {
   transition: scale 1.6s var(--ease-lux);
+}
+
+.shot-frame-web {
+  background: #fff;
+}
+
+/* The card crops are exactly 16:9 with the scrollbar removed, so the frame never crops them again. */
+.shot-frame-web .shot-screen {
+  aspect-ratio: 16 / 9;
+  background: #fff;
 }
 
 .shot-frame-web img {
@@ -3635,19 +3606,40 @@ a:hover > .logo-lockup .logo-mark {
   object-position: top center;
 }
 
-/* Flex, not grid: Chrome does not resolve a grid item's percentage height for a lazy image
+/* App artwork already shows its phones: no second frame, just a clean panel.
+   Flex, not grid: Chrome does not resolve a grid item's percentage height for a lazy image
    that has not started loading, so the screen collapsed to 0x0 until it loaded. */
 .shot-frame-mobile {
-  display: flex;
+  height: clamp(24rem, 100vw, 34rem);
+  place-items: center;
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 55%, rgba(255, 255, 255, 0.07), transparent 75%),
+    var(--panel);
+  box-shadow: none;
 }
 
-@media (width < 64rem) {
-  .shot-frame-mobile {
-    height: clamp(24rem, 100vw, 34rem);
+@media (min-width: 48rem) {
+  .portfolio-grid .shot-frame-mobile {
+    height: calc(100cqi * 9 / 16 + var(--bar-h));
   }
+}
+
+@media (min-width: 64rem) {
+  .work-gallery .shot-frame-mobile {
+    height: calc(100cqi * 9 / 16 + var(--bar-h));
+  }
+}
+
+.shot-frame-mobile .shot-screen {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
 .shot-frame-mobile img {
@@ -3658,17 +3650,19 @@ a:hover > .logo-lockup .logo-mark {
   min-height: 0;
   border-radius: 12px;
   object-fit: contain;
+  box-shadow: 0 2px 4px rgba(20, 14, 8, 0.14), 0 22px 36px -18px rgba(20, 14, 8, 0.55);
 }
 
+/* The fallback hover: a simple scale. No transform here: the minifier drops a scale that shares
+   a rule with a transform. */
 .portfolio-card:hover .shot-frame img,
 .portfolio-card:focus-within .shot-frame img {
   scale: 1.04;
-  transform: none;
 }
 
 .portfolio-card:hover .shot-frame::after,
 .portfolio-card:focus-within .shot-frame::after {
-  border-color: rgba(201, 163, 95, 0.7);
+  border-color: var(--accent);
 }
 
 .project-body {
@@ -3683,7 +3677,7 @@ a:hover > .logo-lockup .logo-mark {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.25rem 1rem;
-  color: var(--color-muted);
+  color: var(--fg-muted);
   font-size: 0.92rem;
 }
 
@@ -3713,12 +3707,12 @@ a:hover > .logo-lockup .logo-mark {
 .project-summary {
   margin-top: 0.6rem;
   max-width: 38rem;
-  color: var(--color-muted);
+  color: var(--fg-muted);
 }
 
 .project-stack {
   margin-top: 0.6rem;
-  color: var(--color-muted);
+  color: var(--fg-muted);
   font-size: 0.92rem;
 }
 
@@ -3730,73 +3724,123 @@ a:hover > .logo-lockup .logo-mark {
   gap: 0.25rem 1rem;
   margin-top: auto;
   padding-top: 0.85rem;
-  color: var(--color-lavender);
+  color: var(--link);
   font-size: 0.92rem;
 }
 
+/* Without the horizontal gallery: a normal list, one column below 1024 px, two above. */
 .work-gallery {
   display: grid;
-  gap: clamp(3rem, 5vw, 5rem) var(--col-gap);
-  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  gap: clamp(2.25rem, 4vw, 3.5rem) var(--col-gap);
+  margin-top: clamp(1.75rem, 3.5vw, 3rem);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .work-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 64rem) {
-  .work-gallery {
-    --plate-h: clamp(21rem, 35vw, 40rem);
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--col-gap);
-  }
-
-  .work-gallery > * {
-    grid-column: span 6;
-  }
-
-  /* Web, mobile / web, web / web, mobile. Columns are chosen so screens keep their proportions. */
-  .work-gallery > :nth-child(6n + 1),
-  .work-gallery > :nth-child(6n + 5) {
-    grid-column: span 8;
-  }
-
-  .work-gallery > :nth-child(6n + 2),
-  .work-gallery > :nth-child(6n + 6) {
-    grid-column: span 4;
-  }
-
-  .work-gallery > :nth-child(6n + 3),
-  .work-gallery > :nth-child(6n + 4) {
-    --plate-h: clamp(17rem, 26vw, 30rem);
-  }
+.work-progress {
+  display: none;
 }
 
+/* Horizontal gallery, 1024 px and up, armed by luxe-motion.ts only. The rail is as tall as the
+   track is wide, the pin sticks for that distance, and the track moves by transform alone.
+   overflow: clip, not hidden, so focusing a card can never scroll the pin sideways. */
+.lux-work.is-horizontal {
+  padding-bottom: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+
+.is-horizontal .work-rail {
+  height: var(--rail-h, 100svh);
+}
+
+.is-horizontal .work-pin {
+  /* Height of a website screen. luxe-motion.ts replaces this estimate with a measured value. */
+  --img-h: min(clamp(9rem, calc(100svh - var(--header-h, 5.5rem) - 19.5rem), 34rem), calc(62vw * 9 / 16));
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  overflow: clip;
+  padding-top: var(--header-h, 5.5rem);
+  padding-bottom: 1.25rem;
+}
+
+.is-horizontal .work-gallery {
+  display: flex;
+  width: max-content;
+  align-items: flex-start;
+  gap: clamp(1.75rem, 3vw, 3.25rem);
+  margin-top: 0;
+  transform: translate3d(var(--work-x, 0px), 0, 0);
+  will-change: transform;
+}
+
+.is-horizontal .portfolio-card {
+  flex: none;
+  width: calc(var(--img-h) * 16 / 9);
+}
+
+.is-horizontal .portfolio-card[data-layout="mobile"] {
+  width: max(calc((var(--img-h) + 2.1rem) * 0.72), 21rem);
+}
+
+/* Card text is never clamped: luxe-motion.ts sizes --img-h to what the tallest card's text leaves. */
+.is-horizontal .project-title {
+  font-size: clamp(1.4rem, 1.75vw, 2rem);
+}
+
+.is-horizontal .shot-frame-mobile {
+  height: calc(var(--img-h) + var(--bar-h));
+}
+
+.is-horizontal .work-progress {
+  display: block;
+  flex: none;
+  margin-top: clamp(1rem, 2.5vh, 1.75rem);
+}
+
+.work-progress-bar {
+  position: relative;
+  display: block;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--rule);
+}
+
+.work-progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(var(--work-p, 0));
+  transform-origin: left;
+}
+
+/* Cards rise a little as the list reaches them. Transform only, never hidden. */
 @media (prefers-reduced-motion: no-preference) {
+  .reveal-plate .project-body,
   .reveal-plate .shot-frame {
-    transition: clip-path 1.5s var(--ease-lux);
-  }
-
-  .reveal-plate .shot-frame img {
-    transition: scale 1.6s var(--ease-lux);
-  }
-
-  html.can-reveal .reveal-plate.await-reveal:not(.is-in) .shot-frame {
-    clip-path: inset(0 0 100% 0 round 6px);
-  }
-
-  html.can-reveal .reveal-plate.await-reveal:not(.is-in) .shot-frame img {
-    scale: 1.16;
-  }
-
-  html.can-reveal .reveal-plate.await-reveal:not(.is-in) .project-body {
-    transform: translateY(18px);
+    transition: transform 1.1s var(--ease-lux);
   }
 
   .reveal-plate .project-body {
-    transition: transform 1.2s var(--ease-lux) 0.2s;
+    transition-delay: 0.08s;
+  }
+
+  html.can-reveal .reveal-plate.await-reveal:not(.is-in) :is(.shot-frame, .project-body) {
+    transform: translateY(22px);
+  }
+
+  /* No transition either: the gallery measures the cards the moment it arms. */
+  .is-horizontal .reveal-plate :is(.shot-frame, .project-body) {
+    transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -3908,7 +3952,7 @@ a:hover > .logo-lockup .logo-mark {
   }
 }
 
-/* People: each name opens its portrait through the ring
+/* People: each name opens its portrait through a circle
    -------------------------------------------------------------------------- */
 .people-wall {
   display: grid;
@@ -4024,17 +4068,6 @@ a:hover > .logo-lockup .logo-mark {
   }
 }
 
-.people-ring {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  fill: none;
-  stroke: var(--color-lilac);
-  stroke-width: 0.25;
-}
-
 .people-portrait {
   position: absolute;
   inset: 3.5%;
@@ -4050,18 +4083,6 @@ a:hover > .logo-lockup .logo-mark {
 .people-portrait.is-active {
   clip-path: circle(50% at 50% 50%);
   transition: clip-path 1s var(--ease-iris);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .people-ring circle {
-    transition: stroke-dashoffset 2.2s var(--ease-lux);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-  }
-
-  html.can-reveal .await-reveal:not(.is-in) .people-ring circle {
-    stroke-dashoffset: 1;
-  }
 }
 
 /* Questions
@@ -4150,7 +4171,7 @@ a:hover > .logo-lockup .logo-mark {
   color: #cfc8d3;
 }
 
-/* Closing scene: the page closes in the same ring it opened with
+/* Closing scene: the lobby floor and its reception light under the last call to action
    -------------------------------------------------------------------------- */
 .lux-cta {
   position: relative;
@@ -4163,61 +4184,50 @@ a:hover > .logo-lockup .logo-mark {
   text-align: center;
 }
 
+/* The polished floor and the reception light, low in the frame, fading up into the ink. */
 .cta-art {
   position: absolute;
-  inset: 0;
-  z-index: -2;
+  inset: auto 0 0;
+  z-index: -3;
   width: 100%;
-  height: 100%;
+  height: 74%;
   max-width: none;
   object-fit: cover;
-  object-position: 100% 40%;
+  object-position: 62% 100%;
+  opacity: 0.9;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.55) 30%, #000 62%, #000 84%, rgba(0, 0, 0, 0.25) 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.55) 30%, #000 62%, #000 84%, rgba(0, 0, 0, 0.25) 100%);
 }
 
+/* Warm gold light rising from the floor. */
+.cta-glow {
+  position: absolute;
+  inset: auto -15% 0;
+  z-index: 0;
+  height: 78%;
+  background:
+    radial-gradient(ellipse 38% 64% at 50% 100%, rgba(255, 196, 112, 0.5) 0%, rgba(226, 172, 92, 0.26) 34%, rgba(201, 163, 95, 0.08) 60%, rgba(201, 163, 95, 0) 78%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
+
+/* Keeps the headline and text over the light at no less than the old closing scene's contrast. */
 .lux-cta::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 50% 50%, rgba(9, 7, 19, 0.92) 0%, rgba(9, 7, 19, 0.84) 42%, rgba(9, 7, 19, 0.7) 100%),
-    linear-gradient(180deg, var(--color-ink) 0%, transparent 18%, transparent 82%, var(--color-ink) 100%);
-}
-
-.cta-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  width: max(44rem, min(92vmin, 62rem));
-  max-width: none;
-  height: max(44rem, min(92vmin, 62rem));
-  overflow: visible;
-  fill: none;
-  stroke: var(--color-lilac);
-  stroke-width: 0.3;
-  transform: translate(-50%, -50%);
-}
-
-.cta-ring-line {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-}
-
-.cta-ring-bead {
-  fill: #f3e8d2;
-  stroke: none;
-}
-
-.cta-ring-orbit {
-  transform-box: view-box;
-  transform-origin: 50% 50%;
+    radial-gradient(ellipse 52% 40% at 50% 46%, rgba(9, 7, 19, 0.78) 0%, rgba(9, 7, 19, 0.5) 60%, rgba(9, 7, 19, 0) 100%),
+    linear-gradient(180deg, rgba(9, 7, 19, 0) 0%, rgba(9, 7, 19, 0.6) 26%, rgba(9, 7, 19, 0.12) 68%, rgba(9, 7, 19, 0.2) 100%);
 }
 
 @media (width < 48rem) {
   .cta-art {
-    opacity: 0.6;
+    height: 62%;
+    opacity: 0.75;
   }
 }
 
@@ -4249,21 +4259,16 @@ a:hover > .logo-lockup .logo-mark {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .cta-ring-line {
-    transition: stroke-dashoffset 2.6s var(--ease-iris);
+  .cta-glow {
+    transition:
+      transform 2.2s var(--ease-lux),
+      opacity 2.2s var(--ease-lux);
   }
 
-  html.can-reveal .await-reveal:not(.is-in) .cta-ring-line {
-    stroke-dashoffset: 1;
+  html.can-reveal .await-reveal:not(.is-in) .cta-glow {
+    opacity: 0.35;
+    transform: translateY(22%) scaleY(0.8);
   }
-
-  .cta-ring-orbit {
-    animation: ring-orbit 38s linear infinite;
-  }
-}
-
-@keyframes ring-orbit {
-  to { transform: rotate(360deg); }
 }
 
 /* Footer
@@ -4390,126 +4395,7 @@ html.vx-live .photo-hero-img {
    JavaScript and without reduced motion, so those visitors keep the flat design. Only
    transform and opacity animate.
    -------------------------------------------------------------------------- */
-@property --enter {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --rx {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --ry {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --lx {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-@property --ly {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-.shot-stage {
-  position: relative;
-}
-
-.shot-shadow {
-  display: none;
-}
-
-@keyframes plate-enter {
-  from { --enter: 1; }
-  to { --enter: 0; }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  /* Project gallery: one shared perspective. Plates enter tilted back and settle flat at the
-     middle of the screen; the pointer adds a small tilt, a moving reflection and a shifting shadow. */
-  html.can-reveal .work-gallery {
-    perspective: 1800px;
-    perspective-origin: 50% 35%;
-  }
-
-  html.can-reveal .work-gallery .portfolio-card,
-  html.can-reveal .work-gallery .shot-stage {
-    transform-style: preserve-3d;
-  }
-
-  html.can-reveal .work-gallery .shot-stage {
-    transition:
-      --rx 0.8s var(--ease-lux),
-      --ry 0.8s var(--ease-lux),
-      --lx 0.8s var(--ease-lux),
-      --ly 0.8s var(--ease-lux);
-  }
-
-  html.can-reveal .work-gallery .shot-frame {
-    transform: rotateX(calc(var(--enter) * 9deg + var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg)) translateZ(calc(var(--enter) * -60px));
-    transform-origin: 50% 100%;
-  }
-
-  html.can-reveal .work-gallery .shot-shadow {
-    position: absolute;
-    inset: 8% 6% -2%;
-    display: block;
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.78);
-    filter: blur(24px);
-    opacity: calc(0.75 - var(--enter) * 0.6);
-    transform: translate3d(calc(var(--ry) * -2.4px), calc(18px + var(--rx) * 2.4px), -70px);
-    pointer-events: none;
-  }
-
-  html.can-reveal .work-gallery .shot-frame::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    inset: -50%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 246, 228, 0.2), rgba(255, 246, 228, 0.05) 24%, transparent 46%);
-    mix-blend-mode: screen;
-    opacity: 0;
-    transform: translate(calc(var(--lx) * 26%), calc(var(--ly) * 26%));
-    transition: opacity 0.6s var(--ease-lux);
-    pointer-events: none;
-  }
-
-  html.can-reveal .work-gallery .shot-stage.is-tilting .shot-frame::before {
-    opacity: 1;
-  }
-
-  /* Phone screens float in front of their plate, with parallax against it. */
-  html.can-reveal .work-gallery .shot-frame-mobile {
-    perspective: 700px;
-  }
-
-  html.can-reveal .work-gallery .shot-frame-mobile img {
-    filter: drop-shadow(0 22px 22px rgba(0, 0, 0, 0.55));
-    transform: translateZ(28px) translate(calc(var(--ry) * 0.9px), calc(var(--rx) * -0.9px));
-  }
-
-  @supports (animation-timeline: view()) {
-    /* Longhands, and no duration: a scroll timeline cannot be set through the animation
-       shorthand, so the minifier must not fold these into one. */
-    html.can-reveal .work-gallery .shot-stage {
-      animation-name: plate-enter;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 50%;
-    }
-  }
-
   /* Process: lit markers are gold spheres sitting forward in space with a cast shadow; unlit ones
      recede. The gold line floats over its own shadow. */
   html.can-reveal .process-track::before {
@@ -4535,39 +4421,273 @@ html.vx-live .photo-hero-img {
   }
 }
 
-/* How the work is run: hovering a column raises a glass plate behind it in real perspective.
-   The text itself only moves in 2D, so it stays sharp. */
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  html.can-reveal .reason-bay::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0.75rem;
-    border: 1px solid rgba(232, 220, 196, 0.12);
+/* Keyboard focus on the homepage never lands under the fixed header. */
+html:has(.lux-work) {
+  scroll-padding-top: 5.5rem;
+}
+
+html:has(.lux-work) [id] {
+  scroll-margin-top: 0.5rem;
+}
+
+/* Liquid project images (liquid-hover.ts)
+   One fixed canvas over the hovered image, below the header. While it is on, that card's CSS
+   hover scale is off so the real image underneath matches the canvas exactly.
+   -------------------------------------------------------------------------- */
+.liquid-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  display: block;
+  max-width: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s linear;
+  will-change: transform;
+}
+
+.liquid-canvas.is-on {
+  opacity: 1;
+}
+
+.vt-leaving .liquid-canvas {
+  opacity: 0 !important;
+  transition: none;
+}
+
+[data-liquid] .portfolio-card.is-liquid .shot-frame img {
+  scale: 1;
+  transition: none;
+}
+
+/* "View" label over project images (mouse only, no reduced motion). The native cursor is hidden
+   only where the label stands in for it. */
+.view-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 35;
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: -2.25rem 0 0 -2.25rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(9, 7, 19, 0.82);
+  color: #f5f0e8;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.view-cursor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(232, 220, 196, 0.55);
+  border-radius: inherit;
+  transform: scale(0.6);
+  transition: transform 0.45s var(--ease-lux);
+}
+
+.view-cursor.is-on {
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.view-cursor.is-on::after {
+  transform: scale(1);
+}
+
+.vt-leaving .view-cursor {
+  opacity: 0;
+}
+
+html.view-cursor-on [data-liquid] .shot-frame {
+  cursor: none;
+}
+
+/* Cross-document morph from a project card to its case study, and back. Only the project being
+   opened keeps its name (BaseLayout.astro). Both snapshots fill the moving box with object-fit:
+   cover, so the image is cropped, never stretched, while the box changes shape. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(*.project-shot) {
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  ::view-transition-image-pair(*.project-shot) {
+    overflow: clip;
     border-radius: 10px;
-    background: linear-gradient(180deg, rgba(245, 240, 232, 0.045), rgba(245, 240, 232, 0.01));
-    box-shadow: 0 36px 50px -32px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    opacity: 0;
-    transform: perspective(1100px) translateZ(0) rotateX(0deg);
-    transform-origin: 50% 100%;
-    transition:
-      transform 0.9s var(--ease-lux),
-      opacity 0.6s var(--ease-lux);
-    pointer-events: none;
   }
 
-  html.can-reveal .reason-bay:hover::after {
-    opacity: 1;
-    transform: perspective(1100px) translateZ(26px) rotateX(2.5deg);
+  ::view-transition-old(*.project-shot),
+  ::view-transition-new(*.project-shot) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
   }
+}
 
-  html.can-reveal .reason-bay :is(.reason-title, .reason-text) {
-    transition: transform 0.8s var(--ease-lux);
-  }
+/* Decoding labels: the real text keeps its place (transparent, still read by screen readers) and
+   the settling glyphs sit over it, so nothing reflows. */
+.decode {
+  position: relative;
+  color: transparent;
+}
 
-  html.can-reveal .reason-bay:hover :is(.reason-title, .reason-text) {
-    transform: translateY(-4px);
+.decode-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--accent);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Homepage rhythm
+   About 30% less vertical space than the inner pages.
+   -------------------------------------------------------------------------- */
+.home-flow .section {
+  padding-block: clamp(3.85rem, 7vw, 7.35rem);
+}
+
+.home-flow .people-wall {
+  margin-top: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+@media (width < 80rem) {
+  .home-flow .process-step {
+    padding-bottom: 2rem;
   }
+}
+
+.home-flow .lux-cta {
+  min-height: min(86svh, 52rem);
+  padding-block: clamp(4.2rem, 8.4vw, 7rem);
+}
+
+/* Background blend
+   luxe-motion.ts sets html.tone-armed (JavaScript, no reduced motion) and html[data-tone="paper"]
+   while the work section covers the middle of the screen. The page colour then eases to ivory and
+   back over 700 ms on a steep curve. Text never follows the scroll position or fades through grey:
+   it switches in one step at the moment the background crosses the point where dark and light
+   text read equally (345 ms in, 357 ms back). Body text is under 4.5:1 for about 5 ms of each
+   blend and at or above 5.5:1 whenever the scroll stops. Without JavaScript the work section keeps
+   its own solid ivory.
+   -------------------------------------------------------------------------- */
+html.tone-armed {
+  --tone-delay: 0.357s;
+  --tone-ease: cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+html.tone-armed[data-tone="paper"] {
+  --tone-delay: 0.345s;
+}
+
+html.tone-armed .page-glow {
+  transition: background-color 0.7s var(--tone-ease);
+}
+
+html.tone-armed .page-glow::before {
+  transition: opacity 0.7s var(--tone-ease);
+}
+
+html.tone-armed[data-tone="paper"] .page-glow {
+  background-color: var(--color-paper);
+}
+
+html.tone-armed[data-tone="paper"] .page-glow::before {
+  opacity: 0;
+}
+
+html.tone-armed .lux-work {
+  background-color: transparent;
+}
+
+/* Over ivory the translucent header bar would turn grey; keep it ink. */
+html.tone-armed[data-tone="paper"] .site-header.is-scrolled {
+  background: rgba(9, 7, 19, 0.94);
+}
+
+html.tone-armed:not([data-tone="paper"]) .lux-work {
+  --fg: #f5f0e8;
+  --fg-soft: #cfc8d3;
+  --fg-muted: #a9a1b5;
+  --fg-faint: rgba(245, 240, 232, 0.3);
+  --accent: #c9a35f;
+  --link: #e8dcc4;
+  --rule: rgba(232, 220, 196, 0.16);
+  --focus: #c9a35f;
+  --btn-line: rgba(232, 220, 196, 0.34);
+  --btn-bg: rgba(9, 7, 19, 0.28);
+  --btn-fg: #f5f0e8;
+  --btn-hover-bg: #e8dcc4;
+  --btn-hover-fg: #090713;
+  --panel: #15111f;
+  --frame-line: rgba(232, 220, 196, 0.14);
+  --shot-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 30px 60px -30px rgba(0, 0, 0, 0.85);
+}
+
+html.tone-armed[data-tone="paper"] .tone-follow {
+  --fg: #090713;
+  --fg-soft: #3f3846;
+  --fg-muted: #5c5463;
+  --fg-faint: rgba(9, 7, 19, 0.28);
+  --accent: var(--color-bronze);
+  --link: #090713;
+  --rule: rgba(9, 7, 19, 0.16);
+  --focus: var(--color-bronze);
+  --btn-line: #6b6372;
+  --btn-bg: rgba(245, 240, 232, 0);
+  --btn-fg: #090713;
+  --btn-hover-bg: #090713;
+  --btn-hover-fg: #f5f0e8;
+}
+
+.tone-follow {
+  color: var(--fg);
+}
+
+/* The first armed frame takes its palette at once, so a page opened on the work section never fades
+   its text in from the no-JavaScript palette. */
+html.tone-armed.tone-instant :is(.lux-work, .tone-follow),
+html.tone-armed.tone-instant .page-glow,
+html.tone-armed.tone-instant .page-glow::before {
+  transition: none !important;
+}
+
+/* While a blend runs, colours inside these sections switch with the palette, not on their own
+   hover timings (buttons fade colour over 0.4 s), so nothing lags behind the flip. */
+html.tone-switching :is(.lux-work, .tone-follow) *,
+html.tone-switching :is(.lux-work, .tone-follow) *::before,
+html.tone-switching :is(.lux-work, .tone-follow) *::after {
+  transition-property: transform, opacity, scale, translate, clip-path, background-size !important;
+}
+
+html.tone-armed :is(.lux-work, .tone-follow) {
+  transition:
+    --fg 1ms steps(1, end) var(--tone-delay),
+    --fg-soft 1ms steps(1, end) var(--tone-delay),
+    --fg-muted 1ms steps(1, end) var(--tone-delay),
+    --fg-faint 1ms steps(1, end) var(--tone-delay),
+    --accent 1ms steps(1, end) var(--tone-delay),
+    --link 1ms steps(1, end) var(--tone-delay),
+    --rule 1ms steps(1, end) var(--tone-delay),
+    --focus 1ms steps(1, end) var(--tone-delay),
+    --btn-line 1ms steps(1, end) var(--tone-delay),
+    --btn-bg 1ms steps(1, end) var(--tone-delay),
+    --btn-fg 1ms steps(1, end) var(--tone-delay),
+    --btn-hover-bg 1ms steps(1, end) var(--tone-delay),
+    --btn-hover-fg 1ms steps(1, end) var(--tone-delay),
+    --panel 0.7s var(--tone-ease),
+    --frame-line 0.7s var(--tone-ease);
 }
 
 @media print {
@@ -4577,10 +4697,6 @@ html.vx-live .photo-hero-img {
 
   html.vx-live .photo-hero-img {
     opacity: 1 !important;
-  }
-
-  .hero-ring {
-    display: none !important;
   }
 
   .photo-hero,

@@ -337,7 +337,7 @@ test("six approved case studies are public", async ({ page }) => {
   expect(sawBorn).toBeTruthy();
 
   await page.goto("/");
-  const work = page.locator("section").filter({ has: page.getByRole("heading", { name: "Approved client work." }) });
+  const work = page.locator("section").filter({ has: page.getByRole("heading", { name: "Recent work." }) });
   const featured = work.getByRole("heading", { level: 3 });
   await expect(featured).toHaveCount(6);
   await expect(featured.nth(0)).toContainText("ScaleUp Systems");

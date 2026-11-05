@@ -140,8 +140,8 @@ const showcasePlates = (cms ? cmsProjects.map((project) => project.screenshots[0
             })}
           </div>
         ) : (
-          <div class:list={["portfolio-grid stagger-children mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid>
-            {projectsLocal.map((project) => <ProjectCard project={project} />)}
+          <div class:list={["portfolio-grid stagger-children mt-8", projectsLocal.length === 2 && "portfolio-grid-pair", projectsLocal.length === 4 && "portfolio-grid-quad", projectsLocal.length === 5 && "card-grid-five"]} data-project-grid data-liquid>
+            {projectsLocal.map((project) => <ProjectCard project={project} morph />)}
           </div>
         )
       }
