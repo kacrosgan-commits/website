@@ -47,6 +47,30 @@ function mountSpotlight() {
   });
 }
 
+/**
+ * Project plates lean a few degrees toward the pointer, with a reflection that follows it and a
+ * shadow that shifts the other way. The CSS transitions smooth the values; this only sets them.
+ */
+function mountPlateTilt() {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  document.querySelectorAll<HTMLElement>(".work-gallery [data-tilt]").forEach((stage) => {
+    stage.addEventListener("pointermove", (event) => {
+      const rect = stage.getBoundingClientRect();
+      const x = clamp((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = clamp((event.clientY - rect.top) / rect.height) * 2 - 1;
+      stage.style.setProperty("--ry", (x * 5).toFixed(2));
+      stage.style.setProperty("--rx", (-y * 4).toFixed(2));
+      stage.style.setProperty("--lx", x.toFixed(3));
+      stage.style.setProperty("--ly", y.toFixed(3));
+      stage.classList.add("is-tilting");
+    });
+    stage.addEventListener("pointerleave", () => {
+      for (const name of ["--rx", "--ry", "--lx", "--ly"]) stage.style.setProperty(name, "0");
+      stage.classList.remove("is-tilting");
+    });
+  });
+}
+
 /** Wrap each word of a heading so it can rise through its own line. Offscreen headings only. */
 function splitTitles() {
   document.querySelectorAll<HTMLElement>(".await-reveal .section-title").forEach((title) => {
@@ -211,4 +235,5 @@ mountSpotlight();
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
   splitTitles();
   mountScroll();
+  mountPlateTilt();
 }

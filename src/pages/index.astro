@@ -340,4 +340,32 @@ const featuredServices = cms
     secondaryHref="/process"
     secondaryLabel="See Our Process"
   />
+
+  <script>
+    // The WebGL scene is an enhancement. It loads only once the page is visible, loaded and idle,
+    // and only where it can run smoothly. Everyone else keeps the static design.
+    import { canMountVortex, hasHardwareWebgl } from "../scripts/vortex-gate.ts";
+
+    const mount = () => {
+      if (!hasHardwareWebgl()) return;
+      import("../scripts/vortex-scene.ts")
+        .then((scene) => scene.mountVortexScene())
+        .catch(() => {});
+    };
+    const whenIdle = () => {
+      if (document.visibilityState !== "visible") {
+        document.addEventListener("visibilitychange", whenIdle, { once: true });
+        return;
+      }
+      if ("requestIdleCallback" in window) window.requestIdleCallback(mount, { timeout: 2500 });
+      else setTimeout(mount, 400);
+    };
+    if (canMountVortex()) {
+      if (document.readyState === "complete") whenIdle();
+      else window.addEventListener("load", whenIdle, { once: true });
+    }
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted && canMountVortex()) whenIdle();
+    });
+  </script>
 </BaseLayout>

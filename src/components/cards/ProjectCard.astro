@@ -25,19 +25,22 @@ const mobile = project.data.mediaLayout === "mobile";
 >
   {
     shot && (
-      <a href={`/portfolio/${project.id}`} class:list={["shot-frame", mobile ? "shot-frame-mobile" : "shot-frame-web"]}>
-        <picture>
-          {shotCard && <source type="image/webp" srcset={shotCard} />}
-          <img
-            src={shot.src}
-            alt={shot.alt}
-            width={shot.width}
-            height={shot.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </a>
+      <div class="shot-stage" data-tilt>
+        <span class="shot-shadow" aria-hidden="true" />
+        <a href={`/portfolio/${project.id}`} class:list={["shot-frame", mobile ? "shot-frame-mobile" : "shot-frame-web"]}>
+          <picture>
+            {shotCard && <source type="image/webp" srcset={shotCard} />}
+            <img
+              src={shot.src}
+              alt={shot.alt}
+              width={shot.width}
+              height={shot.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </a>
+      </div>
     )
   }
   {
