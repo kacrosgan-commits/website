@@ -539,41 +539,12 @@ function mountMagnetic() {
 }
 
 /**
- * Stack ticker: two rows of the technology catalog moving in opposite directions. It replaces the
- * visible list only with motion allowed and JavaScript running; the list stays in the page for
- * screen readers. Hover, keyboard focus in the section, or the pause button stop it.
- */
-function mountTicker() {
-  const ticker = document.querySelector<HTMLElement>("[data-ticker]");
-  const section = ticker?.closest<HTMLElement>("section");
-  const toggle = section?.querySelector<HTMLButtonElement>("[data-ticker-toggle]");
-  if (!ticker || !section || !toggle) return;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const sync = () => {
-    const on = !reduced.matches;
-    section.classList.toggle("ticker-on", on);
-    toggle.hidden = !on;
-  };
-  toggle.addEventListener("click", () => {
-    const paused = toggle.getAttribute("aria-pressed") !== "true";
-    toggle.setAttribute("aria-pressed", String(paused));
-    toggle.textContent = paused ? "Play motion" : "Pause motion";
-    section.toggleAttribute("data-paused", paused);
-  });
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => ticker.classList.toggle("is-offscreen", !entry?.isIntersecting)).observe(ticker);
-  }
-  reduced.addEventListener("change", sync);
-  sync();
-}
-
-/**
  * Gold labels decode once as they arrive: random glyphs settle into the real text, left to
  * right, within 600 ms. The real text stays in the element (transparent) for screen readers and
  * keeps its width; the glyphs are an aria-hidden overlay.
  */
 function mountDecode() {
-  const targets = [...document.querySelectorAll<HTMLElement>("[data-hero] .eyebrow, .home-flow .eyebrow, .stack-ticker .ticker-cat")];
+  const targets = [...document.querySelectorAll<HTMLElement>("[data-hero] .eyebrow, .home-flow .eyebrow")];
   if (!targets.length || !("IntersectionObserver" in window)) return;
   const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const LOWER = "abcdefghijklmnopqrstuvwxyz";
@@ -651,7 +622,6 @@ mountTone();
 mountLiquidIntent();
 mountViewCursor();
 mountMagnetic();
-mountTicker();
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
   splitTitles();

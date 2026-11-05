@@ -3638,57 +3638,6 @@ html.vx-live .photo-hero::before {
   }
 }
 
-/* Stack: set like a specification sheet
-   -------------------------------------------------------------------------- */
-.stack-sheet {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.25rem 1.5rem;
-  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
-}
-
-.stack-sheet > div {
-  padding-top: 1rem;
-  border-top: 1px solid rgba(201, 163, 95, 0.5);
-}
-
-.stack-sheet dt {
-  color: var(--color-lilac);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.stack-sheet dd {
-  margin: 0.85rem 0 0;
-}
-
-.stack-sheet ul {
-  display: grid;
-  gap: 0.3rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.stack-sheet li {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 1.75vw, 1.75rem);
-  line-height: 1.25;
-}
-
-@media (min-width: 48rem) {
-  .stack-sheet {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 80rem) {
-  .stack-sheet {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 2rem;
-  }
-}
-
 /* Selected work: ivory paper, browser frames for websites, a clean panel for app artwork
    -------------------------------------------------------------------------- */
 .section-head-row {
@@ -4849,117 +4798,6 @@ html.view-cursor-on [data-liquid] .shot-frame {
   }
 }
 
-/* Stack ticker
-   Two rows of the catalog moving in opposite directions, category names in gold. Shown only once
-   luxe-motion.ts adds .ticker-on (JavaScript, motion allowed); then the list beside it is visually
-   hidden but stays for screen readers. Without it, the list shows and the ticker does not.
-   -------------------------------------------------------------------------- */
-.stack-ticker,
-.ticker-toggle[hidden] {
-  display: none;
-}
-
-.ticker-on .stack-ticker {
-  display: grid;
-  /* The rows are far wider than the screen; the track must not size the page. */
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(0.75rem, 1.6vw, 1.25rem);
-  margin-top: clamp(1.75rem, 3.5vw, 3rem);
-  padding-block: clamp(1rem, 2vw, 1.5rem);
-  border-block: 1px solid var(--rule);
-}
-
-.ticker-on .stack-sheet {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.ticker-row {
-  min-width: 0;
-  overflow: clip;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-}
-
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker-move 70s linear infinite;
-}
-
-.ticker-row-reverse .ticker-track {
-  animation-direction: reverse;
-  animation-duration: 80s;
-}
-
-.ticker-group {
-  display: flex;
-  flex: none;
-  align-items: baseline;
-}
-
-.ticker-cat,
-.ticker-item {
-  flex: none;
-  white-space: nowrap;
-}
-
-.ticker-cat {
-  padding-inline: 1.5rem 1.1rem;
-  color: var(--accent);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.ticker-item {
-  padding-inline: 0.9rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.6vw, 2.6rem);
-  line-height: 1.2;
-}
-
-.ticker-item + .ticker-item::before {
-  content: "";
-  display: inline-block;
-  width: 0.35rem;
-  height: 0.35rem;
-  margin-right: 1.8rem;
-  border-radius: 50%;
-  background: var(--rule);
-  vertical-align: middle;
-}
-
-.stack-ticker:hover .ticker-track,
-.stack-ticker.is-offscreen .ticker-track,
-.lux-stack:focus-within .ticker-track,
-.lux-stack[data-paused] .ticker-track {
-  animation-play-state: paused;
-}
-
-.ticker-toggle {
-  min-height: 2.75rem;
-  border: 1px solid var(--btn-line);
-  border-radius: 999px;
-  padding: 0.35rem 1.1rem;
-  background: transparent;
-  color: var(--fg);
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.ticker-toggle:hover {
-  border-color: var(--accent);
-}
-
-@keyframes ticker-move {
-  to { transform: translate3d(-50%, 0, 0); }
-}
-
 /* Decoding labels: the real text keeps its place (transparent, still read by screen readers) and
    the settling glyphs sit over it, so nothing reflows. */
 .decode {
@@ -4977,22 +4815,14 @@ html.view-cursor-on [data-liquid] .shot-frame {
 }
 
 /* Homepage rhythm
-   About 30% less vertical space than the inner pages, with the stack-to-process gap cut further.
+   About 30% less vertical space than the inner pages.
    -------------------------------------------------------------------------- */
 .home-flow .section {
   padding-block: clamp(3.85rem, 7vw, 7.35rem);
 }
 
-.home-flow :is(.reason-grid, .people-wall, .stack-sheet) {
+.home-flow :is(.reason-grid, .people-wall) {
   margin-top: clamp(1.75rem, 3.5vw, 3rem);
-}
-
-.home-flow .lux-stack {
-  padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
-}
-
-.home-flow .lux-process {
-  padding-top: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 @media (width < 80rem) {

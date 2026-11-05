@@ -13,7 +13,6 @@ import { homeIntro, reasons } from "../data/about";
 import { faqs } from "../data/faq";
 import { processSteps } from "../data/process";
 import { featuredServices as localFeaturedServices } from "../data/services";
-import { technologyGroups } from "../data/technologies";
 import { site } from "../data/site";
 import { publicName } from "../data/team";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -48,9 +47,6 @@ const primaryCta = homepageCms?.primaryCtaLabel || "Start Your Project";
 const primaryHref = homepageCms?.primaryCtaHref || "/contact";
 const secondaryCta = homepageCms?.secondaryCtaLabel || "View Our Work";
 const secondaryHref = homepageCms?.secondaryCtaHref || "/portfolio";
-/* Two ticker rows from the same catalog: the first half of the groups, then the rest. */
-const tickerSplit = Math.ceil(technologyGroups.length / 2);
-const tickerRows = [technologyGroups.slice(0, tickerSplit), technologyGroups.slice(tickerSplit)];
 const featuredServices = cms
   ? getServicesForRender()
       .filter((service) => service.featured)
@@ -257,54 +253,6 @@ const featuredServices = cms
   </section>
 
   <Stats />
-
-  <section class="section reveal lux-stack" aria-labelledby="stack-heading">
-    <div class="container-page">
-      <div class="section-head-row">
-        <SectionHeading eyebrow="Stack" description="The tools we use to build and ship.">
-          <span id="stack-heading">Technology That Fits Your Product.</span>
-        </SectionHeading>
-        <button type="button" class="ticker-toggle" data-ticker-toggle aria-pressed="false" hidden>Pause motion</button>
-      </div>
-      <!-- Moving rows, armed by luxe-motion.ts. Decorative: the list below carries the same content. -->
-      <div class="stack-ticker" aria-hidden="true" data-ticker>
-        {
-          tickerRows.map((groups, row) => (
-            <div class:list={["ticker-row", row === 1 && "ticker-row-reverse"]}>
-              <div class="ticker-track">
-                {[0, 1, 2, 3].map(() =>
-                  groups.map((group) => (
-                    <span class="ticker-group">
-                      <span class="ticker-cat">{group.label}</span>
-                      {group.items.map((item) => (
-                        <span class="ticker-item">{item}</span>
-                      ))}
-                    </span>
-                  )),
-                )}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <dl class="stack-sheet">
-        {
-          technologyGroups.map((group) => (
-            <div>
-              <dt>{group.label}</dt>
-              <dd>
-                <ul>
-                  {group.items.map((item) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </dd>
-            </div>
-          ))
-        }
-      </dl>
-    </div>
-  </section>
 
   <section class="section reveal lux-process" aria-labelledby="process-heading">
     <div class="container-page">

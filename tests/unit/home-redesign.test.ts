@@ -19,7 +19,6 @@ test("homepage uses the lobby photo hero and the work-first section order", () =
     "services-heading",
     "reasons-heading",
     "Stats",
-    "stack-heading",
     "process-heading",
     "team-heading",
     "faq-heading",
