@@ -8,11 +8,7 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
-<img
-  class:list={["logo-mark", className]}
-  src="/images/logo.png"
-  alt=""
-  width="1254"
-  height="1254"
-/>
-<span class="sr-only">{site.name}</span>
+<span class:list={["logo-lockup", className]}>
+  <img class="logo-mark" src="/images/logo-mark.webp" alt="" width="160" height="160" decoding="async" />
+  <span class="logo-word">{site.name}</span>
+</span>

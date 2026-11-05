@@ -67,58 +67,78 @@ const featuredServices = cms
     description: site.description,
   }}
 >
-  <section class="photo-hero-bleed" aria-label="Introduction">
+  <section class="photo-hero-bleed" aria-label="Introduction" data-hero>
     <div class="photo-hero">
-      <img
-        class="photo-hero-img"
-        src="/images/vortex-digital-hall.png"
-        alt="Vortex Digital company hall with reception desk, lounge, and branded signage"
-        width="1813"
-        height="868"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-      <div class="photo-hero-exposure" aria-hidden="true"></div>
-      <div class="photo-hero-specular" aria-hidden="true"></div>
+      <picture>
+        <source type="image/webp" srcset="/images/vortex-digital-hall.webp" />
+        <img
+          class="photo-hero-img"
+          src="/images/vortex-digital-hall.png"
+          alt="Vortex Digital company hall with reception desk, lounge, and branded signage"
+          width="1813"
+          height="868"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </div>
-    <div class="photo-hero-aura" aria-hidden="true"></div>
+    <svg class="hero-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+    <script is:inline>
+      // Start the opening ring exactly on the halo light in the photo, and wait for the photo so the first frame is never empty.
+      (function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        var hero = document.currentScript.parentElement;
+        var img = hero.querySelector(".photo-hero-img");
+        var w = hero.clientWidth;
+        var h = hero.clientHeight;
+        var scale = Math.max(w / 1813, h / 868);
+        var position = getComputedStyle(img).objectPosition.split(" ");
+        var x = (w - 1813 * scale) * (parseFloat(position[0]) / 100) + 1537 * scale;
+        var y = (h - 868 * scale) * (parseFloat(position[1]) / 100) + 245 * scale;
+        hero.style.setProperty("--hx", x + "px");
+        hero.style.setProperty("--hy", y + "px");
+        if (img.complete) return;
+        hero.setAttribute("data-iris", "wait");
+        var go = function () {
+          hero.removeAttribute("data-iris");
+        };
+        img.addEventListener("load", go, { once: true });
+        img.addEventListener("error", go, { once: true });
+        setTimeout(go, 1400);
+      })();
+    </script>
     <div class="container-page photo-hero-content">
       <div class="photo-hero-copy">
         <p class="eyebrow hero-in">{heroEyebrow}</p>
-        <h1 class="photo-hero-title hero-in hero-in-2 mt-5">
+        <h1 class="photo-hero-title">
           {
-            heroTitle.includes("Forward") ? (
+            heroTitle.split(/\s+/).map((word, index) => (
               <>
-                {heroTitle.replace(/\s*Forward\.?$/, "")} <span class="text-gradient">Forward.</span>
+                <span class="w"><span style={`--i:${index}`}>{word}</span></span>{" "}
               </>
-            ) : (
-              heroTitle
-            )
+            ))
           }
         </h1>
-        <p class="lede hero-in hero-in-3 mt-6 max-w-xl">{heroLede}</p>
-        <div class="hero-in hero-in-4 mt-8 flex flex-wrap gap-3">
-          <GradientButton href={primaryHref}>{primaryCta}</GradientButton>
-          <OutlineButton href={secondaryHref}>{secondaryCta}</OutlineButton>
+        <div class="photo-hero-foot">
+          <p class="lede hero-in hero-in-3">{heroLede}</p>
+          <div class="hero-actions hero-in hero-in-4">
+            <GradientButton href={primaryHref}>{primaryCta}</GradientButton>
+            <OutlineButton href={secondaryHref}>{secondaryCta}</OutlineButton>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="intro-heading">
-    <div class="container-page grid items-end gap-x-[min(2.5rem,4vw)] gap-y-10 lg:grid-cols-12">
-      <div class="lg:col-span-6">
-        <p class="eyebrow">{homeIntro.eyebrow}</p>
-        <h2 id="intro-heading" class="section-title mt-4">{homeIntro.title}</h2>
-      </div>
-      <div class="lg:col-span-6">
-        <p class="text-lg text-paper/90">{homeIntro.lead} {homeIntro.body}</p>
-        <p class="mt-4 text-muted">{homeIntro.support}</p>
-        <a href="/about" class="mt-6 inline-flex items-center gap-2 font-semibold text-lavender">
-          Learn About Us
-          <Icon name="arrow-right" size={16} class="arrow" />
-        </a>
+  <section class="section reveal lux-intro" aria-labelledby="intro-heading">
+    <div class="container-page lux-intro-grid">
+      <p class="eyebrow">{homeIntro.eyebrow}</p>
+      <h2 id="intro-heading" class="section-title lux-intro-title">{homeIntro.title}</h2>
+      <div class="lux-intro-body">
+        <p class="lux-lead" data-scrub-words>{homeIntro.lead} {homeIntro.body}</p>
+        <p class="support">{homeIntro.support}</p>
+        <a href="/about" class="lux-link">Learn About Us</a>
       </div>
     </div>
   </section>
@@ -130,48 +150,43 @@ const featuredServices = cms
     disclosure={homepageCms?.teamFilmDisclosure}
   />
 
-  <section class="section reveal bg-ink-soft/40" aria-labelledby="services-heading">
-    <div class="container-page">
-      <SectionHeading eyebrow="Specialties" description="Web development, mobile apps, AI, SaaS, backend and APIs, cloud and DevOps, UI/UX, and QA.">
-        <span id="services-heading">Eight specialties for a startup product.</span>
-      </SectionHeading>
-      <div class="stagger-children mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+  <section class="section reveal lux-specialties" aria-labelledby="services-heading">
+    <div class="container-page lux-split">
+      <div class="lux-split-head">
+        <SectionHeading eyebrow="Specialties" description="Web development, mobile apps, AI, SaaS, backend and APIs, cloud and DevOps, UI/UX, and QA.">
+          <span id="services-heading">Eight specialties for a startup product.</span>
+        </SectionHeading>
+      </div>
+      <ul class="spec-list" data-current-rows>
         {
           featuredServices.map((service) => (
-            <article class="surface-card motion-item flex h-full flex-col p-6">
-              <div class="icon-tile">
-                <Icon name={service.icon} size={22} />
-              </div>
-              <h3 class="mt-5 font-display text-xl font-semibold tracking-[-0.03em]">{service.title}</h3>
-              <p class="mt-3 flex-1 text-muted">{service.summary}</p>
-            </article>
+            <li class="spec-row">
+              <Icon name={service.icon} size={22} class="spec-icon" />
+              <h3 class="spec-title">{service.title}</h3>
+              <p class="spec-text">{service.summary}</p>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="reasons-heading">
+  <section class="section reveal lux-reasons" aria-labelledby="reasons-heading">
     <div class="container-page">
-      <SectionHeading eyebrow="Why teams stay" description="A way of working, not a list of trophies. Figures appear here only after they are verified.">
+      <SectionHeading eyebrow="Why teams stay" description="A way of working, not a list of trophies.">
         <span id="reasons-heading">How the work is run.</span>
       </SectionHeading>
-      <div class="stagger-children mt-12 grid gap-4 md:grid-cols-2">
+      <ul class="reason-grid" data-spotlight>
         {
-          reasons.map((reason, index) => (
-            <article class="surface-card motion-item p-7">
-              <div class="flex flex-wrap items-start justify-between gap-4">
-                <div class="icon-tile">
-                  <Icon name={reason.icon} />
-                </div>
-                <span class="font-display text-sm tracking-[0.16em] text-lilac">0{index + 1}</span>
-              </div>
-              <h3 class="mt-6 font-display text-2xl font-semibold tracking-[-0.03em]">{reason.title}</h3>
-              <p class="mt-3 text-muted">{reason.text}</p>
-            </article>
+          reasons.map((reason) => (
+            <li class="reason-bay">
+              <Icon name={reason.icon} size={26} class="reason-icon" />
+              <h3 class="reason-title">{reason.title}</h3>
+              <p class="reason-text">{reason.text}</p>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </section>
 
@@ -179,23 +194,25 @@ const featuredServices = cms
 
   <section class="section reveal" aria-labelledby="stack-heading">
     <div class="container-page">
-      <SectionHeading eyebrow="Stack" description="A working catalog aligned with the roles on the team. It is not a certification list.">
+      <SectionHeading eyebrow="Stack" description="A working catalog aligned with the roles on the team.">
         <span id="stack-heading">Technology That Fits Your Product.</span>
       </SectionHeading>
-      <div class="stagger-children mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <dl class="stack-sheet">
         {
           technologyGroups.map((group) => (
-            <article class="surface-card motion-item p-6">
-              <h3 class="font-display text-xl font-semibold">{group.label}</h3>
-              <ul class="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li class="rounded-full border border-line px-3 py-1 text-sm text-lavender">{item}</li>
-                ))}
-              </ul>
-            </article>
+            <div>
+              <dt>{group.label}</dt>
+              <dd>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
           ))
         }
-      </div>
+      </dl>
     </div>
   </section>
 
@@ -203,8 +220,8 @@ const featuredServices = cms
     projectCount > 0 ? (
       <section class="section reveal" aria-labelledby="work-heading">
         <div class="container-page">
-          <div class="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading eyebrow="Selected work" description="Published after the contribution and permission to show it are confirmed.">
+          <div class="section-head-row">
+            <SectionHeading eyebrow="Selected work" description="Each project appears here once our contribution and the permission to show it are confirmed.">
               <span id="work-heading">Approved client work.</span>
             </SectionHeading>
             <OutlineButton href="/portfolio">View our work</OutlineButton>
@@ -225,16 +242,7 @@ const featuredServices = cms
                 ))}
               </div>
             ) : (
-              <div
-                class:list={[
-                  "stagger-children mt-12 grid gap-5",
-                  localProjects.length === 5
-                    ? "card-grid-five"
-                    : localProjects.length === 2 || localProjects.length === 4
-                      ? "md:grid-cols-2"
-                      : "md:grid-cols-2 xl:grid-cols-3",
-                ]}
-              >
+              <div class="work-gallery">
                 {localProjects.map((project) => <ProjectCard project={project} />)}
               </div>
             )
@@ -256,62 +264,70 @@ const featuredServices = cms
 
   <Testimonials />
 
-  <section class="section reveal bg-ink-soft/40" aria-labelledby="process-heading">
+  <section class="section reveal lux-process" aria-labelledby="process-heading">
     <div class="container-page">
-      <SectionHeading eyebrow="Process" description="Six stages from the full engagement. The details live on the process page.">
-        <span id="process-heading">From Concept to Launch.</span>
-      </SectionHeading>
-      <div class="mt-12">
-        <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
+      <div class="section-head-row">
+        <SectionHeading eyebrow="Process" description="Six stages from the full engagement. The details live on the process page.">
+          <span id="process-heading">From Concept to Launch.</span>
+        </SectionHeading>
+        <a href="/process" class="lux-link">See the full process</a>
       </div>
-      <div class="mt-8">
-        <a href="/process" class="inline-flex items-center gap-2 font-semibold text-lavender">
-          See the full process
-          <Icon name="arrow-right" size={16} class="arrow" />
-        </a>
+      <div class="mt-[clamp(2.5rem,5vw,4.5rem)]">
+        <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
       </div>
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="team-heading">
+  <section class="section reveal lux-people" aria-labelledby="team-heading">
     <div class="container-page">
-      <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="section-head-row">
         <SectionHeading eyebrow="People" description="Nine named profiles, from leadership through engineering, design, delivery, and quality.">
           <span id="team-heading">The People Behind the Code.</span>
         </SectionHeading>
         <OutlineButton href="/team">Meet the team</OutlineButton>
       </div>
-      <ul class="role-strip stagger-children mt-10">
-        {
-          team.map((member) => (
-            <li class="motion-item">
-              <a class="interactive-lift" href={`/team/${member.slug}`}>
-                <img
-                  src={member.portrait.thumb}
-                  alt=""
-                  width="384"
-                  height="384"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>
-                  <span class="block">{publicName(member) ?? member.role}</span>
-                  {publicName(member) && <span class="block text-sm font-medium text-muted">{member.role}</span>}
-                </span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="people-wall" data-people>
+        <div class="people-stage" aria-hidden="true">
+          <svg class="people-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49.8" pathLength="1"></circle></svg>
+          {
+            team.map((member, index) => (
+              <img
+                class:list={["people-portrait", index === 0 && "is-active"]}
+                src={member.portrait.src}
+                alt=""
+                width={member.portrait.width}
+                height={member.portrait.height}
+                loading="lazy"
+                decoding="async"
+              />
+            ))
+          }
+        </div>
+        <ul class="people-list">
+          {
+            team.map((member, index) => (
+              <li>
+                <a class:list={["people-row", index === 0 && "is-active"]} href={`/team/${member.slug}`} data-person>
+                  <img class="people-thumb" src={member.portrait.thumb} alt="" width="384" height="384" loading="lazy" decoding="async" />
+                  <span class="people-name">{publicName(member) ?? member.role}</span>
+                  {publicName(member) && <span class="people-role">{member.role}</span>}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="faq-heading">
-    <div class="container-page">
-      <SectionHeading eyebrow="Questions">
-        <span id="faq-heading">Before we begin.</span>
-      </SectionHeading>
-      <div class="mt-8">
+  <section class="section reveal lux-faq" aria-labelledby="faq-heading">
+    <div class="container-page lux-split">
+      <div class="lux-split-head">
+        <SectionHeading eyebrow="Questions">
+          <span id="faq-heading">Before we begin.</span>
+        </SectionHeading>
+      </div>
+      <div class="lux-split-main">
         <FaqAccordion items={faqs} />
       </div>
     </div>

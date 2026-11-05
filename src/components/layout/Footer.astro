@@ -1,5 +1,4 @@
 ---
-import { assets } from "../../data/assets";
 import { activeSocialLinks, footerNavigation, site } from "../../data/site";
 import Logo from "../ui/Logo.astro";
 import SocialLinks from "../ui/SocialLinks.astro";
@@ -7,8 +6,7 @@ import SocialLinks from "../ui/SocialLinks.astro";
 const footerLinks = footerNavigation;
 ---
 
-<footer class="site-footer reveal-fade border-t border-line bg-ink-soft">
-  <img class="footer-art" src={assets.backgrounds.footerRibbons} alt="" width="1920" height="800" />
+<footer class="site-footer reveal-fade">
   <div class="container-page grid min-w-0 gap-[min(3rem,5vw)] py-16 md:grid-cols-2 lg:grid-cols-12">
     <div class="min-w-0 lg:col-span-5">
       <a href="/" aria-label={`${site.name} home`} class="inline-flex rounded-lg">
@@ -18,7 +16,7 @@ const footerLinks = footerNavigation;
       {activeSocialLinks.length > 0 && <SocialLinks class="mt-6" />}
     </div>
     <div class="min-w-0 lg:col-span-3">
-      <h2 class="text-sm font-semibold tracking-[0.14em] text-lavender uppercase">Explore</h2>
+      <h2 class="footer-heading">Explore</h2>
       <ul class="mt-4 grid gap-2">
         {
           footerLinks.map((item) => (
@@ -32,17 +30,15 @@ const footerLinks = footerNavigation;
       </ul>
     </div>
     <div class="min-w-0 lg:col-span-4">
-      <h2 class="text-sm font-semibold tracking-[0.14em] text-lavender uppercase">Contact</h2>
+      <h2 class="footer-heading">Contact</h2>
       <ul class="mt-4 grid gap-3 text-muted">
-        <li>
-          {
-            site.emailIsPlaceholder ? (
-              <span>A public email address is not set yet.</span>
-            ) : (
+        {
+          !site.emailIsPlaceholder && (
+            <li>
               <a href={`mailto:${site.email}`} class="text-paper hover:text-lavender">{site.email}</a>
-            )
-          }
-        </li>
+            </li>
+          )
+        }
         {
           site.location && (
             <li>
@@ -56,6 +52,7 @@ const footerLinks = footerNavigation;
       </ul>
     </div>
   </div>
+  <p class="footer-wordmark" aria-hidden="true">{site.name}</p>
   <div class="border-t border-line">
     <div class="container-page flex flex-col gap-3 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
       <p>© {site.copyrightYear} {site.legalName || site.name}. All rights reserved.</p>

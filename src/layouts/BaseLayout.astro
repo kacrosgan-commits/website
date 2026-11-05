@@ -72,6 +72,8 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="theme-color" content="#090713" />
+    <link rel="preload" href="/fonts/antic-didone-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script type="application/ld+json" set:html={jsonLd(graph.length === 1 ? graph[0] : graph)} />
@@ -87,7 +89,7 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <script is:inline>
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        var selector = ".reveal, .reveal-up, .reveal-fade, .reveal-scale, .stagger-children";
+        var selector = ".reveal, .reveal-up, .reveal-fade, .reveal-scale, .reveal-plate, .stagger-children";
         var reveal = function (node) {
           node.classList.add("is-in");
           node.classList.remove("await-reveal");
@@ -156,6 +158,9 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
           });
         });
       })();
+    </script>
+    <script>
+      import "../scripts/luxe-motion.ts";
     </script>
   </body>
 </html>
