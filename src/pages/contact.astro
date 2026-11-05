@@ -1,6 +1,7 @@
 ---
 import ContactForm from "../components/forms/ContactForm.astro";
-import PageHero from "../components/ui/PageHero.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import HeroTitle from "../components/ui/HeroTitle.astro";
 import SocialLinks from "../components/ui/SocialLinks.astro";
 import OutlineButton from "../components/ui/OutlineButton.astro";
 import { activeSocialLinks, site } from "../data/site";
@@ -11,75 +12,76 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   title="Contact"
   description={`Prepare a project inquiry for ${site.name}. The contact form does not send a message until delivery is configured.`}
 >
-  <PageHero
-    eyebrow="Contact"
-    description="Share the product goal, the kind of work, and where the project stands. A budget or timeline can wait."
-    visual="communication"
-    crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
-  >
-    Discuss a product or <span class="text-gradient">software project.</span>
-  </PageHero>
-
-  <section class="section pt-0">
-    <div class="container-page grid min-w-0 items-start gap-8 lg:grid-cols-12">
-      <div class="min-w-0 lg:order-2 lg:col-span-8">
-        <ContactForm />
-      </div>
-      <div class="stagger-children grid min-w-0 gap-4 lg:order-1 lg:col-span-4">
-        <article class="surface-card motion-item p-6">
-          <h2 class="font-display text-2xl font-semibold">What helps</h2>
-          <p class="mt-3 text-muted">
-            Name the product, who it is for, and whether you need web, mobile, AI, SaaS, APIs, DevOps, design, or QA. Say what already exists. Budget and timeline are optional.
+  <section class="contact-page" data-hero>
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} visible={false} />
+      <div class="contact-layout">
+        <div class="contact-head">
+          <p class="eyebrow hero-in">Contact</p>
+          <HeroTitle text="Tell Us About Your Project" />
+          <p class="lede hero-in hero-in-3">
+            Tell us about your product, the kind of work you need, and where the project stands. Budget and timeline can wait.
           </p>
-        </article>
-        <article class="surface-card motion-item p-6">
-          <h2 class="font-display text-2xl font-semibold">Email</h2>
+        </div>
+        <div class="contact-form min-w-0">
+          <ContactForm />
+        </div>
+        <div class="contact-notes min-w-0">
+          <article class="contact-note">
+            <h2>What helps</h2>
+            <p>
+              Name the product, who it is for, and whether you need web, mobile, AI, SaaS, APIs, DevOps, design, or QA. Say what already exists. Budget and timeline are optional.
+            </p>
+          </article>
+          <article class="contact-note">
+            <h2>Email</h2>
+            {
+              site.emailIsPlaceholder ? (
+                <p>A public inbox is not set. This page does not open a mail app or send the form.</p>
+              ) : (
+                <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
+              )
+            }
+          </article>
           {
-            site.emailIsPlaceholder ? (
-              <p class="mt-3 text-muted">A public inbox is not set. This page does not open a mail app or send the form.</p>
-            ) : (
-              <a class="mt-3 inline-block text-lg text-lavender" href={`mailto:${site.email}`}>{site.email}</a>
+            site.location && (
+              <article class="contact-note">
+                <h2>Location</h2>
+                <p>{site.location}</p>
+              </article>
             )
           }
-        </article>
-        {
-          site.location && (
-            <article class="surface-card motion-item p-6">
-              <h2 class="font-display text-2xl font-semibold">Location</h2>
-              <p class="mt-3 text-muted">{site.location}</p>
-            </article>
-          )
-        }
-        {
-          activeSocialLinks.length > 0 && (
-            <article class="surface-card motion-item p-6">
-              <h2 class="font-display text-2xl font-semibold">Social</h2>
-              <SocialLinks class="mt-4" />
-            </article>
-          )
-        }
-        {
-          site.bookingUrl && (
-            <article class="surface-card motion-item p-6">
-              <h2 class="font-display text-2xl font-semibold">Book a conversation</h2>
-              <p class="mt-3 text-muted">Use the scheduling link if you already know you want a call.</p>
-              <div class="mt-4">
-                <OutlineButton href={site.bookingUrl}>Open booking link</OutlineButton>
-              </div>
-            </article>
-          )
-        }
-        <article class="surface-card motion-item p-6">
-          <h2 class="font-display text-2xl font-semibold">Privacy</h2>
-          <p class="mt-3 text-muted">
-            With no delivery endpoint, the form does not submit your details to {site.name}. Copying stays on this device. Read the <a class="text-lavender underline" href="/privacy">Privacy Policy</a> before you prepare an inquiry.
-          </p>
-          <p class="mt-4 text-sm text-muted">
-            <a class="text-lavender underline" href="/portfolio">Portfolio</a>
-            <span aria-hidden="true"> · </span>
-            <a class="text-lavender underline" href="/process">Process</a>
-          </p>
-        </article>
+          {
+            activeSocialLinks.length > 0 && (
+              <article class="contact-note">
+                <h2>Social</h2>
+                <SocialLinks class="mt-4" />
+              </article>
+            )
+          }
+          {
+            site.bookingUrl && (
+              <article class="contact-note">
+                <h2>Book a conversation</h2>
+                <p>Use the scheduling link if you already know you want a call.</p>
+                <div class="mt-4">
+                  <OutlineButton href={site.bookingUrl}>Open booking link</OutlineButton>
+                </div>
+              </article>
+            )
+          }
+          <article class="contact-note">
+            <h2>Privacy</h2>
+            <p>
+              With no delivery endpoint, the form does not submit your details to {site.name}. Copying stays on this device. Read the <a href="/privacy">Privacy Policy</a> before you prepare an inquiry.
+            </p>
+            <p class="contact-note-links">
+              <a href="/portfolio">Portfolio</a>
+              <span aria-hidden="true"> · </span>
+              <a href="/process">Process</a>
+            </p>
+          </article>
+        </div>
       </div>
     </div>
   </section>

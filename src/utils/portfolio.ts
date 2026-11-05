@@ -35,3 +35,38 @@ export function homepageProjects<T extends { data: PortfolioFlags }>(projects: r
     .sort((a, b) => (a.data.homeRank ?? 99) - (b.data.homeRank ?? 99))
     .slice(0, 6);
 }
+
+/** How a card spans the Work grid: the full row, half of it, or a third. */
+export type WorkSpan = "wide" | "half" | "third";
+
+export interface WorkSlot {
+  /** Two-column grid, 768 px to 1279 px. */
+  md: WorkSpan;
+  /** Three-column grid, 1280 px and up. */
+  lg: WorkSpan;
+}
+
+/**
+ * Grid placement for `count` visible Work cards, in order. The first card is always the wide
+ * featured card. The rest fill complete rows with no empty cell: two-column rows use halves and
+ * an odd card out becomes wide; three-column rows use halves first, then thirds.
+ */
+export function workLayout(count: number): WorkSlot[] {
+  if (count <= 0) return [];
+  const rest = count - 1;
+  const md: WorkSpan[] = Array.from({ length: rest }, (_, index) => (rest % 2 === 1 && index === rest - 1 ? "wide" : "half"));
+  let lg: WorkSpan[];
+  if (rest === 1) {
+    lg = ["wide"];
+  } else {
+    let thirds = Math.floor(rest / 3);
+    let halves = 0;
+    if (rest % 3 === 2) halves = 1;
+    if (rest % 3 === 1) {
+      thirds -= 1;
+      halves = 2;
+    }
+    lg = [...Array<WorkSpan>(halves * 2).fill("half"), ...Array<WorkSpan>(thirds * 3).fill("third")];
+  }
+  return [{ md: "wide", lg: "wide" }, ...md.map((span, index) => ({ md: span, lg: lg[index] ?? "third" }))];
+}

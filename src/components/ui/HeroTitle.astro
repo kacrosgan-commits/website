@@ -1,0 +1,22 @@
+---
+interface Props {
+  /** Plain text. Each word rises through its own line, as the homepage title does. */
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+const words = text.trim().split(/\s+/);
+---
+
+<h1 class:list={["page-title inner-title", className]}>
+  {
+    words.map((word, index) => (
+      <>
+        <span class="w">
+          <span style={`--i:${index}`}>{word}</span>
+        </span>{" "}
+      </>
+    ))
+  }
+</h1>

@@ -26,7 +26,7 @@ test("primary routes respond and the homepage states the offer", async ({ page }
 test("team and profiles render the supplied portraits", async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto("/team");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("The People and Disciplines Behind");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("The People Behind Vortex Digital");
   await expect(page.getByRole("heading", { name: "How We Work Together" })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "View Profile" })).toHaveCount(9);
   await expect(page.getByRole("link", { name: "View All 27 Images" })).toHaveCount(0);

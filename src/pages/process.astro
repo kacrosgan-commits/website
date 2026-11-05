@@ -9,7 +9,11 @@ import { getContentSource } from "../lib/content/source";
 import { getPageSectionsForRender } from "../lib/content/site-content";
 
 const cms = getContentSource() === "cms";
-const cmsProcessSections = cms ? getPageSectionsForRender("process") : [];
+/* Only a CMS hero section supplies the hero. The seeded "steps" section is the stage list, not a title. */
+const cmsHero = cms ? getPageSectionsForRender("process").find((section) => section.section_key === "hero") : undefined;
+const heroEyebrow = cmsHero?.eyebrow || "Our process";
+const heroTitle = cmsHero?.title || "From Concept to Launch";
+const heroDescription = cmsHero?.body || "Six stages, with scope and timing agreed with you before work begins.";
 ---
 
 <BaseLayout
@@ -17,23 +21,31 @@ const cmsProcessSections = cms ? getPageSectionsForRender("process") : [];
   description={`How ${site.name} moves from discovery to deployment: requirements, architecture, design, development, testing, and support.`}
 >
   <PageHero
-    eyebrow={cmsProcessSections[0]?.eyebrow || "Our process"}
-    description={cmsProcessSections[0]?.body || "Six engineering stages. Scope and timing are agreed in a proposal, not assumed from this page."}
-    visual="pipeline"
-    labels={processSteps.map((step) => step.homeTitle || step.title)}
+    eyebrow={heroEyebrow}
+    title={heroTitle}
+    description={heroDescription}
     crumbs={[{ label: "Home", href: "/" }, { label: "Our Process" }]}
+    layout="split"
   >
-    {cmsProcessSections[0]?.title || (
-      <>
-        From concept <span class="text-gradient">to launch.</span>
-      </>
-    )}
+    <nav slot="aside" class="stage-index" aria-label="Process stages">
+      <ol>
+        {
+          processSteps.map((step) => (
+            <li>
+              <a href={`#${step.id}`}>
+                <span class="stage-index-num" aria-hidden="true">
+                  {step.number}
+                </span>
+                <span class="stage-index-name">{step.title}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
   </PageHero>
-  <section class="section relative pt-0" aria-labelledby="stages-heading">
-    <div class="ambient" aria-hidden="true">
-      <div class="grid-fade"></div>
-    </div>
-    <div class="container-page relative">
+  <section class="section inner-next" aria-labelledby="stages-heading">
+    <div class="container-page">
       <h2 id="stages-heading" class="sr-only">Engagement stages</h2>
       <ProcessTimeline steps={processSteps} />
     </div>

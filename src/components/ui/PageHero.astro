@@ -1,7 +1,6 @@
 ---
 import Breadcrumbs from "./Breadcrumbs.astro";
-import HeroStage from "../visuals/HeroStage.astro";
-import type { HeroScene } from "../../data/hero-scenes";
+import HeroTitle from "./HeroTitle.astro";
 
 interface Crumb {
   label: string;
@@ -11,28 +10,59 @@ interface Crumb {
 interface Props {
   eyebrow: string;
   description: string;
+  /** Plain-text title. Without it, the default slot supplies the h1 content. */
+  title?: string;
+  /** Always written as BreadcrumbList structured data. */
   crumbs?: Crumb[];
-  visual?: HeroScene;
-  labels?: string[];
-  plates?: string[];
-  /** When false, the hero stays on the CSS scene and does not load WebGL. */
-  live?: boolean;
+  /** Also show the breadcrumb trail on the page. */
+  showCrumbs?: boolean;
+  /**
+   * compact: a short heading so the page's content starts in the first view.
+   * split: title beside a supporting element in the `aside` slot.
+   */
+  layout?: "compact" | "split";
 }
 
-const { eyebrow, description, crumbs = [], visual = "editorial", labels, plates, live = true } = Astro.props;
+const { eyebrow, description, title, crumbs = [], showCrumbs = false, layout = "compact" } = Astro.props;
+const hasAside = Astro.slots.has("aside");
+const hasActions = Astro.slots.has("actions");
 ---
 
-<section class="relative isolate overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
-  <HeroStage scene={visual} labels={labels} plates={plates} engine={live ? "webgl" : "css"} />
-  <div class="container-page relative z-[1]">
-    {crumbs.length > 0 && <Breadcrumbs items={crumbs} />}
-    <p class="eyebrow hero-in">{eyebrow}</p>
-    <h1 class="page-title hero-in hero-in-2 mt-5 max-w-3xl">
-      <slot />
-    </h1>
-    <p class="lede hero-in hero-in-3 mt-6 max-w-2xl">{description}</p>
-    <div class="hero-in hero-in-4 mt-8">
-      <slot name="actions" />
+<section class:list={["inner-hero", `inner-hero-${layout}`]} data-hero>
+  <div class="container-page">
+    {crumbs.length > 0 && <Breadcrumbs items={crumbs} visible={showCrumbs} />}
+    <div class:list={["inner-hero-grid", hasAside && "has-aside"]}>
+      <div class="inner-hero-copy">
+        <div class="inner-hero-head">
+          <p class="eyebrow hero-in">{eyebrow}</p>
+          {
+            title ? (
+              <HeroTitle text={title} />
+            ) : (
+              <h1 class="page-title inner-title hero-in hero-in-2">
+                <slot />
+              </h1>
+            )
+          }
+        </div>
+        <div class="inner-hero-foot">
+          <p class="lede hero-in hero-in-3">{description}</p>
+          {
+            hasActions && (
+              <div class="inner-hero-actions hero-in hero-in-4">
+                <slot name="actions" />
+              </div>
+            )
+          }
+        </div>
+      </div>
+      {
+        hasAside && (
+          <div class="inner-hero-aside hero-in hero-in-3">
+            <slot name="aside" />
+          </div>
+        )
+      }
     </div>
   </div>
 </section>
