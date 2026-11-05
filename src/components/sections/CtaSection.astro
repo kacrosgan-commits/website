@@ -9,6 +9,8 @@ interface Props {
   label?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  /** The thin gold circle with its orbiting bead behind the headline. */
+  ring?: boolean;
 }
 
 const {
@@ -18,15 +20,20 @@ const {
   label = "Discuss Your Project",
   secondaryHref = "",
   secondaryLabel = "",
+  ring = true,
 } = Astro.props;
 ---
 
 <section class="lux-cta reveal-fade">
   <img class="cta-art" src="/images/vortex-digital-hall.webp" alt="" width="1813" height="868" loading="lazy" decoding="async" />
-  <svg class="cta-ring" viewBox="0 0 200 200" aria-hidden="true">
-    <circle class="cta-ring-line" cx="100" cy="100" r="99" pathLength="1"></circle>
-    <g class="cta-ring-orbit"><circle class="cta-ring-bead" cx="100" cy="1" r="0.9"></circle></g>
-  </svg>
+  {
+    ring && (
+      <svg class="cta-ring" viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="cta-ring-line" cx="100" cy="100" r="99" pathLength="1"></circle>
+        <g class="cta-ring-orbit"><circle class="cta-ring-bead" cx="100" cy="1" r="0.9"></circle></g>
+      </svg>
+    )
+  }
   <div class="container-page lux-cta-inner">
     <h2 class="section-title lux-cta-title">{title}</h2>
     <p class="lux-cta-text">{description}</p>
