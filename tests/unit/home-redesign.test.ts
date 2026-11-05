@@ -58,3 +58,23 @@ test("lobby photo hero styles stay progressive", () => {
   assert.match(css, /\.photo-hero-img/);
   assert.doesNotMatch(read("src/pages/index.astro"), /HallDepth|hall-fin/);
 });
+
+test("fonts stay self-hosted so the Content-Security-Policy keeps working", () => {
+  const css = read("src/styles/global.css");
+  assert.doesNotMatch(read("src/layouts/BaseLayout.astro"), /fonts\.googleapis|fonts\.gstatic/);
+  for (const match of css.matchAll(/url\("(\/fonts\/[^"]+)"\)/g)) {
+    assert.ok(fs.existsSync(path.join(root, "public", match[1]!)), `missing font file: ${match[1]}`);
+  }
+  assert.match(css, /"Antic Didone"/);
+  assert.match(read("public/_headers"), /font-src 'self'/);
+});
+
+test("homepage motion keeps content visible until an enhancement is armed", () => {
+  const motion = read("src/scripts/luxe-motion.ts");
+  assert.match(motion, /prefers-reduced-motion: reduce/);
+  assert.match(read("src/layouts/BaseLayout.astro"), /luxe-motion\.ts/);
+  const css = read("src/styles/global.css");
+  assert.match(css, /--ap: 1;/);
+  assert.match(css, /--progress: 1;/);
+  assert.match(css, /--hero-p: 0;/);
+});

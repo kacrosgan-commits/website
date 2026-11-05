@@ -1,6 +1,6 @@
 ---
-import { assets } from "../../data/assets";
-import Icon from "../ui/Icon.astro";
+import GradientButton from "../ui/GradientButton.astro";
+import OutlineButton from "../ui/OutlineButton.astro";
 
 interface Props {
   title?: string;
@@ -21,27 +21,18 @@ const {
 } = Astro.props;
 ---
 
-<section class="section reveal-up pt-0">
-  <div class="container-page">
-    <div class="cta-panel px-6 py-14 sm:px-12 md:py-20">
-      <img class="cta-art" src={assets.backgrounds.ctaWaves} alt="" width="1920" height="800" />
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="section-title text-paper">{title}</h2>
-        <p class="mx-auto mt-5 max-w-2xl text-lg text-paper">{description}</p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={href} class="btn press-feedback bg-ink text-paper shadow-[0_12px_30px_rgba(9,7,19,0.28)] hover:bg-ink-soft">
-            {label}
-            <Icon name="arrow-right" size={18} class="arrow" />
-          </a>
-          {
-            secondaryHref && secondaryLabel && (
-              <a href={secondaryHref} class="btn press-feedback border border-paper/30 text-paper hover:bg-paper/10">
-                {secondaryLabel}
-              </a>
-            )
-          }
-        </div>
-      </div>
+<section class="lux-cta reveal-fade">
+  <img class="cta-art" src="/images/vortex-digital-hall.webp" alt="" width="1813" height="868" loading="lazy" decoding="async" />
+  <svg class="cta-ring" viewBox="0 0 200 200" aria-hidden="true">
+    <circle class="cta-ring-line" cx="100" cy="100" r="99" pathLength="1"></circle>
+    <g class="cta-ring-orbit"><circle class="cta-ring-bead" cx="100" cy="1" r="0.9"></circle></g>
+  </svg>
+  <div class="container-page lux-cta-inner">
+    <h2 class="section-title lux-cta-title">{title}</h2>
+    <p class="lux-cta-text">{description}</p>
+    <div class="lux-cta-actions">
+      <GradientButton href={href}>{label}</GradientButton>
+      {secondaryHref && secondaryLabel && <OutlineButton href={secondaryHref}>{secondaryLabel}</OutlineButton>}
     </div>
   </div>
 </section>

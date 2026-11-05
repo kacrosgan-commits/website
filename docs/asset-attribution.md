@@ -11,3 +11,10 @@ The 27 team files are the pack described in `ASSET_MANIFEST.json`.
 - Older contact-sheet crops (`member-01-…webp`, `team-01-…webp`) remain on disk and are not referenced by the live team pages.
 
 Do not describe a collaboration scene as a documented meeting, and do not describe an unverified portrait as a named employee.
+
+## Fonts
+
+- `public/fonts/antic-didone-latin-400.woff2`: Antic Didone by Santiago Orozco, SIL Open Font License 1.1 (`antic-didone-OFL.txt`).
+- `public/fonts/instrument-sans-latin-wght.woff2`: Instrument Sans by Rodrigo Fuenzalida and Jordan Egstad, SIL Open Font License 1.1 (`instrument-sans-OFL.txt`).
+
+Both are self-hosted because the Content-Security-Policy in `public/_headers` only allows fonts from the site itself.
