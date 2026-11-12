@@ -7,6 +7,7 @@
 import HeroStage from "../visuals/HeroStage.astro";
 import CtaSection from "../sections/CtaSection.astro";
 import Breadcrumbs from "../ui/Breadcrumbs.astro";
+import ShotGallery from "./ShotGallery.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import type { NormalizedProject } from "../../lib/content/types";
 
@@ -18,6 +19,16 @@ interface Props {
 const { project, related } = Astro.props;
 const hero = project.screenshots[0];
 const mobile = project.mediaLayout === "mobile";
+const gallery = project.screenshots
+  .slice(1)
+  .flatMap((shot) => (shot.src ? [{ ...shot, src: shot.src }] : []))
+  .map((shot) => ({
+    src: shot.src,
+    alt: shot.alt,
+    caption: shot.caption || "",
+    width: shot.width || (mobile ? 600 : 1440),
+    height: shot.height || (mobile ? 1299 : 900),
+  }));
 ---
 
 <BaseLayout
@@ -42,7 +53,7 @@ const mobile = project.mediaLayout === "mobile";
         {
           project.projectUrl ? (
             <p class="mt-4">
-              <a class="text-lavender hover:text-paper" href={project.projectUrl} rel="noopener noreferrer">
+              <a class="lux-link" href={project.projectUrl} rel="noopener noreferrer">
                 {project.projectUrlLabel || "View project"}
               </a>
             </p>
@@ -67,48 +78,31 @@ const mobile = project.mediaLayout === "mobile";
         ) : null
       }
 
-      <section class="reveal-up mt-14 grid gap-8 md:grid-cols-2">
-        <div>
-          <h2 class="section-title text-2xl">Services</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {project.services.map((item) => (
-              <li class="tech-chip">{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 class="section-title text-2xl">Technologies</h2>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {project.technologies.map((item) => (
-              <li class="tech-chip">{item}</li>
-            ))}
-          </ul>
-        </div>
+      <section class="case-block reveal-up" aria-labelledby="services-heading">
+        <h2 id="services-heading">Services</h2>
+        <ul class="tag-list">
+          {project.services.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="case-block reveal-up" aria-labelledby="technologies-heading">
+        <h2 id="technologies-heading">Technologies</h2>
+        <ul class="tag-list">
+          {project.technologies.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
       </section>
 
       {
-        project.screenshots.length > 1 ? (
-          <section class="reveal-up mt-16" aria-labelledby="gallery-heading">
-            <h2 id="gallery-heading" class="section-title text-2xl">
-              Screenshots
-            </h2>
-            <div class={`stagger-children mt-8 grid gap-6 ${mobile ? "md:grid-cols-3 max-w-4xl" : "md:grid-cols-2"}`}>
-              {project.screenshots.slice(1).map((shot) =>
-                shot.src ? (
-                  <figure class="motion-item">
-                    <img
-                      src={shot.src}
-                      alt={shot.alt}
-                      width={shot.width || 1200}
-                      height={shot.height || 800}
-                      class="w-full h-auto rounded-lg"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    {shot.caption ? <figcaption class="mt-2 text-sm text-muted">{shot.caption}</figcaption> : null}
-                  </figure>
-                ) : null,
-              )}
+        gallery.length > 0 ? (
+          <section class="case-block is-wide reveal-up" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">Screenshots</h2>
+            <p class="text-muted">Select an image to view it full size.</p>
+            <div class="mt-6">
+              <ShotGallery shots={gallery} mobile={mobile} />
             </div>
           </section>
         ) : null
@@ -116,16 +110,14 @@ const mobile = project.mediaLayout === "mobile";
 
       {
         related.length ? (
-          <section class="reveal-up mt-20" aria-labelledby="related-heading">
-            <h2 id="related-heading" class="section-title text-2xl">
-              More work
-            </h2>
+          <section class="case-block is-wide reveal-up" aria-labelledby="related-heading">
+            <h2 id="related-heading">More work</h2>
             <div class="stagger-children mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {related.slice(0, 3).map((item) => (
-                <a href={`/portfolio/${item.slug}/`} class="interactive-lift motion-item block rounded-xl border border-white/10 p-5 hover:border-lavender/40">
-                  <p class="text-sm text-muted">{item.client}</p>
-                  <h3 class="mt-2 text-lg text-paper">{item.cardTitle || item.title}</h3>
-                  <p class="mt-2 text-sm text-muted">{item.cardSummary || item.description}</p>
+                <a href={`/portfolio/${item.slug}/`} class="related-card motion-item">
+                  <span class="related-card-client">{item.client}</span>
+                  <span class="related-card-title">{item.cardTitle || item.title}</span>
+                  <span class="related-card-text">{item.cardSummary || item.description}</span>
                 </a>
               ))}
             </div>

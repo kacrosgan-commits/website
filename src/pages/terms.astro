@@ -2,6 +2,14 @@
 import PageHero from "../components/ui/PageHero.astro";
 import { site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+/* Table of contents: one entry per heading below, in the same words. */
+const sections = [
+  { id: "using-this-website", label: "Using this website" },
+  { id: "inquiries", label: "Inquiries" },
+  { id: "intellectual-property", label: "Intellectual property" },
+  { id: "liability", label: "Liability" },
+];
 ---
 
 <BaseLayout
@@ -17,27 +25,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   >
     Terms of <span class="text-gradient">Service.</span>
   </PageHero>
-  <section class="section pt-0">
-    <div class="container-page">
+  <section class="section inner-next">
+    <div class="container-page legal-layout">
+      <nav class="legal-toc" aria-labelledby="toc-heading">
+        <h2 id="toc-heading" class="legal-toc-title">On this page</h2>
+        <ol>
+          {
+            sections.map((section) => (
+              <li>
+                <a href={`#${section.id}`}>{section.label}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+      <div class="legal-body">
       <p class="badge">Template — requires legal review</p>
-      <div class="prose mt-8 max-w-3xl">
+      <div class="prose legal-prose mt-8">
         <p>Last updated: 26 October 2026. Replace this date when reviewed terms are published.</p>
-        <h2>Using this website</h2>
+        <h2 id="using-this-website">Using this website</h2>
         <p>
           This website introduces {site.name} and lets you send a project inquiry. The public brand is {site.name}. A registered legal name is not stated on this page. Browsing the site does not create a contract, a statement of work, or a promise of availability.
         </p>
-        <h2>Inquiries</h2>
+        <h2 id="inquiries">Inquiries</h2>
         <p>
-          Information you send through the contact form or by email is a request for a conversation. A reply, a proposal, and a signed agreement are separate steps. Sample projects and demonstration articles on this site are not records of completed client work.
+          Information you send through the contact form or by email is a request for a conversation. A reply, a proposal, and a signed agreement are separate steps. Case studies on this site describe the part of each product that Vortex Digital worked on.
         </p>
-        <h2>Intellectual property</h2>
+        <h2 id="intellectual-property">Intellectual property</h2>
         <p>
-          The layout, writing, and original graphics on this website belong to the site owner unless a page says otherwise. Client work, once it exists, is governed by the contract for that project, not by this template.
+          The layout, writing, and original graphics on this website belong to the site owner unless a page says otherwise. Client work is governed by the contract for that project, not by this template.
         </p>
-        <h2>Liability</h2>
+        <h2 id="liability">Liability</h2>
         <p>
           The site is provided as a public introduction. It may change, and pages may be incomplete while company details are being confirmed. Counsel should replace this section with the limitation language the company actually intends to use.
         </p>
+      </div>
       </div>
     </div>
   </section>

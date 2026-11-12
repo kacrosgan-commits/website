@@ -1,12 +1,8 @@
 ---
-import TeamCard from "../components/cards/TeamCard.astro";
-import ProcessTimeline from "../components/sections/ProcessTimeline.astro";
 import CtaSection from "../components/sections/CtaSection.astro";
 import Icon from "../components/ui/Icon.astro";
-import OutlineButton from "../components/ui/OutlineButton.astro";
 import PageHero from "../components/ui/PageHero.astro";
 import { about, buildServices } from "../data/about";
-import { processSteps } from "../data/process";
 import { site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getContentSource } from "../lib/content/source";
@@ -23,9 +19,6 @@ if (!cms && buildServices.length !== 8) {
   throw new Error(`Expected 8 services, found ${buildServices.length}`);
 }
 
-const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
-  .map((slug) => team.find((member) => member.slug === slug))
-  .filter((member) => member !== undefined);
 ---
 
 <BaseLayout
@@ -56,13 +49,19 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
 
   {
     cmsAboutSections.length > 0 ? (
-      <section class="pb-8">
-        <div class="container-page space-y-4" data-cms-about-sections>
+      <section class="section inner-next">
+        <div class="container-page cms-sections" data-cms-about-sections>
           {cmsAboutSections.map((section) => (
-            <div>
-              {section.eyebrow ? <p class="eyebrow">{section.eyebrow}</p> : null}
-              {section.title ? <h2 class="section-title mt-2">{section.title}</h2> : null}
-              {section.body ? <p class="mt-3 text-muted">{section.body}</p> : null}
+            <div class="split">
+              <div>
+                {section.eyebrow ? <p class="eyebrow">{section.eyebrow}</p> : null}
+                {section.title ? <h2 class="split-title mt-3">{section.title}</h2> : null}
+              </div>
+              {section.body ? (
+                <div class="copy">
+                  <p>{section.body}</p>
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
@@ -70,30 +69,28 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
     ) : null
   }
 
-  <section class="section reveal pt-0" aria-labelledby="who-heading">
-    <div class="container-page max-w-3xl">
-      <h2 id="who-heading" class="section-title">{about.whoHeading}</h2>
-      <div class="mt-6 grid gap-4">
-        {about.who.map((paragraph) => <p class="text-lg text-paper/90">{paragraph}</p>)}
+  <section class="section inner-next reveal" aria-labelledby="who-heading">
+    <div class="container-page split">
+      <h2 id="who-heading" class="split-title">{about.whoHeading}</h2>
+      <div class="copy">
+        {about.who.map((paragraph) => <p>{paragraph}</p>)}
       </div>
     </div>
   </section>
 
-  <section class="section reveal bg-ink-soft/40" aria-labelledby="audience-heading">
-    <div class="container-page">
-      <div class="max-w-3xl">
-        <h2 id="audience-heading" class="section-title">{about.audienceHeading}</h2>
-        <p class="lede mt-5">{about.audienceNote}</p>
+  <section class="section reveal" aria-labelledby="audience-heading">
+    <div class="container-page split">
+      <div>
+        <h2 id="audience-heading" class="split-title">{about.audienceHeading}</h2>
+        <p class="split-note">{about.audienceNote}</p>
       </div>
-      <ol class="audience-list mt-12">
+      <ol class="line-list is-numbered">
         {
           about.audiences.map((item, index) => (
-            <li class="surface-card audience-item">
-              <p class="font-display text-3xl font-semibold tracking-[-0.04em] text-lilac">0{index + 1}</p>
-              <div>
-                <h3 class="font-display text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
-                <p class="mt-3 text-muted">{item.text}</p>
-              </div>
+            <li>
+              <span class="line-list-num" aria-hidden="true">0{index + 1}</span>
+              <span class="line-list-title is-display">{item.title}</span>
+              <span class="line-list-text">{item.text}</span>
             </li>
           ))
         }
@@ -101,23 +98,33 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="build-heading">
+  <section class="section reveal" aria-labelledby="mission-heading">
+    <div class="container-page mv-grid">
+      <article>
+        <p class="eyebrow">Mission</p>
+        <h2 id="mission-heading" class="mv-title">{about.missionHeading}</h2>
+        <p class="mv-statement">{about.mission}</p>
+        <p class="mv-support">{about.missionSupport}</p>
+      </article>
+      <article>
+        <p class="eyebrow">Vision</p>
+        <h2 class="mv-title">{about.visionHeading}</h2>
+        <p class="mv-statement">{about.vision}</p>
+        <p class="mv-support">{about.visionSupport}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal" aria-labelledby="philosophy-heading">
     <div class="container-page">
-      <div class="max-w-3xl">
-        <h2 id="build-heading" class="section-title">{about.buildHeading}</h2>
-        <p class="lede mt-5">{about.buildIntro}</p>
-      </div>
-      <ul class="build-list mt-12">
+      <h2 id="philosophy-heading" class="section-title max-w-4xl">{about.philosophyHeading}</h2>
+      <ul class="open-grid cols-3 mt-[clamp(2rem,4vw,3.5rem)]">
         {
-          buildServices.map(({ label, service }) => (
-            <li class="surface-card build-link">
-              <span class="icon-tile">
-                <Icon name={service.icon} size={22} />
-              </span>
-              <span>
-                <span class="block font-display text-xl font-semibold tracking-[-0.03em]">{label}</span>
-                <span class="mt-2 block text-muted">{service.summary}</span>
-              </span>
+          about.philosophy.map((item) => (
+            <li>
+              <Icon name={item.icon} class="open-grid-icon" />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
             </li>
           ))
         }
@@ -125,69 +132,41 @@ const leaders = ["founder-ceo", "cofounder-cto", "cfo", "project-manager"]
     </div>
   </section>
 
-  <section class="section reveal bg-ink-soft/40" aria-labelledby="mission-heading">
-    <div class="container-page grid gap-6 lg:grid-cols-12">
-      <article class="surface-card mission-panel lg:col-span-7">
-        <p class="eyebrow">Mission</p>
-        <h2 id="mission-heading" class="mt-4 font-display text-[clamp(2rem,3.4vw,3rem)] font-semibold tracking-[-0.04em]">{about.missionHeading}</h2>
-        <p class="mt-6 text-2xl leading-snug text-paper">{about.mission}</p>
-        <p class="mt-6 text-muted">{about.missionSupport}</p>
-      </article>
-      <article class="surface-card flex flex-col justify-center p-8 md:p-10 lg:col-span-5">
-        <p class="eyebrow">Vision</p>
-        <h2 class="mt-4 font-display text-3xl font-semibold tracking-[-0.03em]">{about.visionHeading}</h2>
-        <p class="mt-5 text-lg text-paper/90">{about.vision}</p>
-        <p class="mt-4 text-muted">{about.visionSupport}</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section reveal" aria-labelledby="philosophy-heading">
+  <section class="section reveal" aria-labelledby="more-heading">
     <div class="container-page">
-      <h2 id="philosophy-heading" class="section-title max-w-3xl">{about.philosophyHeading}</h2>
-      <div class="philosophy-grid mt-12">
-        {
-          about.philosophy.map((item) => (
-            <article class="surface-card p-7">
-              <div class="icon-tile">
-                <Icon name={item.icon} />
-              </div>
-              <h3 class="mt-5 font-display text-2xl font-semibold tracking-[-0.03em]">{item.title}</h3>
-              <p class="mt-3 text-muted">{item.text}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section reveal bg-ink-soft/40" aria-labelledby="process-heading">
-    <div class="container-page">
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <div class="max-w-3xl">
-          <h2 id="process-heading" class="section-title">{about.processHeading}</h2>
-          <p class="lede mt-5">{about.processIntro}</p>
-        </div>
-        <OutlineButton href="/process">See the full process</OutlineButton>
-      </div>
-      <div class="mt-12">
-        <ProcessTimeline steps={processSteps.map((step) => ({ ...step, homeTitle: step.title }))} compact />
-      </div>
-    </div>
-  </section>
-
-  <section class="section reveal" aria-labelledby="team-heading">
-    <div class="container-page">
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <div class="max-w-3xl">
-          <h2 id="team-heading" class="section-title">{about.teamHeading}</h2>
-          <p class="lede mt-5">{about.teamIntro}</p>
-        </div>
-        <OutlineButton href="/team">Meet all nine</OutlineButton>
-      </div>
-      <div class="stagger-children mt-12 grid gap-5 sm:grid-cols-2">
-        {leaders.map((member) => <TeamCard member={member} />)}
-      </div>
+      <h2 id="more-heading" class="sr-only">More about the company</h2>
+      <ul class="link-rows">
+        <li class="link-row">
+          <p class="link-row-label">Specialties</p>
+          <div class="link-row-body">
+            <h3 class="link-row-title">{about.buildHeading}</h3>
+            <p class="link-row-text">{buildServices.map(({ label }) => label).join(" · ")}</p>
+          </div>
+          <a href="/portfolio" class="lux-link link-row-link">See our work</a>
+        </li>
+        <li class="link-row">
+          <p class="link-row-label">Process</p>
+          <div class="link-row-body">
+            <h3 class="link-row-title">{about.processHeading}</h3>
+            <p class="link-row-text">{about.processSummary}</p>
+          </div>
+          <a href="/process" class="lux-link link-row-link">See the full process</a>
+        </li>
+        <li class="link-row">
+          <p class="link-row-label">Team</p>
+          <div class="link-row-body">
+            <h3 class="link-row-title">{about.teamHeading}</h3>
+            <a href="/team" class="team-strip" tabindex="-1" aria-hidden="true">
+              {
+                team.map((member) => (
+                  <img src={member.portrait.thumb} alt="" width="384" height="384" loading="lazy" decoding="async" />
+                ))
+              }
+            </a>
+          </div>
+          <a href="/team" class="lux-link link-row-link">Meet the team</a>
+        </li>
+      </ul>
     </div>
   </section>
 

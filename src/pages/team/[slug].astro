@@ -3,7 +3,6 @@ import TeamProfile from "../../components/team/TeamProfile.astro";
 import { publicName } from "../../data/team";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getContentSource } from "../../lib/content/source";
 import { getTeamForRender } from "../../lib/content/site-content";
 
 export function getStaticPaths() {
@@ -13,7 +12,6 @@ export function getStaticPaths() {
 
 const { member } = Astro.props;
 const name = publicName(member);
-const cms = getContentSource() === "cms";
 ---
 
 <BaseLayout
@@ -22,6 +20,5 @@ const cms = getContentSource() === "cms";
   noindex={!member.isPublished}
   image={member.portrait.src}
 >
-  {cms ? <p class="sr-only">CMS release profile</p> : null}
   <TeamProfile member={member} />
 </BaseLayout>

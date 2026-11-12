@@ -104,6 +104,31 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
           rule.textContent =
             "[data-vt-project]" + (safe ? ':not([data-vt-project="' + safe + '"])' : "") + "{view-transition-name:none!important}";
         };
+        // Team portraits work the same way: the wall, the bio panel and each profile carry
+        // view-transition-name team-<slug>. Only the person being opened or returned to keeps it.
+        var personOf = function (url) {
+          try {
+            var match = new URL(url, location.href).pathname.match(/^\/team\/([^/]+)\/?$/);
+            return match ? match[1] : null;
+          } catch (error) {
+            return null;
+          }
+        };
+        var keepPerson = function (slug) {
+          var rule = document.getElementById("vt-keep-person");
+          if (!rule) {
+            rule = document.createElement("style");
+            rule.id = "vt-keep-person";
+            document.head.appendChild(rule);
+          }
+          var safe = slug && /^[a-z0-9-]+$/.test(slug) ? slug : "";
+          rule.textContent =
+            "[data-vt-person]" + (safe ? ':not([data-vt-person="' + safe + '"])' : "") + "{view-transition-name:none!important}";
+        };
+        var releasePeople = function () {
+          var rule = document.getElementById("vt-keep-person");
+          if (rule) rule.textContent = "";
+        };
         var lastHref = null;
         document.addEventListener(
           "click",
@@ -120,6 +145,7 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
             sessionStorage.setItem("vt-from", location.href);
           } catch (error) {}
           keep(slugOf(to || "") || slugOf(location.href));
+          keepPerson(personOf(to || "") || personOf(location.href));
           document.documentElement.classList.add("vt-leaving");
         });
         window.addEventListener("pagereveal", function (event) {
@@ -134,9 +160,13 @@ const graph = [organization, ...(schema ? (Array.isArray(schema) ? schema : [sch
             } catch (error) {}
           }
           keep(slugOf(from || "") || slugOf(location.href));
+          keepPerson(personOf(from || "") || personOf(location.href));
+          // Once the portrait has landed, every portrait on the page may carry its name again.
+          event.viewTransition.finished.then(releasePeople, releasePeople);
         });
         window.addEventListener("pageshow", function () {
           document.documentElement.classList.remove("vt-leaving");
+          releasePeople();
         });
       })();
     </script>
