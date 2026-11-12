@@ -37,21 +37,19 @@ projectUrl: "https://www.gain.energy/"
 overview: >
   Gain Energy presents Upstrima, an AI platform aimed at oil and gas engineering.
   The public website introduces the platform, its capabilities, and examples of how engineering teams might use it.
-  This case study covers that marketing website.
   Vortex Digital developed the public Gain Energy / Upstrima website, including the interface and sections that introduce the platform, its features, and its use cases.
-  The agency also participated in the wider SaaS application engagement; specific SaaS modules are not detailed in this case study.
+  Vortex Digital also participated in the wider SaaS application work; specific SaaS modules are not detailed in this case study.
 challenge: >
   The site gives prospective users a place to see the Upstrima platform, the capabilities it describes, AI agent use cases, and energy-industry applications.
-  That is the job of the public website. It is not a reconstruction of a client brief.
 features:
   - title: "AI agents for engineering applications"
-    text: "The website introduces Upstrima's AI agents as tools for engineering work. That is product information on the marketing site, not a claim that Vortex Digital built a particular agent."
+    text: "The website introduces Upstrima's AI agents as tools for engineering work."
   - title: "Specialized operational use cases"
     text: "Public sections show engineering examples such as reporting, well-path review, and operational analysis. These are use cases the website presents."
   - title: "Data-driven engineering insights"
-    text: "The site describes analysis and insight for petroleum engineering work. The pages communicate that product theme. They are not a verified data-pipeline delivery."
+    text: "The site describes analysis and insight for petroleum engineering work."
   - title: "Oil and gas industry workflows"
-    text: "The website explains industry-focused workflows for oil and gas teams. The presentation is part of the marketing site. Individual workflow engines are not named as agency modules."
+    text: "The website explains industry-focused workflows for oil and gas teams."
 screenshots:
   - src: "/assets/portfolio/gain-energy-upstrima/gain-01-home.jpg"
     alt: "Public Gain Energy homepage with the Upstrima introduction for oil and gas engineering."
@@ -60,22 +58,20 @@ screenshots:
     width: 1348
     height: 926
   - src: "/assets/portfolio/gain-energy-upstrima/gain-02-features.jpg"
-    alt: "Public Gain Energy features section. The agent marketplace graphic is a marketing presentation, not an authenticated product screen."
-    caption: "Features section. The marketplace graphic is a public marketing presentation, not an authenticated product."
+    alt: "Public Gain Energy features section with an AI agent marketplace graphic."
+    caption: "Features section with the agent marketplace graphic."
     kind: "Public marketing illustration (not authenticated product)"
     width: 1348
     height: 926
   - src: "/assets/portfolio/gain-energy-upstrima/gain-03-cases.jpg"
-    alt: "Public Gain Energy page listing engineering AI agent use cases. Not the private workspace."
-    caption: "Industry use cases on the public website, not the private engineering workspace."
+    alt: "Public Gain Energy page listing engineering AI agent use cases."
+    caption: "Industry use cases on the public website."
     kind: "Public website capture"
     width: 1348
     height: 926
 technology:
   - status: "Confirmed platform"
-    text: "Next.js and React were used for the public marketing website. They are not a confirmed stack for the SaaS application work."
-  - status: "Unverified"
-    text: "The SaaS technology stack was not confirmed. AI agents, workflow engines, data connections, backend APIs, databases, authentication, dashboards, model orchestration, marketplace architecture, payments, and cloud deployment are not attributed to Vortex Digital as individual modules."
+    text: "Next.js and React were used for the public marketing website."
 evidenceNote: "These three images are captures of the public marketing website. The features graphic is a marketing presentation. None of the images open an authenticated workspace, and no operational result is claimed."
 contributionPrompt: "Specific SaaS modules remain unverified."
 engagementRole: "Public marketing website development; additional SaaS application participation"

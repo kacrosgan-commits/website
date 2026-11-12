@@ -38,22 +38,21 @@ technologies:
 projectUrl: "https://apps.apple.com/us/app/born-to-rock-rhythm-game/id6789210953"
 overview: >
   Born To Rock is a mobile rhythm game built around timing and interactive music.
-  Vortex Digital developed the complete game. The confirmed work covers the core rhythm gameplay, player input handling, audio synchronization, the scoring system, the in-game interface, menus, and navigation.
+  Vortex Digital developed the complete game. Our work covers the core rhythm gameplay, player input handling, audio synchronization, the scoring system, the in-game interface, menus, and navigation; online features such as multiplayer, leaderboards, cloud saves, and player accounts are not part of this case study.
   The engagement started in April 2026 and is ongoing.
-  The images on this page are official App Store promotional artwork. They present the public product. They are not captures from a development build, and the marketing lines in the artwork are not measured results.
 challenge: >
   A rhythm game has to respond to the player, stay aligned with the music, and make the score understandable while play is underway.
   This engagement focused on that interaction: player input, rhythm-oriented play, synchronization between the audio and the gameplay, scoring feedback, the in-game interface, and movement through menus.
-  Those areas match the systems Vortex Digital delivered. This is not a client brief, and it does not describe a timing algorithm, a frame rate, or a latency figure.
+  Those are the systems Vortex Digital delivered.
 features:
   - title: "Core rhythm gameplay"
     text: "Vortex Digital implemented the interactive rhythm gameplay experience."
   - title: "Player input"
     text: "Vortex Digital developed player input handling for gameplay interaction."
   - title: "Audio synchronization"
-    text: "Vortex Digital implemented synchronization between the audio and the gameplay. No specific audio technique is claimed."
+    text: "Vortex Digital implemented synchronization between the audio and the gameplay."
   - title: "Scoring system"
-    text: "Vortex Digital developed the game scoring system. No scoring formula is claimed."
+    text: "Vortex Digital developed the game scoring system."
   - title: "In-game interface"
     text: "Vortex Digital implemented the in-game interface and the player-facing presentation."
   - title: "Menus and navigation"
@@ -61,19 +60,19 @@ features:
 screenshots:
   - src: "/assets/portfolio/born-to-rock/rock-1.png"
     alt: "App Store promotional artwork for Born To Rock, showing a guitarist on a stage and a phone with the game on screen."
-    caption: "Promotional key art with a stage scene and a phone presentation of the game. App Store artwork, not a development capture."
+    caption: "Promotional key art with a stage scene and a phone presentation of the game."
     kind: "App Store publisher promotional screenshot"
     width: 600
     height: 1299
   - src: "/assets/portfolio/born-to-rock/rock-2.png"
     alt: "App Store promotional artwork for Born To Rock, showing a phone with note lanes and colored input buttons."
-    caption: "Promotional artwork of the rhythm screen, with note lanes and input buttons. Not a runtime test capture."
+    caption: "Promotional artwork of the rhythm screen, with note lanes and input buttons."
     kind: "App Store publisher promotional screenshot"
     width: 600
     height: 1299
   - src: "/assets/portfolio/born-to-rock/rock-3.png"
     alt: "App Store promotional artwork for Born To Rock, showing a phone with a leaderboard screen."
-    caption: "Promotional artwork of a leaderboard screen. The image does not establish that Vortex Digital built ranking, accounts, or cloud services."
+    caption: "Promotional artwork of a leaderboard screen. The scores and rankings shown are promotional, not measured results."
     kind: "App Store publisher promotional screenshot"
     width: 600
     height: 1299
@@ -84,8 +83,6 @@ technology:
     text: "Ionic provides the mobile-oriented application interface and experience."
   - status: "Confirmed platform"
     text: "PixiJS provides the 2D graphics and rendering used for the game experience."
-  - status: "Unverified"
-    text: "Multiplayer, leaderboards, cloud saves, player accounts, purchases, advertising, music licensing, analytics, and release duties are not confirmed parts of this engagement. A screen in the promotional artwork is not, by itself, a module Vortex Digital delivered."
 evidenceNote: "These three images are official App Store promotional screenshots. They are not runtime tests, debug-build captures, or recordings from a development environment. Marketing labels and on-screen figures in the artwork are promotional content, not verified performance or business results."
 contributionPrompt: "Native packaging, audio architecture, third-party services, monetization, and release duties remain unverified."
 engagementRole: "Complete mobile rhythm game development"

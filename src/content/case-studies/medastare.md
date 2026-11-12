@@ -36,47 +36,43 @@ projectUrl: "https://apps.apple.com/us/app/medastar%C3%A9/id6813994639"
 overview: >
   MedaStaré is an AI-powered fashion and lifestyle application.
   The public product brings styling assistance, a digital wardrobe, fashion discovery, and interactive experiences into a mobile app.
-  Vortex Digital's owner confirms the agency's full mobile application engagement, including the mobile UI/UX implementation.
+  Vortex Digital handled the complete mobile application development, including the mobile UI/UX implementation; individual AI, backend, payment, and social modules are not part of this case study.
   The project used Next.js for a web application or WebView experience, and Ionic with Capacitor for the iOS application.
 challenge: >
-  The published app gathers fashion discovery, styling, wardrobe organization, and interactive experiences in a mobile interface.
-  That is the purpose of the product as it is offered to people.
-  It is not a client brief, a research study, or a measured business problem.
+  The published app brings fashion discovery, styling, wardrobe organization, and interactive experiences together in one mobile interface.
 features:
   - title: "AI fashion assistance"
-    text: "The public product describes MedAI as styling guidance through text and voice. This is a documented product capability. It is not a separately verified claim that Vortex Digital built a particular model or assistant integration."
+    text: "MedAI offers styling guidance through text and voice."
   - title: "Digital wardrobe"
-    text: "Closeté is described as a place to organize clothes and outfits. The wardrobe screen below is App Store promotional artwork for that feature."
+    text: "Closeté is a place to organize clothes and outfits."
   - title: "Generated fashion visuals"
-    text: "FashionStaré is described as AI try-on and generated fashion visuals. Those images are part of the public product description, not a verified fit result."
+    text: "FashionStaré offers AI try-on and generated fashion visuals."
   - title: "Creator content discovery"
-    text: "StarDay is described as creator video and social discovery. The feed shown here is promotional artwork, not a capture from an installed app."
+    text: "StarDay brings creator video and social discovery."
   - title: "Fashion challenges"
-    text: "MedArena is described as fashion challenges and other interactive experiences. That scope is part of the public product, not a module-by-module delivery record."
+    text: "MedArena hosts fashion challenges and other interactive experiences."
 screenshots:
   - src: "/assets/portfolio/medastare/meda-1.png"
-    alt: "App Store promotional screenshot of the MedaStaré MedArena fashion challenge. Not a capture from an installed app."
+    alt: "App Store promotional screenshot of the MedaStaré MedArena fashion challenge."
     caption: "MedArena fashion challenge experience."
     kind: "App Store publisher promotional screenshot"
     width: 600
     height: 1299
   - src: "/assets/portfolio/medastare/meda-2.png"
-    alt: "App Store promotional screenshot of the MedaStaré StarDay creator content feed. Not a capture from an installed app."
+    alt: "App Store promotional screenshot of the MedaStaré StarDay creator content feed."
     caption: "StarDay creator content feed."
     kind: "App Store publisher promotional screenshot"
     width: 600
     height: 1299
   - src: "/assets/portfolio/medastare/meda-3-wardrobe.png"
-    alt: "App Store promotional screenshot of the MedaStaré Closeté digital wardrobe. Not a capture from an installed app."
+    alt: "App Store promotional screenshot of the MedaStaré Closeté digital wardrobe."
     caption: "Closeté digital wardrobe."
     kind: "App Store publisher promotional screenshot"
     width: 432
     height: 936
 technology:
   - status: "Confirmed platform"
-    text: "Next.js was used for a web application or WebView experience. Ionic and Capacitor were used for the iOS application framework and wrapper. The exact connection between those layers was not specified, and this does not mean Next.js server rendering ran on the device."
-  - status: "Unverified"
-    text: "Backend language, database, hosting, Next.js deployment, extra UI libraries, specific AI APIs, authentication providers, subscription implementation, and testing or release work were not identified. Names in public product documentation are not confirmed Vortex Digital integrations."
+    text: "Next.js was used for a web application or WebView experience. Ionic and Capacitor were used for the iOS application framework and wrapper."
 evidenceNote: "All three images are official App Store promotional screenshots. They are not independently captured runtime screenshots, and the product interface in them was not altered."
 contributionPrompt: "Individual AI, backend, payment, and social modules remain unverified."
 engagementRole: "Complete mobile application development, including mobile UI/UX implementation"
