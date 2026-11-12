@@ -28,7 +28,9 @@ test("team and profiles render the supplied portraits", async ({ page }) => {
   await page.goto("/team");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("The People Behind Vortex Digital");
   await expect(page.getByRole("heading", { name: "How We Work Together" })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "View Profile" })).toHaveCount(9);
+  // The duplicate roster under the wall is gone: the nine portraits are now the profile links.
+  await expect(page.locator(".roster-list")).toHaveCount(0);
+  await expect(page.locator('a.wall-tile[href^="/team/"]')).toHaveCount(9);
   await expect(page.getByRole("link", { name: "View All 27 Images" })).toHaveCount(0);
   await expect(page.getByText("Name pending")).toHaveCount(0);
   const people: [string, string][] = [
