@@ -160,3 +160,45 @@ export function providerOutcome(input: { ok: boolean; status: number; aborted?: 
   }
   return "confirmed-success";
 }
+
+export interface ProviderResult {
+  outcome: ProviderOutcome;
+  /** The provider's own error text, when it gave one. Plain text only. */
+  detail: string;
+}
+
+/** Reads Formspree's error shape ({ errors: [{ message }] }) or a plain { error } field. */
+export function providerErrorText(payload: unknown): string {
+  if (!payload || typeof payload !== "object") return "";
+  const record = payload as { errors?: unknown; error?: unknown };
+  const messages = Array.isArray(record.errors)
+    ? record.errors
+        .map((item) => (item && typeof item === "object" ? (item as { message?: unknown }).message : item))
+        .filter((message): message is string => typeof message === "string" && message.trim().length > 0)
+    : [];
+  const text = messages.length > 0 ? messages.join(" ") : typeof record.error === "string" ? record.error : "";
+  return text.replace(/\s+/g, " ").trim().slice(0, 240);
+}
+
+/**
+ * Posts the inquiry to the form provider (Formspree) as multipart form data and asks for JSON.
+ * Only a 2xx response whose body does not say ok: false counts as delivered.
+ */
+export async function submitToProvider(
+  endpoint: string,
+  body: FormData,
+  fetchImpl: typeof fetch = fetch,
+): Promise<ProviderResult> {
+  try {
+    const response = await fetchImpl(endpoint, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body,
+    });
+    const payload = (await response.json().catch(() => ({}))) as { ok?: boolean };
+    const outcome = providerOutcome({ ok: response.ok, status: response.status, payloadOk: payload.ok });
+    return { outcome, detail: outcome === "confirmed-success" ? "" : providerErrorText(payload) };
+  } catch {
+    return { outcome: "recoverable-error", detail: "" };
+  }
+}
