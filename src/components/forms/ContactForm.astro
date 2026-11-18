@@ -99,19 +99,33 @@ const configured = isConfiguredEndpoint(site.formEndpoint);
       </GradientButton>
       <p class="text-sm text-muted" data-form-status role="status" aria-live="polite"></p>
     </div>
+    <div class="form-alert" data-form-error role="alert" hidden>
+      <p class="form-alert-title">Your message was not sent.</p>
+      <p>
+        Your answers are still in the form, so you can try again.{
+          !site.emailIsPlaceholder && (
+            <>
+              {" "}You can also email us at <a href={`mailto:${site.email}`}>{site.email}</a>.
+            </>
+          )
+        }
+      </p>
+      <p class="form-alert-detail" data-form-error-detail hidden></p>
+    </div>
     <div data-copy-fallback hidden>
       <label class="font-semibold" for="inquiry-draft">Inquiry draft</label>
       <textarea id="inquiry-draft" class="inquiry-draft mt-2" readonly></textarea>
     </div>
   </form>
-  <div data-success hidden class="rounded-2xl border border-line bg-ink/50 p-6">
-    <h2 class="font-display text-2xl font-semibold">Message submitted</h2>
-    <p class="mt-3 text-muted">The form provider confirmed delivery. Please watch your inbox for a reply. This page does not create a contract.</p>
+  <div data-success hidden class="form-success">
+    <h2 class="form-success-title" tabindex="-1" data-success-title>Message submitted</h2>
+    <p>Thank you. Your inquiry was delivered, and we will reply to the email address you gave. Please watch your inbox.</p>
+    <p class="form-success-note">Sending an inquiry does not create a contract.</p>
   </div>
 </div>
 
 <script>
-  import { composeInquiry, inquiryProblems, planDelivery, providerOutcome, resolveServicePrefill } from "../../utils/inquiry";
+  import { composeInquiry, inquiryProblems, planDelivery, resolveServicePrefill, submitToProvider } from "../../utils/inquiry";
 
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
   if (form) {
@@ -122,7 +136,22 @@ const configured = isConfiguredEndpoint(site.formEndpoint);
     const fallback = form.querySelector<HTMLElement>("[data-copy-fallback]");
     const draft = form.querySelector<HTMLTextAreaElement>("#inquiry-draft");
     const submit = form.querySelector<HTMLButtonElement>("[data-submit-label]")?.closest("button");
+    const errorBox = form.querySelector<HTMLElement>("[data-form-error]");
+    const errorDetail = form.querySelector<HTMLElement>("[data-form-error-detail]");
+    const showError = (detail: string) => {
+      if (errorDetail) {
+        errorDetail.textContent = detail ? `The form service said: ${detail}` : "";
+        errorDetail.hidden = !detail;
+      }
+      if (errorBox) errorBox.hidden = false;
+    };
+    const hideError = () => {
+      if (errorBox) errorBox.hidden = true;
+    };
     const mounted = Date.now();
+    // The button only submits when a delivery endpoint is set; otherwise it copies the draft.
+    if (submit) submit.type = endpoint ? "submit" : "button";
+    if (label) label.textContent = endpoint ? "Send message" : "Copy inquiry";
     let attempted = false;
     let sending = false;
 
@@ -240,31 +269,27 @@ const configured = isConfiguredEndpoint(site.formEndpoint);
         return;
       }
 
+      // Formspree reads the named fields (name, email, company, service, budget, timeline,
+      // message, privacy) and _subject; "email" becomes the reply-to address. The honeypot stays local.
       const data = new FormData(form);
       data.delete("company_website");
       sending = true;
+      hideError();
       if (submit) submit.disabled = true;
       if (label) label.textContent = "Sending…";
       form.setAttribute("aria-busy", "true");
 
-      try {
-        const response = await fetch(plan.endpoint, {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: data,
-        });
-        const payload = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string };
-        const outcome = providerOutcome({ ok: response.ok, status: response.status, payloadOk: payload.ok });
-        if (outcome !== "confirmed-success") throw new Error(payload.error || "Request failed");
+      const result = await submitToProvider(plan.endpoint, data);
+      sending = false;
+      if (submit) submit.disabled = false;
+      form.removeAttribute("aria-busy");
+      if (label) label.textContent = "Send message";
+      if (result.outcome === "confirmed-success") {
         form.hidden = true;
         if (success) success.hidden = false;
-      } catch {
-        if (status) status.textContent = "We could not confirm delivery. Your answers are still in the form. No message was sent.";
-        if (label) label.textContent = "Send message";
-      } finally {
-        sending = false;
-        if (submit) submit.disabled = false;
-        form.removeAttribute("aria-busy");
+        document.querySelector<HTMLElement>("[data-success-title]")?.focus();
+      } else {
+        showError(result.detail);
       }
     };
 

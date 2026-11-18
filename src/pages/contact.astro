@@ -5,7 +5,10 @@ import HeroTitle from "../components/ui/HeroTitle.astro";
 import SocialLinks from "../components/ui/SocialLinks.astro";
 import OutlineButton from "../components/ui/OutlineButton.astro";
 import { activeSocialLinks, site } from "../data/site";
+import { isConfiguredEndpoint } from "../utils/inquiry";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const configured = isConfiguredEndpoint(site.formEndpoint);
 ---
 
 <BaseLayout
@@ -27,60 +30,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <ContactForm />
         </div>
         <div class="contact-notes min-w-0">
-          <article class="contact-note">
-            <h2>What helps</h2>
-            <p>
-              Name the product, who it is for, and whether you need web, mobile, AI, SaaS, APIs, DevOps, design, or QA. Say what already exists. Budget and timeline are optional.
-            </p>
-          </article>
-          <article class="contact-note">
-            <h2>Email</h2>
-            {
-              site.emailIsPlaceholder ? (
-                <p>A public inbox is not set. This page does not open a mail app or send the form.</p>
-              ) : (
-                <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
-              )
-            }
-          </article>
+          {
+            !site.emailIsPlaceholder && (
+              <section class="contact-note" aria-labelledby="contact-email-heading">
+                <h2 id="contact-email-heading">Email</h2>
+                <a class="contact-email" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </section>
+            )
+          }
+          <section class="contact-note" aria-labelledby="next-heading">
+            <h2 id="next-heading">What happens next</h2>
+            <ol class="next-steps">
+              <li>We read your inquiry and reply to the email address you give.</li>
+              <li>We start with a conversation about the product, the users, and what the first release has to do.</li>
+              <li>If there is a fit, discovery and a written proposal follow. Scope, timing, and commercial terms are agreed there.</li>
+            </ol>
+          </section>
           {
             site.location && (
-              <article class="contact-note">
-                <h2>Location</h2>
+              <section class="contact-note" aria-labelledby="location-heading">
+                <h2 id="location-heading">Location</h2>
                 <p>{site.location}</p>
-              </article>
+              </section>
             )
           }
           {
             activeSocialLinks.length > 0 && (
-              <article class="contact-note">
-                <h2>Social</h2>
+              <section class="contact-note" aria-labelledby="social-heading">
+                <h2 id="social-heading">Social</h2>
                 <SocialLinks class="mt-4" />
-              </article>
+              </section>
             )
           }
           {
             site.bookingUrl && (
-              <article class="contact-note">
-                <h2>Book a conversation</h2>
+              <section class="contact-note" aria-labelledby="booking-heading">
+                <h2 id="booking-heading">Book a conversation</h2>
                 <p>Use the scheduling link if you already know you want a call.</p>
                 <div class="mt-4">
                   <OutlineButton href={site.bookingUrl}>Open booking link</OutlineButton>
                 </div>
-              </article>
+              </section>
             )
           }
-          <article class="contact-note">
-            <h2>Privacy</h2>
-            <p>
-              With no delivery endpoint, the form does not submit your details to {site.name}. Copying stays on this device. Read the <a href="/privacy">Privacy Policy</a> before you prepare an inquiry.
-            </p>
-            <p class="contact-note-links">
-              <a href="/portfolio">Portfolio</a>
-              <span aria-hidden="true"> · </span>
-              <a href="/process">Process</a>
-            </p>
-          </article>
+          <p class="contact-privacy">
+            {
+              configured
+                ? "Your details go to our form provider so we can read and reply to your inquiry."
+                : `With no delivery endpoint, the form does not submit your details to ${site.name}. Copying stays on this device.`
+            }{" "}
+            Read the <a href="/privacy">Privacy Policy</a>.
+          </p>
         </div>
       </div>
     </div>

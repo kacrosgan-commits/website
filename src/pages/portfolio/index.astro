@@ -49,7 +49,7 @@ const places = workLayout(projectsLocal.length);
     description={
       projectCount > 0
         ? "Web and mobile products we've helped build across industries."
-        : "Case studies appear here after the work and the right to publish it are confirmed."
+        : "Selected case studies will appear here."
     }
     crumbs={[{ label: "Home", href: "/" }, { label: "Selected Work" }]}
   />
@@ -71,10 +71,8 @@ const places = workLayout(projectsLocal.length);
         projectCount === 0 && (
           <div>
             <div class="surface-card p-8">
-              <p class="max-w-2xl text-lg text-paper/90">No client case studies are approved for publication.</p>
-              <p class="mt-3 max-w-2xl text-muted">
-                A published study will name the product, the confirmed role, and only outcomes that have been cleared. Until then, the specialties below describe the kind of work the studio takes on. They are not a record of these products.
-              </p>
+              <p class="max-w-2xl text-lg text-paper/90">Selected case studies will appear here.</p>
+              <p class="mt-3 max-w-2xl text-muted">Until then, these are the kinds of work we take on.</p>
             </div>
             <ul class="mt-8 grid gap-4 md:grid-cols-2">
               {services.map((service) => (

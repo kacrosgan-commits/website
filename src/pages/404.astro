@@ -12,9 +12,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     title="This page is not on the map."
     description="The link may be out of date, or the page has not been published. You can return home or tell us what you were looking for."
   >
-    <div slot="actions" class="flex flex-wrap gap-3">
-      <GradientButton href="/">Back to home</GradientButton>
-      <OutlineButton href="/contact">Contact the team</OutlineButton>
+    <div slot="actions">
+      <div class="flex flex-wrap gap-3">
+        <GradientButton href="/">Back to home</GradientButton>
+        <OutlineButton href="/contact">Contact the team</OutlineButton>
+      </div>
+      <nav class="notfound-links" aria-label="Popular pages">
+        <a href="/portfolio" class="lux-link">Our Work</a>
+        <a href="/team" class="lux-link">Team</a>
+        <a href="/contact" class="lux-link">Contact</a>
+      </nav>
     </div>
   </PageHero>
 </BaseLayout>

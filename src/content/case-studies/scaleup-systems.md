@@ -27,17 +27,16 @@ projectUrl: "https://scaleupsystems.ai/"
 overview: >
   ScaleUp Systems publishes a marketing website for an AI-assisted sales product aimed at creators, coaches, and agencies.
   The site introduces the product, presents its features and pricing, and gives visitors a way to get in touch.
-  Vortex Digital designed and developed that public website. This case study does not cover the authenticated application behind it.
+  Vortex Digital designed and developed that public website. This case study covers the website, not the signed-in ScaleUp Systems application.
 challenge: >
   The public website has to explain the product, show what a visitor can review before signing up, and offer a path to ask a question.
-  That is the communication job of the marketing site. It is not a record of a client brief, and it is not a measured business problem.
 features:
   - title: "Homepage"
     text: "The homepage introduces ScaleUp Systems and states how the product is positioned."
   - title: "Product and feature sections"
     text: "Sections on the marketing site present the product and the capabilities it advertises."
   - title: "Analytics feature presentation"
-    text: "A public section illustrates the analytics feature. The panel is a marketing presentation, not an authenticated dashboard and not a verified result."
+    text: "A section of the site illustrates the analytics feature. The panel is marketing artwork, not real results."
   - title: "Pricing page"
     text: "The pricing page presents the public subscription plans."
   - title: "FAQ"
@@ -52,7 +51,7 @@ screenshots:
     width: 1353
     height: 929
   - src: "/assets/portfolio/scaleup-systems/scaleup-02-analytics.jpg"
-    alt: "Public marketing presentation of the ScaleUp Systems analytics feature. Not an authenticated dashboard."
+    alt: "Public marketing presentation of the ScaleUp Systems analytics feature."
     caption: "Public analytics feature presentation."
     kind: "Public marketing illustration (not authenticated dashboard)"
     width: 1353
@@ -66,11 +65,9 @@ screenshots:
 technology:
   - status: "Confirmed platform"
     text: "Vortex Digital built the public marketing website with Next.js and React."
-  - status: "Unverified"
-    text: "Hosting, a database, and any third-party services used by Vortex Digital were not identified. Instagram messaging, CRM, calendar booking, payments, and the internal analytics system are not part of this confirmed contribution."
 evidenceNote: "The analytics image is a public marketing presentation. It is not a signed-in dashboard, and no figure in it is treated as a result."
 contributionPrompt: "SaaS modules behind the marketing site remain unidentified."
-engagementRole: "Marketing website UI implementation and development"
+engagementRole: "Marketing website design, UI implementation, and development"
 workDates: "June 2026 – Present"
 modulesDelivered: "Homepage; product and feature sections; analytics marketing presentation; pricing page; FAQ; contact sections."
 technologiesUsed: "Next.js and React."

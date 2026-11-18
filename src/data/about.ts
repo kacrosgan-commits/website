@@ -30,8 +30,7 @@ export const about = {
     "What we treat as quality is practical. The codebase should be readable by the next person who has to change it. Scope should be specific enough to build against. And the people making product decisions should be able to follow the technical ones without a translation layer.",
   ],
   audienceHeading: "Built for Startup Challenges.",
-  audienceNote:
-    "These are the situations the practice is set up for. They are not a list of completed client engagements.",
+  audienceNote: "The situations we are set up to help with.",
   audiences: [
     {
       title: "Founders Starting From an Idea",
@@ -52,16 +51,15 @@ export const about = {
   ],
   buildHeading: "Everything Your Product Needs to Take Shape.",
   buildIntro:
-    "Eight specialties, each with its own page. Together they cover the usual path from a startup idea to software a team can keep improving.",
+    "Eight specialties. Together they cover the usual path from a startup idea to software a team can keep improving.",
   missionHeading: "Our Mission",
   mission:
     "To help startups develop practical, reliable, and thoughtfully designed software products through clear collaboration and disciplined engineering.",
-  missionSupport:
-    "This is the standard we want the work to meet. It is a goal for how projects are run, not a record of outcomes already delivered, and not a promise that a product will succeed in the market.",
+  missionSupport: "It is the standard we want every project to meet.",
   visionHeading: "Our Vision",
   vision: "To be a trusted technology partner for startups building products that solve meaningful problems.",
   visionSupport:
-    "The long view is a partnership that stays useful after the first release: design, engineering, and quality remaining in the same conversation as the product changes. That is an aim. It is not a claim that the company is already a leading or widely known agency.",
+    "The long view is a partnership that stays useful after the first release: design, engineering, and quality remaining in the same conversation as the product changes.",
   philosophyHeading: "How We Think About Building Software.",
   philosophy: [
     {
@@ -96,11 +94,12 @@ export const about = {
     },
   ],
   processHeading: "A Clear Path From Idea to Implementation.",
+  processSummary: "Six stages, from the first requirements conversation through deployment and support.",
   processIntro:
     "Every engagement follows the same six stages used on the process page, from the first requirements conversation through deployment and support.",
   teamHeading: "Meet the people behind Vortex Digital.",
   teamIntro:
-    "Don Tran, Joshua Mendoza, Lin Jiayi, and Pongsak Rattanakul lead company direction, engineering, finance, and delivery. Five more people cover full-stack development, AI, mobile, UX research, and QA. The team page has all nine profiles. None of them is credited on a client case study.",
+    "Don Tran, Joshua Mendoza, Lin Jiayi, and Pongsak Rattanakul lead company direction, engineering, finance, and delivery. Five more people cover full-stack development, AI, mobile, UX research, and QA. The team page has all nine profiles.",
   ctaTitle: "Building a Startup Product?",
   ctaDescription:
     "Whether you're planning an MVP, developing a new application, or improving an existing platform, we'd like to hear what you're working on.",

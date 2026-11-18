@@ -29,7 +29,9 @@ async function horizontalOverflow(page: Page) {
 test("sitemap pages have unique metadata, one h1, valid JSON-LD, and working internal links", async ({ page }) => {
   test.setTimeout(120_000);
   const paths = await sitemapPaths(page);
-  expect(paths.length).toBeGreaterThanOrEqual(25);
+  // 21 public pages: the Services and Insights pages were removed from the site on purpose, which
+  // took the sitemap below the earlier minimum of 25. Every remaining page is still checked below.
+  expect(paths.length).toBeGreaterThanOrEqual(21);
   const titles = new Map<string, string>();
   const descriptions = new Map<string, string>();
   const links = new Set<string>();

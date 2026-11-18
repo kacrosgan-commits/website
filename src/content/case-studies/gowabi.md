@@ -39,11 +39,9 @@ overview: >
   Its public website presents the brand and the services visitors can browse.
   Vortex Digital developed the frontend layout and interface for that marketing website, using HTML, CSS, and JavaScript to present the brand and its beauty and wellness services.
   The engagement ran from February 2025 through August 2026 and is complete.
-  The public site credits the GoWabi Team. This case study does not reassign the rest of the product.
+  This case study covers that website work, not the booking marketplace behind the pages; the public site credits the GoWabi Team.
 challenge: >
   The public website introduces the brand, organizes information about beauty and wellness services, and gives visitors a clear way to browse that offering.
-  That is the communication job of the marketing site.
-  It is not a client brief, and it is not a claim that Vortex Digital built the booking marketplace behind the pages.
 features:
   - title: "Brand introduction"
     text: "The public homepage presents the GoWabi name, a wellness promotion, and photography of a beauty service. That is brand presentation on the marketing site."
@@ -54,23 +52,23 @@ features:
   - title: "Beauty and wellness imagery"
     text: "The screenshots use photography of treatments and venue interiors to present the services. The images are part of the public site."
   - title: "Public navigation"
-    text: "The pages include a menu, category navigation, breadcrumbs, and a search field. These are visible browsing controls. Search results, listings, prices, ratings, and the map are public product context. They are not confirmed Vortex Digital booking, payment, or account modules."
+    text: "The pages include a menu, category navigation, breadcrumbs, and a search field. Listings, prices, ratings, and the map are part of GoWabi's product."
 screenshots:
   - src: "/assets/portfolio/gowabi/gowabi-01-home.jpg"
-    alt: "Public GoWabi homepage with the brand, a wellness promotion, service categories, and a search field. Public website context, not a booking-engine delivery."
+    alt: "Public GoWabi homepage with the brand, a wellness promotion, service categories, and a search field."
     caption: "Public homepage: brand, promotion, and service categories."
     kind: "Public website capture"
     width: 1348
     height: 926
   - src: "/assets/portfolio/gowabi/gowabi-02-listings.jpg"
-    alt: "Public GoWabi spa and massage listings with filters and venue cards. Visible product interface, not a confirmed marketplace module."
-    caption: "Public spa and massage listings. Visible product interface, not a confirmed marketplace module."
+    alt: "Public GoWabi spa and massage listings with filters and venue cards."
+    caption: "Spa and massage listings on the public site."
     kind: "Public website capture"
     width: 1348
     height: 926
   - src: "/assets/portfolio/gowabi/gowabi-03-venue.jpg"
-    alt: "Public GoWabi venue page with a gallery, ratings, and a map. Public product context, not a confirmed booking implementation."
-    caption: "Public venue page with gallery, ratings, and a map. Not a confirmed booking implementation."
+    alt: "Public GoWabi venue page with a gallery, ratings, and a map."
+    caption: "Venue page with gallery, ratings, and a map."
     kind: "Public website capture"
     width: 1348
     height: 926
@@ -80,9 +78,7 @@ technology:
   - status: "Confirmed platform"
     text: "CSS provides the layout, styling, and responsive presentation of that website."
   - status: "Confirmed platform"
-    text: "JavaScript provides frontend behavior and interactions on the marketing website. No specific library, animation, or API integration is confirmed."
-  - status: "Unverified"
-    text: "Booking, availability, payments, vouchers, accounts, merchant tools, provider management, databases, backend APIs, mobile apps, and marketplace infrastructure are not confirmed Vortex Digital modules. Technologies visible on the live site are not automatically part of this engagement."
+    text: "JavaScript provides frontend behavior and interactions on the marketing website."
 evidenceNote: "These three images are captures of the public website. Listings, prices, ratings, and the map are visible product context. They are not evidence that Vortex Digital built those platform modules, and they are not captures from a development environment."
 contributionPrompt: "Marketplace, booking, and payment modules remain unverified."
 engagementRole: "Public marketing website development"

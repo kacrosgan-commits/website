@@ -35,7 +35,8 @@ Restart `npm run dev` after changing `.env`. Production builds need the same var
 3. The unconfigured banner should be gone, and the button should say “Send message”.
 4. Submit a real test inquiry.
 5. Confirm the message arrived in the Formspree inbox you configured.
-6. Only then should the success state (“Message submitted”) be treated as delivery. A failed request stays on the form and says delivery was not confirmed.
+6. Only then should the success state be treated as delivery. It replaces the form with the heading “Message submitted” and the text “Thank you. Your inquiry was delivered, and we will reply to the email address you gave. Please watch your inbox.”, followed by “Sending an inquiry does not create a contract.”
+7. A failed request keeps the visitor’s answers in the form and shows an alert: “Your message was not sent.” and “Your answers are still in the form, so you can try again.” When `PUBLIC_CONTACT_EMAIL` is a real inbox, the alert adds “You can also email us at …”. If Formspree returns an error message, it is shown after “The form service said:”. A network failure shows the same alert without that line.
 
 The honeypot field stays in place. The short-submit check applies only when an endpoint is configured, so a local copy is not delayed. Neither one is a substitute for the provider’s spam filtering.
 

@@ -4,10 +4,10 @@ import PageHero from "../../components/ui/PageHero.astro";
 import { publicName } from "../../data/team";
 import { site } from "../../data/site";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getTeamForRender, isCmsRenderMode } from "../../lib/content/site-content";
+import { getTeamForRender } from "../../lib/content/site-content";
+import { personTransitionName } from "../../utils/transitions";
 
 const team = getTeamForRender();
-const cms = isCmsRenderMode();
 
 /* Same rule as TeamCard: unpublished, unconfirmed portraits say what kind of image they are. */
 const portraitNote = (member: (typeof team)[number]) =>
@@ -16,6 +16,7 @@ const portraitNote = (member: (typeof team)[number]) =>
     : member.portrait.source === "supplied"
       ? "Supplied photo"
       : "Illustrative portrait";
+const srcset = (member: (typeof team)[number]) => `${member.portrait.thumb} 384w, ${member.portrait.src} ${member.portrait.width}w`;
 ---
 
 <BaseLayout
@@ -39,21 +40,24 @@ const portraitNote = (member: (typeof team)[number]) =>
             const note = portraitNote(member);
             return (
               <li class="motion-item">
-                <a class="wall-tile" href={`/team/${member.slug}`}>
+                {/* Without JavaScript this is a plain link to the profile; with it, it opens the bio panel. */}
+                <a class="wall-tile" href={`/team/${member.slug}`} data-bio-open={member.slug}>
                   <span class="wall-photo">
                     <img
                       src={member.portrait.thumb}
-                      srcset={`${member.portrait.thumb} 384w, ${member.portrait.src} ${member.portrait.width}w`}
-                      sizes="(min-width: 80rem) 18vw, (min-width: 40rem) 30vw, 46vw"
+                      srcset={srcset(member)}
+                      sizes="(min-width: 64rem) 22rem, (min-width: 22.5rem) 46vw, 92vw"
                       alt=""
                       width={member.portrait.width}
                       height={member.portrait.height}
-                      loading={index < 5 ? "eager" : "lazy"}
+                      loading={index < 6 ? "eager" : "lazy"}
                       decoding="async"
+                      data-vt-person={member.slug}
+                      style={`view-transition-name: ${personTransitionName(member.slug)}; view-transition-class: person`}
                     />
                     {note && <span class="badge wall-badge">{note}</span>}
                   </span>
-                  <span class="wall-name">{name ?? member.role}</span>
+                  <h3 class="wall-name">{name ?? member.role}</h3>
                   {name && (
                     <span class="wall-role">
                       <span class="sr-only">, </span>
@@ -69,58 +73,51 @@ const portraitNote = (member: (typeof team)[number]) =>
     </div>
   </section>
 
-  <section class="section team-roster-section" aria-labelledby="roster-heading">
-    <div class="container-page">
-      <h2 id="roster-heading" class="sr-only">Team roster</h2>
-      <p class="roster-note">
-        {
-          cms
-            ? `${team.length} profiles from the active CMS release, in role order.`
-            : "Nine named profiles, in role order. Portraits were assigned by the agency owner. No profile is tied to a client case study."
-        }
-      </p>
-      <ul class="roster-list">
-        {
-          team.map((member) => {
-            const name = publicName(member);
-            return (
-              <li class="roster-row reveal">
-                <h3 class="roster-name">
-                  <a href={`/team/${member.slug}`}>{name ?? member.role}</a>
-                </h3>
-                {name && <p class="roster-role">{member.role}</p>}
-                <p class="roster-intro">{member.intro}</p>
-                <ul class="roster-skills">
-                  {member.expertise.map((item) => (
-                    <li>{item.title}</li>
-                  ))}
-                </ul>
-                <div class="roster-links">
-                  <a href={`/team/${member.slug}`} class="lux-link">
-                    View Profile
-                  </a>
-                  {member.linkedin && (
-                    <a href={member.linkedin} class="roster-social" target="_blank" rel="noopener noreferrer" aria-label={`${name ?? member.role} on LinkedIn`}>
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                        <path d="M4.7 3.6h3.1v3.1H4.7V3.6zM4.7 9h3.1v11.4H4.7V9zm5.4 0h3v1.6h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5v6.5h-3.1v-5.8c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.9H10.1V9z" />
-                      </svg>
-                    </a>
-                  )}
-                  {member.github && (
-                    <a href={member.github} class="roster-social" target="_blank" rel="noopener noreferrer" aria-label={`${name ?? member.role} on GitHub`}>
-                      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                        <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8a9.6 9.6 0 0 1 2.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2z" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  </section>
+  {
+    team.map((member) => {
+      const name = publicName(member) ?? member.role;
+      return (
+        <dialog class="bio" id={`bio-${member.slug}`} aria-labelledby={`bio-${member.slug}-name`} data-bio={member.slug}>
+          <div class="bio-card" data-bio-card>
+            <button type="button" class="bio-close" data-bio-close>
+              <span class="sr-only">Close {name}'s bio</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+            <img
+              class="bio-photo"
+              src={member.portrait.thumb}
+              srcset={srcset(member)}
+              sizes="(min-width: 48rem) 20rem, 80vw"
+              alt=""
+              width={member.portrait.width}
+              height={member.portrait.height}
+              loading="lazy"
+              decoding="async"
+              data-vt-person={member.slug}
+            />
+            <div class="bio-copy">
+              {publicName(member) && <p class="bio-role">{member.role}</p>}
+              <h2 class="bio-name" id={`bio-${member.slug}-name`}>
+                {name}
+              </h2>
+              <p class="bio-intro">{member.intro}</p>
+              <h3 class="bio-label">Skills</h3>
+              <ul class="bio-skills">
+                {member.expertise.map((item) => (
+                  <li>{item.title}</li>
+                ))}
+              </ul>
+              <a href={`/team/${member.slug}`} class="btn btn-outline bio-link">
+                View profile<span class="sr-only">: {name}</span>
+              </a>
+            </div>
+          </div>
+        </dialog>
+      );
+    })
+  }
 
   <CtaSection
     title="Need This Mix of Disciplines on a Product?"
@@ -129,3 +126,184 @@ const portraitNote = (member: (typeof team)[number]) =>
     label="Discuss Your Project"
   />
 </BaseLayout>
+
+<script>
+  import { personTransitionName } from "../../utils/transitions";
+
+  type ViewTransitionDocument = Document & {
+    startViewTransition?: (update: () => void) => { finished: Promise<void>; ready: Promise<void> };
+  };
+
+  const doc = document as ViewTransitionDocument;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const root = document.documentElement;
+  let openSlug: string | null = null;
+  const isolate = document.createElement("style");
+  document.head.append(isolate);
+  let busy = false;
+  // A request that arrives during the opening or closing motion (Escape, a click, Enter) is not
+  // dropped: the latest one runs as soon as the motion ends.
+  let pending: (() => void) | null = null;
+
+  const tileImage = (slug: string) => document.querySelector<HTMLImageElement>(`.wall-tile[data-bio-open="${slug}"] img`);
+  const tileLink = (slug: string) => document.querySelector<HTMLAnchorElement>(`.wall-tile[data-bio-open="${slug}"]`);
+  const dialogFor = (slug: string) => document.querySelector<HTMLDialogElement>(`dialog[data-bio="${slug}"]`);
+
+  /* The portrait's view-transition name moves between the wall and the panel, so only one element
+     carries it at a time. The card expands from the portrait's position. */
+  const nameOnPanel = (slug: string, onPanel: boolean) => {
+    const tile = tileImage(slug);
+    const photo = dialogFor(slug)?.querySelector<HTMLImageElement>(".bio-photo");
+    const name = personTransitionName(slug);
+    if (tile) tile.style.viewTransitionName = onPanel ? "none" : name;
+    if (photo) {
+      photo.style.viewTransitionName = onPanel ? name : "";
+      photo.style.setProperty("view-transition-class", onPanel ? "person" : "");
+    }
+  };
+
+  const setOrigin = (slug: string) => {
+    const tile = tileImage(slug)?.getBoundingClientRect();
+    const card = dialogFor(slug)?.querySelector<HTMLElement>("[data-bio-card]")?.getBoundingClientRect();
+    if (!tile || !card) return;
+    const x = tile.left + tile.width / 2 - card.left;
+    const y = tile.top + tile.height / 2 - card.top;
+    root.style.setProperty("--bio-origin", `${Math.round(x)}px ${Math.round(y)}px`);
+  };
+
+  const withTransition = async (slug: string, update: () => void) => {
+    const card = dialogFor(slug)?.querySelector<HTMLElement>("[data-bio-card]");
+    if (!doc.startViewTransition || reduced.matches || !card) {
+      update();
+      return;
+    }
+    busy = true;
+    root.classList.add("bio-vt");
+    // Only this person's portrait morphs. Named portraits draw above everything during a
+    // transition, so the rest of the wall gives up its names until it ends.
+    isolate.textContent = `[data-vt-person]:not([data-vt-person="${CSS.escape(slug)}"]){view-transition-name:none!important}`;
+    card.style.viewTransitionName = "bio-card";
+    try {
+      const transition = doc.startViewTransition(update);
+      await transition.finished;
+    } catch {
+      /* A skipped transition still applies the update. */
+    } finally {
+      card.style.viewTransitionName = "";
+      root.classList.remove("bio-vt");
+      isolate.textContent = "";
+      busy = false;
+    }
+  };
+
+  const flush = () => {
+    const next = pending;
+    pending = null;
+    next?.();
+  };
+
+  const ready = async (slug: string) => {
+    const photo = dialogFor(slug)?.querySelector<HTMLImageElement>(".bio-photo");
+    if (!photo) return;
+    photo.loading = "eager";
+    try {
+      await Promise.race([photo.decode(), new Promise((resolve) => setTimeout(resolve, 400))]);
+    } catch {
+      /* Show the panel even if the image fails. */
+    }
+  };
+
+  const open = async (slug: string) => {
+    const dialog = dialogFor(slug);
+    if (!dialog) return;
+    if (busy) {
+      pending = () => void open(slug);
+      return;
+    }
+    if (openSlug) return;
+    await ready(slug);
+    openSlug = slug;
+    await withTransition(slug, () => {
+      nameOnPanel(slug, true);
+      dialog.showModal();
+      setOrigin(slug);
+      dialog.querySelector<HTMLElement>("[data-bio-close]")?.focus();
+    });
+    flush();
+  };
+
+  const close = async () => {
+    const slug = openSlug;
+    const dialog = slug ? dialogFor(slug) : null;
+    if (!slug || !dialog) return;
+    if (busy) {
+      pending = () => void close();
+      return;
+    }
+    setOrigin(slug);
+    await withTransition(slug, () => {
+      dialog.close();
+      nameOnPanel(slug, false);
+    });
+    openSlug = null;
+    tileLink(slug)?.focus();
+    flush();
+  };
+
+  document.querySelectorAll<HTMLAnchorElement>("[data-bio-open]").forEach((link) => {
+    link.setAttribute("aria-haspopup", "dialog");
+    link.addEventListener("click", (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      const slug = link.dataset.bioOpen;
+      if (!slug || !dialogFor(slug)) return;
+      event.preventDefault();
+      void open(slug);
+    });
+  });
+
+  document.querySelectorAll<HTMLDialogElement>("dialog[data-bio]").forEach((dialog) => {
+    dialog.querySelector("[data-bio-close]")?.addEventListener("click", () => void close());
+    // Escape: run the same closing motion instead of the instant native close.
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      void close();
+    });
+    // Keep keyboard focus inside the open panel.
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const focusable = [...dialog.querySelectorAll<HTMLElement>("button, a[href]")];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    });
+    // Following "View profile" leaves the panel open in the back/forward cache, carrying the
+    // portrait's name so the profile page's portrait continues from it.
+  });
+
+  // A tap or click on the backdrop closes the panel. During a view transition clicks land on the
+  // root element instead of the dialog, so the pointer position decides.
+  document.addEventListener("click", (event) => {
+    if (!openSlug) return;
+    const dialog = dialogFor(openSlug);
+    const card = dialog?.querySelector<HTMLElement>("[data-bio-card]");
+    if (!dialog || !card) return;
+    if (event.target !== dialog && event.target !== root) return;
+    const box = card.getBoundingClientRect();
+    const inside =
+      event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
+    if (!inside) void close();
+  });
+
+  // Coming back from the back/forward cache with no panel open: make sure the wall owns the names.
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+    const shown = document.querySelector<HTMLDialogElement>("dialog[data-bio][open]");
+    openSlug = shown?.dataset.bio ?? null;
+  });
+</script>

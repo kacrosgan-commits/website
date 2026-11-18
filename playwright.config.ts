@@ -18,9 +18,15 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: `npm run preview -- --host 127.0.0.1 --port ${port}`,
+    // Astro 7 sends `astro preview` to the background when it detects an automated or agent shell,
+    // and the launching process then exits at once ("webServer exited early") while the server keeps
+    // running. --ignore-lock keeps it a foreground child that Playwright owns and stops after the run.
+    command: `npm run preview -- --host 127.0.0.1 --port ${port} --ignore-lock`,
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    // Always test a fresh server for the current dist/. A stray server on the port fails fast
+    // instead of being reused with an old build.
+    reuseExistingServer: false,
+    gracefulShutdown: { signal: "SIGTERM", timeout: 5_000 },
     timeout: 120_000,
   },
 });

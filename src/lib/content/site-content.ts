@@ -40,7 +40,7 @@ export function normalizedToTeamMember(member: NormalizedTeamMember): TeamMember
     biography: member.biography.length ? member.biography : [member.intro],
     responsibilities: member.responsibilities,
     expertise: member.expertise,
-    experience: member.experience || "Experience details managed in CMS.",
+    experience: member.experience || "",
     externalExperience: member.externalExperience,
     startupSupport: member.startupSupport || "",
     related: member.related,
